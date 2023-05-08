@@ -7,13 +7,15 @@ app.use((err, req, res, next)=> {
 });
 
 
-app.listen(port, async()=> {
-  console.log(`listening on port ${port}`)
-  try{
-    await seed()
-    console.log('seeded');
-  }
-  catch{
-    console.log('oooh you should seed something')
-  }
-});
+app.listen(port, ()=> console.log(`listening on port ${port}`));
+
+// app.listen(port, async()=> {
+//   console.log(`listening on port ${port}`)
+//   try{
+//     await seed()
+//     console.log('seeded');
+//   }
+//   catch{
+//     console.log('oooh you should seed something')
+//   }
+// });
