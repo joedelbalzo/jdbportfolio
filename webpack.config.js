@@ -1,17 +1,13 @@
-module.exports = {
+module.exports ={
   devtool: 'source-map',
-  module: {
+  module:{
     rules: [
-      {
-        test: /jsx?$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-        options: {
-          presets: [
-            '@babel/preset-react'
-          ]
-        }
-      },
+      {  test:/\.js$/,
+          loader: 'babel-loader',
+          options:{
+          presets: ['@babel/preset-react']
+          }
+      }
     ]
   }
 }
