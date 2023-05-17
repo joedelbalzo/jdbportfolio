@@ -1,4 +1,4 @@
-html{
+html {
   background-image: url("homeoffice-2.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -22,12 +22,11 @@ h1 {
   position: relative;
 }
 
-
-#name:hover{
-  color:lightskyblue;
-  position: relative
+#name:hover {
+  color: lightskyblue;
+  position: relative;
 }
-#name:hover::after{
+#name:hover::after {
   content: "";
   position: absolute;
   left: 0;
@@ -35,7 +34,7 @@ h1 {
   width: 100%;
   height: 2px;
   background-color: lightskyblue;
-  animation: underline .1s linear;
+  animation: underline 0.1s linear;
   animation-iteration-count: 1;
 }
 
@@ -48,120 +47,102 @@ h1 {
   }
 }
 
-
-#introParagraph{
+#introParagraph {
   margin: 0 auto 1rem;
   width: 80%;
   font-size: 1.4rem;
   font-weight: 450;
   text-align: left;
   /* padding: 0 0 2rem 0; */
-  color: rgba(240,240,240,.9);
+  color: rgba(240, 240, 240, 0.9);
   line-height: 2.1rem;
   letter-spacing: 2px;
 }
 
-#introParagraphMobile{
+#introParagraphMobile {
   margin: 0 auto 1rem;
   width: 90%;
   font-size: 2rem;
   font-weight: 450;
   text-align: center;
   /* padding: 0 0 2rem 0; */
-  color: rgba(240,240,240,.9);
+  color: rgba(240, 240, 240, 0.9);
   line-height: 2.1rem;
   letter-spacing: 2px;
 }
 
 #introParagraph > p {
   margin: 0;
-  opacity: 0;
-  animation: fadeIn .2s ease-in forwards;
-
-}
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
 }
 
-#introParagraph > p:first-child{
-  animation-delay: .2s;
-}
-#introParagraph > p:nth-child(2){
-  animation-delay: .7s;
-}
-#introParagraph > p:nth-child(3){
-  animation-delay: 1.2s;
-}
-#introParagraph > p:nth-child(4){
-  animation-delay: 1.7s;
-}
-
-#links{
-  margin: .5rem auto;
+#links {
+  margin: 0.5rem auto;
   min-width: 350px;
   display: flex;
   flex-wrap: wrap;
-  justify-content:center;
+  justify-content: center;
   backdrop-filter: blur(1px);
-  opacity: 0;
-  animation: fadeIn .2s ease-in forwards;
-  animation-delay: 2.2s; 
-}
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
 }
 
 #links > a {
-  margin: .2rem;
+  margin: 0.2rem;
 }
 
-#links :hover{
-  box-shadow: 2px 2px 6px 2px rgba(200,200,200,.15);
+#links :hover {
+  /* box-shadow: 2px 2px 6px 2px rgba(200, 200, 200, 0.15); */
   backdrop-filter: blur(10px);
-  background-color: rgba(200,200,200,.15);
+  background-color: rgba(200, 200, 200, 0.15);
 }
 
-#link{
-  background-color: rgba(0,0,0,.5);
+#link {
+  background-color: rgba(0, 0, 0, 0.5);
   font-size: 1.5rem;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   flex-wrap: nowrap;
   height: 2rem;
   border: 2px solid dodgerblue;
   border-radius: 4px;
   text-decoration: none;
-  color: rgba(200,200,200,.9);
+  color: rgba(200, 200, 200, 0.9);
 }
 
-#linksMobile{
-  margin: 1rem 4rem;
-  max-width: fit-content;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  justify-content:center;
-  backdrop-filter: blur(1px);
-}
+@media screen and (max-width: 768px) {
+  #introParagraph {
+    margin: 0 auto 1rem;
+    width: 90%;
+    font-size: 2rem;
+    font-weight: 450;
+    text-align: left;
+    /* padding: 0 0 2rem 0; */
+    color: rgba(240, 240, 240, 0.9);
+    line-height: 2.1rem;
+    letter-spacing: 2px;
+  }
+  #links {
+    margin: 1rem 4rem;
+    max-width: fit-content;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    backdrop-filter: blur(1px);
+  }
+  #link {
+    background-color: rgba(0, 0, 0, 0.5);
+    font-size: 2.5rem;
+    padding: 1rem 1.5rem;
+    vertical-align: center;
+    flex-wrap: nowrap;
+    height: 3rem;
+    border: 2px solid dodgerblue;
+    border-radius: 4px;
+    text-decoration: none;
+    color: rgba(200, 200, 200, 0.9);
+  }
 
-#linksMobile > #link{
-  background-color: rgba(0,0,0,.5);
-  font-size: 2.5rem;
-  padding: 1rem 1.5rem;
-  vertical-align: center;
-  flex-wrap: nowrap;
-  height: 3rem;
-  border: 2px solid dodgerblue;
-  border-radius: 4px;
-  text-decoration: none;
-  color: rgba(200,200,200,.9);
+  #links :hover {
+    /* box-shadow: 2px 2px 6px 2px rgba(200, 200, 200, 0.15); */
+    backdrop-filter: blur(10px);
+    background-color: rgba(200, 200, 200, 0.15);
+  }
 }
