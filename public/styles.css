@@ -61,6 +61,18 @@ h1 {
   letter-spacing: 2px;
 }
 
+#introParagraphMobile{
+  margin: 0 auto 1rem;
+  width: 90%;
+  font-size: 2rem;
+  font-weight: 450;
+  text-align: center;
+  /* padding: 0 0 2rem 0; */
+  color: rgba(240,240,240,.9);
+  line-height: 2.1rem;
+  letter-spacing: 2px;
+}
+
 #introParagraph > p {
   margin: 0;
   opacity: 0;
@@ -89,18 +101,12 @@ h1 {
   animation-delay: 1.7s;
 }
 
-
-#linkPage{
-  margin: auto
-}
-
 #links{
   margin: .5rem auto;
-  width: 80%;
+  min-width: 350px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+  justify-content:center;
   backdrop-filter: blur(1px);
   opacity: 0;
   animation: fadeIn .2s ease-in forwards;
@@ -115,7 +121,6 @@ h1 {
   }
 }
 
-
 #links > a {
   margin: .2rem;
 }
@@ -124,22 +129,26 @@ h1 {
   box-shadow: 2px 2px 6px 2px rgba(200,200,200,.15);
   backdrop-filter: blur(10px);
   background-color: rgba(200,200,200,.15);
-
-
 }
 
 #link{
-  /* box-sizing: content-box; */
   background-color: rgba(0,0,0,.5);
   font-size: 1.5rem;
   padding: .5rem 1rem;
-  vertical-align: center;
   flex-wrap: nowrap;
-  min-width: fit-content;
   height: 2rem;
   border: 2px solid dodgerblue;
-  border-radius: 2px;
+  border-radius: 4px;
   text-decoration: none;
   color: rgba(200,200,200,.9);
+}
 
+#linksMobile{
+  margin: .5rem 2rem;
+  max-width: fit-content;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  backdrop-filter: blur(1px);
 }

@@ -17932,11 +17932,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
+function isMobile() {
+  const mobileMaxWidth = 767; // Maximum width for mobile devices (adjust as needed)
+
+  if (window.innerWidth <= mobileMaxWidth) {
+    console.log('true');
+    return true;
+  } else {
+    console.log('false');
+    return false;
+  }
+  console.log();
+}
 const Home = () => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Hey, I'm ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     id: "name"
   }, "Joe Del Balzo.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    id: "introParagraph"
+    id: isMobile() ? "introParagraphMobile" : "introParagraph"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Web developer, front end, and back end engineer in New York, NY."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Former Lighting Designer, Lighting Console Programmer."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Musician, Cold Brew Drinker, Sports Fanatic, Certified Cicerone\xAE"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Artist-turned-coder. I liked creating beauty before; I like creating beauty now.")));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Home);
@@ -17957,34 +17969,43 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
+function isMobile() {
+  const mobileMaxWidth = 767; // Maximum width for mobile devices (adjust as needed)
+
+  if (window.innerWidth <= mobileMaxWidth) {
+    return true;
+  } else {
+    return false;
+  }
+}
 const Links = () => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "linkPage"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    id: "links"
+    id: isMobile() ? "linksMobile" : "links"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
     href: "https://www.linkedin.com/in/joe-delbalzo/",
     id: "link",
     target: "_blank",
     rel: "noreferrer noopener"
-  }, "LinkedIn \xA0\xA0\xA0 \u21FE"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
-    href: "https://jdb-open-places.onrender.com/#/",
-    id: "link",
-    target: "_blank",
-    rel: "noreferrer noopener"
-  }, "Portfolio: \"Open Places\" \xA0\xA0\xA0 \u21FE")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    id: "links"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+  }, "LinkedIn"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
     href: "https://github.com/joedelbalzo",
     id: "link",
     target: "_blank",
     rel: "noreferrer noopener"
-  }, "GitHub \xA0\xA0\xA0 \u21FE"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+  }, "GitHub")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    id: isMobile() ? "linksMobile" : "links"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+    href: "https://jdb-open-places.onrender.com/#/",
+    id: "link",
+    target: "_blank",
+    rel: "noreferrer noopener"
+  }, "Portfolio: \"Open Places\""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
     href: "https://scriptforjava.onrender.com",
     id: "link",
     target: "_blank",
     rel: "noreferrer noopener"
-  }, "Portfolio: \"Script for Java\" \xA0\xA0\xA0 \u21FE")));
+  }, "Portfolio: \"Script for Java\"")));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Links);
 
