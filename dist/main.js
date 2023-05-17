@@ -17902,17 +17902,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 /* harmony import */ var _Home__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Home */ "./src/Home.js");
 /* harmony import */ var _Nav__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Nav */ "./src/Nav.js");
-/* harmony import */ var _Nav__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_Nav__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Links__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Links */ "./src/Links.js");
+/* harmony import */ var _Sublinks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Sublinks */ "./src/Sublinks.js");
+/* harmony import */ var _Resume__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Resume */ "./src/Resume.js");
+
 
 
 
 
 
 const App = () => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Home__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Links__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Nav__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+    path: "/",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Home__WEBPACK_IMPORTED_MODULE_1__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+    path: "/home",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Home__WEBPACK_IMPORTED_MODULE_1__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+    path: "/links",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Sublinks__WEBPACK_IMPORTED_MODULE_3__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+    path: "/resume",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Resume__WEBPACK_IMPORTED_MODULE_4__["default"], null)
+  })));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
 
@@ -17931,22 +17945,79 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Sublinks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Sublinks */ "./src/Sublinks.js");
+
 
 const Home = () => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Hey, I'm ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     id: "name"
   }, "Joe Del Balzo.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "introParagraph"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Web developer, front end, and back end engineer in New York, NY."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Former Lighting Designer, Lighting Console Programmer."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Musician, Cold Brew Drinker, Sports Fanatic, Certified Cicerone\xAE"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Artist-turned-coder. I liked creating beauty before; I like creating beauty now.")));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Web developer, front end, and back end engineer in New York, NY."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Former Lighting Designer, Lighting Console Programmer."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Musician, Cold Brew Drinker, Sports Fanatic, Certified Cicerone\xAE"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Artist-turned-coder. I liked creating beauty before; I like creating beauty now.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Sublinks__WEBPACK_IMPORTED_MODULE_1__["default"], null));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Home);
 
 /***/ }),
 
-/***/ "./src/Links.js":
-/*!**********************!*\
-  !*** ./src/Links.js ***!
-  \**********************/
+/***/ "./src/Nav.js":
+/*!********************!*\
+  !*** ./src/Nav.js ***!
+  \********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Sublinks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Sublinks */ "./src/Sublinks.js");
+/* harmony import */ var _Resume__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Resume */ "./src/Resume.js");
+
+
+
+
+const Nav = () => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "navbar"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+    href: "#/home"
+  }, "Home"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+    href: "https://www.linkedin.com/in/joe-delbalzo/",
+    target: "_blank",
+    rel: "noreferrer noopener"
+  }, "LinkedIn"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+    href: "https://github.com/joedelbalzo",
+    target: "_blank",
+    rel: "noreferrer noopener"
+  }, "GitHub"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+    href: "#/resume",
+    rel: "noreferrer noopener"
+  }, "Resume"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "dropdown"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    className: "dropbtn"
+  }, "Portfolio", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
+    className: "fa fa-caret-down"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "dropdown-links"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+    href: "https://jdb-open-places.onrender.com/#/",
+    target: "_blank"
+  }, "\"Open Places\""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+    href: "https://scriptforjava.onrender.com",
+    target: "_blank"
+  }, "\"Script for Java\"")))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Nav);
+
+/***/ }),
+
+/***/ "./src/Resume.js":
+/*!***********************!*\
+  !*** ./src/Resume.js ***!
+  \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -17957,16 +18028,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-function isMobile() {
-  const mobileMaxWidth = 767; // Maximum width for mobile devices (adjust as needed)
+const Resume = () => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    id: "resume"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Joseph Del Balzo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Web Developer / Full Stack Engineer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "240-441-7689 | jdelbalzo99@gmail.com | New York, NY"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "joedelbalzo.com | linkedin.com/in/joe-delbalzo/ | github.com/joedelbalzo")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "SUMMARY"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Experienced former Chief Lighting Technician, lighting console programmer, and network designer with 15+ years in the film and television industry. Communicated regularly in an intense and fast-paced environment with employee technicians as well as high-profile clients, actors, and producers, to skillfully handle massive amounts of show-critical data and optimize networks to minimize time costs, resulting in high-quality entertainment production."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "TECHNICAL SKILLS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Proficient: Node, Javascript, React / Redux, Git, Express, PostgreSQL,", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "Knowledgeable: Typescript, CSS, HTML, Python"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "TECHNICAL PROJECTS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "\u201COpen Places\u201D"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Creator, Lead Developer | May, 2023", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+    href: "https://bit.ly/3O9ESXV"
+  }, "https://bit.ly/3O9ESXV")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Application designed to minimize steps for an end-user to effortlessly find anything nearby that is open this minute, depending on their location and user preferences. Think Google Maps\u2019 \u201COpen Now\u201D button, but much more personalized and fewer steps to get what you want."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Technologies primarily used: Javascript, React, React-Redux, Node, Express, PostgreSQL, Sequelize, HTML, CSS, Material-UI, Google Places API"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "E-Commerce \u201CA Script for Java\u201D"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Project Manager, Developer | April, 2023", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+    href: "https://bit.ly/42ErwXQ"
+  }, "https://bit.ly/42ErwXQ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Led a team developing an e-commerce website for a small chain of coffee houses"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Technologies primarily used: Javascript, React, React-Redux, Node, Express, PostgreSQL, Sequelize, HTML, CSS, Material-UI, Google Places API"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "EXPERIENCE"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Lighting Console Programmer | Local 52 | New York, NY"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "May, 2019 \u2013 Current"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Headed the department that designed, programmed, and operated lighting console programs and networks for film and television."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Built extensive networks to distribute gigabits per second of show-critical lighting data to minimize time costs to productions.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Projects include:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "East New York, Season 1 (Summer 2022 \u2013 Spring 2023), Produced by Warner Brothers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Bull, Seasons 4-6 (Fall 2019 \u2013 Spring 2022), Produced by CBS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Ray Donovan: The Movie (Spring 2021), Produced by Showtime"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Chemical Hearts (Spring 2021), Produced by Amazon"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "John Wick 3 (Spring 2019), Produced by Dune Films"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Little America, Season 1 (Spring 2019), Produced by Apple TV")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Chief Lighting Technician | Local 52 | New York, NY"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "May, 2011 \u2013 June, 2016"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Headed the department that designed executed the desired look of a film or television show through lighting."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Oversaw the department, managing all of the electricity and lighting decision-making, technicians, and inventory during production.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Projects include:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Trouble (Spring 2016), Directed by Theresa Rebeck"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Wildling (Fall 2015), Directed by Fritz Bohm"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Fan Girl (Fall 2014), Directed by Paul Jarrett"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Dean (Fall 2014), Directed by Demetri Martin"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Tracing the Rope: Eva Hesse (Fall 2013), Directed by Marcie Begleiter")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "IATSE Local 52 Film and TV Electrician | Local 52 | New York, NY"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "May, 2011 \u2013 Current"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Delivered the desired look of a film or television series through lighting."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Executed anything relating to electricity and lighting on a production.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Both positions above as department head were under the umbrella of a Local 52 Electrician."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Projects include:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Succession, Season 4 (Spring 2023), Produced by HBO"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "West Side Story (Fall 2019), Produced by 20th Century Studios"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Bull, Seasons 1-3 (Summer 2016 \u2013 Spring 2019), Produced by CBS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "The Americans, Season 4 (Winter 2016), Produced by FX"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Daredevil, Season 1 (Fall, 2015), Produced by Netflix"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "The Jinx: The Life and Deaths of Robert Durst (Dec. 2014), Produced by HBO")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "EDUCATION"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Fullstack Academy Web Development Bootcamp | June 2023", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, " Software Engineering Certificate"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Full-time, Full Stack Javascript Web Development Immersive")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "New York University, Tisch School of the Arts | May 2011"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Bachelor of Fine Arts, Film and Television"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Indiana University, Kelley School of Business | May 2018"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Master\u2019s Certificate in Business Management"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "PROFESSIONAL AFFILIATIONS, MEMBERSHIPS, AND CERTIFICATES"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "International Alliance of Theatrical and Stage Employees \u2013 Local 52, September 2017"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Certified Cicerone\xAE of the Cicerone Certification Program, May 2017")));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Resume);
 
-  if (window.innerWidth <= mobileMaxWidth) {
-    return true;
-  } else {
-    return false;
-  }
-}
-const Links = () => {
+/***/ }),
+
+/***/ "./src/Sublinks.js":
+/*!*************************!*\
+  !*** ./src/Sublinks.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var _Resume__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Resume */ "./src/Resume.js");
+
+
+
+const Sublinks = () => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "linkPage"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -17981,7 +18074,11 @@ const Links = () => {
     id: "link",
     target: "_blank",
     rel: "noreferrer noopener"
-  }, "GitHub")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, "GitHub"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+    id: "link",
+    to: "/resume",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Resume__WEBPACK_IMPORTED_MODULE_1__["default"], null)
+  }, "Resume")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "links"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
     href: "https://jdb-open-places.onrender.com/#/",
@@ -17995,162 +18092,7 @@ const Links = () => {
     rel: "noreferrer noopener"
   }, "Portfolio: \"Script for Java\"")));
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Links);
-
-/***/ }),
-
-/***/ "./src/Nav.js":
-/*!********************!*\
-  !*** ./src/Nav.js ***!
-  \********************/
-/***/ (() => {
-
-// import * as React from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import AppBar from '@mui/material/AppBar';
-// import Box from '@mui/material/Box';
-// import Toolbar from '@mui/material/Toolbar';
-// import IconButton from '@mui/material/IconButton';
-// import Typography from '@mui/material/Typography';
-// import Menu from '@mui/material/Menu';
-// import MenuIcon from '@mui/icons-material/Menu';
-// import Container from '@mui/material/Container';
-// import Avatar from '@mui/material/Avatar';
-// import Button from '@mui/material/Button';
-// import Tooltip from '@mui/material/Tooltip';
-// import MenuItem from '@mui/material/MenuItem';
-// import { useNavigate, useLocation, Link } from 'react-router-dom';
-// import LinkedInIcon from '@mui/icons-material/LinkedIn';
-
-// export default function Nav() {
-//   const navigate = useNavigate()
-//   const location = useLocation();
-//   console.log(location)
-//   const [anchorElNav, setAnchorElNav] = React.useState(null);
-//   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-//   const pages = ['Home', 'Portfolio', 'About', 'Contact'];
-//   const settings = ['Account', 'Cart', 'Logout']
-
-//   const handleOpenNavMenu = (event) => {
-//     setAnchorElNav(event.currentTarget);
-//   };
-//   const handleOpenUserMenu = (event) => {
-//     setAnchorElUser(event.currentTarget);
-//   };
-
-//   const handleCloseNavMenu = () => {
-//     setAnchorElNav(null);
-//   };
-
-//   const handleCloseUserMenu = () => {
-//     setAnchorElUser(null);
-//   };
-
-//   const navigateTo = (page) => {
-//     navigate(`/${page.toLowerCase()}`)
-//   }
-
-//   return (       
-
-//     <AppBar position="static" style={{ background: 'none',boxShadow:"none"}}>
-//       <Container maxWidth="xl">
-//         <Toolbar disableGutters style={{display:"flex"}}>
-
-//         {location.pathname !== '/home' ? 
-//           <Typography
-//             variant="h4"
-//             noWrap
-//             component="a"
-//             href="/"
-//             sx={{
-//               mr: 2,
-//               display: { xs: 'none', md: 'flex' },
-//               fontFamily:"sans-serif",
-//               fontWeight: 700,
-//               letterSpacing: '.2rem',
-//               color: 'inherit',
-//               textDecoration: 'none',
-//               border: 'none'
-//             }}
-//           >
-//             Joe Del Balzo
-//           </Typography> : ''}
-//           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-//             <IconButton
-//               size="large"
-//               aria-label="account of current user"
-//               aria-controls="menu-appbar"
-//               aria-haspopup="true"
-//               onClick={handleOpenNavMenu}
-//               color="inherit"
-//             >
-//               <MenuIcon />
-//             </IconButton>
-//             <Menu
-//               id="menu-appbar"
-//               anchorEl={anchorElNav}
-//               anchorOrigin={{
-//                 vertical: 'bottom',
-//                 horizontal: 'left',
-//               }}
-//               keepMounted
-//               transformOrigin={{
-//                 vertical: 'top',
-//                 horizontal: 'left',
-//               }}
-//               open={Boolean(anchorElNav)}
-//               onClose={handleCloseNavMenu}
-//               sx={{
-//                 display: { xs: 'block', md: 'none' },
-//               }}
-//             >
-//               {pages.map((page) => (
-//                 <MenuItem key={page} onClick={() => navigateTo(page)}>
-//                   <Typography textAlign="center">{page}</Typography>
-//                 </MenuItem>
-//               ))}
-//             </Menu>
-//            {/*  <Link to={window.open("https://www.linkedin.com/in/joe-delbalzo/")} style={{color: 'white'}}>
-//                <LinkedInIcon sx={{ margin: "1rem", display: { xs: 'block', md: 'none' }, mr: -1 }}/>
-//             </Link> */}
-//           </Box>
-
-//           <Typography
-//             variant="h5"
-//             noWrap
-//             component="a"
-//             href=""
-//             sx={{
-//               mr: 2,
-//               display: { xs: 'flex', md: 'none' },
-//               flexGrow: 1,
-//               fontFamily:"sans-serif",
-//               fontWeight: 700,
-//               letterSpacing: '.2rem',
-//               color: 'inherit',
-//               textDecoration: 'none',
-//             }}
-//           >
-//             Joe Del Balzo
-//           </Typography>
-
-//           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-//             {pages.map((page) => (
-//               <Button
-//                 key={page}
-//                 onClick={() => navigateTo(page)}
-//                 sx={{ my: 2, color: 'white', display: 'block' }}
-//               >
-//                 {page}
-//               </Button>
-//             ))}
-//           </Box>
-//         </Toolbar>
-//       </Container>
-//     </AppBar>
-//   );
-// }
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Sublinks);
 
 /***/ }),
 

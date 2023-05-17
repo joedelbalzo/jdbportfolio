@@ -1,22 +1,22 @@
 import React from "react";
-import {Routes, Route, Link} from 'react-router-dom'
+import { Routes, Route, Link } from "react-router-dom";
 import Home from "./Home";
 import Nav from "./Nav";
-import Links from './Links'
+import Sublinks from "./Sublinks";
+import Resume from "./Resume";
 
 const App = () => {
   return (
     <div>
-      {/* <Nav/> */}
-      <Home/>
-      <Links/>
-    {/* <Routes>
-      <Route path='/' element={ '/' } />
-      <Route path='/home'/>
-      <Route path='/links' element={ <Links /> } />
-    </Routes> */}
+      <Nav />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/links" element={<Sublinks />} />
+        <Route path="/resume" element={<Resume />} />
+      </Routes>
     </div>
-  )
-}
+  );
+};
 
 export default App;

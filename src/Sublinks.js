@@ -1,16 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import Resume from "./Resume";
 
-function isMobile() {
-  const mobileMaxWidth = 767; // Maximum width for mobile devices (adjust as needed)
-
-  if (window.innerWidth <= mobileMaxWidth) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-const Links = () => {
+const Sublinks = () => {
   return (
     <div id="linkPage">
       <div id="links">
@@ -30,6 +22,10 @@ const Links = () => {
         >
           GitHub
         </a>
+
+        <Link id="link" to={"/resume"} element={<Resume />}>
+          Resume
+        </Link>
       </div>
       <div id="links">
         <a
@@ -53,4 +49,4 @@ const Links = () => {
   );
 };
 
-export default Links;
+export default Sublinks;

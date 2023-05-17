@@ -1,4 +1,5 @@
 import React from "react";
+import Sublinks from "./Sublinks";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
           beauty now.
         </p>
       </div>
+      <Sublinks />
     </>
   );
 };
