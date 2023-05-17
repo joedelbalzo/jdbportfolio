@@ -3,10 +3,9 @@ html{
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-
   filter: sepia(5%);
   margin: auto;
-
+  backdrop-filter: blur(10px);
 }
 
 body {
@@ -15,45 +14,117 @@ body {
   font-size: 1.2rem;
 }
 
-h1{
+h1 {
   font-size: 5rem;
   font-weight: 600;
-  color: rgba(240,240,240,.9);
-
+  color: rgba(240, 240, 240, 0.9);
+  display: inline-block;
+  position: relative;
 }
 
+
+#name:hover{
+  color:lightskyblue;
+  position: relative
+}
+#name:hover::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: lightskyblue;
+  animation: underline .1s linear;
+  animation-iteration-count: 1;
+}
+
+@keyframes underline {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+
 #introParagraph{
-  margin: auto;
+  margin: 0 auto 1rem;
   width: 80%;
   font-size: 1.4rem;
   font-weight: 450;
   text-align: left;
-  padding: 0 0 2rem 0;
+  /* padding: 0 0 2rem 0; */
   color: rgba(240,240,240,.9);
   line-height: 2.1rem;
   letter-spacing: 2px;
 }
+
+#introParagraph > p {
+  margin: 0;
+  opacity: 0;
+  animation: fadeIn .2s ease-in forwards;
+
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#introParagraph > p:first-child{
+  animation-delay: .2s;
+}
+#introParagraph > p:nth-child(2){
+  animation-delay: .7s;
+}
+#introParagraph > p:nth-child(3){
+  animation-delay: 1.2s;
+}
+#introParagraph > p:nth-child(4){
+  animation-delay: 1.7s;
+}
+
 
 #linkPage{
   margin: auto
 }
 
 #links{
-  margin: auto;
+  margin: .5rem auto;
   width: 80%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  backdrop-filter: blur(1px);
+  opacity: 0;
+  animation: fadeIn .2s ease-in forwards;
+  animation-delay: 2.2s; 
 }
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 
 #links > a {
   margin: .2rem;
 }
 
 #links :hover{
-  box-shadow: 2px 2px 6px 2px rgba(200,200,200,.5);
-  background-color: rgba(0,0,0,.7);
+  box-shadow: 2px 2px 6px 2px rgba(200,200,200,.15);
+  backdrop-filter: blur(10px);
+  background-color: rgba(200,200,200,.15);
+
 
 }
 
