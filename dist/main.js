@@ -17935,7 +17935,7 @@ __webpack_require__.r(__webpack_exports__);
 const Home = () => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Hey, I'm Joe Del Balzo."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "introParagraph"
-  }, "Web developer, front end, and back end engineer in New York, NY.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "Still very much constructing this website. Don't be too shocked if things don't work!", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "Musician, Cold Brew Drinker, Sports Fanatic, Former Lighting Designer, Certified Cicerone\xAE", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "Artist-turned-coder. I liked creating beauty before; I like creating beauty now.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null)));
+  }, "Web developer, front end, and back end engineer in New York, NY.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "Former Lighting Designer, Lighting Console Programmer.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "Musician, Cold Brew Drinker, Sports Fanatic, Certified Cicerone\xAE", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "Artist-turned-coder. I liked creating beauty before; I like creating beauty now.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null)));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Home);
 
@@ -17970,7 +17970,14 @@ const Links = () => {
     id: "link",
     target: "_blank",
     rel: "noreferrer noopener"
-  }, "Portfolio: \"Open Places\" \xA0\xA0\xA0 \u21FE"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+  }, "Portfolio: \"Open Places\" \xA0\xA0\xA0 \u21FE")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    id: "links"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+    href: "https://github.com/joedelbalzo",
+    id: "link",
+    target: "_blank",
+    rel: "noreferrer noopener"
+  }, "GitHub \xA0\xA0\xA0 \u21FE"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
     href: "https://scriptforjava.onrender.com",
     id: "link",
     target: "_blank",

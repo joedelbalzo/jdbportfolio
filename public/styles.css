@@ -42,8 +42,13 @@ h1{
   margin: auto;
   width: 80%;
   display: flex;
-  justify-content: space-evenly;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
+}
+
+#links > a {
+  margin: .2rem;
 }
 
 #links :hover{
