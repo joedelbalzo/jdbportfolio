@@ -3,7 +3,7 @@ import React from "react";
 const Resume = () => {
   return (
     <div id="resume">
-      <h1>Joseph Del Balzo</h1>
+      <h1>Joe Del Balzo</h1>
       <h3>Web Developer / Full Stack Engineer</h3>
 
       <ul>
