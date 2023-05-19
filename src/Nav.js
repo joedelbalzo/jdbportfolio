@@ -25,7 +25,10 @@ const Nav = () => {
         <a href="#/resume" rel="noreferrer noopener">
           Resume
         </a>
-        <div className="dropdown">
+        <a href="#/portfolio" rel="noreferrer noopener">
+          Portfolio
+        </a>
+        {/* <div className="dropdown">
           <button className="dropbtn">
             Portfolio
             <i className="fa fa-caret-down"></i>
@@ -38,7 +41,7 @@ const Nav = () => {
               "Script for Java"
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );
