@@ -18,14 +18,13 @@ body {
 .navbar {
   overflow: hidden;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   flex-wrap: wrap;
   /* box-sizing: border-box; */
 }
 
 .navbar a {
   /* box-sizing: border-box; */
-  float: left;
   font-size: 1.2rem;
   color: rgba(240, 240, 240, 0.9);
   text-align: center;
@@ -127,7 +126,7 @@ h1 {
 
 #introParagraph {
   margin: 0 auto 1rem;
-  width: 100vw;
+  width: 80vw;
   font-size: 1.5rem;
   font-weight: 450;
   text-align: left;
@@ -199,6 +198,13 @@ h1 {
   h1 {
     font-size: 2.5rem;
   }
+
+  .navbar {
+    overflow: hidden;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
   #introParagraph {
     margin: 0 auto 1rem;
     width: 90%;
