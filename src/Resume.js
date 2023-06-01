@@ -35,7 +35,12 @@ const Resume = () => {
         <p>
           Creator, Lead Developer | May, 2023
           <br />
-          <a href="https://bit.ly/3O9ESXV">https://bit.ly/3O9ESXV</a>
+          <a
+            href="https://bit.ly/3O9ESXV"
+            style={{ color: "rgba(240, 240, 240, 0.9)" }}
+          >
+            https://bit.ly/3O9ESXV
+          </a>
         </p>
         <p>
           Application designed to minimize steps for an end-user to effortlessly
@@ -53,7 +58,12 @@ const Resume = () => {
         <p>
           Project Manager, Developer | April, 2023
           <br />
-          <a href="https://bit.ly/42ErwXQ">https://bit.ly/42ErwXQ</a>
+          <a
+            href="https://bit.ly/42ErwXQ"
+            style={{ color: "rgba(240, 240, 240, 0.9)" }}
+          >
+            https://bit.ly/42ErwXQ
+          </a>
         </p>
         <p>
           Led a team developing an e-commerce website for a small chain of
@@ -74,10 +84,8 @@ const Resume = () => {
         <ul>
           <li>
             Headed the department that designed, programmed, and operated
-            lighting console programs and networks for film and television.
-          </li>
-          <li>
-            Built extensive networks to distribute gigabits per second of
+            lighting console programs and networks for film and television. I
+            built extensive networks to distribute gigabits per second of
             show-critical lighting data to minimize time costs to productions.
           </li>
         </ul>
@@ -99,12 +107,10 @@ const Resume = () => {
         </h3>
         <p>May, 2011 – June, 2016</p>
         <ul>
-          <li>
-            Headed the department that designed executed the desired look of a
-            film or television show through lighting.
-          </li>
-          <li>
-            Oversaw the department, managing all of the electricity and lighting
+          <li style={{ maxWidth: "80%" }}>
+            Headed the department that designed and executed the desired look of
+            a film or television show through lighting. I oversaw the
+            department, managed all of the electricity and lighting
             decision-making, technicians, and inventory during production.
           </li>
         </ul>
@@ -125,19 +131,14 @@ const Resume = () => {
         </h3>
         <p>May, 2011 – Current</p>
         <ul>
-          <li>
+          <li style={{ maxWidth: "80%" }}>
             Delivered the desired look of a film or television series through
-            lighting.
-          </li>
-          <li>
-            Executed anything relating to electricity and lighting on a
-            production.
+            lighting, executing anything relating to electricity and lighting on
+            a production. Both positions above as department head were under the
+            umbrella of a Local 52 Electrician.
           </li>
         </ul>
-        <p>
-          Both positions above as department head were under the umbrella of a
-          Local 52 Electrician.
-        </p>
+
         <p>Projects include:</p>
         <ul>
           <li>Succession, Season 4 (Spring 2023), Produced by HBO</li>
