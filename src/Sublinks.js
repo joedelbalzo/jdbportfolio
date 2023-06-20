@@ -27,7 +27,7 @@ const Sublinks = () => {
           Resume
         </Link>
       </div>
-      <div id="main-links">
+      <div id="main-links" style={{ marginBottom: "10vh" }}>
         <a
           href="https://jdb-open-places.onrender.com/#/"
           id="main-link"

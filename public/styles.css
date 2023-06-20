@@ -251,7 +251,7 @@ h3 {
   }
 
   #main-introParagraph {
-    margin: 0 auto 1rem;
+    margin: 0 auto 2rem;
     width: 90%;
     font-size: 1.5rem;
     font-weight: 450;
@@ -266,7 +266,7 @@ h3 {
     margin-bottom: 1rem;
   }
   #main-links {
-    margin: 1rem, auto;
+    margin: auto;
     max-width: max-content;
     text-align: center;
     display: flex;
