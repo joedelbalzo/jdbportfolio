@@ -27,23 +27,17 @@ const Sublinks = () => {
           Resume
         </Link>
       </div>
+
       <div id="main-links" style={{ marginBottom: "10vh" }}>
-        <a
-          href="https://jdb-open-places.onrender.com/#/"
-          id="main-link"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
+        <Link id="main-link" to={"/resume"} element={<Resume />}>
+          Portfolio: "Drop of CSS"
+        </Link>
+        <Link id="main-link" to={"/resume"} element={<Resume />}>
           Portfolio: "Open Places"
-        </a>
-        <a
-          href="https://scriptforjava.onrender.com"
-          id="main-link"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
+        </Link>
+        <Link id="main-link" to={"/resume"} element={<Resume />}>
           Portfolio: "Script for Java"
-        </a>
+        </Link>
       </div>
     </div>
   );

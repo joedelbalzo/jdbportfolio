@@ -25,12 +25,10 @@ const Nav = () => {
         <div className="main-dropdown">
           <button className="main-dropbtn">
             Portfolio
-            <i className="fa fa-caret-down"></i>
+            {/* <i className="fa fa-caret-down"></i> */}
           </button>
           <div className="main-dropdown-links">
-            <Link path="#/portfolio" element={<Portfolio />}>
-              About
-            </Link>
+            <a href="#/portfolio">About</a>
             <a href="#/dropofcss/">"Drop of CSS"</a>
             <a href="#/openplaces/login">"Open Places"</a>
             <a href="#/scriptforjava">"Script for Java"</a>

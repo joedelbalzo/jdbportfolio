@@ -5,7 +5,10 @@ const Home = () => {
   return (
     <>
       <h1 style={{ fontSize: "calc(22px + 2.5vw)" }}>
-        Hey, I'm <span id="main-name">Joe Del Balzo.</span>
+        Hey, I'm{" "}
+        <span id="main-name" style={{ fontSize: "calc(22px + 2.5vw)" }}>
+          Joe Del Balzo.
+        </span>
       </h1>
       <div id="main-introParagraph">
         <p>Web developer, front end, and back end engineer in New York, NY.</p>

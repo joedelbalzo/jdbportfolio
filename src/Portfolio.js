@@ -13,13 +13,21 @@ const Portfolio = () => {
         Node, and mostly vanilla CSS with some Material-UI components.
         <br />
         <br />
+        <span id="main-name" style={{ fontStyle: "italic" }}>
+          Drop of CSS
+        </span>
         <p>
           "Drop of CSS" is a color palette and element generating tool. The idea came from simply
           wanting to provide developers and freelancers with a simple tool to create a beautiful
           website with elements they can preview and download. So much of designing a beautiful
           website comes from picking pleasing colors and combining them seamlessly with component
           elements, and we aimed to make that as simple as possible!
+          <br />
+          <br />
         </p>
+        <span id="main-name" style={{ fontStyle: "italic" }}>
+          Open Places
+        </span>
         <p>
           "Open Places" is an innovative app designed to provide you with real-time information
           about open establishments in your desired area. By pinging your location, the app delivers
@@ -39,6 +47,9 @@ const Portfolio = () => {
           <br />
           <br />
         </p>
+        <span id="main-name" style={{ fontStyle: "italic" }}>
+          Script for Java
+        </span>
         <p>
           "Script for Java" is a basic shopping app for a small chain of coffee stores.
           <br />
