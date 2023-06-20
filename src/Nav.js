@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Nav = () => {
   return (
     <>
-      <div className="navbar">
+      <div className="main-navbar">
         <a href="#/home">Home</a>
         <a
           href="https://www.linkedin.com/in/joe-delbalzo/"
@@ -15,33 +15,23 @@ const Nav = () => {
         >
           LinkedIn
         </a>
-        <a
-          href="https://github.com/joedelbalzo"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
+        <a href="https://github.com/joedelbalzo" target="_blank" rel="noreferrer noopener">
           GitHub
         </a>
         <a href="#/resume" rel="noreferrer noopener">
           Resume
         </a>
-        <a href="#/portfolio" rel="noreferrer noopener">
-          Portfolio
-        </a>
-        {/* <div className="dropdown">
-          <button className="dropbtn">
+        <div className="main-dropdown">
+          <button className="main-dropbtn">
             Portfolio
             <i className="fa fa-caret-down"></i>
           </button>
-          <div className="dropdown-links">
-            <a href="https://jdb-open-places.onrender.com/#/" target="_blank">
-              "Open Places"
-            </a>
-            <a href="https://scriptforjava.onrender.com" target="_blank">
-              "Script for Java"
-            </a>
+          <div className="main-dropdown-links">
+            <a href="#/dropofcss/">"Drop of CSS"</a>
+            <a href="#/openplaces/login">"Open Places"</a>
+            <a href="#/scriptforjava">"Script for Java"</a>
           </div>
-        </div> */}
+        </div>
       </div>
     </>
   );

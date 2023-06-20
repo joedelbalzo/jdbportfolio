@@ -2,9 +2,9 @@ import React from "react";
 
 const Portfolio = () => {
   return (
-    <div id="portfolio">
+    <div id="main-portfolio">
       <h1>
-        <span id="name">Portfolio</span>
+        <span id="main-name">Portfolio</span>
       </h1>
       <h2>
         <a
@@ -15,8 +15,8 @@ const Portfolio = () => {
           "Open Places"
         </a>
       </h2>
-      <div id="portfolioContainer">
-        <div id="portfolioDescription">
+      <div id="main-portfolioContainer">
+        <div id="main-portfolioDescription">
           <p>
             Open Places is an innovative app designed to provide you with real-time information
             about open establishments in your desired area. By pinging your location, the app
@@ -42,7 +42,7 @@ const Portfolio = () => {
             <br />
           </p>
         </div>
-        <div id="portfolioPictures"></div>
+        <div id="main-portfolioPictures"></div>
         <iframe src="https://jdb-open-places.onrender.com/#/"></iframe>
       </div>
       <br />
@@ -59,10 +59,10 @@ const Portfolio = () => {
           "Script for Java"
         </a>
       </h2>
-      <div id="portfolioContainer">
+      <div id="main-portfolioContainer">
         <iframe src="https://scriptforjava.onrender.com/"></iframe>
 
-        <div id="portfolioDescription">
+        <div id="main-portfolioDescription">
           <p>
             "Script for Java" is a basic shopping app for a small chain of coffee stores.
             <br />
@@ -82,7 +82,7 @@ const Portfolio = () => {
             <br />
           </p>
         </div>
-        <div id="portfolioPictures"></div>
+        <div id="main-portfolioPictures"></div>
       </div>
     </div>
   );

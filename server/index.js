@@ -1,21 +1,31 @@
-const express = require('express')
-const app = express()
-const path = require('path')
+const app = require("./app");
+const conn = require("./db/conn");
 
+const { syncAndSeed, User, Place } = require("./db/openplacesDB");
+const {
+  syncAndSeedScript,
+  UserScript,
+  Product,
+  LineItem,
+  Order,
+  Review,
+} = require("./db/scriptDB");
 
-// static middleware
-app.use('/dist', express.static(path.join(__dirname, '../dist')))
-app.use('/public', express.static(path.join(__dirname,'../public')))
-app.use(express.json())
+const init = async () => {
+  try {
+    await conn.sync({ force: true });
+    // console.log("Database synced");
 
-app.get('/', (req, res)=>res.sendFile(path.join(__dirname, '../public/index.html')))
+    await syncAndSeed();
+    // console.log("open places has synced");
 
-app.use((err, req, res, next)=> {
-  console.log(err);
-  res.status(500).send({ error: err.message });
-});
+    await syncAndSeedScript();
+    // console.log("script has synced");
+    const port = process.env.PORT || 3000;
+    const server = app.listen(port, () => console.log(`listening on port ${port}`));
+  } catch (ex) {
+    console.log(ex);
+  }
+};
 
-
-const port = process.env.PORT || 3000;
-
-app.listen(port, ()=> console.log(`listening on port ${port}`));
+init();
