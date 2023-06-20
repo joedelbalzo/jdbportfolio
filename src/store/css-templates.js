@@ -30,11 +30,9 @@ export const cssCreateTemplate = (template) => {
   return async (dispatch) => {
     const { htmlText, userId, type } = template;
     const updatedTemplate = { userId, htmlText, type };
-    // console.log("creating template in store", updatedTemplate);
-
     try {
       const response = await axios.post("/api/css/templates", updatedTemplate);
-      // console.log(response);
+      console.log("create template response", response);
       dispatch({ type: "CREATE_TEMPLATE", template: response.data });
     } catch (error) {
       console.error("Error creating template:", error);

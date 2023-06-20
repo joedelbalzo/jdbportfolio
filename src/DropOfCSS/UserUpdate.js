@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateAuth } from "../store";
+import { cssUpdateAuth } from "../store";
 import { useNavigate } from "react-router-dom";
 
 const UserUpdate = () => {
@@ -9,7 +9,7 @@ const UserUpdate = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const isOAuthUser = useSelector((state) => state.auth.isOAuthUser);
+  const isOAuthUser = useSelector((state) => state.cssAuth.isOAuthUser);
 
   const updateUser = async (ev) => {
     ev.preventDefault();

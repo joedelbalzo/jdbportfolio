@@ -23,7 +23,7 @@ const UserCreate = () => {
     try {
       await dispatch(cssRegister(credentials));
       dispatch(cssAttemptLogin(credentials));
-      navigate("/");
+      navigate("/dropofcss/");
     } catch (err) {
       setErrorMessage("username or email already exists");
       console.log(err);
@@ -65,7 +65,7 @@ const UserCreate = () => {
       </form>
       <button className="css-rainbowBtn">
         <Link
-          to={"/login"}
+          to={"/dropofcss/login"}
           style={{
             maxWidth: "10px",
             fontSize: "13.33333px",

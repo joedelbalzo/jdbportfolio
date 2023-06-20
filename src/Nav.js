@@ -2,6 +2,7 @@ import React from "react";
 import Sublinks from "./Sublinks";
 import Resume from "./Resume";
 import { Link } from "react-router-dom";
+import Portfolio from "./Portfolio";
 
 const Nav = () => {
   return (
@@ -27,6 +28,9 @@ const Nav = () => {
             <i className="fa fa-caret-down"></i>
           </button>
           <div className="main-dropdown-links">
+            <Link path="#/portfolio" element={<Portfolio />}>
+              About
+            </Link>
             <a href="#/dropofcss/">"Drop of CSS"</a>
             <a href="#/openplaces/login">"Open Places"</a>
             <a href="#/scriptforjava">"Script for Java"</a>

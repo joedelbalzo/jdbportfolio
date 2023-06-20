@@ -23,15 +23,15 @@ export const cssFetchComponents = () => {
 
 export const cssSetColorsOnComponents = (search) => {
   return async (dispatch) => {
-    const { cpg, component } = search;
-    const primaryColor = cpg[0].hex.value;
-    const secondaryColor = cpg[1].hex.value;
-    const tertiaryColor = cpg[2].hex.value;
-    const bgColor = cpg[3].hex.value;
-    const primaryColorContrast = cpg[0].contrast.value;
-    const secondaryColorContrast = cpg[1].contrast.value;
-    const tertiaryColorContrast = cpg[2].contrast.value;
-    const bgColorContrast = cpg[3].contrast.value;
+    const { cssCpg, component } = search;
+    const primaryColor = cssCpg[0].hex.value;
+    const secondaryColor = cssCpg[1].hex.value;
+    const tertiaryColor = cssCpg[2].hex.value;
+    const bgColor = cssCpg[3].hex.value;
+    const primaryColorContrast = cssCpg[0].contrast.value;
+    const secondaryColorContrast = cssCpg[1].contrast.value;
+    const tertiaryColorContrast = cssCpg[2].contrast.value;
+    const bgColorContrast = cssCpg[3].contrast.value;
     const response = await axios.post("/api/css/components/", {
       component,
       bgColor,

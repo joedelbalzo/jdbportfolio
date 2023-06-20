@@ -4,7 +4,7 @@ import Sublinks from "./Sublinks";
 const Home = () => {
   return (
     <>
-      <h1>
+      <h1 style={{ fontSize: "calc(22px + 2.5vw)" }}>
         Hey, I'm <span id="main-name">Joe Del Balzo.</span>
       </h1>
       <div id="main-introParagraph">

@@ -12,9 +12,8 @@ const Nav = () => {
 
   const handleLogout = () => {
     localStorage.clear();
-    // navigate(<Link to={<Home />} />);
     dispatch(cssLogout());
-    navigate("/");
+    navigate("/dropofcss/");
     window.location.reload();
   };
 
@@ -24,7 +23,7 @@ const Nav = () => {
         <img src={colorWheelImage} />
         <div id="css-navSiteTitle">
           <h1>
-            <Link to="/" style={{ color: "white", textDecoration: "none" }}>
+            <Link to="/dropofcss/" style={{ color: "white", textDecoration: "none" }}>
               A Drop of CSS
             </Link>
           </h1>
@@ -35,11 +34,14 @@ const Nav = () => {
           <div>
             {cssAuth.id && (
               <div>
-                <Link to="/" style={{ color: "white", textDecoration: "none", margin: ".5rem" }}>
+                <Link
+                  to="/dropofcss/"
+                  style={{ color: "white", textDecoration: "none", margin: ".5rem" }}
+                >
                   Home
                 </Link>
                 <Link
-                  to="/profile"
+                  to="/dropofcss/profile"
                   style={{ color: "white", textDecoration: "none", margin: ".5rem" }}
                 >
                   Profile
@@ -56,7 +58,10 @@ const Nav = () => {
           <div>
             {!cssAuth.id && (
               <div>
-                <Link to="/" style={{ color: "white", textDecoration: "none", margin: ".5rem" }}>
+                <Link
+                  to="/dropofcss/"
+                  style={{ color: "white", textDecoration: "none", margin: ".5rem" }}
+                >
                   Home
                 </Link>
                 <Link
@@ -65,7 +70,7 @@ const Nav = () => {
                     textDecoration: "none",
                     margin: ".5rem 2rem",
                   }}
-                  to="/login"
+                  to="/dropofcss/login"
                 >
                   Login
                 </Link>

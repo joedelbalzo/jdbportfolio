@@ -4,10 +4,15 @@ const Resume = () => {
   return (
     <>
       <h1>
-        <span id="main-name">Resume</span>
+        <span id="main-name" style={{ fontSize: "calc(14px + 1vw)" }}>
+          Resume
+        </span>
       </h1>
-      <h3>Web Developer / Full Stack Engineer</h3>
-      <h3> 240-441-7689 || jdelbalzo99@gmail.com || New York, NY </h3>
+      <h3 style={{ fontSize: "calc(14px + 1vw)" }}>Web Developer / Full Stack Engineer</h3>
+      <h3 style={{ fontSize: "calc(14px + 1vw)" }}>
+        {" "}
+        240-441-7689 || jdelbalzo99@gmail.com || New York, NY{" "}
+      </h3>
 
       <div id="main-resume">
         <h2>SUMMARY</h2>

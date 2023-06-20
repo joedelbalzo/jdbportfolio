@@ -24,7 +24,7 @@ const Login = () => {
       // console.log(credentials);
       await dispatch(cssAttemptLogin(credentials));
       console.log("successful");
-      navigate("/");
+      navigate("/dropofcss/");
     } catch (err) {
       setErrorMessage("username or password is incorrect");
       console.log("login error", err);
@@ -80,7 +80,7 @@ const Login = () => {
         </div>{" "}
         <div className="css-rainbowBtn">
           <Link
-            to={"/register"}
+            to={"/dropofcss/register"}
             style={{
               maxWidth: "10px",
               fontSize: "13.33333px",

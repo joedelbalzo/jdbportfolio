@@ -486,7 +486,6 @@ const ColorGenForm = ({ openColorsInPreview, wholePageBackground, setWholePageBa
                                     key={uniqueKey}
                                     style={{
                                       backgroundColor: color.hex.value,
-                                      // height: `calc(20vh / ${colorPalette.length})`,
                                     }}
                                   >
                                     <div

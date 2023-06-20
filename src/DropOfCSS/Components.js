@@ -34,6 +34,7 @@ const Components = ({ openInPreview }) => {
         }, 1500);
       }
       if (component) {
+        console.log("colors on components clicked", cssCpg, component);
         const colorsOnComponents = await dispatch(
           cssSetColorsOnComponents({
             component,
@@ -97,7 +98,7 @@ const Components = ({ openInPreview }) => {
           >
             {componentTypes.map((type) => (
               <div
-                className={`componentNames ${type === activeType ? "active" : ""}`}
+                className={`css-componentNames ${type === activeType ? "active" : ""}`}
                 key={type}
                 style={{ marginTop: 6 }}
               >

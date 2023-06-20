@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { FaUser, FaEnvelope } from "react-icons/fa";
 import TemplateList from "./TemplateList";
 import UserUpdate from "./UserUpdate";
@@ -7,6 +7,7 @@ import { cssSetTemplates } from "../store";
 
 const Profile = () => {
   const { cssAuth } = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(cssSetTemplates(cssAuth.id)); // Update the local state when templates change

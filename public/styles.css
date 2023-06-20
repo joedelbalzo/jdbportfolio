@@ -12,7 +12,7 @@ html {
 body {
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: calc(16px + 1.5vw);
 }
 
 .main-navbar {
@@ -23,7 +23,7 @@ body {
 }
 
 .main-navbar a {
-  font-size: 1.2rem;
+  font-size: calc(16px + 0.5vw);
   color: rgba(240, 240, 240, 0.9);
   text-align: center;
   padding: 1rem;
@@ -34,7 +34,7 @@ body {
   overflow: hidden;
 }
 .main-dropdown .main-dropbtn {
-  font-size: 1.2rem;
+  font-size: calc(16px + 0.5vw);
   border: none;
   outline: none;
   color: rgba(240, 240, 240, 0.9);
@@ -85,7 +85,7 @@ body {
 }
 
 h1 {
-  font-size: 4rem;
+  /* font-size: calc(22px + 0.5vw); */
   font-weight: 600;
   color: rgba(240, 240, 240, 0.9);
   display: inline-block;
@@ -123,14 +123,14 @@ h3 {
 #main-introParagraph {
   margin: 0 auto 1rem;
   width: fit-content;
-  font-size: 1.5rem;
+  font-size: calc(15px + 0.5vw);
   font-weight: 450;
   text-align: left;
   /* padding: 0 0 2rem 0; */
   color: rgba(240, 240, 240, 0.9);
   line-height: 2.1rem;
   letter-spacing: 2px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.3);
   border-radius: 2rem;
   padding: 2rem;
   box-shadow: 0px 0px 7rem 7rem rgba(0, 0, 0, 0.5);
@@ -155,8 +155,8 @@ h3 {
 
 #main-links :hover {
   /* box-shadow: 2px 2px 6px 2px rgba(200, 200, 200, 0.15); */
-  backdrop-filter: blur(10px);
-  background-color: rgba(200, 200, 200, 0.2);
+  backdrop-filter: blur(100px);
+  background-color: rgba(200, 200, 200, 0.3);
 }
 
 #main-link {
@@ -190,34 +190,16 @@ h3 {
   margin: auto;
   display: flex;
   flex-wrap: wrap;
+  line-height: 1.5rem;
+  text-align: left;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 2rem;
   padding: 2rem;
   box-shadow: 0px 0px 7rem 7rem rgba(0, 0, 0, 0.5);
 }
 
-#main-portfolioDescription {
-  flex: 1;
-  text-align: left;
-  max-width: 50%;
-  padding: 1rem;
-  font-size: 1.5rem;
-  margin: auto;
-  width: 70vw;
-  line-height: 1.8rem;
-}
-
-iframe {
-  flex: 1;
-  min-width: 616px;
-  min-height: 616px;
-  margin: 0.5rem;
-  border: 2px dodgerblue solid;
-  border-radius: 0.5rem;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-}
-
 #main-resume {
+  font-size: calc(14px + 0.5vw);
   margin: 2rem auto;
   width: 60vw;
   list-style-type: none;
@@ -635,6 +617,8 @@ a drop of css
   font-family: verdana;
   background-color: #fafafa;
   margin: 0;
+  min-height: 90vh;
+  height: fit-content;
   /* overflow-x: hidden; maybe use this? idk*/
 }
 
@@ -681,7 +665,7 @@ h1 {
   /* transition: opacity cubic-bezier(1, 0.99, 1, 0); */
   white-space: nowrap;
 }
-.css-header:hover .instructions {
+.css-header:hover .css-instructions {
   opacity: 1;
   pointer-events: auto;
   top: -2rem;
@@ -689,7 +673,7 @@ h1 {
   transform: translateX(-50%);
   margin-left: 0;
 }
-.css-button-container:hover .instructions {
+.css-button-container:hover .css-instructions {
   opacity: 1;
   pointer-events: auto;
   top: -2rem;
@@ -820,7 +804,7 @@ nav > h5 {
   min-width: 10vw;
 }
 .css-cpg-form-div > form > input,
-.cpg-form-div > form > select {
+.css-cpg-form-div > form > select {
   border: 1px solid rgba(100, 100, 100, 0.4);
   border-radius: 0.2rem;
   padding: 2px;
@@ -861,7 +845,7 @@ nav > h5 {
 }
 /* PREVIEW PANE DIVS */
 
-.preview-pane-container {
+.css-preview-pane-container {
   display: grid;
   grid-template-columns: 1fr 5fr;
   grid-template-rows: minmax(4rem, auto) minmax(2rem, auto) minmax(20fr, auto);
@@ -930,12 +914,7 @@ main {
   gap: 0.1vw;
   justify-content: space-evenly;
   align-content: flex-start;
-  /* display: grid;
-  grid-template-rows: auto auto 10vh;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 1vw; */
 }
-
 main > #css-previewCardContainer {
   display: grid;
   grid-row: 1;
@@ -959,7 +938,7 @@ main > #css-previewCardContainer {
   background-size: 200% 100%;
   animation: skeleton-bounce 5s ease-in-out infinite;
 }
-#previewForm {
+#css-previewForm {
   position: relative;
   min-height: 30vh;
   margin: 1rem;
@@ -972,7 +951,7 @@ main > #css-previewCardContainer {
   animation: skeleton-bounce 5s ease-in-out infinite;
 }
 
-main > #css-previewButtonContainer {
+.css-preview-pane-Main-Content > #css-previewButtonContainer {
   width: 100%;
   display: flex;
   align-items: center;
@@ -1017,7 +996,7 @@ main > #css-previewButtonContainer {
 
 /* Component list  -mt*/
 
-.componentlist {
+.css-componentlist {
   margin: auto;
   box-sizing: content-box;
   width: fit-content;
@@ -1040,7 +1019,7 @@ main > #css-previewButtonContainer {
   margin-top: 1vh;
   margin-bottom: 1vh;
 }
-.css-componentTypes :hover {
+.css-componentTypes:hover {
   cursor: pointer;
 }
 .css-componentNamesContainer {
@@ -1089,7 +1068,7 @@ main > #css-previewButtonContainer {
 
 /* Headers with Navbar color -mt*/
 
-.header {
+.css-header {
   color: #2d545e;
   font-size: calc(12px + 0.5vw);
   text-align: center;
@@ -1103,7 +1082,7 @@ main > #css-previewButtonContainer {
 }
 
 /* for the h3s only */
-.header:hover {
+.css-header:hover {
   position: relative;
   display: inline-block;
   color: #2d545e;
@@ -1139,7 +1118,7 @@ h5 {
 
 /*Rainbow components*/
 
-.rainbowBtn {
+.css-rainbowBtn {
   display: inline-block;
   padding: 4px 8px;
   border: 1px solid #ccc;
@@ -1347,12 +1326,12 @@ h5 {
     display: none !important;
   }
 
-  main {
+  .css-preview-pane-Main-Content {
     grid-template-columns: 1fr;
     flex-direction: column;
   }
 
-  main > #css-previewCardContainer {
+  .css-preview-pane-Main-Content > #css-previewCardContainer {
     /* border: 1rem solid blue; */
     margin-top: 1rem;
     display: grid;
@@ -1421,12 +1400,12 @@ h5 {
     display: none !important;
   }
 
-  main {
+  .css-preview-pane-Main-Content {
     grid-template-columns: 1fr;
     grid-row: 3 / 4;
   }
 
-  main > #css-previewCardContainer {
+  .css-preview-pane-Main-Content > #css-previewCardContainer {
     /* border: 1rem solid orange; */
     display: grid;
     grid-template-columns: 1fr;
@@ -1435,7 +1414,7 @@ h5 {
     grid-row-gap: 2vh;
     min-height: 60vh;
   }
-  #previewCardContainer > #css-previewCard {
+  #css-previewCardContainer > #css-previewCard {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -1464,7 +1443,7 @@ h5 {
 /* design here should be name on top, menu below */
 /* 2 columns. first row is the color palette and component selector, 2nd row is the preview pane in cell size*/
 @media screen and (max-width: 550px) {
-  .reset-button {
+  .css-reset-button {
     background-color: darkred;
     color: white;
     border-radius: 0.24rem;
@@ -1506,15 +1485,15 @@ h5 {
     /* margin: 0 auto; */
     text-align: center;
   }
-  #navSiteTitle > h5 {
+  #css-navSiteTitle > h5 {
     /* margin: 0 auto; */
     text-align: center;
   }
 
-  .header {
+  .css-header {
     margin-bottom: 0px;
   }
-  #page-container-div {
+  #css-page-container-div {
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto auto;
@@ -1556,14 +1535,12 @@ h5 {
     margin-top: 40px;
     width: 44vw;
   }
-
-  .componentNamesContainer {
+  .css-componentNamesContainer {
     min-width: 25vw;
   }
-  #previewCardContainer {
+  #css-previewCardContainer {
     min-height: 80vh;
   }
-
   #css-previewSideNav {
     display: none !important;
   }
@@ -1577,26 +1554,24 @@ h5 {
     grid-template-columns: 1fr 0;
     border: 1px solid red;
     grid-template-rows: minmax(4rem, auto) minmax(2rem, auto) minmax(20rem, auto);
-
     grid-gap: 10px;
     justify-content: flex-start; /* Align cards to the top */
     overflow: auto;
   }
-  #previewTitle {
+  #css-previewTitle {
     grid-row: 1;
   }
-
-  .download-hover-button {
+  .css-download-hover-button {
     position: relative;
     z-index: 1;
     transition: transform 0.3s;
   }
 
-  .download-hover-button:hover {
+  .css-download-hover-button:hover {
     transform: scale(1.2);
   }
 
-  .download-hover-button-sidenav {
+  .css-download-hover-button-sidenav {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -1609,8 +1584,7 @@ h5 {
     cursor: pointer;
     transition: background-color 0.3s;
   }
-
-  .download-hover-button-nav {
+  .css-download-hover-button-nav {
     position: absolute;
     top: 50%;
     left: 100%;
@@ -1623,8 +1597,7 @@ h5 {
     cursor: pointer;
     transition: background-color 0.3s;
   }
-
-  .download-hover-button-title {
+  .css-download-hover-button-title {
     position: absolute;
     top: 0%;
     right: 30px;

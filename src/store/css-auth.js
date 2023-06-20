@@ -36,7 +36,7 @@ export const cssAttemptLogin = (credentials) => {
   return async (dispatch) => {
     const response = await axios.post("/api/css/auth", credentials);
     window.localStorage.setItem("token", response.data);
-    dispatch(loginWithToken());
+    dispatch(cssLoginWithToken());
   };
 };
 
@@ -44,7 +44,7 @@ export const cssRegister = (credentials) => {
   return async (dispatch) => {
     const response = await axios.post("/api/css/auth/register", credentials);
     window.localStorage.setItem("token", response.data);
-    dispatch(loginWithToken());
+    dispatch(cssLoginWithToken());
   };
 };
 
@@ -60,7 +60,7 @@ export const cssUpdateAuth = (auth) => {
   };
 };
 
-export const cssDreateUser = (auth) => {
+export const cssCreateUser = (auth) => {
   return async (dispatch) => {
     const response = await axios.post("/api/css/auth", auth);
     dispatch({ type: "CREATE_AUTH", auth: response.data });
