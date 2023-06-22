@@ -1011,6 +1011,7 @@ const components = [
         flex-direction: column;
     }
     .title-header > h1{
+      color: primaryColor;
       margin: 1px;
       padding: 1px;
       font-size: calc(22px + 0.5vw);

@@ -16,10 +16,6 @@ const FavHeart = ({ component }) => {
     }
   }, [cssAuth]);
 
-  if (cssAuth) {
-    console.log("css auth id", cssAuth);
-  }
-
   const isFavorite = cssTemplates.some((fav) => component.htmlText === fav.htmlText);
   const toUnfavorite = cssTemplates.find((fav) => component.htmlText === fav.htmlText);
 

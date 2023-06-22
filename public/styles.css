@@ -692,6 +692,9 @@ a drop of css
   margin: 0;
   min-height: 90vh;
   height: fit-content;
+  border-width: 3px;
+  border-style: solid;
+  border-image: linear-gradient(to right, dodgerblue, lightgreen) 3;
   /* overflow-x: hidden; maybe use this? idk*/
 }
 
@@ -786,6 +789,7 @@ h1 {
   border-radius: 0.5rem;
   min-height: 100vh;
   width: 74vw;
+  max-width: 80%;
   margin: 0.25rem;
 }
 
@@ -1233,9 +1237,6 @@ h5 {
 .css-login {
   width: 30vw;
   padding: 1rem;
-
-  /* min-height: fit-content; */
-  /* max-width: 80vw; */
   margin: 1rem auto;
   display: flex;
   flex-direction: column;
@@ -1275,8 +1276,9 @@ h5 {
   color: #2d545e;
 }
 .css-template-list-container {
+  max-width: 90%;
+  margin: auto;
   display: flex;
-  margin: 1rem;
   justify-content: space-between;
 }
 .css-profilecomppreview,
@@ -1288,6 +1290,7 @@ h5 {
   padding: 8px;
   text-align: left;
   margin: 1rem;
+  font-size: calc(12px + 0.5vw);
 }
 .css-boxesflex {
   display: flex;
@@ -1323,6 +1326,7 @@ h5 {
 .css-template-name {
   display: flex;
   align-items: center;
+  font-size: calc(12px + 0.5vw);
 }
 .css-edit-icon {
   margin-left: 5px;
@@ -1340,6 +1344,7 @@ h5 {
 }
 .css-proheader {
   color: #2d545e;
+  font-size: calc(14px + 0.5vw);
 }
 .css-copytoclip,
 .css-stylelink {
@@ -1349,6 +1354,7 @@ h5 {
   -webkit-text-fill-color: transparent;
 }
 #css-clipboard-message {
+  font-size: calc(12px + 0.5vw);
   height: 2rem;
   margin-bottom: -2rem;
 }
@@ -1435,6 +1441,8 @@ h5 {
   .css-login > form > .css-rainbowBtn {
     width: 20vw;
     margin: 4px auto;
+    min-height: 30px;
+    max-height: 30px;
   }
 }
 @media screen and (max-width: 768px) {
@@ -1623,7 +1631,7 @@ h5 {
 
   #css-preview-pane-div {
     /* grid-column: 1 / -1; */
-    width: 97%;
+    width: 70%;
   }
   .css-preview-pane-container {
     display: grid;

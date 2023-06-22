@@ -493,6 +493,7 @@ const ColorGenForm = ({ openColorsInPreview, wholePageBackground, setWholePageBa
                                         paddingLeft: "1vw",
                                         color: color.contrast.value,
                                         flex: "2 1 100%",
+                                        textAlign: "left",
                                         fontSize: "calc(8px + .5vw)",
                                       }}
                                     >

@@ -121,7 +121,7 @@ export default function Nav() {
           </Box>
           {/* THIS IS THE SMALL ONE */}
           <EmojiFoodBeverageIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          <Typography
+          {/* <Typography
             variant="h5"
             noWrap
             component="a"
@@ -138,7 +138,7 @@ export default function Nav() {
             }}
           >
             Script for Java
-          </Typography>
+          </Typography> */}
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (

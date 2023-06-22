@@ -54,10 +54,10 @@ const TemplateList = () => {
     document.execCommand("copy");
     document.body.removeChild(textarea);
     // Display the "Copied to clipboard" message
-    const clipboardMessage = document.getElementById("clipboard-message");
-    clipboardMessage.innerHTML = "Copied to clipboard!";
+    const clipboardMessage = document.getElementById("css-clipboard-message");
+    clipboardMessage.innerText = "Copied to clipboard!";
     setTimeout(() => {
-      clipboardMessage.innerHTML = "";
+      clipboardMessage.innerText = "";
     }, 2000);
   };
 

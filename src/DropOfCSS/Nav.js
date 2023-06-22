@@ -36,18 +36,33 @@ const Nav = () => {
               <div>
                 <Link
                   to="/dropofcss/"
-                  style={{ color: "white", textDecoration: "none", margin: ".5rem" }}
+                  style={{
+                    fontSize: "calc(14px + 0.5vw)",
+                    color: "white",
+                    textDecoration: "none",
+                    margin: ".5rem",
+                  }}
                 >
                   Home
                 </Link>
                 <Link
                   to="/dropofcss/profile"
-                  style={{ color: "white", textDecoration: "none", margin: ".5rem" }}
+                  style={{
+                    color: "white",
+                    fontSize: "calc(14px + 0.5vw)",
+                    textDecoration: "none",
+                    margin: ".5rem",
+                  }}
                 >
                   Profile
                 </Link>
                 <Link
-                  style={{ color: "white", textDecoration: "none", margin: ".5rem" }}
+                  style={{
+                    color: "white",
+                    fontSize: "calc(14px + 0.5vw)",
+                    textDecoration: "none",
+                    margin: ".5rem",
+                  }}
                   onClick={handleLogout}
                 >
                   Logout
@@ -60,13 +75,19 @@ const Nav = () => {
               <div>
                 <Link
                   to="/dropofcss/"
-                  style={{ color: "white", textDecoration: "none", margin: ".5rem" }}
+                  style={{
+                    fontSize: "calc(14px + 0.5vw)",
+                    color: "white",
+                    textDecoration: "none",
+                    margin: ".5rem",
+                  }}
                 >
                   Home
                 </Link>
                 <Link
                   style={{
                     color: "white",
+                    fontSize: "calc(14px + 0.5vw)",
                     textDecoration: "none",
                     margin: ".5rem 2rem",
                   }}

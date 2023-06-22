@@ -10,12 +10,15 @@ const Resume = () => {
       </h1>
       <h3 style={{ fontSize: "calc(14px + 1vw)" }}>Web Developer / Full Stack Engineer</h3>
       <h3 style={{ fontSize: "calc(14px + 1vw)" }}>
-        {" "}
-        240-441-7689 || jdelbalzo99@gmail.com || New York, NY{" "}
+        240-441-7689 || jdelbalzo99@gmail.com || New York, NY
       </h3>
 
       <div id="main-resume">
-        <h2>SUMMARY</h2>
+        <h2>
+          <span id="main-name" style={{ fontSize: "calc(14px + 1vw)", color: "white" }}>
+            SUMMARY
+          </span>
+        </h2>
         <p>
           Experienced former Chief Lighting Technician, lighting console programmer, and network
           designer with 15+ years in the film and television industry. Communicated regularly in an
@@ -25,22 +28,43 @@ const Resume = () => {
           production.
         </p>
 
-        <h2>TECHNICAL SKILLS</h2>
+        <h2>
+          <span id="main-name" style={{ fontSize: "calc(14px + 1vw)", color: "white" }}>
+            TECHNICAL SKILLS
+          </span>
+        </h2>
         <p>
           Proficient: Node, Javascript, React / Redux, Git, Express, PostgreSQL,
           <br />
           Knowledgeable: Typescript, CSS, HTML, Python
         </p>
 
-        <h2>TECHNICAL PROJECTS</h2>
-
+        <h2>
+          <span id="main-name" style={{ fontSize: "calc(14px + 1vw)", color: "white" }}>
+            TECHNICAL PROJECTS
+          </span>
+        </h2>
+        <h3 style={{ marginLeft: "3%" }}>“A Drop of CSS”</h3>
+        <p>
+          Lead Developer, Project Manager | June, 2023
+          <br />
+        </p>
+        <p>
+          Designed with back-end driven developers and freelancers who want easily customized and
+          downloadable visual elements. This is a color palette generator, Material UI, and a
+          preview pane all-in-one, where a developer can easily select a color, build an
+          artistically beautiful palette, apply that palette to components of their choice,
+          visualize them all in one window, and download them right to his her development
+          environment.
+        </p>
+        <p>
+          Technologies primarily used: Javascript, React, React-Redux, Node, Express, PostgreSQL,
+          Sequelize, HTML, CSS, Material-UI, The Color API
+        </p>
         <h3 style={{ marginLeft: "3%" }}>“Open Places”</h3>
         <p>
           Creator, Lead Developer | May, 2023
           <br />
-          <a href="https://bit.ly/3O9ESXV" style={{ color: "rgba(240, 240, 240, 0.9)" }}>
-            https://bit.ly/3O9ESXV
-          </a>
         </p>
         <p>
           Application designed to minimize steps for an end-user to effortlessly find anything
@@ -57,9 +81,6 @@ const Resume = () => {
         <p>
           Project Manager, Developer | April, 2023
           <br />
-          <a href="https://bit.ly/42ErwXQ" style={{ color: "rgba(240, 240, 240, 0.9)" }}>
-            https://bit.ly/42ErwXQ
-          </a>
         </p>
         <p>Led a team developing an e-commerce website for a small chain of coffee houses</p>
         <p>
@@ -67,7 +88,11 @@ const Resume = () => {
           Sequelize, HTML, CSS, Material-UI, Google Places API
         </p>
 
-        <h2>EXPERIENCE</h2>
+        <h2>
+          <span id="main-name" style={{ fontSize: "calc(14px + 1vw)", color: "white" }}>
+            EXPERIENCE
+          </span>
+        </h2>
 
         <h3 style={{ marginLeft: "3%" }}>Lighting Console Programmer | Local 52 | New York, NY</h3>
         <p>May, 2019 – Current</p>
@@ -128,7 +153,11 @@ const Resume = () => {
           <li>The Jinx: The Life and Deaths of Robert Durst (Dec. 2014), Produced by HBO</li>
         </ul>
 
-        <h2>EDUCATION</h2>
+        <h2>
+          <span id="main-name" style={{ fontSize: "calc(14px + 1vw)", color: "white" }}>
+            EDUCATION
+          </span>
+        </h2>
         <p>
           Fullstack Academy Web Development Bootcamp | June 2023
           <br />
@@ -146,7 +175,11 @@ const Resume = () => {
           Indiana University, Kelley School of Business | May 2018
           <li style={{ marginLeft: "3%" }}>Master’s Certificate in Business Management</li>
         </p>
-        <h2>PROFESSIONAL AFFILIATIONS, MEMBERSHIPS, AND CERTIFICATES</h2>
+        <h2>
+          <span id="main-name" style={{ fontSize: "calc(14px + 1vw)", color: "white" }}>
+            PROFESSIONAL AFFILIATIONS, MEMBERSHIPS, AND CERTIFICATES
+          </span>
+        </h2>
         <ul>
           <li>
             International Alliance of Theatrical and Stage Employees – Local 52, September 2017

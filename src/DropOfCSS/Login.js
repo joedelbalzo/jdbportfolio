@@ -34,15 +34,18 @@ const Login = () => {
   return (
     <div className="css-login">
       <h3 className="css-proheader">Login</h3>
-      <form onSubmit={login}>
-        <label>Username</label>
+      <form
+        onSubmit={login}
+        style={{ display: "flex", flexDirection: "column", margin: "0", padding: "0" }}
+      >
+        <label style={{ margin: 2 }}>Username</label>
         <input
           value={credentials.username}
           name="username"
           onChange={onChange}
           autoComplete="username"
         />
-        <label>Password</label>
+        <label style={{ margin: 2 }}>Password</label>
         <input
           name="password"
           value={credentials.password}
@@ -62,14 +65,19 @@ const Login = () => {
           {errorMessage ? errorMessage : <div style={{ minHeight: "(4px + 0.5vw)" }}></div>}
         </div>
         <button type="submit" style={{ display: "none" }}></button>
-        <div className="css-rainbowBtn" type={"submit"} onClick={login}>
+        <div
+          className="css-rainbowBtn"
+          type={"submit"}
+          onClick={login}
+          style={{ fontSize: "calc(10px + 1vw)" }}
+        >
           Login
         </div>
         <div className="css-rainbowBtn">
           <a
             href={`https://github.com/login/oauth/authorize?client_id=${window.client_id}`}
             style={{
-              fontSize: "13.33333px",
+              fontSize: "calc(10px + 1vw)",
               fontFamily: "Arial, sans-serif",
               color: "white",
               textDecoration: "none",
@@ -82,8 +90,7 @@ const Login = () => {
           <Link
             to={"/dropofcss/register"}
             style={{
-              maxWidth: "10px",
-              fontSize: "13.33333px",
+              fontSize: "calc(10px + 1vw)",
               fontFamily: "Arial, sans-serif",
               color: "white",
               textDecoration: "none",
