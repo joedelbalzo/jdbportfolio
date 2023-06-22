@@ -119,7 +119,7 @@ export default function Nav() {
               ))}
             </Menu>
           </Box>
-
+          {/* THIS IS THE SMALL ONE */}
           <EmojiFoodBeverageIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
@@ -167,17 +167,20 @@ export default function Nav() {
               justifyContent: "center",
             }}
           >
-            {!scriptAuth.id ? (
-              <a
-                href={`https://github.com/login/oauth/authorize?client_id=${window.client_id}`}
-                style={{ color: "white", textDecoration: "none" }}
-              >
-                Github Login
-              </a>
-            ) : (
+            {scriptAuth.id ? (
+              // (
+              //   <a
+              //     href={`https://github.com/login/oauth/authorize?client_id=${window.client_id}`}
+              //     style={{ color: "white", textDecoration: "none" }}
+              //   >
+              //     Github Login
+              //   </a>
+              // ) :
               <Link to="/scriptforjava/logout" style={{ color: "white", textDecoration: "none" }}>
                 Logout
               </Link>
+            ) : (
+              ""
             )}
           </Typography>
 

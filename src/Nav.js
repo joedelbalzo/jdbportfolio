@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Sublinks from "./Sublinks";
 import Resume from "./Resume";
 import { Link } from "react-router-dom";
 import Portfolio from "./Portfolio";
 
 const Nav = () => {
+  const [dropdownActive, setDropdownActive] = useState(false);
+
+  const handleMenuItemClick = () => {
+    setDropdownActive(false);
+  };
+
   return (
     <>
       <div className="main-navbar">
@@ -22,16 +28,26 @@ const Nav = () => {
         <a href="#/resume" rel="noreferrer noopener">
           Resume
         </a>
-        <div className="main-dropdown">
-          <button className="main-dropbtn">
+        <div
+          className={`main-dropdown ${dropdownActive ? "active" : ""}`}
+          onClick={() => setDropdownActive(!dropdownActive)}
+        >
+          <button className={`main-dropbtn ${dropdownActive ? "main-dropdown-hover" : ""}`}>
             Portfolio
-            {/* <i className="fa fa-caret-down"></i> */}
           </button>
           <div className="main-dropdown-links">
-            <a href="#/portfolio">About</a>
-            <a href="#/dropofcss/">"Drop of CSS"</a>
-            <a href="#/openplaces/login">"Open Places"</a>
-            <a href="#/scriptforjava">"Script for Java"</a>
+            <a href="#/portfolio" onClick={handleMenuItemClick}>
+              About
+            </a>
+            <a href="#/dropofcss/" onClick={handleMenuItemClick}>
+              "Drop of CSS"
+            </a>
+            <a href="#/openplaces/login" onClick={handleMenuItemClick}>
+              "Open Places"
+            </a>
+            <a href="#/scriptforjava" onClick={handleMenuItemClick}>
+              "Script for Java"
+            </a>
           </div>
         </div>
       </div>

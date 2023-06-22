@@ -33,6 +33,7 @@ const DrinkProducts = () => {
       <Card
         key={drink.id}
         sx={{
+          margin: 1,
           maxWidth: 375,
           ":hover": {
             boxShadow: 5,
@@ -144,31 +145,30 @@ const DrinkProducts = () => {
           placeholder="Search"
         />
       </form>
-      <Box
-        sx={{
-          m: 5,
-          mx: "auto",
-          px: "1rem",
-          maxWidth: 1200,
-          display: "grid",
-          columnGap: 1,
-          rowGap: "1rem",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          borderColor: "primary.main",
-          borderRadius: "1rem",
-        }}
-      >
-        {scriptDrinks
-          .filter((drink) => {
-            if (filter.name && !drink.name.toLowerCase().includes(filter.name.toLowerCase())) {
-              return false;
-            }
-            return true;
-          })
-          .map((drink) => {
-            return <Drink drink={drink} key={drink.id} />;
-          })}
-      </Box>
+      <div>
+        <Box
+          className="drinksGrid"
+          sx={{
+            // m: 5,
+            // mx: "auto",
+            // px: "1rem",
+            maxWidth: 1200,
+            borderColor: "primary.main",
+            borderRadius: "1rem",
+          }}
+        >
+          {scriptDrinks
+            .filter((drink) => {
+              if (filter.name && !drink.name.toLowerCase().includes(filter.name.toLowerCase())) {
+                return false;
+              }
+              return true;
+            })
+            .map((drink) => {
+              return <Drink drink={drink} key={drink.id} />;
+            })}
+        </Box>
+      </div>
     </>
   );
 };

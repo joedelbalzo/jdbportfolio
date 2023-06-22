@@ -293,7 +293,7 @@ h3 {
 
   #main-linkPage {
     display: grid;
-    margin: auto;
+    margin: auto auto 10rem;
     min-width: 350px;
     max-width: 60vw;
     grid-template-columns: 1fr;
@@ -361,9 +361,8 @@ script for java
   border-width: 3px;
   border-style: solid;
   border-image: linear-gradient(to right, dodgerblue, lightgreen) 3;
-
   font-family: verdana;
-  margin: 0;
+  margin: auto;
   background-color: #e6f4f6;
 }
 #scriptforjava-homepageImage {
@@ -390,7 +389,7 @@ script for java
   height: 100%;
   object-fit: cover;
 }
-hscriptforjava-2 {
+h2 {
   padding: 1rem 2rem 0;
   text-align: center;
   color: #004c60;
@@ -511,6 +510,30 @@ hscriptforjava-2 {
   margin-top: 50px;
   width: 40vw;
   height: auto;
+}
+
+.drinksGrid {
+  display: grid;
+  column-gap: 1rem;
+  row-gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+  margin: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .drinksGrid {
+    display: grid;
+    width: 95%;
+    grid-template-columns: 50% 50%;
+    margin: 1rem auto;
+    padding: 0;
+  }
+}
+@media screen and (max-width: 550px) {
+  .drinksGrid {
+    display: grid;
+    grid-template-columns: 100% 0;
+  }
 }
 
 /* 

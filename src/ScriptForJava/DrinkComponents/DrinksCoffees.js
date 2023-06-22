@@ -151,15 +151,10 @@ const DrinksCoffees = () => {
         />
       </form>
       <Box
+        className="drinksGrid"
         sx={{
-          m: 5,
-          mx: "auto",
-          px: "1rem",
           maxWidth: 1200,
-          display: "grid",
-          columnGap: 1,
-          rowGap: "1rem",
-          gridTemplateColumns: "repeat(3, 1fr)",
+
           borderColor: "primary.main",
           borderRadius: "1rem",
         }}

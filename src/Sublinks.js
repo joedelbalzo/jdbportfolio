@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Resume from "./Resume";
+import CssApp from "./DropOfCSS/App";
+import Login from "./Open-Places/Login";
+import AScriptForJavaApp from "./ScriptForJava/App";
 
 const Sublinks = () => {
   return (
@@ -28,14 +31,14 @@ const Sublinks = () => {
         </Link>
       </div>
 
-      <div id="main-links" style={{ marginBottom: "10vh" }}>
-        <Link id="main-link" to={"/resume"} element={<Resume />}>
+      <div id="main-links">
+        <Link id="main-link" to={"/dropofcss"} element={<CssApp />}>
           Portfolio: "Drop of CSS"
         </Link>
-        <Link id="main-link" to={"/resume"} element={<Resume />}>
+        <Link id="main-link" to={"/openplaces/login"} element={<Login />}>
           Portfolio: "Open Places"
         </Link>
-        <Link id="main-link" to={"/resume"} element={<Resume />}>
+        <Link id="main-link" to={"/scriptforjava"} element={<AScriptForJavaApp />}>
           Portfolio: "Script for Java"
         </Link>
       </div>
