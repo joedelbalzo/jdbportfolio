@@ -324,7 +324,7 @@ const ColorGenForm = ({ openColorsInPreview, wholePageBackground, setWholePageBa
                 justifyContent: "center",
               }}
             >
-              <form onSubmit={runCPG}>
+              <form className="css-CPG-form" onSubmit={runCPG}>
                 <input
                   value={hex}
                   onChange={(ev) => setHex(ev.target.value)}

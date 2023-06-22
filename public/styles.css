@@ -245,7 +245,7 @@ h3 {
 @media screen and (max-width: 768px) {
   html {
     background-image: url("homeoffice-2.jpg");
-    background-position: 15%;
+    background-position: 55%;
   }
   h1 {
     font-size: 2.5rem;
@@ -355,6 +355,7 @@ script for java
 */
 
 .ScriptForJava {
+  max-width: 95%;
   min-height: 90vh;
   height: fit-content;
   overflow-y: scroll;
@@ -1191,6 +1192,7 @@ h5 {
 /*Rainbow components*/
 
 .css-rainbowBtn {
+  min-width: fit-content;
   display: inline-block;
   padding: 4px 8px;
   border: 1px solid #ccc;
@@ -1566,6 +1568,8 @@ h5 {
     margin-bottom: 0px;
   }
   #css-page-container-div {
+    width: 98%;
+    margin: auto;
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto auto;
@@ -1619,12 +1623,12 @@ h5 {
 
   #css-preview-pane-div {
     /* grid-column: 1 / -1; */
-    width: 97vw;
+    width: 97%;
   }
   .css-preview-pane-container {
     display: grid;
     grid-template-columns: 1fr 0;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     grid-template-rows: minmax(4rem, auto) minmax(2rem, auto) minmax(20rem, auto);
     grid-gap: 10px;
     justify-content: flex-start; /* Align cards to the top */
