@@ -31,13 +31,6 @@ const Settings = () => {
   //   }
   // }, [placesAuth]);
 
-  // const useStyles = makeStyles({
-  //   formControlLabel: {
-  //     marginBottom: "10px",
-  //   },
-  // });
-  // const classes = useStyles();
-
   const handleChange = (ev) => {
     // const idx = formattedTypes.indexOf(ev.target.name);
     // console.log(idx)
@@ -119,8 +112,9 @@ const Settings = () => {
 
   const onSubmit = (ev, placesAuth) => {
     ev.preventDefault();
+    console.log("wtf");
     dispatch(
-      editUserSettings({
+      placesEditUserSettings({
         placesAuth,
         username,
         settingRadius,
@@ -129,7 +123,7 @@ const Settings = () => {
         settingFavCategories,
       })
     );
-    navigate("/places");
+    useNavigate("/openplaces/home");
   };
 
   const setLocation = () => {
@@ -219,7 +213,7 @@ const Settings = () => {
                   />
                 }
                 label={formattedTypes[idx]}
-                className={classes.formControlLabel}
+                // className={classes.formControlLabel}
                 style={{
                   formControlLabel: {
                     marginBottom: "10px",
@@ -232,7 +226,7 @@ const Settings = () => {
         <Button
           variant="outlined"
           size="large"
-          sx={{ fontSize: "2rem" }}
+          sx={{ fontSize: "2rem", marginBottom: "1rem" }}
           onClick={(ev) => onSubmit(ev, placesAuth)}
         >
           Submit

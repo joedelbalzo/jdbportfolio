@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const axios = require("axios");
-const Place = require("../../db/openplacesDB");
+const Place = require("../../db/openplacesDB/Place");
 const { isLoggedIn } = require("./middleware");
 
 require("dotenv").config({ path: "env.js" });

@@ -545,7 +545,7 @@ open places
 */
 
 .OpenPlaces {
-  max-width: 600px;
+  max-width: 700px;
   min-height: 90vh;
   height: fit-content;
   margin: auto;

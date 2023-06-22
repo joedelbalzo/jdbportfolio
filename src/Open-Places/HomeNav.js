@@ -90,7 +90,7 @@ export default function HomeNav() {
         }}
       >
         <Toolbar sx={{ display: "flex", justifyContent: "center" }}>
-          <Box sx={{ flexGrow: 0 }}>
+          <Box sx={{ flexGrow: 0, marginLeft: "10px" }}>
             <Tooltip title="Open Pages">
               <IconButton
                 onClick={handleOpenUserMenu}
@@ -98,13 +98,13 @@ export default function HomeNav() {
                 edge="start"
                 color="inherit"
                 aria-label="menu"
-                sx={{ width: "100px", transform: "scale(1.4)" }}
+                // sx={{ width: "100px" }}
               >
                 <MenuIcon />
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: isMobile ? "10%" : "7%", ml: "10px" }}
+              sx={{ mt: isMobile ? "10%" : "7%" }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
@@ -123,13 +123,13 @@ export default function HomeNav() {
               {pages.map((page) =>
                 page !== "Logout" ? (
                   <MenuItem key={page} onClick={() => navigateTo(page)}>
-                    <Typography textAlign="center" fontSize={isMobile ? "1.5rem" : "1.5rem"}>
+                    <Typography textAlign="center" marginLeft="4px" fontSize="calc(10px + 1vw)">
                       {page}
                     </Typography>
                   </MenuItem>
                 ) : (
                   <MenuItem key={page} onClick={() => _logout()}>
-                    <Typography textAlign="center" fontSize={isMobile ? "1.5rem" : "1.5rem"}>
+                    <Typography textAlign="center" marginLeft="4px" fontSize="calc(10px + 1vw)">
                       {page}
                     </Typography>
                   </MenuItem>
@@ -145,9 +145,9 @@ export default function HomeNav() {
             sx={{
               margin: "auto",
               flexGrow: 1,
-              fontSize: isMobile ? "3.5rem" : "2.5rem",
+              fontSize: "calc(16px + 1.5vw)",
               ":hover": { cursor: "pointer" },
-              maxWidth: "calc(100% - 220px)",
+              // maxWidth: "calc(100% - 220px)",
               textAlign: "center",
             }}
           >
@@ -158,8 +158,8 @@ export default function HomeNav() {
             <Button
               color="inherit"
               sx={{
-                fontSize: "1.5rem",
-                mr: "10px",
+                fontSize: "calc(10px + 1vw)",
+                // mr: "10px",
                 width: "50px",
                 textTransform: "capitalize",
               }}
@@ -171,7 +171,7 @@ export default function HomeNav() {
             <Button
               color="inherit"
               sx={{
-                fontSize: "1.5rem",
+                fontSize: "calc(10px + 1vw)",
                 width: "100px",
                 textTransform: "capitalize",
               }}
