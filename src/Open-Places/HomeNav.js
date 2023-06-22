@@ -80,7 +80,13 @@ export default function HomeNav() {
   };
 
   return (
-    <Box sx={{ flexGrow: 1, justifyContent: "center" }}>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "space-between",
+        flexGrow: 1,
+      }}
+    >
       <AppBar
         position="static"
         sx={{
@@ -89,8 +95,8 @@ export default function HomeNav() {
           backgroundColor: "#003b21",
         }}
       >
-        <Toolbar sx={{ display: "flex", justifyContent: "center" }}>
-          <Box sx={{ flexGrow: 0, marginLeft: "10px" }}>
+        <Toolbar sx={{}}>
+          <Box sx={{}}>
             <Tooltip title="Open Pages">
               <IconButton
                 onClick={handleOpenUserMenu}
@@ -145,9 +151,10 @@ export default function HomeNav() {
             sx={{
               margin: "auto",
               flexGrow: 1,
+              wordWrap: "normal",
               fontSize: "calc(16px + 1.5vw)",
               ":hover": { cursor: "pointer" },
-              // maxWidth: "calc(100% - 220px)",
+              maxWidth: "calc(100% - 100px)",
               textAlign: "center",
             }}
           >
@@ -160,8 +167,9 @@ export default function HomeNav() {
               sx={{
                 fontSize: "calc(10px + 1vw)",
                 // mr: "10px",
-                width: "50px",
+                width: "40px",
                 textTransform: "capitalize",
+                justifyContent: "right",
               }}
               onClick={() => _logout()}
             >
@@ -172,8 +180,9 @@ export default function HomeNav() {
               color="inherit"
               sx={{
                 fontSize: "calc(10px + 1vw)",
-                width: "100px",
+                width: "fit-content",
                 textTransform: "capitalize",
+                justifyContent: "right",
               }}
               onClick={() => navigateTo("Login")}
             >

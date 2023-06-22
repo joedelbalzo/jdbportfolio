@@ -564,7 +564,7 @@ open places
   font-size: 2rem;
   margin: 2rem auto;
   padding: 0 3rem;
-  width: 450px;
+  max-width: 450px;
   text-align: center;
   border: 2px solid #a2a3bb;
   border-radius: 1rem;

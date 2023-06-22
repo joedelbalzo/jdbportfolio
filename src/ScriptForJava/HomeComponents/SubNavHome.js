@@ -36,7 +36,7 @@ function SubNavHome() {
               <Link
                 to="../menu/"
                 element={<DrinkProducts />}
-                style={{ textDecoration: "none", color: "inherit" }}
+                style={{ textDecoration: "none", color: "inherit", fontSize: "calc(12px + 0.5vw)" }}
               >
                 Spend a lot? Free shipping!
               </Link>

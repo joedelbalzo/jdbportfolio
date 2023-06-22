@@ -14,23 +14,32 @@ const Home = () => {
       {!scriptAuth.id ? (
         <div id="scriptforjava-homepage">
           <div>
-            <h2>Welcome! Please log in to place an order, but feel free to browse!</h2>
-            <Button variant="outlined">
-              <Link
-                to={`/scriptforjava/register`}
-                style={{ fontSize: "1.2rem", fontWeight: "500" }}
+            <h2
+              style={{ textDecoration: "none", color: "inherit", fontSize: "calc(14px + 0.5vw)" }}
+            >
+              Welcome! Please log in to place an order, but feel free to browse!
+            </h2>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <Button
+                variant="outlined"
+                style={{ width: "calc(200px + 2vw)", margin: "auto", marginBottom: "1rem" }}
               >
-                Register Here
-              </Link>
-            </Button>{" "}
-            or{" "}
-            <Button variant="outlined">
-              {" "}
-              <Link to="/scriptforjava/login" style={{ fontSize: "1.2rem", fontWeight: "500" }}>
-                {" "}
-                Login{" "}
-              </Link>
-            </Button>
+                <Link
+                  to={`/scriptforjava/register`}
+                  style={{ fontSize: "calc(14px + 0.5vw)", fontWeight: "500" }}
+                >
+                  Register Here
+                </Link>
+              </Button>
+              <Button variant="outlined" style={{ width: "calc(200px + 2vw)", margin: "auto" }}>
+                <Link
+                  to="/scriptforjava/login"
+                  style={{ fontSize: "calc(14px + 0.5vw)", fontWeight: "500" }}
+                >
+                  Login
+                </Link>
+              </Button>
+            </div>
           </div>
 
           <div id="scriptforjava-homepageImage" />
