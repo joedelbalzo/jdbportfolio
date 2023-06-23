@@ -44,17 +44,17 @@ const Login = () => {
         <Button type="submit" onClick={login} style={{ fontSize: "1.2rem" }}>
           Login
         </Button>
-        <Button type="submit" style={{ fontSize: "1.2rem" }}>
+        {/* <Button type="submit" style={{ fontSize: "1.2rem" }}>
           <a
             href={`https://github.com/login/oauth/authorize?client_id=${window.client_id}`}
             style={{ textDecoration: "none" }}
           >
             Login with Github
           </a>
-        </Button>
+        </Button> */}
       </form>
-      <div>
-        Not an existing customer? <Link to={"/register"}>Create A New User</Link>
+      <div style={{ fontSize: "calc(12px + 0.5vw)" }}>
+        <Link to={"/register"}>Create an Account</Link>
       </div>
     </div>
   );

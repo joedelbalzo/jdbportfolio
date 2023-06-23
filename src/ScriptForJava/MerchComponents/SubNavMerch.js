@@ -9,6 +9,36 @@ import MerchShirts from "./MerchShirts";
 import { Link } from "react-router-dom";
 
 function SubNavMerch() {
+  const { scriptAuth, scriptCart } = useSelector((state) => state);
+  const navigate = useNavigate();
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  let pages = [];
+  scriptAuth.adminStatus === true
+    ? (pages = ["All Merch", "Hats", "Tea", "Smoothies"])
+    : (pages = ["All Merch", "Hats", "Tea", "Smoothies"]);
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  const navigateTo = (page) => {
+    if (page === "All Drinks") {
+      navigate(`../menu`);
+    } else navigate(`../menu/${page.toLowerCase()}`);
+  };
+
   return (
     <div id="scriptforjava-subnav">
       <AppBar position="static" style={{ background: "#029987" }}>

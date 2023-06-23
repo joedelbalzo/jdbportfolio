@@ -18,10 +18,10 @@ const AboutContact = () => {
       >
         <h3>Please contact us at:</h3>
         <li style={{ listStyleType: "none" }}>
-          Phone: <a href="tel:917-867-5309">917-867-5309</a>
+          Phone: <a href="tel:240-441-7689">240-441-7689</a>
         </li>
         <li style={{ listStyleType: "none" }}>
-          Email: <a href="mailto:mikenorris@gmail.com">mikenorris@gmail.com</a>
+          Email: <a href="mailto:jdelbalzo99@gmail.com">jdelbalzo99@gmail.com</a>
         </li>
       </Typography>
     </div>

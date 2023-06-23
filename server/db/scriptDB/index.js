@@ -26,7 +26,8 @@ const syncAndSeedScript = async () => {
 
     const JavaMug = await Product.create({
       name: "Java Mug",
-      imageUrl: "https://images.unsplash.com/photo-1682986501364-d4d746b3a49b",
+      imageUrl:
+        "https://images.unsplash.com/photo-1536290735676-76b2897808a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
       category: "mug",
       description:
         "Our high-quality mugs are designed with one of our cafe logos and are perfect for enjoying your favorite coffee or tea in the comfort of your home or office.",
@@ -35,7 +36,8 @@ const syncAndSeedScript = async () => {
 
     const ScriptForJavaMug = await Product.create({
       name: "Script For Java Mug",
-      imageUrl: "https://images.unsplash.com/photo-1682987528534-b07d285d1cd1",
+      imageUrl:
+        "https://images.unsplash.com/photo-1546379753-abb7fd8cfb93?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80",
       category: "mug",
       description:
         "Our high-quality mugs are designed with one of our cafe logos and are perfect for enjoying your favorite coffee or tea in the comfort of your home or office.",
@@ -197,7 +199,8 @@ const syncAndSeedScript = async () => {
 
     const Tshirt = await Product.create({
       name: "T-Shirt",
-      imageUrl: "https://images.unsplash.com/photo-1682989375635-ca9058719432",
+      imageUrl:
+        "https://images.unsplash.com/photo-1616150638538-ffb0679a3fc4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=479&q=80",
       category: "shirt",
       description:
         "Our soft and comfortable t-shirts are made from high-quality materials, featuring our cafe logo and a stylish design to show off your love for our coffee.",
@@ -206,7 +209,8 @@ const syncAndSeedScript = async () => {
 
     const Hat = await Product.create({
       name: "Baseball hat",
-      imageUrl: "https://images.unsplash.com/photo-1682992992053-2a7a52b82db4",
+      imageUrl:
+        "https://images.unsplash.com/photo-1518481774046-f7384edaf3fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
       category: "hat",
       description:
         "Our adjustable hats are perfect for sunny days and are embroidered with our cafe logo, providing a stylish accessory for your coffee runs and outdoor activities.",

@@ -25,8 +25,8 @@ function SubNavDrinks() {
 
   let pages = [];
   scriptAuth.adminStatus === true
-    ? (pages = ["Home", "Menu", "Merch", "About", "Admin"])
-    : (pages = ["Home", "Menu", "Merch", "About"]);
+    ? (pages = ["Coffee", "Tea", "Smoothies"])
+    : (pages = ["Coffee", "Tea", "Smoothies"]);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -43,7 +43,9 @@ function SubNavDrinks() {
   };
 
   const navigateTo = (page) => {
-    navigate(`${page.toLowerCase()}`);
+    if (page === "All Drinks") {
+      navigate(`../menu`);
+    } else navigate(`../menu/${page.toLowerCase()}`);
   };
   return (
     <div id="scriptforjava-subnav">
@@ -51,10 +53,19 @@ function SubNavDrinks() {
         <Container
           sx={{
             maxWidth: "xl",
+            // display: "flex",
+            alignItems: "center",
           }}
         >
           <Toolbar disableGutters>
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <Box
+              sx={{
+                display: { xs: "flex", md: "none" },
+                alignItems: "center",
+                // flexGrow: 1,
+                // justifyContent: { xs: "center", md: "flex-start" },
+              }}
+            >
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -62,6 +73,11 @@ function SubNavDrinks() {
                 aria-haspopup="true"
                 onClick={handleOpenNavMenu}
                 color="inherit"
+                sx={{
+                  width: "50px",
+                  left: 0,
+                  marginRight: "auto",
+                }}
               >
                 <MenuIcon />
               </IconButton>
@@ -95,9 +111,11 @@ function SubNavDrinks() {
               variant="h5"
               noWrap
               sx={{
-                mr: 2,
-                display: { xs: "flex", md: "none" },
-                flexGrow: 1,
+                mx: "auto",
+                ml: "-50px",
+                display: { xs: "center", md: "none" },
+                flex: 1,
+                textAlign: "center",
                 fontFamily: "monospace",
                 fontWeight: 400,
                 letterSpacing: ".1rem",
@@ -120,7 +138,7 @@ function SubNavDrinks() {
               noWrap
               sx={{
                 mr: 2,
-                display: { xs: "flex", md: "none" },
+                display: { xs: "none", md: "none" },
                 flexGrow: 1,
                 fontFamily: "monospace",
                 fontWeight: 400,
@@ -144,7 +162,7 @@ function SubNavDrinks() {
               noWrap
               sx={{
                 mr: 2,
-                display: { xs: "flex", md: "none" },
+                display: { xs: "none", md: "none" },
                 flexGrow: 1,
                 fontFamily: "monospace",
                 fontWeight: 400,
@@ -168,7 +186,7 @@ function SubNavDrinks() {
               noWrap
               sx={{
                 mr: 2,
-                display: { xs: "flex", md: "none" },
+                display: { xs: "none", md: "none" },
                 flexGrow: 1,
                 fontFamily: "monospace",
                 fontWeight: 400,

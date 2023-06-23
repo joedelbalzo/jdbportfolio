@@ -149,9 +149,6 @@ const DrinkProducts = () => {
         <Box
           className="drinksGrid"
           sx={{
-            // m: 5,
-            // mx: "auto",
-            // px: "1rem",
             maxWidth: 1200,
             borderColor: "primary.main",
             borderRadius: "1rem",

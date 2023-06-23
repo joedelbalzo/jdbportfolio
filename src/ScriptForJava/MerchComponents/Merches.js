@@ -118,7 +118,7 @@ const Merches = () => {
 
   return (
     <>
-      <SubNavMerch />
+      {/* <SubNavMerch /> */}
       <form onSubmit={(ev) => ev.preventDefault()} style={{ padding: "1rem", maxWidth: 275 }}>
         <input
           value={filter.name ? filter.name : ""}
@@ -129,15 +129,9 @@ const Merches = () => {
         />
       </form>
       <Box
+        className="drinksGrid"
         sx={{
-          m: 5,
-          mx: "auto",
-          px: "1rem",
           maxWidth: 1200,
-          display: "grid",
-          columnGap: 1,
-          rowGap: "1rem",
-          gridTemplateColumns: "repeat(3, 1fr)",
           borderColor: "primary.main",
           borderRadius: "1rem",
         }}

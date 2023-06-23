@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import Slider from "react-slick";
 import Home from "./HomeComponents/Home";
 import Login from "./Login";
 import Cart from "./Cart";
@@ -75,10 +76,18 @@ const AScriptForJavaApp = () => {
   useEffect(() => {
     prevAuth.current = scriptAuth;
   });
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
     <div className="ScriptForJava">
       <Nav />
-      <img src="public\coffee_cup_illustration_blue.jpeg" style={{ width: "100%" }}></img>
+      <img src="public\coffee_cup_illustration_blue.jpeg" style={{ width: "100%" }} />
 
       <div className="scriptforjava-app-body">
         <Routes>
@@ -127,6 +136,11 @@ const AScriptForJavaApp = () => {
           <Route path="/merch/search/:filterString" element={<Merches />} />
         </Routes>
       </div>
+      <div style={{ display: "flex" }}>
+        <img src="public\background-tea.jpeg" style={{ width: "50%", filter: "sepia(25%)" }} />
+        <img src="public\cup.jpg" style={{ width: "50%", filter: "sepia(25%)" }} />
+      </div>
+      <div></div>
 
       <FooterNav />
     </div>

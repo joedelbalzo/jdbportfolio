@@ -11,7 +11,7 @@ const Account = () => {
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const { auth } = useSelector((state) => state);
+  const { scriptAuth } = useSelector((state) => state);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -88,8 +88,8 @@ const Account = () => {
           </form>
         </div>
       ) : (
-        <div>
-          <h1>Can't Update If You're Not Logged In!</h1>
+        <div style={{ textAlign: "center", fontSize: "calc(12px + 0.5vw)", margin: "10vh auto" }}>
+          Can't Update If You're Not Logged In!
           <div>
             <Link to={`/register`}>Register Here</Link> or <Link to="/login"> Login </Link>
           </div>
