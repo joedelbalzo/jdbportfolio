@@ -17,6 +17,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { ShoppingCartSharp } from "@mui/icons-material";
 import EmojiFoodBeverageIcon from "@mui/icons-material/EmojiFoodBeverage";
 import { useNavigate, Link } from "react-router-dom";
+import Home from "../Home";
 
 export default function Nav() {
   const { scriptAuth, scriptCart } = useSelector((state) => state);
@@ -120,7 +121,9 @@ export default function Nav() {
             </Menu>
           </Box>
           {/* THIS IS THE SMALL ONE */}
-          <EmojiFoodBeverageIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <Link to={"/scriptforjava/home"} element={<Home />} style={{ color: "white" }}>
+            <EmojiFoodBeverageIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          </Link>
           {/* <Typography
             variant="h5"
             noWrap
@@ -213,7 +216,7 @@ export default function Nav() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 1 }}>
-                <Avatar alt="Dwight Avatar" src="/static/images/avatarDS.jpeg" />
+                <Avatar alt={`${scriptAuth.username}`} src="/static/images/avatarDS.jpeg" />
               </IconButton>
             </Tooltip>
             <Menu

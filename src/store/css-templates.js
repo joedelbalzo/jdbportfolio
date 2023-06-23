@@ -32,7 +32,7 @@ export const cssCreateTemplate = (template) => {
     const updatedTemplate = { userId, htmlText, type };
     try {
       const response = await axios.post("/api/css/templates", updatedTemplate);
-      console.log("create template response", response);
+      // console.log("create template response", response);
       dispatch({ type: "CREATE_TEMPLATE", template: response.data });
     } catch (error) {
       console.error("Error creating template:", error);

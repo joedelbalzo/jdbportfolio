@@ -5,6 +5,13 @@ import { Link } from "react-router-dom";
 import SubNavHome from "./SubNavHome";
 
 const Home = () => {
+  const capitalizeFirstLetter = (word) => {
+    if (typeof word !== "string" || word.length === 0) {
+      return word;
+    }
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  };
+
   const { scriptAuth, scriptReviews } = useSelector((state) => state);
   const dispatch = useDispatch();
   return (
@@ -46,19 +53,23 @@ const Home = () => {
         </div>
       ) : (
         <div id="scriptforjava-homepage">
-          <h1>Welcome, {scriptAuth.username}!</h1>
+          <h1 style={{ color: "#004C60" }}>
+            Welcome, {capitalizeFirstLetter(scriptAuth.username)}!
+          </h1>
           <div>
             {scriptAuth.adminStatus === true ? (
               <div>
-                <Link to="/admin">Admin Tools</Link>
+                <Link to="/scriptforjava/admin">Admin Tools</Link>
               </div>
             ) : (
-              <div>
+              <div style={{ fontSize: "calc(14px + 1vw)", marginBottom: "10vh" }}>
                 Please browse amongst our delicious selection of drinks or our fashionable merch.
                 <br />
-                <Link to="/reviews">Create And See Your Reviews</Link>
+                <Link to="/scriptforjava/reviews">Create And See Your Reviews</Link>
                 <br />
-                <Link to="/reviews/all">Read Our Reviews({scriptReviews.length})</Link>
+                <Link to="/scriptforjava/reviews/all">
+                  Read Our Reviews({scriptReviews.length})
+                </Link>
               </div>
             )}
           </div>

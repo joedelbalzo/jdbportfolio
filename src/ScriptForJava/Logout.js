@@ -30,7 +30,8 @@ const Logout = () => {
         <div>
           <h1>You're Not Logged In!</h1>
           <div>
-            <Link to={`/register`}>Register Here</Link> or <Link to="/login"> Login </Link>
+            <Link to={`/scriptforjava/register`}>Register Here</Link> or{" "}
+            <Link to="/scriptforjava/login"> Login </Link>
           </div>
         </div>
       )}

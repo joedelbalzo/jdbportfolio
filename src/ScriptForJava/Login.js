@@ -54,7 +54,7 @@ const Login = () => {
         </Button> */}
       </form>
       <div style={{ fontSize: "calc(12px + 0.5vw)" }}>
-        <Link to={"/register"}>Create an Account</Link>
+        <Link to={"/scriptforjava/register"}>Create an Account</Link>
       </div>
     </div>
   );

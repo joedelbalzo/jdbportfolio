@@ -8,7 +8,7 @@ const NotAdmin = () => {
         {" "}
         You're not a registered administrator. Please contact your boss.{" "}
       </h1>
-      <Link to="/home" style={{ margin: 40 }}>
+      <Link to="/scriptforjava/home" style={{ margin: 40 }}>
         Home
       </Link>
     </div>

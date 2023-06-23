@@ -39,7 +39,7 @@ export const scriptLoginWithToken = () => {
 
 export const scriptAttemptLogin = (credentials) => {
   return async (dispatch) => {
-    console.log("credentials....", credentials);
+    // console.log("credentials....", credentials);
     const response = await axios.post("/api/script/auth", credentials);
     window.localStorage.setItem("token", response.data.token);
     dispatch(loginWithToken());

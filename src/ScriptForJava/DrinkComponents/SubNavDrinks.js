@@ -53,7 +53,6 @@ function SubNavDrinks() {
         <Container
           sx={{
             maxWidth: "xl",
-            // display: "flex",
             alignItems: "center",
           }}
         >
@@ -62,8 +61,6 @@ function SubNavDrinks() {
               sx={{
                 display: { xs: "flex", md: "none" },
                 alignItems: "center",
-                // flexGrow: 1,
-                // justifyContent: { xs: "center", md: "flex-start" },
               }}
             >
               <IconButton

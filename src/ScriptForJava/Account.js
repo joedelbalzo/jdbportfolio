@@ -91,7 +91,8 @@ const Account = () => {
         <div style={{ textAlign: "center", fontSize: "calc(12px + 0.5vw)", margin: "10vh auto" }}>
           Can't Update If You're Not Logged In!
           <div>
-            <Link to={`/register`}>Register Here</Link> or <Link to="/login"> Login </Link>
+            <Link to={`/scriptforjava/register`}>Register Here</Link> or{" "}
+            <Link to="/scriptforjava/login"> Login </Link>
           </div>
         </div>
       )}

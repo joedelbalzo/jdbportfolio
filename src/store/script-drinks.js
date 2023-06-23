@@ -24,7 +24,7 @@ const scriptDrinks = (state = [], action) => {
 export const scriptFetchDrinks = () => {
   return async (dispatch) => {
     const response = await axios.get("/api/script/menu");
-    console.log("fetch drinks store", response.data);
+    // console.log("fetch drinks store", response.data);
     dispatch({ type: "SET_DRINKS", drinks: response.data });
   };
 };

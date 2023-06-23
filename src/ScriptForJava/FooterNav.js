@@ -358,7 +358,7 @@ export default function FooterNav() {
 
           <IconButton size="large" color="inherit">
             <Badge badgeContent={getCartLength()} color="error">
-              <Link to="/cart">
+              <Link to="/scriptforjava/cart">
                 <ShoppingCartSharp sx={{ pr: 1, color: "white" }} />
               </Link>
             </Badge>

@@ -56,9 +56,9 @@ const DrinkProductPage = () => {
   };
 
   const filtered = reviews.filter((review) => review.productId === drink.id);
-  console.log(filtered);
+  // console.log(filtered);
 
-  console.log("whats going on wiht the individual product page?");
+  // console.log("whats going on wiht the individual product page?");
 
   return (
     <div id="scriptforjava-ProductDiv">
