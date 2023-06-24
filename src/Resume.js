@@ -9,8 +9,8 @@ const Resume = () => {
         </span>
       </h1>
       <h3 style={{ fontSize: "calc(14px + 1vw)" }}>Web Developer / Full Stack Engineer</h3>
-      <h3 style={{ fontSize: "calc(14px + 1vw)" }}>
-        240-441-7689 || jdelbalzo99@gmail.com || New York, NY
+      <h3 style={{ fontSize: "calc(14px + 1vw)", alignItems: "center" }}>
+        240-441-7689 &#x2015; jdelbalzo99@gmail.com &#x2015; New York, NY
       </h3>
 
       <div id="main-resume">
@@ -181,6 +181,7 @@ const Resume = () => {
           </span>
         </h2>
         <ul>
+          <li>International Cinema Lighting Society Member, June 2023</li>
           <li>
             International Alliance of Theatrical and Stage Employees – Local 52, September 2017
           </li>

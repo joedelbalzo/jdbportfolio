@@ -216,7 +216,7 @@ export default function Nav() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 1 }}>
-                <Avatar alt={`${scriptAuth.username}`} src="/static/images/avatarDS.jpeg" />
+                <Avatar alt={`${scriptAuth.username}`} />
               </IconButton>
             </Tooltip>
             <Menu

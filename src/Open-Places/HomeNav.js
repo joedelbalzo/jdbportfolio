@@ -76,12 +76,13 @@ export default function HomeNav() {
 
   const _logout = () => {
     dispatch(placesLogout());
-    navigate("/openplaces");
+    navigate("/openplaces/login");
   };
 
   return (
     <Box
       sx={{
+        padding: 0,
         display: "flex",
         justifyContent: "space-between",
         flexGrow: 1,
@@ -104,24 +105,29 @@ export default function HomeNav() {
                 edge="start"
                 color="inherit"
                 aria-label="menu"
-                // sx={{ width: "100px" }}
+                sx={{ width: "50px", margin: "25px" }}
+                // aria-controls="menu-appbar"
+                // aria-haspopup="true"
+                // ref={(node) => {
+                //   setAnchorElNav(node);
+                // }}
               >
                 <MenuIcon />
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: isMobile ? "10%" : "7%" }}
+              // sx={{ mt: "45px", ml: "25px"}}
               id="menu-appbar"
               anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
+              // anchorOrigin={{
+              //   vertical: "top",
+              //   horizontal: "right",
+              // }}
               keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
+              // transformOrigin={{
+              //   vertical: "top",
+              //   horizontal: "right",
+              // }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
               onClick={handleCloseUserMenu}
@@ -152,9 +158,9 @@ export default function HomeNav() {
               margin: "auto",
               flexGrow: 1,
               wordWrap: "normal",
-              fontSize: "calc(16px + 1.5vw)",
+              fontSize: "calc(18px + 2.5vw)",
               ":hover": { cursor: "pointer" },
-              maxWidth: "calc(100% - 100px)",
+              maxWidth: "calc(100% - 200px)",
               textAlign: "center",
             }}
           >
@@ -167,7 +173,7 @@ export default function HomeNav() {
               sx={{
                 fontSize: "calc(10px + 1vw)",
                 // mr: "10px",
-                width: "40px",
+                width: "100px",
                 textTransform: "capitalize",
                 justifyContent: "right",
               }}
@@ -180,7 +186,7 @@ export default function HomeNav() {
               color="inherit"
               sx={{
                 fontSize: "calc(10px + 1vw)",
-                width: "fit-content",
+                width: "100px",
                 textTransform: "capitalize",
                 justifyContent: "right",
               }}

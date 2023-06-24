@@ -12,6 +12,7 @@ const Login = () => {
     username: "",
     password: "",
   });
+  const [errorMessage, setErrorMessage] = useState("");
 
   const onChange = (ev) => {
     setCredentials({ ...credentials, [ev.target.name]: ev.target.value });
@@ -19,8 +20,13 @@ const Login = () => {
 
   const login = (ev) => {
     ev.preventDefault();
-    dispatch(scriptAttemptLogin(credentials));
-    navigate("/scriptforjava/home");
+    try {
+      dispatch(scriptAttemptLogin(credentials));
+      navigate("/scriptforjava/home");
+    } catch (err) {
+      setErrorMessage("username or password is incorrect");
+      console.log("login error", err);
+    }
   };
   return (
     <div id="scriptforjava-login" style={{ paddingTop: "1rem", backgroundColor: "#f5f5f5" }}>
@@ -41,6 +47,18 @@ const Login = () => {
           value={credentials.password}
           onChange={onChange}
         />
+
+        <div
+          style={{
+            margin: "0 auto",
+            color: "darkred",
+            fontSize: "calc(4px + 0.5vw)",
+            fontStyle: "italic",
+            minHeight: "2vh",
+          }}
+        >
+          {errorMessage ? errorMessage : <div style={{ minHeight: "(4px + 0.5vw)" }}></div>}
+        </div>
         <Button type="submit" onClick={login} style={{ fontSize: "1.2rem" }}>
           Login
         </Button>

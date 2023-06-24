@@ -198,7 +198,7 @@ export default function FooterNav() {
           >
             <Typography
               variant="subtitle2"
-              component="a"
+              // component="a"
               href="/#/scriptforjava/home"
               sx={{ textDecoration: "none", marginRight: 0.5, color: "white" }}
             >
@@ -207,7 +207,7 @@ export default function FooterNav() {
             <Typography
               variant="subtitle2"
               href="/#/scriptforjava/login"
-              component="a"
+              // component="a"
               sx={{
                 display: { xs: "none", sm: "flex" },
                 textDecoration: "none",
@@ -220,7 +220,7 @@ export default function FooterNav() {
             <Typography
               variant="subtitle2"
               href="/#/scriptforjava/merch"
-              component="a"
+              // component="a"
               sx={{
                 display: { xs: "none", sm: "flex" },
                 textDecoration: "none",
@@ -243,7 +243,7 @@ export default function FooterNav() {
             </Typography>
             <Typography
               variant="subtitle2"
-              component="a"
+              // component="a"
               href="/#/scriptforjava/about"
               sx={{
                 display: { xs: "none", sm: "flex" },
@@ -256,7 +256,7 @@ export default function FooterNav() {
             </Typography>
             <Typography
               variant="subtitle2"
-              component="a"
+              // component="a"
               href="/#/scriptforjava/account"
               sx={{
                 display: { xs: "none", sm: "flex" },
@@ -279,7 +279,7 @@ export default function FooterNav() {
           >
             <Typography
               variant="subtitle2"
-              component="a"
+              // component="a"
               href="/#/scriptforjava/about/contact"
               sx={{
                 display: { xs: "none", sm: "flex" },
@@ -292,7 +292,7 @@ export default function FooterNav() {
             </Typography>
             <Typography
               variant="subtitle2"
-              component="a"
+              // component="a"
               href="/#/scriptforjava/about/careers"
               sx={{
                 display: { xs: "none", sm: "flex" },
@@ -305,7 +305,7 @@ export default function FooterNav() {
             </Typography>
             <Typography
               variant="subtitle2"
-              component="a"
+              // component="a"
               href="/#/scriptforjava/about/locations"
               sx={{
                 display: { xs: "none", sm: "flex" },
@@ -329,7 +329,7 @@ export default function FooterNav() {
           >
             <Typography
               variant="subtitle2"
-              component="a"
+              // component="a"
               href="/#/scriptforjava/menu"
               sx={{
                 display: { xs: "none", sm: "flex" },
@@ -342,7 +342,7 @@ export default function FooterNav() {
             </Typography>
             <Typography
               variant="subtitle2"
-              component="a"
+              // component="a"
               href="/#/scriptforjava/merch"
               sx={{
                 display: { xs: "none", sm: "flex" },

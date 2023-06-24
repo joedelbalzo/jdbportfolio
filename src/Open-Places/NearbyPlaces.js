@@ -261,7 +261,7 @@ const NearbyPlaces = () => {
                 key={category}
                 variant="outlined"
                 sx={{
-                  fontSize: "2rem",
+                  fontSize: "calc(14px + 2vw)",
                   marginBottom: 0.4,
                   mx: 0.4,
                   backgroundColor: selectedCategory === category ? "#1C5D99;" : "transparent",
@@ -311,8 +311,10 @@ const NearbyPlaces = () => {
                       <CardMedia
                         component="img"
                         alt={place.name}
-                        height="400"
                         image={place.photo}
+                        sx={{
+                          maxHeight: "400px",
+                        }}
                       />
                       <CardContent>
                         <Typography

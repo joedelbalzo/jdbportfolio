@@ -142,9 +142,9 @@ const Settings = () => {
         noValidate
         autoComplete="off"
       >
-        <p style={{ fontSize: 12, textAlign: "left", width: "50%" }}>
-          note: your device will fetch your current location every time you pick a new category. for
-          any reason it doesn't, you can still fetch places based on your home location.
+        <p style={{ fontSize: "calc(12px + 0.5vw)", textAlign: "left", width: "calc(30% + 20vw)" }}>
+          note: your device will fetch your current location every time you pick a new category.
+          this is just your default home setting
         </p>
 
         <TextField

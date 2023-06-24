@@ -81,7 +81,7 @@ const Components = ({ openInPreview }) => {
           <div className="css-componentTypes">
             {componentTypes.map((type) => (
               <div key={type} onClick={() => handleTypeClick(type)}>
-                <h5>{type} &#x1F826;</h5>
+                <h5>{type} &#x2192;</h5>
               </div>
             ))}
           </div>

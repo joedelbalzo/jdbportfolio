@@ -1,5 +1,5 @@
 html {
-  background-image: url("homeoffice-2.jpg");
+  background-image: url("IMG_0102.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -10,7 +10,7 @@ html {
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Helvetica, Geneca, sans-serif;
   text-align: center;
   font-size: calc(16px + 1.5vw);
 }
@@ -130,10 +130,10 @@ h3 {
   color: rgba(240, 240, 240, 0.9);
   line-height: 2.1rem;
   letter-spacing: 2px;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.4);
   border-radius: 2rem;
   padding: 2rem;
-  box-shadow: 0px 0px 7rem 7rem rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 7rem 7rem rgba(0, 0, 0, 0.4);
 }
 
 #main-introParagraph > p {
@@ -157,29 +157,33 @@ h3 {
 
 #main-links {
   margin: 0.5rem auto;
-  min-width: 350px;
+  min-width: 275px;
   max-width: 25vw;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: center;
+  /* justify-content: center; */
   backdrop-filter: blur(1px);
 }
 
 #main-links > a {
   margin: 0.2rem;
+  align-items: center;
+  font-size: calc(14px + 0.5vw);
 }
 
 #main-links :hover {
   /* box-shadow: 2px 2px 6px 2px rgba(200, 200, 200, 0.15); */
   backdrop-filter: blur(100px);
-  background-color: rgba(200, 200, 200, 0.3);
+  background-color: rgba(150, 150, 150, 0.5);
 }
 
 #main-link {
   background-color: rgba(0, 0, 0, 0.5);
-  font-size: 1.5rem;
   padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-wrap: nowrap;
   height: 2rem;
   border: 2px solid dodgerblue;
@@ -204,7 +208,6 @@ h3 {
 
 #main-portfolioContainer {
   width: calc(100px + 60vw);
-
   font-size: calc(14px + 0.5vw);
   margin: auto;
   display: flex;
@@ -213,7 +216,6 @@ h3 {
   text-align: left;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 2rem;
-  padding: 2rem;
   box-shadow: 0px 0px 7rem 7rem rgba(0, 0, 0, 0.5);
 }
 
@@ -564,7 +566,8 @@ open places
   font-size: 2rem;
   margin: 2rem auto;
   padding: 0 3rem;
-  max-width: 450px;
+  width: 350px;
+  max-width: 60%;
   text-align: center;
   border: 2px solid #a2a3bb;
   border-radius: 1rem;
@@ -623,6 +626,7 @@ open places
 }
 
 #places-categoryHeader {
+  font-size: calc(20px + 50%);
   font-variant: small-caps;
   font-weight: 700;
   box-sizing: border-box;
@@ -660,14 +664,15 @@ form > * {
 
 #places-welcomePage {
   text-align: center;
-  font-size: 2.5rem;
+  font-size: calc(18px + 2vw);
   margin: 1rem;
   color: rgb(0, 30, 17);
 }
 #places-welcomeSmaller {
   text-align: center;
-  font-size: 1.8rem;
-  margin: 1rem;
+  font-size: calc(12px + 2vw);
+  min-height: 0px;
+  margin: 8px;
   color: rgb(0, 30, 17);
 }
 
@@ -695,7 +700,7 @@ a drop of css
   border-width: 3px;
   border-style: solid;
   border-image: linear-gradient(to right, dodgerblue, lightgreen) 3;
-  /* overflow-x: hidden; maybe use this? idk*/
+  overflow-x: hidden;
 }
 
 h1 {
@@ -917,7 +922,7 @@ nav > h5 {
   background-color: darkred;
   color: white;
   border-radius: 0.24rem;
-  margin-left: calc(100% - 8vw);
+  margin-left: calc(90% - 8vw);
   margin-bottom: 0.5rem;
 }
 /* PREVIEW PANE DIVS */
@@ -1576,8 +1581,8 @@ h5 {
     margin-bottom: 0px;
   }
   #css-page-container-div {
-    width: 98%;
-    margin: auto;
+    width: 90%;
+    /* margin: auto; */
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto auto;
@@ -1587,6 +1592,7 @@ h5 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
+    /* max-width: 80%; */
   }
 
   #css-cpg-div {
@@ -1611,7 +1617,7 @@ h5 {
 
   #css-component-div {
     grid-column: 2;
-    width: 47vw;
+    min-width: 40vw;
     height: fit-content;
   }
 
@@ -1631,7 +1637,10 @@ h5 {
 
   #css-preview-pane-div {
     /* grid-column: 1 / -1; */
-    width: 70%;
+    width: 90%;
+    max-width: 95%;
+
+    margin: auto;
   }
   .css-preview-pane-container {
     display: grid;
