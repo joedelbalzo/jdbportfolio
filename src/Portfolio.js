@@ -4,13 +4,15 @@ const Portfolio = () => {
   return (
     <div id="main-portfolio">
       <h1>
-        <span id="main-name">Portfolio</span>
+        <span id="main-name" style={{ fontSize: "calc(14px + 2vw)" }}>
+          Portfolio
+        </span>
       </h1>
 
       <div id="main-portfolioContainer">
         All three applications can be accessed fully with the username "moe" and pass "123." Feel
-        free to dig in! All three are built using the PERN stack -- PostgreSQL, Express, React,
-        Node, and mostly vanilla CSS with some Material-UI components.
+        free to dig in! All three are built in Javascript using the PERN stack -- PostgreSQL,
+        Express, React, Node, and mostly vanilla CSS with some Material-UI components.
         <br />
         <br />
         <span id="main-name" style={{ fontStyle: "italic" }}>
