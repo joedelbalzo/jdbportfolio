@@ -323,9 +323,11 @@ h3 {
   }
 
   .main-dropdown-links {
+    min-width: 170px;
+    margin-right: 4px;
     right: 0;
     text-align: right;
-    background-color: rgba(240, 240, 240, 0.6);
+    background-color: rgba(240, 240, 240, 0.7);
     backdrop-filter: blur(8px);
   }
 
@@ -421,6 +423,10 @@ h3 {
   #main-name {
     font-size: calc(14px + 1vw);
     display: block;
+  }
+  #borderdiv {
+    font-size: calc(12px + 1vw);
+    background-size: calc(70px + 8vw) calc(25px + 2vh);
   }
 }
 
