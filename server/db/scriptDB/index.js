@@ -14,7 +14,6 @@ Review.belongsTo(Product);
 Review.belongsTo(UserScript);
 
 const syncAndSeedScript = async () => {
-  // await conn.sync({ force: true });
   try {
     const [moe, larry, lucy, ethyl, admin] = await Promise.all([
       UserScript.create({ username: "moe", password: "123" }),
@@ -275,7 +274,7 @@ const syncAndSeedScript = async () => {
     await ethyl.addToCart({ product: Hat, quantity: 3 });
     await ethyl.addToCart({ product: ScriptForJavaMug, quantity: 2 });
     return {
-      users: {
+      userscripts: {
         moe,
         lucy,
         larry,

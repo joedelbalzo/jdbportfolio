@@ -24,7 +24,7 @@ const ColorPicker = ({ onColorChange }) => {
       color: {
         boxSizing: "border-box",
         width: "100%",
-        height: "14px",
+        height: "16px",
         borderRadius: "2px",
         background: `${color ? color : "#2C8294"}`,
         display: "flex",
@@ -60,7 +60,14 @@ const ColorPicker = ({ onColorChange }) => {
   return (
     <>
       {isLargeScreen ? (
-        <div style={{ marginBottom: "1rem", flex: 1 }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: "1rem",
+            width: "25vw",
+          }}
+        >
           <SketchPicker color={color} onChange={handleChange} />
         </div>
       ) : (
@@ -71,7 +78,7 @@ const ColorPicker = ({ onColorChange }) => {
                 style={{
                   fontSize: "calc(6px + .5vw)",
                   color: "whitesmoke",
-                  margin: 0,
+                  margin: "auto",
                   fontStyle: "italic",
                   fontStretch: "expanded",
                 }}

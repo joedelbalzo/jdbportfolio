@@ -92,10 +92,10 @@ const AScriptForJavaApp = () => {
       <div className="scriptforjava-app-body">
         <Routes>
           <Route path="*" element={<Home />} />
-          <Route path="home" element={<Home />} />
-          <Route path="cart" element={<Cart />} />
-          <Route path="checkout" element={<Checkout />} />
-          <Route path="order/:id" element={<Order />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/order/:id" element={<Order />} />
 
           {scriptAuth.adminStatus === true ? (
             <Route path="/admin" element={<Admin />} />
@@ -113,7 +113,7 @@ const AScriptForJavaApp = () => {
           <Route path="/menu/coffee" element={<DrinksCoffees />} />
           <Route path="/menu/tea" element={<DrinksTeas />} />
           <Route path="/menu/smoothies" element={<DrinksSmoothies />} />
-          <Route path="/menu/*" element={<DrinkProductPage />} />
+          <Route path="/menu/:id" element={<DrinkProductPage />} />
           <Route path="/merch" element={<Merches />} />
           <Route path="/merch/shirts" element={<MerchShirts />} />
           <Route path="/merch/hats" element={<MerchHats />} />

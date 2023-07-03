@@ -508,21 +508,23 @@ h2 {
   top: 0;
   z-index: 100;
 }
-#scriptforjava-productDiv {
+#scriptforjava-ProductDiv {
   margin: 1rem auto;
-  max-width: 90%;
+  max-width: 80%;
   display: flex;
   padding: 2rem 4rem;
   justify-content: center;
-  border-left: 1px solid #029987;
+  border-left: 2px solid #029987;
   border-top: 1px solid #029987;
   border-right: 3px solid #029987;
   border-bottom: 3px solid #029987;
   border-radius: 0 0 1rem 0;
 }
-#scriptforjava-productDiv > div {
-  max-width: 100%;
-  margin: 1rem;
+#scriptforjava-ProductDiv > div {
+  flex: 1 1 100%;
+  padding: 1rem;
+  width: fit-content;
+  max-width: 40%;
 }
 #scriptforjava-aboutDiv {
   margin: 1rem auto;
@@ -856,12 +858,13 @@ h1 {
   flex-direction: column;
 }
 #css-cpg-div {
+  align-items: center;
   box-sizing: fit-content;
   border-radius: 0.5rem;
   min-height: 20vh;
   max-height: fit-content;
   width: 25vw;
-  margin: 0.25rem;
+  margin: 0.25rem auto;
   padding-bottom: 1rem;
   border-bottom: 1px solid rgba(100, 100, 100, 0.4);
 }

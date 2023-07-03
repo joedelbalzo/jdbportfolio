@@ -21,6 +21,7 @@ export const scriptFetchCart = () => {
 
 export const scriptAddToCart = (product, quantity) => {
   return async (dispatch) => {
+    console.log("adding to cart in store", product, quantity);
     const token = window.localStorage.getItem("token");
     const response = await axios.post(
       "/api/script/orders/cart",
@@ -34,6 +35,7 @@ export const scriptAddToCart = (product, quantity) => {
         },
       }
     );
+    console.log(response, "response in store");
     dispatch({ type: "SET_CART", cart: response.data });
   };
 };

@@ -308,17 +308,12 @@ const ColorGenForm = ({ openColorsInPreview, wholePageBackground, setWholePageBa
             timeout="auto"
             unmountOnExit
           >
-            <div
-              style={{
-                flex: 1,
-              }}
-            >
+            <div>
               <ColorPicker onColorChange={handleColorChange} />
             </div>
             <div
               className="css-cpg-form-div"
               style={{
-                // display: "flex",
                 flex: 1,
                 alignItems: "center",
                 justifyContent: "center",

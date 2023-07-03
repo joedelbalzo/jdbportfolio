@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Cart from "./Cart";
-import { scriptLogout } from "../store/index";
+import { scriptLogout, scriptAddToCart, scriptRemoveFromCart } from "../store/index";
 import { Link, useNavigate } from "react-router-dom";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";

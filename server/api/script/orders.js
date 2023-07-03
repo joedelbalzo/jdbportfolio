@@ -21,7 +21,8 @@ app.get("/cart", isLoggedIn, async (req, res, next) => {
 
 app.post("/cart", isLoggedIn, async (req, res, next) => {
   try {
-    console.log(req.user, req.body);
+    console.log("reqqqqqqqqqqqqqqqqq", req);
+    console.log("USER SCRIPPPPPT", req.user, "BODDDDDDDDDDY", req.body);
     res.send(await req.user.addToCart(req.body));
   } catch (ex) {
     next(ex);

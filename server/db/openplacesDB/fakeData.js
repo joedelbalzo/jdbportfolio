@@ -188,8 +188,7 @@ const fakeData = [
       "Saturday: 11:00 AM -- 12:30 AM",
       "Sunday: 11:00 AM -- 12:30 AM",
     ],
-    photo:
-      "https://lh5.googleusercontent.com/p/AF1QipMWbsP2ZVuLtIaxj6tGx_FBqQtSOEkMAAnT8dMz=w408-h306-k-no",
+    photo: "https://www.flyingfourchette.com/wp-content/uploads/2016/06/Taverna-Kyklades-3.jpg",
     rating: 4.8,
     user_ratings_total: 15256,
     types: ["restaurant"],
@@ -282,7 +281,7 @@ const fakeData = [
       "Sunday: 6:00 AM -- 8:00 PM",
     ],
     photo:
-      "https://lh5.googleusercontent.com/p/AF1QipPM7C17Db3cx7lZIuEhd2ms4RjSq15rEu-l188b=w408-h544-k-no",
+      "https://www.tastingtable.com/img/gallery/starbucks-secret-menu-items-you-wont-want-to-miss/intro-1642198543.jpg",
     rating: 3.4,
     user_ratings_total: 2564,
     types: ["cafe"],

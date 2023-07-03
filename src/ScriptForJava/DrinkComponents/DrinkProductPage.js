@@ -24,14 +24,15 @@ import Select from "@mui/material/Select";
 const DrinkProductPage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { drinks, reviews } = useSelector((state) => state);
+  const { scriptDrinks, scriptReviews } = useSelector((state) => state);
   const [expanded, setExpanded] = useState(false);
   const [quantity, setQuantity] = useState(1);
-  if (!drinks) {
+
+  if (!scriptDrinks) {
     return null;
   }
 
-  const drink = drinks.find((d) => d.id === id);
+  const drink = scriptDrinks.find((d) => d.id === id);
   if (!drink) {
     return null;
   }
@@ -55,7 +56,7 @@ const DrinkProductPage = () => {
     dispatch(scriptAddToCart(drink, quantity));
   };
 
-  const filtered = reviews.filter((review) => review.productId === drink.id);
+  const filtered = scriptReviews.filter((review) => review.productId === drink.id);
   // console.log(filtered);
 
   // console.log("whats going on wiht the individual product page?");
@@ -64,7 +65,18 @@ const DrinkProductPage = () => {
     <div id="scriptforjava-ProductDiv">
       <div id="scriptforjava-productDivLeft">
         <Card>
-          <CardMedia component="img" height="600" image={drink.imageUrl} alt={drink.name} />
+          <CardMedia
+            component="img"
+            sx={{
+              maxHeight: "fit-content",
+              maxWidth: "fit-content",
+              objectFit: "contain",
+              // padding: "1rem",
+              // display: "flex",
+            }}
+            image={drink.imageUrl}
+            alt={drink.name}
+          />
         </Card>
       </div>
 
