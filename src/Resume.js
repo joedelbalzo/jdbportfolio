@@ -20,82 +20,130 @@ const Resume = () => {
         <div id="borderdiv">
           <h2>
             <span id="main-name" style={{ fontSize: "calc(14px + 1vw)", color: "white" }}>
-              Summary
+              Skills
             </span>
           </h2>
 
           <p>
-            Experienced former Chief Lighting Technician, lighting console programmer, and network
-            designer with 15+ years in the film and television industry. Communicated regularly in
-            an intense and fast-paced environment with employee technicians as well as high-profile
-            clients, actors, and producers, to skillfully handle massive amounts of show-critical
-            data and optimize networks to minimize time costs, resulting in high-quality
-            entertainment production.
+            JavaScript(ES6+), React, Redux, NodeJS, Express, PostgresQL, Python, Axios, RESTful
+            APIs, HTML/CSS, Bootstrap, Material UI, TDD (Jest, Mocha), Webpack, Git/GitHub Version
+            Control, AGILE(SCRUM)
           </p>
         </div>
         <div id="borderdiv">
           <h2>
             <span id="main-name" style={{ fontSize: "calc(14px + 1vw)", color: "white" }}>
-              Technical Skills
+              Experience
             </span>
           </h2>
-          <p>
-            Proficient: Node, Javascript, React / Redux, Git, Express, PostgreSQL,
-            <br />
-            Knowledgeable: Typescript, CSS, HTML, Python
-          </p>
+          <h3 style={{ marginLeft: "3%" }}>“Drop of CSS”</h3>
+          <ul>
+            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+              Led the design and technical implementation of a feature-rich color palette and
+              element generating tool allowing designers and freelance developers to build, preview,
+              and download built components.
+            </li>
+            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+              Developed a dynamic and comprehensive React-based user interface with real-time
+              component preview functionality, powered by React-Redux for efficient state
+              management.
+            </li>
+            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+              Adopted GitHub OAuth for secure user authentication and authorized access to saved
+              color palettes.
+            </li>
+            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+              Utilized Axios to facilitate seamless communication and built custom API calls with
+              full CRUD functionality to efficiently retrieve and update user-requested data in
+              real-time.
+            </li>
+            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+              Built a robust backend using Node.js and Express, ensuring efficient request handling,
+              secure data transmission, and seamless database integration with PostgreSQL.
+            </li>
+            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+              Performed comprehensive audits of both front-end and back-end codebases, resulting in
+              improved coding standards and style guides for enhanced codebase consistency and
+              maintainability.
+            </li>
+          </ul>
+          <h3 style={{ marginLeft: "3%" }}>Console Programmer and Designer</h3>
+          <ul>
+            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+              Employed cutting-edge programming techniques to seamlessly integrate lighting designs
+              into lighting consoles, ensuring flawless execution of complex visual concepts.
+            </li>
+            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+              Led the strategic oversight and maintenance of intricate networks, overseeing critical
+              software and firmware updates to optimize performance, bolster reliability, and ensure
+              adherence to industry standards.{" "}
+            </li>
+            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+              Developed and programmed custom configurations within the console, showcasing an
+              exceptional attention to detail and creative problem-solving skills.
+            </li>
+            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+              Leveraged expertise in both wired and wireless network architecture to establish
+              high-speed transmission of data, enabling smooth and uninterrupted production
+              operations.
+            </li>
+            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+              Notable projects: John Wick 3, East New York Season 1, Bull Seasons 4-6, and Ray
+              Donovan: The Movie.
+            </li>
+          </ul>
         </div>
         <div id="borderdiv">
           <h2>
             <span id="main-name" style={{ fontSize: "calc(14px + 1vw)", color: "white" }}>
-              Technical Projects
+              Open Source Projects
             </span>
           </h2>
-          <h3 style={{ marginLeft: "3%" }}>“A Drop of CSS”</h3>
-          <p>
-            Lead Developer, Project Manager | June, 2023
-            <br />
-          </p>
-          <p>
-            Designed with back-end driven developers and freelancers who want easily customized and
-            downloadable visual elements. This is a color palette generator, Material UI, and a
-            preview pane all-in-one, where a developer can easily select a color, build an
-            artistically beautiful palette, apply that palette to components of their choice,
-            visualize them all in one window, and download them right to his her development
-            environment.
-          </p>
-          <p>
-            Technologies primarily used: Javascript, React, React-Redux, Node, Express, PostgreSQL,
-            Sequelize, HTML, CSS, Material-UI, The Color API
-          </p>
-          <h3 style={{ marginLeft: "3%" }}>“Open Places”</h3>
-          <p>
-            Creator, Lead Developer | May, 2023
-            <br />
-          </p>
-          <p>
-            Application designed to minimize steps for an end-user to effortlessly find anything
-            nearby that is open this minute, depending on their location and user preferences. Think
-            Google Maps’ “Open Now” button, but much more personalized and fewer steps to get what
-            you want.
-          </p>
-          <p>
-            Technologies primarily used: Javascript, React, React-Redux, Node, Express, PostgreSQL,
-            Sequelize, HTML, CSS, Material-UI, Google Places API
-          </p>
+          <h3 style={{ marginLeft: "3%", marginTop: "4rem" }}>“AlgoRhythm”</h3>
+          Quiz application for JavaScript and Python algorithm studying.
+          <ul>
+            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+              Developed a quiz-style application designed to improve a user’s knowledge of common
+              algorithms and solving styles and patterns in JavaScript and Python.{" "}
+            </li>
 
-          <h3 style={{ marginLeft: "3%" }}>E-Commerce “A Script for Java”</h3>
-          <p>
-            Project Manager, Developer | April, 2023
-            <br />
-          </p>
-          <p>Led a team developing an e-commerce website for a small chain of coffee houses</p>
-          <p>
-            Technologies primarily used: Javascript, React, React-Redux, Node, Express, PostgreSQL,
-            Sequelize, HTML, CSS, Material-UI, Google Places API
-          </p>
+            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+              Leveraged Next.js’ built-in functionality to create a seamless front-end using
+              Typescript, React, and Tailwind CSS that can communicate effortlessly to a PostgreSQL
+              database of questions and answers{" "}
+            </li>
+          </ul>
+          <h3 style={{ marginLeft: "3%", marginTop: "4rem" }}>“Open Places”</h3>
+          <ul>
+            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+              Developed in React and utilized Material-UI React library to ensure consistent and
+              responsive UI/UX designs for users across multiple device types.
+            </li>
+            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+              Utilized React-Redux, Axios, and the Google Places API to allow end-users to
+              seamlessly adjust their settings, from location radius to searched categories.
+            </li>
+            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+              Implemented testing mechanism built around a custom API that queries PostgreSQL
+              database of similar Google Places API object responses.
+            </li>
+          </ul>
+          <h3 style={{ marginLeft: "3%", marginTop: "4rem" }}>E-Commerce “A Script for Java”</h3>
+          <ul>
+            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+              Utilizing React, developed a robust interface allowing users to quickly find and
+              purchase products.
+            </li>
+            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+              Leveraged React-Redux and Axios to communicate effortlessly with the existing
+              PostgreSQL database
+            </li>
+            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+              Implemented Material-UI and CSS grid to improve user experience across all platforms.
+            </li>
+          </ul>
         </div>
-        <div id="borderdiv">
+        {/* <div id="borderdiv">
           <h2>
             <span id="main-name" style={{ fontSize: "calc(14px + 1vw)", color: "white" }}>
               Professional Experience
@@ -166,7 +214,7 @@ const Resume = () => {
             <li>Daredevil, Season 1 (Fall, 2015), Produced by Netflix</li>
             <li>The Jinx: The Life and Deaths of Robert Durst (Dec. 2014), Produced by HBO</li>
           </ul>
-        </div>
+        </div> */}
         <div id="borderdiv">
           <h2>
             <span id="main-name" style={{ fontSize: "calc(14px + 1vw)", color: "white" }}>
@@ -186,24 +234,6 @@ const Resume = () => {
             New York University, Tisch School of the Arts | May 2011
             <li style={{ marginLeft: "3%" }}>Bachelor of Fine Arts, Film and Television</li>
           </p>
-          <p>
-            Indiana University, Kelley School of Business | May 2018
-            <li style={{ marginLeft: "3%" }}>Master’s Certificate in Business Management</li>
-          </p>
-        </div>
-        <div id="borderdiv">
-          <h2>
-            <span id="main-name" style={{ fontSize: "calc(14px + 1vw)", color: "white" }}>
-              Professional Affiliations and Certificats
-            </span>
-          </h2>
-          <ul>
-            <li>International Cinema Lighting Society Member, June 2023</li>
-            <li>
-              International Alliance of Theatrical and Stage Employees – Local 52, September 2017
-            </li>
-            <li>Certified Cicerone® of the Cicerone Certification Program, May 2017</li>
-          </ul>
         </div>
       </div>
     </>

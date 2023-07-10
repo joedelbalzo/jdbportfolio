@@ -34,7 +34,7 @@ const Components = ({ openInPreview }) => {
         }, 1500);
       }
       if (component) {
-        console.log("colors on components clicked", cssCpg, component);
+        // console.log("colors on components clicked", cssCpg, component);
         const colorsOnComponents = await dispatch(
           cssSetColorsOnComponents({
             component,

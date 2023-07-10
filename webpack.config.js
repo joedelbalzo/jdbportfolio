@@ -26,10 +26,4 @@ module.exports = {
       },
     ],
   },
-  resolve: {
-    alias: {
-      // Add an alias for the 'images' folder to simplify imports
-      images: path.resolve(__dirname, "src/DropOfCSS/images"),
-    },
-  },
 };
