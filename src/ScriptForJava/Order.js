@@ -4,7 +4,7 @@ import { useLocation, Link } from "react-router-dom";
 
 const Order = () => {
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
   return (
     <div>
       <Typography
@@ -24,7 +24,7 @@ const Order = () => {
         <br />
         <br />
         <br />
-        <Link to="/home">Home</Link>
+        <Link to="/scriptforjava/home">Home</Link>
       </Typography>
     </div>
   );

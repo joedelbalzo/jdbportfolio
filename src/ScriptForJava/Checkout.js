@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Cart from "./Cart";
 import { scriptLogout, scriptAddToCart, scriptRemoveFromCart } from "../store/index";
@@ -17,8 +17,38 @@ const Checkout = () => {
   const navigate = useNavigate();
   const products = scriptCart.lineItems;
 
-  const [customer, setCustomer] = useState("");
+  const [customer, setCustomer] = useState({
+    firstName: "",
+    lastName: "",
+    address: "",
+    zip: "",
+    email: "",
+    phone: "",
+    creditCard: "",
+    securityCode: "",
+  });
+  const [creditCardError, setCreditCardError] = useState(false);
+  const [phoneError, setPhoneError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(false);
+
   const { scriptAuth } = useSelector((state) => state);
+
+  useEffect(() => {
+    setIsFormValid(
+      !creditCardError &&
+        !phoneError &&
+        !emailError &&
+        customer.firstName &&
+        customer.lastName &&
+        customer.address &&
+        customer.zip &&
+        customer.email &&
+        customer.phone &&
+        customer.creditCard &&
+        customer.securityCode
+    );
+  }, [creditCardError, phoneError, emailError, customer]);
 
   const _removeFromCart = (product, quantityToRemove) => {
     dispatch(scriptRemoveFromCart(product, quantityToRemove));
@@ -36,11 +66,45 @@ const Checkout = () => {
     return sum;
   };
 
+  const handleInputChange = (ev) => {
+    const { name, value } = ev.target;
+    setCustomer((prevCustomer) => ({
+      ...prevCustomer,
+      [name]: value,
+    }));
+
+    if (name === "creditCard") {
+      setCreditCardError(!isValidCreditCard(value));
+    } else if (name === "phone") {
+      setPhoneError(!isValidPhoneNumber(value));
+    } else if (name === "email") {
+      setEmailError(!isValidEmail(value));
+    }
+  };
+
+  const isValidCreditCard = (input) => {
+    const creditCardRegex = /^\d{16}$/; // Regular expression for 16-digit numeric input
+    return creditCardRegex.test(input);
+  };
+
+  const isValidPhoneNumber = (input) => {
+    const phoneRegex = /^\d{10}$/; // Regular expression for 10-digit numeric input
+    return phoneRegex.test(input);
+  };
+
+  const isValidEmail = (input) => {
+    const emailRegex = /^\S+@\S+\.\S+$/; // Basic email format validation
+    return emailRegex.test(input);
+  };
+
   const pay = async (ev) => {
     ev.preventDefault();
+    console.log("in cart pay function", ev, scriptCart);
+    dispatch(scriptRemoveFromCart("all", 0));
     const orderNum = Math.floor(Math.random() * 1000000);
     navigate(`/scriptforjava/order/${orderNum}`);
   };
+
   return (
     <div id="scriptforjava-checkoutPage">
       <div id="scriptforjava-checkoutPageCart">
@@ -66,60 +130,75 @@ const Checkout = () => {
             style={{ margin: 4, backgroundColor: "white" }}
             label="First Name"
             variant="outlined"
+            name="firstName"
             value={customer.firstName}
-            onChange={(ev) => setCustomer(ev.target.value)}
+            onChange={handleInputChange}
           />
           <TextField
             style={{ margin: 4, backgroundColor: "white" }}
             label="Last Name"
             variant="outlined"
+            name="lastName"
             value={customer.lastName}
-            onChange={(ev) => setCustomer(ev.target.value)}
+            onChange={handleInputChange}
           />
           <TextField
             style={{ margin: 4, backgroundColor: "white" }}
             label="Address"
             variant="outlined"
+            name="address"
             value={customer.address}
-            onChange={(ev) => setCustomer(ev.target.value)}
+            onChange={handleInputChange}
           />
           <TextField
             style={{ margin: 4, backgroundColor: "white" }}
-            label="Phone"
+            label="ZIP"
             variant="outlined"
+            name="zip"
             value={customer.zip}
-            onChange={(ev) => setCustomer(ev.target.value)}
+            onChange={handleInputChange}
           />
           <TextField
             style={{ margin: 4, backgroundColor: "white" }}
             label="E-mail"
             variant="outlined"
+            name="email"
             value={customer.email}
-            onChange={(ev) => setCustomer(ev.target.value)}
+            onChange={handleInputChange}
+            error={emailError}
+            helperText={emailError ? "Invalid email" : ""}
           />
           <TextField
             style={{ margin: 4, backgroundColor: "white" }}
             label="Phone"
             variant="outlined"
+            name="phone"
             value={customer.phone}
-            onChange={(ev) => setCustomer(ev.target.value)}
+            onChange={handleInputChange}
+            error={phoneError}
+            helperText={phoneError ? "Invalid phone number" : ""}
           />
           <TextField
             style={{ margin: 4, backgroundColor: "white" }}
             label="Credit Card"
             variant="outlined"
+            name="creditCard"
             value={customer.creditCard}
-            onChange={(ev) => setCustomer(ev.target.value)}
+            onChange={handleInputChange}
+            error={creditCardError}
+            helperText={creditCardError ? "Invalid credit card" : ""}
           />
+
           <TextField
             style={{ margin: 4, backgroundColor: "white" }}
             label="Security Code"
             variant="outlined"
+            name="securityCode"
             value={customer.securityCode}
-            onChange={(ev) => setCustomer(ev.target.value)}
+            onChange={handleInputChange}
           />
 
-          <Button onClick={pay} sx={{ fontSize: "1.5rem" }}>
+          <Button onClick={pay} sx={{ fontSize: "1.5rem" }} disabled={!isFormValid}>
             Place Order!
           </Button>
         </form>

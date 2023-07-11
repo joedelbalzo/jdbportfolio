@@ -19,6 +19,17 @@ export const scriptFetchCart = () => {
     dispatch({ type: "SET_CART", cart: response.data });
   };
 };
+export const scriptClearCart = () => {
+  return async (dispatch) => {
+    const token = window.localStorage.getItem("token");
+    const response = await axios.delete("/api/script/orders/cart", {
+      headers: {
+        authorization: token,
+      },
+    });
+    dispatch({ type: "SET_CART", cart: response.data });
+  };
+};
 
 export const scriptAddToCart = (product, quantity, auth) => {
   return async (dispatch) => {
@@ -45,6 +56,9 @@ export const scriptAddToCart = (product, quantity, auth) => {
 export const scriptRemoveFromCart = (product, quantityToRemove) => {
   return async (dispatch) => {
     const token = window.localStorage.getItem("token");
+    if (product === "all") {
+      dispatch({ type: "SET_CART", cart: null });
+    }
     const response = await axios.put(
       "/api/script/orders/cart",
       {

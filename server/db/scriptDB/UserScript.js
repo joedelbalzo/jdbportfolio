@@ -110,6 +110,12 @@ UserScript.prototype.removeFromCart = async function ({ product, quantityToRemov
   }
   return this.getCart();
 };
+UserScript.prototype.clearCart = async function () {
+  const cart = await this.getCart();
+  const lineItems = cart.lineItems;
+  await Promise.all(lineItems.map((lineItem) => lineItem.destroy()));
+  return this.getCart();
+};
 
 // this is new
 UserScript.addHook("beforeSave", async (user) => {

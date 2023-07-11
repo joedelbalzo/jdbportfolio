@@ -21,12 +21,10 @@ app.get("/cart", isLoggedIn, async (req, res, next) => {
 
 app.post("/cart", isLoggedIn, async (req, res, next) => {
   try {
-    // console.log(req.body);
+    console.log("trying to clear all", req.body);
     const user = req.user;
-    // console.log(user);
     const added = await user.addToCart(req.body);
     added.dataValues.userscriptId = user.id;
-    // console.log("added", added);
     res.send(added);
   } catch (ex) {
     next(ex);
@@ -36,6 +34,13 @@ app.post("/cart", isLoggedIn, async (req, res, next) => {
 app.put("/cart", isLoggedIn, async (req, res, next) => {
   try {
     res.send(await req.user.removeFromCart(req.body));
+  } catch (ex) {
+    next(ex);
+  }
+});
+app.delete("/cart", isLoggedIn, async (req, res, next) => {
+  try {
+    res.send(await req.user.clearCart(req.body));
   } catch (ex) {
     next(ex);
   }

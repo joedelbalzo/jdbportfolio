@@ -17,12 +17,13 @@ import CardContent from "@mui/material/CardContent";
 const Cart = () => {
   const { scriptCart } = useSelector((state) => state);
   if (!scriptCart) {
-    return null;
+    return `
+    Your cart is empty!`;
   } else {
     console.log(scriptCart);
   }
 
-  console.log("are we getting to this page???");
+  // console.log("are we getting to this page???");
   const dispatch = useDispatch();
   const products = scriptCart.lineItems;
 
