@@ -1,6 +1,7 @@
 import axios from "axios";
 const scriptCart = (state = { lineItems: [] }, action) => {
   if (action.type === "SET_CART") {
+    console.log("setting cart");
     return action.cart;
   }
 
@@ -19,7 +20,7 @@ export const scriptFetchCart = () => {
   };
 };
 
-export const scriptAddToCart = (product, quantity) => {
+export const scriptAddToCart = (product, quantity, auth) => {
   return async (dispatch) => {
     console.log("adding to cart in store", product, quantity);
     const token = window.localStorage.getItem("token");
@@ -28,6 +29,7 @@ export const scriptAddToCart = (product, quantity) => {
       {
         product,
         quantity,
+        auth,
       },
       {
         headers: {
@@ -35,7 +37,7 @@ export const scriptAddToCart = (product, quantity) => {
         },
       }
     );
-    console.log(response, "response in store");
+    console.log(response.data, "response in store");
     dispatch({ type: "SET_CART", cart: response.data });
   };
 };

@@ -36,7 +36,7 @@ function SubNavHome() {
               <Link
                 to="../menu/"
                 element={<DrinkProducts />}
-                style={{ textDecoration: "none", color: "inherit", fontSize: "calc(12px + 0.5vw)" }}
+                style={{ textDecoration: "none", color: "inherit", fontSize: "calc(12px + 1.5vw)" }}
               >
                 Spend a lot? Free shipping!
               </Link>
@@ -62,7 +62,7 @@ function SubNavHome() {
               <Link
                 to="../menu/"
                 element={<DrinkProducts />}
-                style={{ textDecoration: "none", color: "inherit" }}
+                style={{ textDecoration: "none", color: "inherit", fontSize: "calc(8px + 1vw)" }}
               >
                 Free shipping on orders $50 or more! An additional 10% off for any order over $100!
               </Link>

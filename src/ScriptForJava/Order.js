@@ -4,14 +4,14 @@ import { useLocation, Link } from "react-router-dom";
 
 const Order = () => {
   const location = useLocation();
-  // console.log(location)
+  console.log(location);
   return (
     <div>
       <Typography
         sx={{
           textAlign: "center",
           fontFamily: "verdana",
-          fontSize: "1.5rem",
+          fontSize: "calc(12px + 1vw)",
           fontWeight: "500",
           mx: "auto",
           marginTop: "2rem",
@@ -19,7 +19,10 @@ const Order = () => {
           maxWidth: "70%",
         }}
       >
-        Thank you for your order! Your order number is {location.pathname.slice(7)}
+        Thank you for your order! <br /> Your order number is {location.pathname.slice(21)}.<br />{" "}
+        You will get a confirmation email when your order has shipped!
+        <br />
+        <br />
         <br />
         <Link to="/home">Home</Link>
       </Typography>

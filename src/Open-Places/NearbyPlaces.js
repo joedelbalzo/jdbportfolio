@@ -245,10 +245,10 @@ const NearbyPlaces = () => {
           <br />
           <div id="places-welcomeSmaller">
             {openSoon(30, categoryName).length === 0
-              ? ""
+              ? "asdf"
               : `${openSoon(30, categoryName).length} more within 30 minutes.${(<br />)}`}
             {closingSoon(120, categoryName).length === 0
-              ? ""
+              ? "dfgh"
               : `${closingSoon(120, categoryName).length} will close within two hours.`}
             <br />
           </div>
@@ -261,7 +261,7 @@ const NearbyPlaces = () => {
                 key={category}
                 variant="outlined"
                 sx={{
-                  fontSize: "calc(14px + 2vw)",
+                  fontSize: "calc(12px + 2vw)",
                   marginBottom: 0.4,
                   mx: 0.4,
                   backgroundColor: selectedCategory === category ? "#1C5D99;" : "transparent",

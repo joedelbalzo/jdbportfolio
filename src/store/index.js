@@ -6,7 +6,7 @@ import placesFavorites from "./places-favorites";
 import placesNearbyPlaces from "./places-nearbyplaces";
 import placesRegister from "./places-register";
 import scriptAuth from "./script-auth";
-import sciprtCart from "./script-cart";
+import scriptCart from "./script-cart";
 import scriptRegister from "./script-register";
 import scriptDrinks from "./script-drinks";
 import scriptMerches from "./script-merches";
@@ -23,7 +23,7 @@ const reducer = combineReducers({
   placesRegister,
   placesNearbyPlaces,
   scriptAuth,
-  sciprtCart,
+  scriptCart,
   scriptRegister,
   scriptDrinks,
   scriptMerches,

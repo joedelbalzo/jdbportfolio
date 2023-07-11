@@ -65,7 +65,7 @@ const DrinksTeas = () => {
           </Typography>
         </CardContent>
         <CardActionArea
-          onClick={(ev) => _moreDetails(drink)}
+          // onClick={(ev) => _moreDetails(drink)}
           sx={{ textAlign: "center", alignItems: "center" }}
         >
           <Button

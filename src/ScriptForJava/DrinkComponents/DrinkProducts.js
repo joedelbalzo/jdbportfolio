@@ -15,6 +15,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import CardActions from "@mui/material/CardActions";
+import scriptAuth from "../../store/script-auth";
 
 const DrinkProducts = () => {
   const { scriptDrinks } = useSelector((state) => state);
@@ -44,7 +45,8 @@ const DrinkProducts = () => {
       >
         <Link to={`/scriptforjava/menu/${drink.id}`}>
           <CardMedia
-            component="img"
+            component={Link}
+            to={`/scriptforjava/menu/${drink.id}`}
             image={drink.imageUrl}
             alt={drink.name}
             sx={{
@@ -64,12 +66,13 @@ const DrinkProducts = () => {
           </Typography>
         </CardContent>
         <CardActionArea
-          onClick={(ev) => _moreDetails(drink)}
+          // onClick={(ev) => _moreDetails(drink)}
           sx={{ textAlign: "center", alignItems: "center" }}
         >
           <Button
-            component="span"
-            onClick={(ev) => _moreDetails(drink)}
+            component={Link}
+            to={`/scriptforjava/menu/${drink.id}`}
+            // onClick={(ev) => _moreDetails(drink)}
             size="small"
             sx={{
               fontSize: 15,
@@ -113,7 +116,7 @@ const DrinkProducts = () => {
   };
 
   const _addToCart = (drink, quantity) => {
-    dispatch(scriptAddToCart(drink, quantity));
+    dispatch(scriptAddToCart(drink, quantity, scriptAuth));
   };
 
   const search = (ev) => {

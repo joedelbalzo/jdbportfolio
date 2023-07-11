@@ -720,6 +720,13 @@ open places
   background: #1c5d99;
   width: 100%;
 }
+@media screen and (max-width: 550px) {
+  #places-categoryHeader {
+    font-size: calc(10px + 8vw);
+    text-align: center;
+    padding: 1rem 0;
+  }
+}
 
 #places-opensSoon {
   font-size: 1.2rem;
@@ -745,9 +752,17 @@ form > * {
 
 #places-welcomePage {
   text-align: center;
-  font-size: calc(18px + 2vw);
+  font-size: calc(14px + 3vw);
   margin: 1rem;
   color: rgb(0, 30, 17);
+}
+@media screen and (max-width: 550px) {
+  #places-welcomePage {
+    font-size: calc(14px + 3vw);
+    margin: 0.5rem;
+    padding: 0.5rem;
+    color: rgb(0, 30, 17);
+  }
 }
 #places-welcomeSmaller {
   text-align: center;

@@ -49,7 +49,7 @@ export default function HomeNav() {
 
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  console.log(isMobile);
+  // console.log(isMobile);
 
   let pages = [];
 
