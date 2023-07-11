@@ -9,14 +9,14 @@ const AboutContact = () => {
       <Typography
         sx={{
           fontFamily: "verdana",
-          fontSize: "1.5rem",
+          fontSize: "calc(12px + 1vw)",
           mx: "auto",
           marginTop: "1rem",
           marginBottom: "1rem",
-          maxWidth: "50%",
+          maxWidth: "70%",
         }}
       >
-        <h3>Please contact us at:</h3>
+        <h3 style={{ color: "black" }}>Please contact us at:</h3>
         <li style={{ listStyleType: "none" }}>
           Phone: <a href="tel:240-441-7689">240-441-7689</a>
         </li>

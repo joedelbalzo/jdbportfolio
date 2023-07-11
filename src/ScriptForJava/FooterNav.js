@@ -1,14 +1,12 @@
 import { useSelector } from "react-redux";
-import { useNavigate, Link, useParams } from "react-router-dom";
-
-import * as React from "react";
+import { useNavigate, Link, useParams, useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
@@ -33,29 +31,45 @@ const Search = styled("div")(({ theme }) => ({
   },
 }));
 
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
+const menuItems = [
+  { label: "Home", href: "/scriptforjava/home" },
+  { label: "Login", href: "/scriptforjava/login", display: { xs: "none", sm: "flex" } },
+  {
+    label: "Github Login",
+    href: `https://github.com/login/oauth/authorize?client_id=${window.client_id}`,
+    display: { xs: "none", sm: "flex" },
   },
-}));
+  { label: "Github Logout", href: "/scriptforjava/logout", display: { xs: "none", sm: "flex" } },
+  { label: "About", href: "/scriptforjava/about", display: { xs: "none", sm: "flex" } },
+  { label: "Account", href: "/scriptforjava/account", display: { xs: "none", sm: "flex" } },
+  { label: "Contact", href: "/scriptforjava/about/contact", display: { xs: "none", sm: "flex" } },
+  { label: "Careers", href: "/scriptforjava/about/careers", display: { xs: "none", sm: "flex" } },
+  {
+    label: "Locations",
+    href: "/scriptforjava/about/locations",
+    display: { xs: "none", sm: "flex" },
+  },
+  { label: "Drinks", href: "/scriptforjava/drinks", display: { xs: "none", sm: "flex" } },
+  { label: "Merch", href: "/scriptforjava/merch", display: { xs: "none", sm: "flex" } },
+];
+
+const getCartLength = (cart) => {
+  let sum = 0;
+  // cart.lineItems.forEach((product) => {
+  //   sum += product.quantity;
+  // });
+  return sum;
+};
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
 
 export default function FooterNav() {
   const { auth, cart } = useSelector((state) => state);
@@ -82,14 +96,6 @@ export default function FooterNav() {
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
-  };
-
-  const getCartLength = () => {
-    let sum = 0;
-    // cart.lineItems.forEach((product) => {
-    //   sum += product.quantity;
-    // });
-    return sum;
   };
 
   const search = (ev) => {
@@ -176,14 +182,16 @@ export default function FooterNav() {
   );
 
   return (
-    <Box sx={{ flexGrow: 10, maxHeight: 1000, display: "flex" }}>
-      <AppBar position="static" style={{ background: "#004C60", display: "flex" }}>
+    <Box sx={{ flexGrow: 10, maxHeight: 1000 }}>
+      <ScrollToTop />
+      <AppBar position="static" style={{ background: "#004C60" }}>
         <Toolbar
           sx={{
-            alignItems: "flex-start",
-            justifyContent: "flex-start",
+            alignItems: "center",
+            justifyContent: "center",
             paddingTop: "1rem",
             paddingBottom: "1rem",
+            display: "flex",
           }}
         >
           <div
@@ -196,77 +204,17 @@ export default function FooterNav() {
               marginRight: 100,
             }}
           >
-            <Typography
-              variant="subtitle2"
-              // component="a"
-              href="/#/scriptforjava/home"
-              sx={{ textDecoration: "none", marginRight: 0.5, color: "white" }}
-            >
-              Home
-            </Typography>
-            <Typography
-              variant="subtitle2"
-              href="/#/scriptforjava/login"
-              // component="a"
-              sx={{
-                display: { xs: "none", sm: "flex" },
-                textDecoration: "none",
-                marginRight: 0.5,
-                color: "white",
-              }}
-            >
-              Login
-            </Typography>
-            <Typography
-              variant="subtitle2"
-              href="/#/scriptforjava/merch"
-              // component="a"
-              sx={{
-                display: { xs: "none", sm: "flex" },
-                textDecoration: "none",
-                marginRight: 0.5,
-                color: "white",
-              }}
-            >
-              {!auth ? (
-                <a
-                  href={`https://github.com/login/oauth/authorize?client_id=${window.client_id}`}
-                  style={{ color: "white", textDecoration: "none" }}
-                >
-                  Github Login
-                </a>
-              ) : (
-                <Link to="/scriptforjava/logout" style={{ color: "white", textDecoration: "none" }}>
-                  Github Logout
-                </Link>
-              )}
-            </Typography>
-            <Typography
-              variant="subtitle2"
-              // component="a"
-              href="/#/scriptforjava/about"
-              sx={{
-                display: { xs: "none", sm: "flex" },
-                textDecoration: "none",
-                marginRight: 0.5,
-                color: "white",
-              }}
-            >
-              About
-            </Typography>
-            <Typography
-              variant="subtitle2"
-              // component="a"
-              href="/#/scriptforjava/account"
-              sx={{
-                display: { xs: "none", sm: "flex" },
-                textDecoration: "none",
-                marginRight: 0.5,
-                color: "white",
-              }}
-            >
-              Account
-            </Typography>
+            {menuItems.slice(0, 6).map((item) => (
+              <Typography
+                key={item.label}
+                component={Link}
+                to={item.href}
+                variant="subtitle2"
+                sx={{ textDecoration: "none", marginRight: 0.5, color: "white", ...item.display }}
+              >
+                {item.label}
+              </Typography>
+            ))}
           </div>
           <div
             style={{
@@ -277,45 +225,17 @@ export default function FooterNav() {
               justifyContent: "flex-start",
             }}
           >
-            <Typography
-              variant="subtitle2"
-              // component="a"
-              href="/#/scriptforjava/about/contact"
-              sx={{
-                display: { xs: "none", sm: "flex" },
-                textDecoration: "none",
-                marginRight: 0.5,
-                color: "white",
-              }}
-            >
-              Contact
-            </Typography>
-            <Typography
-              variant="subtitle2"
-              // component="a"
-              href="/#/scriptforjava/about/careers"
-              sx={{
-                display: { xs: "none", sm: "flex" },
-                textDecoration: "none",
-                marginRight: 0.5,
-                color: "white",
-              }}
-            >
-              Careers
-            </Typography>
-            <Typography
-              variant="subtitle2"
-              // component="a"
-              href="/#/scriptforjava/about/locations"
-              sx={{
-                display: { xs: "none", sm: "flex" },
-                textDecoration: "none",
-                marginRight: 0.5,
-                color: "white",
-              }}
-            >
-              Locations
-            </Typography>
+            {menuItems.slice(6, 9).map((item) => (
+              <Typography
+                key={item.label}
+                component={Link}
+                to={item.href}
+                variant="subtitle2"
+                sx={{ textDecoration: "none", marginRight: 0.5, color: "white", ...item.display }}
+              >
+                {item.label}
+              </Typography>
+            ))}
           </div>
           <div
             style={{
@@ -327,37 +247,21 @@ export default function FooterNav() {
               marginLeft: 100,
             }}
           >
-            <Typography
-              variant="subtitle2"
-              // component="a"
-              href="/#/scriptforjava/menu"
-              sx={{
-                display: { xs: "none", sm: "flex" },
-                textDecoration: "none",
-                marginRight: 0.5,
-                color: "white",
-              }}
-            >
-              Drinks
-            </Typography>
-            <Typography
-              variant="subtitle2"
-              // component="a"
-              href="/#/scriptforjava/merch"
-              sx={{
-                display: { xs: "none", sm: "flex" },
-                textDecoration: "none",
-                marginRight: 0.5,
-                color: "white",
-              }}
-            >
-              Merch
-            </Typography>
+            {menuItems.slice(9, 11).map((item) => (
+              <Typography
+                key={item.label}
+                component={Link}
+                to={item.href}
+                variant="subtitle2"
+                sx={{ textDecoration: "none", marginRight: 0.5, color: "white", ...item.display }}
+              >
+                {item.label}
+              </Typography>
+            ))}
           </div>
           <Box sx={{ flexGrow: 1 }} />
-
           <IconButton size="large" color="inherit">
-            <Badge badgeContent={getCartLength()} color="error">
+            <Badge badgeContent={getCartLength(cart)} color="error">
               <Link to="/scriptforjava/cart">
                 <ShoppingCartSharp sx={{ pr: 1, color: "white" }} />
               </Link>
