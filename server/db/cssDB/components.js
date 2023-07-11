@@ -1242,7 +1242,7 @@ const components = [
   },
   {
     type: "button",
-    name: "Variety: Text, Outlined, Contained)",
+    name: "Mixed Bag",
     htmlText: `
     <style>
 
@@ -2251,192 +2251,192 @@ const components = [
     </div>
     `,
   },
-  {
-    type: "card",
-    name: "Shopping - Generic",
-    htmlText: `
-      <style>
-        .card {
-          box-sizing: border-box;
-          aspect-ratio: 9/16;
-          min-height: 30vh;
-          max-width: 20vw;
-          border: 3px solid primaryColor;
-          background-color: bgColor0D;
-          color: bgColorContrast;
-          border-radius: 10px;
-          padding: 8px;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-          box-sizing: border-box;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          align-items: center;
-          text-align: center;
-        }
-  
-        .card > img {
-          max-height: 70%;
-          max-width: 100%;
-          object-fit: cover;
-          border-radius: 5px;
-          box-shadow: 0 3px 3px 0px secondaryColor;
+  // {
+  //   type: "card",
+  //   name: "Shopping - Generic",
+  //   htmlText: `
+  //     <style>
+  //       .card {
+  //         box-sizing: border-box;
+  //         aspect-ratio: 9/16;
+  //         min-height: 30vh;
+  //         max-width: 20vw;
+  //         border: 3px solid primaryColor;
+  //         background-color: bgColor0D;
+  //         color: bgColorContrast;
+  //         border-radius: 10px;
+  //         padding: 8px;
+  //         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  //         box-sizing: border-box;
+  //         display: flex;
+  //         flex-direction: column;
+  //         justify-content: space-between;
+  //         align-items: center;
+  //         text-align: center;
+  //       }
 
-        }
-  
-        .card-content {
-          flex-grow: 1;
-          padding: 8px;
-          color: secondaryColor;
-        }
-  
-        .card-title {
-          font-size: calc(14px + 0.5vw);
-          font-weight: bold;
-          margin-bottom: 4px;
-        }
-  
-        .card-description {
-          font-size: calc(8px + 0.5vw);
-          margin-bottom: 8px;
-        }
-  
-        .card-price {
-          font-size: calc(10px + 0.5vw);
-          font-weight: bold;
-        }
-  
-        .button {
-          box-sizing: border-box;
-          font-size: 14px;
-          background-color: tertiaryColor;
-          color: tertiaryColorContrast;
-          border: none;
-          border-radius: 4px;
-          padding: 8px 16px;
-          cursor: pointer;
-        }
-        .button:hover{
-          cursor: pointer;
-          box-sizing: border-box;
-          padding: 6.5px 16px;
-          background-color: bgColor;
-          color: bgColorContrast;
-          border: 2px solid tertiaryColor
-        }
+  //       .card > img {
+  //         max-height: 70%;
+  //         max-width: 100%;
+  //         object-fit: cover;
+  //         border-radius: 5px;
+  //         box-shadow: 0 3px 3px 0px secondaryColor;
 
-      @media screen and (max-width: 1000px) {
-          main > #previewCardContainer{
-            min-height: none;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: auto auto;
-            aspect-ratio: none;
-          }
-          #previewCardContainer > #previewCard {
-            aspect-ratio: 9/16;
-          }
-        .card {
-          box-sizing: border-box;
-          margin: 1rem;
-          min-height: none;
-          max-width: none;
-        }
-        .card > img {
-          width: 90%;
-          height: auto;
-          aspect-ratio: 1/1;
-          box-shadow: 1px 1px 1rem secondaryColor;
-          margin: 1rem 0.5rem;
-        }
-        .cardcontent{
-          font-size: calc(12px + 1vw);
-          padding: 8px;
-        }
-        .action-items {
-          margin-top: 2rem;
-          padding: .5rem;
-        }
-        .button {
-          font-size: calc(10px + 0.5vw);
-          margin: 8px;
-          padding: 8px;
-          border-radius: 5px;
-        }
-      }
-        @media screen and (max-width: 768px) {
-          main > #previewCardContainer{
-            min-height: none;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: auto auto;
-            aspect-ratio: none;
-          }
-          #previewCardContainer > #previewCard {
-            aspect-ratio: 10/9;
-          }
-          .card {
-            box-sizing: border-box;
-            aspect-ratio: 1/1;
-            min-height: none;
-            max-width: none;
-        }
-      }
-      @media screen and (max-width: 550px) {
-        main > #previewCardContainer{
-          min-height: none;
-          display: grid;
-          grid-template-columns: 1fr;
-          grid-template-rows: auto auto;
-          aspect-ratio: none;
-        }
-        #previewCardContainer > #previewCard {
-          aspect-ratio: 1/1;
-        }
-        .card {
-          width: 90%;
-          min-width: none;
-          aspect-ratio: 8/10;
-          box-sizing: border-box;
-          margin: 1rem;
-          min-height: none;
-          max-width: none;
-        }
-        .card > img {
-          width: 90%;
-          height: auto;
-          aspect-ratio: 1/1;
-          box-shadow: 1px 1px 1rem secondaryColor;
-          margin: 1rem 0.5rem;
-        }
-        .cardcontent{
-          font-size: calc(12px + 1vw);
-          padding: 8px;
-        }
-        .action-items {
-          margin-top: 2rem;
-          padding: .5rem;
-        }
-        .button {
-          font-size: calc(10px + 0.5vw);
-          margin: 8px;
-          padding: 8px;
-          border-radius: 5px;
-        }  
+  //       }
 
-      </style>
-  
-      <div class="card">
-      <img src="https://cdn-5f3056b4c1ac191bfcc58755.closte.com/wp-content/uploads/woocommerce-placeholder-600x600.png" />
-      <div class="card-content">
-          <h2 class="card-title">Product Title</h2>
-          <p class="card-description">Product description goes here.</p>
-          <p class="card-price">$19.99</p>
-        </div>
-        <button class="button">Add to Cart</button>
-      </div>
-    `,
-  },
+  //       .card-content {
+  //         flex-grow: 1;
+  //         padding: 8px;
+  //         color: secondaryColor;
+  //       }
+
+  //       .card-title {
+  //         font-size: calc(14px + 0.5vw);
+  //         font-weight: bold;
+  //         margin-bottom: 4px;
+  //       }
+
+  //       .card-description {
+  //         font-size: calc(8px + 0.5vw);
+  //         margin-bottom: 8px;
+  //       }
+
+  //       .card-price {
+  //         font-size: calc(10px + 0.5vw);
+  //         font-weight: bold;
+  //       }
+
+  //       .button {
+  //         box-sizing: border-box;
+  //         font-size: 14px;
+  //         background-color: tertiaryColor;
+  //         color: tertiaryColorContrast;
+  //         border: none;
+  //         border-radius: 4px;
+  //         padding: 8px 16px;
+  //         cursor: pointer;
+  //       }
+  //       .button:hover{
+  //         cursor: pointer;
+  //         box-sizing: border-box;
+  //         padding: 6.5px 16px;
+  //         background-color: bgColor;
+  //         color: bgColorContrast;
+  //         border: 2px solid tertiaryColor
+  //       }
+
+  //     @media screen and (max-width: 1000px) {
+  //         main > #previewCardContainer{
+  //           min-height: none;
+  //           display: grid;
+  //           grid-template-columns: 1fr 1fr;
+  //           grid-template-rows: auto auto;
+  //           aspect-ratio: none;
+  //         }
+  //         #previewCardContainer > #previewCard {
+  //           aspect-ratio: 9/16;
+  //         }
+  //       .card {
+  //         box-sizing: border-box;
+  //         margin: 1rem;
+  //         min-height: none;
+  //         max-width: none;
+  //       }
+  //       .card > img {
+  //         width: 90%;
+  //         height: auto;
+  //         aspect-ratio: 1/1;
+  //         box-shadow: 1px 1px 1rem secondaryColor;
+  //         margin: 1rem 0.5rem;
+  //       }
+  //       .cardcontent{
+  //         font-size: calc(12px + 1vw);
+  //         padding: 8px;
+  //       }
+  //       .action-items {
+  //         margin-top: 2rem;
+  //         padding: .5rem;
+  //       }
+  //       .button {
+  //         font-size: calc(10px + 0.5vw);
+  //         margin: 8px;
+  //         padding: 8px;
+  //         border-radius: 5px;
+  //       }
+  //     }
+  //       @media screen and (max-width: 768px) {
+  //         main > #previewCardContainer{
+  //           min-height: none;
+  //           display: grid;
+  //           grid-template-columns: 1fr 1fr;
+  //           grid-template-rows: auto auto;
+  //           aspect-ratio: none;
+  //         }
+  //         #previewCardContainer > #previewCard {
+  //           aspect-ratio: 10/9;
+  //         }
+  //         .card {
+  //           box-sizing: border-box;
+  //           aspect-ratio: 1/1;
+  //           min-height: none;
+  //           max-width: none;
+  //       }
+  //     }
+  //     @media screen and (max-width: 550px) {
+  //       main > #previewCardContainer{
+  //         min-height: none;
+  //         display: grid;
+  //         grid-template-columns: 1fr;
+  //         grid-template-rows: auto auto;
+  //         aspect-ratio: none;
+  //       }
+  //       #previewCardContainer > #previewCard {
+  //         aspect-ratio: 1/1;
+  //       }
+  //       .card {
+  //         width: 90%;
+  //         min-width: none;
+  //         aspect-ratio: 8/10;
+  //         box-sizing: border-box;
+  //         margin: 1rem;
+  //         min-height: none;
+  //         max-width: none;
+  //       }
+  //       .card > img {
+  //         width: 90%;
+  //         height: auto;
+  //         aspect-ratio: 1/1;
+  //         box-shadow: 1px 1px 1rem secondaryColor;
+  //         margin: 1rem 0.5rem;
+  //       }
+  //       .cardcontent{
+  //         font-size: calc(12px + 1vw);
+  //         padding: 8px;
+  //       }
+  //       .action-items {
+  //         margin-top: 2rem;
+  //         padding: .5rem;
+  //       }
+  //       .button {
+  //         font-size: calc(10px + 0.5vw);
+  //         margin: 8px;
+  //         padding: 8px;
+  //         border-radius: 5px;
+  //       }
+
+  //     </style>
+
+  //     <div class="card">
+  //     <img src="https://cdn-5f3056b4c1ac191bfcc58755.closte.com/wp-content/uploads/woocommerce-placeholder-600x600.png" />
+  //     <div class="card-content">
+  //         <h2 class="card-title">Product Title</h2>
+  //         <p class="card-description">Product description goes here.</p>
+  //         <p class="card-price">$19.99</p>
+  //       </div>
+  //       <button class="button">Add to Cart</button>
+  //     </div>
+  //   `,
+  // },
   {
     type: "card",
     name: "Shopping - Hover Grow",

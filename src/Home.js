@@ -11,7 +11,7 @@ const Home = () => {
         </span>
       </h1>
       <div id="main-introParagraph">
-        <p>Full Stack Web Engineer in New York, NY.</p>
+        <p>Software Engineer and Full Stack Web Developer in New York, NY.</p>
         <p>Former Lighting Designer, Lighting Console Programmer.</p>
         <p>Musician, Cold Brew Drinker, Sports Fanatic, Certified Cicerone®</p>
         <p>Artist-turned-coder. I liked creating beauty before; I like creating beauty now.</p>

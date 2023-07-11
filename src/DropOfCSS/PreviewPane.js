@@ -171,7 +171,7 @@ const PreviewPane = ({ wholePageBackground, form, nav, title, sideNav, card, but
   }
 
   return (
-    <div style={{ maxWidth: "100%" }}>
+    <div>
       <h3 className="css-header" style={{ display: "block", textAlign: "center" }}>
         Template Preview
         <div className="css-instructions">
