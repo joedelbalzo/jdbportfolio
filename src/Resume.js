@@ -8,7 +8,7 @@ const Resume = () => {
           Resume
         </span>
       </h1>
-      <h3 style={{ fontSize: "calc(14px + 1vw)" }}>Web Developer and Full Stack Engineer</h3>
+      <h3 style={{ fontSize: "calc(14px + 1vw)" }}>Full Stack Software Engineer</h3>
       <h3 style={{ fontSize: "calc(14px + 1vw)", alignItems: "center" }}>
         240-441-7689
         <br />
