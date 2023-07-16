@@ -4,9 +4,9 @@ import Sublinks from "./Sublinks";
 const Home = () => {
   return (
     <>
-      <h1 style={{ fontSize: "calc(22px + 2.5vw)" }}>
+      <h1 style={{ fontSize: "calc(22px + 4vw)" }}>
         Hey, I'm{" "}
-        <span id="main-name" style={{ fontSize: "calc(22px + 2.5vw)" }}>
+        <span id="main-name" style={{ fontSize: "calc(22px + 4.5vw)" }}>
           Joe Del Balzo
         </span>
       </h1>

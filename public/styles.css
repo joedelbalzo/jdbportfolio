@@ -1,11 +1,11 @@
 html {
-  background-image: url("IMG_0102.jpg");
+  background-image: url("IMG-0103.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  /* filter: sepia(5%); */
+  filter: sepia(15%);
   margin: auto;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
   overflow-y: auto;
 }
 
@@ -61,7 +61,7 @@ body {
   display: none;
   position: absolute;
   min-width: 200px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.4);
   z-index: 1;
 
   background: linear-gradient(to right, rgba(30, 144, 255, 0.5) 2px, transparent 2px) 0 0,
@@ -144,11 +144,10 @@ h3 {
   color: rgba(240, 240, 240, 0.9);
   line-height: 2.1rem;
   letter-spacing: 2px;
-  background-color: rgba(0, 0, 0, 0.4);
   border-radius: 2rem;
-  backdrop-filter: blur(3px);
+  /* backdrop-filter: blur(1px); */
   padding: 1rem;
-  box-shadow: 0rem 2rem 6rem 4rem rgba(0, 0, 0, 0.4);
+  box-shadow: 0rem 2rem 6rem 4rem rgba(0, 0, 0, 0.5);
   border-radius: 0;
   background: linear-gradient(to right, rgba(30, 144, 255, 0.5) 2px, transparent 2px) 0 0,
     linear-gradient(to right, rgba(120, 120, 120, 0.4) 2px, transparent 2px) 0 100%,
@@ -161,7 +160,9 @@ h3 {
 
   background-repeat: no-repeat;
   background-size: calc(100px + 8vw) calc(50px + 2vh);
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.5);
+
+  /* background-color: rgba(0, 0, 0, 0.4); */
 }
 
 #main-introParagraph > p {
@@ -203,13 +204,13 @@ h3 {
 #main-link:hover {
   border: 3px solid;
   border-image: linear-gradient(to right bottom, dodgerblue, transparent, transparent, lightgreen) 1;
-  backdrop-filter: blur(51.5rem);
+  backdrop-filter: blur(1.5rem);
   background-color: rgba(100, 100, 100, 0.4);
   font-size: calc(15px + 0.5vw);
 }
 
 #main-link {
-  background-color: rgba(100, 100, 100, 0.3);
+  background-color: rgba(75, 75, 75, 0.3);
   backdrop-filter: blur(51.5rem);
   padding: 0.5rem 0.1rem;
   display: flex;
@@ -300,7 +301,7 @@ h3 {
 
 @media screen and (max-width: 768px) {
   html {
-    background-image: url("IMG_0102.jpg");
+    background-image: url("IMG-0103.jpg");
     background-position: 55%;
   }
   h1 {
@@ -343,7 +344,7 @@ h3 {
     font-weight: 450;
     text-align: left;
     color: rgba(240, 240, 240, 0.9);
-    backdrop-filter: blur(3px);
+    backdrop-filter: blur(1px);
     line-height: 2.1rem;
     letter-spacing: 2px;
     border-radius: 0;
@@ -358,7 +359,7 @@ h3 {
 
     background-repeat: no-repeat;
     background-size: calc(100px + 8vw) calc(50px + 2vh);
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.6);
   }
 
   #main-introParagraph > p {
