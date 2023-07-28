@@ -1265,7 +1265,7 @@ main > #css-previewCardContainer {
 
 .css-header {
   color: #2d545e;
-  font-size: calc(12px + 0.5vw);
+  font-size: calc(12px + 1vw);
   text-align: center;
   margin: 6px auto;
   padding: 4px;
@@ -1708,7 +1708,7 @@ h5 {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     grid-row-end: auto;
-    /* max-width: 80%; */
+    max-width: 100%;
   }
   .css-instructions {
     opacity: 0;
@@ -1727,11 +1727,14 @@ h5 {
     width: 80vw;
     height: fit-content;
     border: none;
+    margin: auto;
   }
 
   #css-cpg-container {
     max-width: none;
-    min-width: 44vw;
+    width: 85vw;
+    padding: 1rem;
+    min-width: none;
     max-height: none;
     box-sizing: border-box;
   }
@@ -1739,7 +1742,8 @@ h5 {
     height: max-content;
   }
   .css-cpg-color {
-    min-width: 80vw;
+    min-width: 75vw;
+    max-width: 75vw;
     min-height: 10vh;
   }
 
@@ -1762,16 +1766,17 @@ h5 {
 
   #css-component-div {
     grid-column: 1;
-    min-width: 80vw;
+    min-width: 85vw;
+    height: fit-content;
+    margin: auto;
   }
 
   .css-componentlist {
-    width: 85vw;
+    width: fit-content;
     min-height: 40vh;
   }
   .css-componentTypes {
-    margin-top: 1vh;
-    margin-bottom: 1vh;
+    margin: 1vh;
     font-size: calc(8px + 2vw);
   }
   .css-componentNamesContainer {
