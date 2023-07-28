@@ -44,13 +44,8 @@ const Resume = () => {
               and download built components.
             </li>
             <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-              Developed a dynamic and comprehensive React-based user interface with real-time
-              component preview functionality, powered by React-Redux for efficient state
-              management.
-            </li>
-            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-              Adopted GitHub OAuth for secure user authentication and authorized access to saved
-              color palettes.
+              Developed a comprehensive React-based user interface with real-time component preview
+              functionality, powered by React-Redux for efficient state management.
             </li>
             <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
               Utilized Axios to facilitate seamless communication and built custom API calls with
@@ -70,22 +65,23 @@ const Resume = () => {
           <h3 style={{ marginLeft: "3%" }}>Console Programmer and Designer</h3>
           <ul>
             <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-              Employed cutting-edge programming techniques to seamlessly integrate lighting designs
-              into lighting consoles, ensuring flawless execution of complex visual concepts.
+              Led productions into modern LED lighting, adapting new programming techniques with
+              data-managed lights and wireless communication technologies to seamlessly integrate
+              lighting designs into consoles, ensuring flawless execution of complex visual
+              concepts.
             </li>
             <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-              Led the strategic oversight and maintenance of intricate networks, overseeing critical
-              software and firmware updates to optimize performance, bolster reliability, and ensure
-              adherence to industry standards.{" "}
+              Led the strategic construction, oversight, and maintenance of intricate wired and
+              wireless networks to establish high-speed transmission of data, enabling smooth and
+              uninterrupted production operations.
+            </li>
+            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+              Oversaw and implemented critical software and firmware updates to optimize
+              performance, bolster reliability, and ensure adherence to industry standards.
             </li>
             <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
               Developed and programmed custom configurations within the console, showcasing an
               exceptional attention to detail and creative problem-solving skills.
-            </li>
-            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-              Leveraged expertise in both wired and wireless network architecture to establish
-              high-speed transmission of data, enabling smooth and uninterrupted production
-              operations.
             </li>
             <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
               Notable projects: John Wick 3, East New York Season 1, Bull Seasons 4-6, and Ray
@@ -108,9 +104,8 @@ const Resume = () => {
             </li>
 
             <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-              Leveraged Next.js’ built-in functionality to create a seamless front-end using
-              Typescript, React, and Tailwind CSS that can communicate effortlessly to a PostgreSQL
-              database of questions and answers{" "}
+              Built a substantial database with hundreds of quiz questions of different styles, from
+              coding to multiple-choice, all delivered to the front-end via custom Axios API calls.
             </li>
           </ul>
           <h3 style={{ marginLeft: "3%", marginTop: "4rem" }}>“Open Places”</h3>
@@ -135,8 +130,8 @@ const Resume = () => {
               purchase products.
             </li>
             <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-              Leveraged React-Redux and Axios to communicate effortlessly with the existing
-              PostgreSQL database
+              Developed admin tools, using authentication and authorization to give an admin full
+              CRUD capabilities.
             </li>
             <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
               Implemented Material-UI and CSS grid to improve user experience across all platforms.
