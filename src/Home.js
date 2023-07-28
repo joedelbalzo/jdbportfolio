@@ -6,7 +6,7 @@ const Home = () => {
     <>
       <h1 style={{ fontSize: "calc(22px + 4vw)" }}>
         Hey, I'm{" "}
-        <span id="main-name" style={{ fontSize: "calc(22px + 4.5vw)" }}>
+        <span id="main-name" style={{ fontSize: "calc(22px + 4.5vw)", marginBottom: ".5rem" }}>
           Joe Del Balzo
         </span>
       </h1>

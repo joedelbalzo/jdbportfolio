@@ -384,7 +384,7 @@ const ColorGenForm = ({ openColorsInPreview, wholePageBackground, setWholePageBa
                   <ShuffleIcon />
                   <span
                     style={{
-                      fontSize: "calc(8px + .5vw)",
+                      fontSize: "calc(8px + 1vw)",
                     }}
                     onClick={() => shuffleUnlockedColors()}
                   >
@@ -412,7 +412,7 @@ const ColorGenForm = ({ openColorsInPreview, wholePageBackground, setWholePageBa
                   <DeleteOutlineIcon />
                   <span
                     style={{
-                      fontSize: "calc(8px + .5vw)",
+                      fontSize: "calc(8px + 1vw)",
                     }}
                     onClick={() => {
                       dispatch(cssDeleteColorPalette(cssCpg));
@@ -440,30 +440,24 @@ const ColorGenForm = ({ openColorsInPreview, wholePageBackground, setWholePageBa
                         const uniqueKey = `color-${index}`;
                         let isLocked = lockedColors.includes(color) ? (
                           <LockIcon
+                            className="css-lock-icon"
                             sx={{
-                              fontSize: "calc(10px + .5vw)",
+                              fontSize: "calc(8px + 1vw)",
                               color: color.contrast.value,
                             }}
                           />
                         ) : (
                           <LockOpenIcon
+                            className="css-lock-icon"
                             sx={{
-                              fontSize: "calc(10px + .5vw)",
+                              fontSize: "calc(8px + 1vw)",
                               color: color.contrast.value,
                             }}
                           />
                         );
                         return (
                           <div key={uniqueKey}>
-                            <div
-                              key={`colorClass-${index}`}
-                              style={{
-                                fontStyle: "italic",
-                                fontStretch: "expanded",
-                                fontSize: "calc(6px + .5vw)",
-                                paddingLeft: "1rem",
-                              }}
-                            >
+                            <div key={`colorClass-${index}`} className="css-colorclass">
                               {colorClass[index]}:
                             </div>
                             <Draggable key={uniqueKey} draggableId={uniqueKey} index={index}>
@@ -484,12 +478,11 @@ const ColorGenForm = ({ openColorsInPreview, wholePageBackground, setWholePageBa
                                     }}
                                   >
                                     <div
+                                      className="css-colorname-colorhex"
                                       style={{
-                                        paddingLeft: "1vw",
                                         color: color.contrast.value,
                                         flex: "2 1 100%",
                                         textAlign: "left",
-                                        fontSize: "calc(8px + .5vw)",
                                       }}
                                     >
                                       {color.name.value} {color.hex.value}
@@ -498,13 +491,14 @@ const ColorGenForm = ({ openColorsInPreview, wholePageBackground, setWholePageBa
                                     <div className="css-pointer-on-hover">
                                       <div className="css-button-container">
                                         <ShuffleIcon
+                                          className="css-shuffle-icon"
                                           style={{
                                             color: lockedColors.includes(color)
                                               ? "darkgray"
                                               : color.contrast.value,
                                             marginRight: ".3vw",
                                             marginLeft: ".3vw",
-                                            fontSize: "calc(10px + .5vw)",
+                                            fontSize: "calc(8px + 1vw)",
                                             cursor: lockedColors.includes(color)
                                               ? "auto"
                                               : "pointer",

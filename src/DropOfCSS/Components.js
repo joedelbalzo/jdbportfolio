@@ -80,8 +80,8 @@ const Components = ({ openInPreview }) => {
         <div className="css-componentContainer">
           <div className="css-componentTypes">
             {componentTypes.map((type) => (
-              <div key={type} onClick={() => handleTypeClick(type)}>
-                <h5>{type} &#x2192;</h5>
+              <div className="css-componentTypes" key={type} onClick={() => handleTypeClick(type)}>
+                <span>{type}</span>
               </div>
             ))}
           </div>
@@ -120,7 +120,7 @@ const Components = ({ openInPreview }) => {
         style={{
           margin: "0 auto",
           color: "darkred",
-          fontSize: "calc(5px + 0.5vw)",
+          fontSize: "calc(5px + 2vw)",
           fontStyle: "italic",
           minHeight: "2vh",
           textAlign: "center",

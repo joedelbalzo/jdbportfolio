@@ -111,7 +111,7 @@ h3 {
 }
 
 #main-name:hover {
-  color: rgba(240, 240, 240, 0.9);
+  color: rgba(255, 255, 255, 1);
   position: relative;
 }
 #main-name:hover::after {
@@ -139,10 +139,10 @@ h3 {
   margin: 0 auto 1rem;
   width: fit-content;
   font-size: calc(15px + 0.5vw);
-  font-weight: 450;
+  font-weight: 400;
   text-align: left;
   color: rgba(240, 240, 240, 0.9);
-  line-height: 2.1rem;
+  line-height: 2rem;
   letter-spacing: 2px;
   border-radius: 2rem;
   padding: 1rem;
@@ -159,7 +159,7 @@ h3 {
   background-repeat: no-repeat;
   background-size: calc(100px + 8vw) calc(50px + 2vh);
   background-color: rgba(0, 0, 0, 0.6);
-  box-shadow: 0rem 0rem 6rem 3rem rgba(0, 0, 0, 0.7);
+  box-shadow: 0rem 0rem 5rem 2rem rgba(0, 0, 0, 0.7);
 
   /* background-color: rgba(0, 0, 0, 0.4); */
 }
@@ -341,11 +341,11 @@ h3 {
     margin: 0 auto 2rem;
     width: 90%;
     font-size: 1.5rem;
-    font-weight: 450;
+    font-weight: 400;
     text-align: left;
     color: rgba(240, 240, 240, 0.9);
     backdrop-filter: blur(1px);
-    line-height: 2.1rem;
+    line-height: 2rem;
     letter-spacing: 2px;
     border-radius: 0;
     background: linear-gradient(to right, rgba(30, 144, 255, 0.5) 2px, transparent 2px) 0 0,
@@ -876,7 +876,7 @@ h1 {
   min-height: 20vh;
   max-height: fit-content;
   width: 25vw;
-  margin: 0.25rem auto;
+  margin: 0rem auto;
   padding-bottom: 1rem;
   border-bottom: 1px solid rgba(100, 100, 100, 0.4);
 }
@@ -953,6 +953,7 @@ nav > h5 {
   max-width: 25vw;
   min-width: 20vw;
   margin-top: 0.5rem;
+  margin-bottom: 1rem;
   min-height: 20vh;
   max-height: 42vh;
   padding: 0.2rem;
@@ -969,8 +970,19 @@ nav > h5 {
   align-items: center;
   width: 24vw;
   margin: 2px;
-  min-height: 5vh;
+  min-height: 8vh;
   border-radius: 0.5rem;
+}
+
+.css-colorclass {
+  font-style: italic;
+  font-stretch: expanded;
+  font-size: calc(6px + 1vw);
+  padding-left: 1rem;
+}
+.css-colorname-colorhex {
+  padding-left: 1vw;
+  font-size: calc(6px + 1vw);
 }
 .css-ColorGen {
   display: flex;
@@ -1198,6 +1210,7 @@ main > #css-previewCardContainer {
   align-items: flex-start;
   margin-top: 1vh;
   margin-bottom: 1vh;
+  font-size: calc(8px + 1vw);
 }
 .css-componentTypes:hover {
   cursor: pointer;
@@ -1213,7 +1226,7 @@ main > #css-previewCardContainer {
   border-radius: 1rem;
 }
 .css-componentNames {
-  font-size: calc(8px + 0.5vw);
+  font-size: calc(8px + 1vw);
   display: none;
 }
 .css-componentNames.active {
@@ -1223,12 +1236,14 @@ main > #css-previewCardContainer {
   list-style-type: none;
   padding: 0;
   margin: 0;
+  font-size: calc(8px + 2vw);
 }
 .css-componentNames li {
   text-align: left;
   cursor: pointer;
   margin-bottom: 5px;
   padding: 0 0.5vw;
+  font-size: calc(8px + 2vw);
 }
 .css-componentlist ul li:hover {
   animation: rainbow 1.5s linear infinite;
@@ -1627,6 +1642,7 @@ h5 {
 
 /* design here should be name on top, menu below */
 /* 2 columns. first row is the color palette and component selector, 2nd row is the preview pane in cell size*/
+
 @media screen and (max-width: 550px) {
   .css-reset-button {
     background-color: darkred;
@@ -1677,6 +1693,7 @@ h5 {
 
   .css-header {
     margin-bottom: 0px;
+    margin-top: 2rem;
   }
   #css-page-container-div {
     width: 95%;
@@ -1688,19 +1705,32 @@ h5 {
 
   #css-page-container-left-divs {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-template-rows: auto;
+    grid-row-end: auto;
     /* max-width: 80%; */
+  }
+  .css-instructions {
+    opacity: 0;
+    transform: 0;
+    transition: 0;
+  }
+  .css-header:hover .css-instructions {
+    opacity: 0;
+  }
+  .css-button-container:hover .css-instructions {
+    opacity: 0;
   }
 
   #css-cpg-div {
     grid-column: 1;
-    width: 47vw;
+    width: 80vw;
     height: fit-content;
     border: none;
   }
 
   #css-cpg-container {
+    max-width: none;
     min-width: 44vw;
     max-height: none;
     box-sizing: border-box;
@@ -1709,23 +1739,43 @@ h5 {
     height: max-content;
   }
   .css-cpg-color {
-    min-width: 40vw;
-    min-height: 4vh;
+    min-width: 80vw;
+    min-height: 10vh;
+  }
+
+  .css-colorclass {
+    font-style: italic;
+    font-stretch: expanded;
+    font-size: calc(6px + 3vw);
+    padding-left: 1rem;
+  }
+  .css-colorname-colorhex {
+    padding-left: 2vw;
+    font-size: calc(6px + 3vw);
+  }
+  .css-shuffle-icon {
+    font-size: calc(8px + 4vw) !important;
+  }
+  .css-lock-icon {
+    font-size: calc(8px + 4vw) !important;
   }
 
   #css-component-div {
-    grid-column: 2;
-    min-width: 40vw;
-    /* height: 177px; */
+    grid-column: 1;
+    min-width: 80vw;
   }
 
   .css-componentlist {
-    margin-top: 60px;
-    width: 44vw;
-    height: 177px;
+    width: 85vw;
+    min-height: 40vh;
+  }
+  .css-componentTypes {
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    font-size: calc(8px + 2vw);
   }
   .css-componentNamesContainer {
-    min-width: 25vw;
+    min-width: 55vw;
   }
   #css-previewCardContainer {
     min-height: 80vh;
