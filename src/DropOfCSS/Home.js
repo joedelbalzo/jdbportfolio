@@ -4,7 +4,7 @@ import Components from "./Components";
 import ColorGenForm from "./ColorGenForm";
 // import UserNavBar from "./UserNavBar";
 
-const Home = () => {
+const Home = ({}) => {
   const [form, setForm] = useState(null);
   const [nav, setNavBar] = useState(null);
   const [title, setTitle] = useState(null);
@@ -13,8 +13,9 @@ const Home = () => {
   const [button, setButton] = useState(null);
   const [generatedColors, setGeneratedColors] = useState(null);
   const [wholePageBackground, setWholePageBackground] = useState("");
+  const [darkMode, setDarkMode] = useState(false);
 
-  // console.log("home", wholePageBackground);
+  // console.log("dark mode", darkMode);
 
   useEffect(() => {
     const savedNav = JSON.parse(localStorage.getItem("savedNavbar"));
@@ -69,17 +70,29 @@ const Home = () => {
 
   return (
     <div>
-      <div id="css-page-container-div">
+      <div
+        id="css-page-container-div"
+        style={{
+          backgroundColor: darkMode === true ? "#575757" : "",
+        }}
+      >
         <div id="css-page-container-left-divs">
           <div id="css-cpg-div">
             <ColorGenForm
               openColorsInPreview={setGeneratedColors}
               wholePageBackground={wholePageBackground}
               setWholePageBackground={setWholePageBackground}
+              darkMode={darkMode}
+              setDarkMode={setDarkMode}
             />
           </div>
           <div id="css-component-div">
-            <Components openInPreview={handleOpenInPreview} generatedColors={generatedColors} />
+            <Components
+              openInPreview={handleOpenInPreview}
+              generatedColors={generatedColors}
+              darkMode={darkMode}
+              setDarkMode={setDarkMode}
+            />
           </div>
         </div>
         <div id="css-preview-pane-div">
@@ -92,6 +105,8 @@ const Home = () => {
             card={card}
             button={button}
             generatedColors={generatedColors}
+            darkMode={darkMode}
+            setDarkMode={setDarkMode}
           />
           {/* <UserNavBar /> */}
         </div>

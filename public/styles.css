@@ -399,15 +399,12 @@ h3 {
   }
 
   #main-links > a:hover {
-    /* box-shadow: 2px 2px 6px 2px rgba(200, 200, 200, 0.15); */
     font-size: calc(17px + 1vw);
 
     backdrop-filter: blur(100px);
-    /* background-color: rgba(200, 200, 200, 0.3); */
   }
 
   #main-link {
-    /* background-color: rgba(50, 50, 50, 0.5); */
     font-size: calc(18px + 12vw);
     padding: 0.5rem 0.1rem;
     flex-wrap: nowrap;
@@ -503,7 +500,7 @@ h2 {
 #scriptforjava-subnav {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 2;
 }
 #scriptforjava-ProductDiv {
   margin: 1rem auto;
@@ -789,7 +786,7 @@ a drop of css
  */
 
 .DropOfCss {
-  font-family: verdana;
+  font-family: "Roboto", sans-serif;
   background-color: #fafafa;
   margin: 0;
   min-height: 90vh;
@@ -798,6 +795,13 @@ a drop of css
   border-style: solid;
   border-image: linear-gradient(to right bottom, dodgerblue, lightgreen) 1;
   overflow-x: hidden;
+}
+
+.css-main-title {
+  font-size: calc(1rem + 2vw);
+}
+.css-main-subtitle {
+  font-size: calc(12px + 0.5vw);
 }
 
 h1 {
@@ -862,7 +866,6 @@ h1 {
 #css-page-container-div {
   display: flex;
   box-sizing: content-box;
-  border-radius: 0.5rem;
   margin: auto;
 }
 #css-page-container-left-divs {
@@ -874,17 +877,17 @@ h1 {
   box-sizing: fit-content;
   border-radius: 0.5rem;
   min-height: 20vh;
-  max-height: fit-content;
-  width: 25vw;
-  margin: 0rem auto;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(100, 100, 100, 0.4);
+  max-height: min-content;
+  width: 27vw;
+  margin: 0 auto 1rem;
+  /* padding-bottom: 1rem; */
+  /* border-bottom: 1px solid rgba(100, 100, 100, 0.4); */
 }
 #css-component-div {
   box-sizing: content-box;
   border-radius: 0.5rem;
   height: 60vh;
-  width: 25vw;
+  width: 27vw;
   margin: 0.25rem;
 }
 #css-preview-pane-div {
@@ -893,7 +896,7 @@ h1 {
   min-height: 100vh;
   width: 73vw;
   /* max-width: 80%; */
-  margin: auto;
+  margin: 0 auto;
 }
 
 form {
@@ -913,8 +916,7 @@ nav {
   justify-content: flex-start;
   background-color: #2d545e;
   color: cornsilk;
-  border-bottom: 4px solid #12343b;
-  border-bottom-right-radius: 1rem;
+  border-bottom: 6px solid #12343b;
 }
 
 nav > #css-navSiteTitle {
@@ -955,8 +957,8 @@ nav > h5 {
   margin-top: 0.5rem;
   margin-bottom: 1rem;
   min-height: 20vh;
-  max-height: 42vh;
-  padding: 0.2rem;
+  /* max-height: 42vh; */
+  padding: 0.5rem;
   box-shadow: inset 1px 1px 1rem 1px rgba(100, 100, 100, 0.2);
   border-radius: 0.8rem;
   display: flex;
@@ -977,8 +979,8 @@ nav > h5 {
 .css-colorclass {
   font-style: italic;
   font-stretch: expanded;
-  font-size: calc(6px + 1vw);
-  padding-left: 1rem;
+  font-size: calc(8px + 0.5vw);
+  padding: 0 1rem;
 }
 .css-colorname-colorhex {
   padding-left: 1vw;
@@ -996,15 +998,17 @@ nav > h5 {
   min-width: 25vw;
 }
 .css-cpg-form-div > form > input,
-.css-cpg-form-div > form > select {
+.css-cpg-form-div > form > select,
+.css-cpg-form-div > form > option {
   border: 1px solid rgba(100, 100, 100, 0.4);
+  font-size: calc(10px + 0.5vw);
   border-radius: 0.2rem;
   padding: 2px;
   margin: 2px;
 }
 .css-setBackgroundButton {
-  width: 100%;
-  margin: 2px 0;
+  width: 80%;
+  margin: 2px auto 1rem;
   padding: 4px 2px;
   border: 1px solid #2d545e;
   border-radius: 4px;
@@ -1028,24 +1032,55 @@ nav > h5 {
   margin-right: 1vw;
   font-size: calc(8px + 0.5vw);
 }
+.css-preview-option-buttons {
+  display: flex;
+  justify-content: flex-end;
+  height: min-content;
+  margin: 0.5rem;
+  padding: 0.1rem;
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
+}
+
 .css-reset-button {
   background-color: darkred;
   color: white;
   border-radius: 0.24rem;
-  margin-left: calc(90% - 8vw);
-  margin-bottom: 0.5rem;
+  margin: 0.1rem;
+  width: 140px;
+  cursor: pointer;
+}
+.css-dark-mode-button {
+  background-color: darkslategray;
+  color: white;
+  border-radius: 0.24rem;
+  margin: 0.1rem;
+  width: 140px;
+  cursor: pointer;
+}
+.css-light-mode-button {
+  background-color: lightgray;
+  color: black;
+  border-radius: 0.24rem;
+  margin: 0.1rem;
+  width: 140px;
+  cursor: pointer;
 }
 /* PREVIEW PANE DIVS */
 
 .css-preview-pane-container {
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 150px 4fr;
   grid-template-rows: minmax(4rem, auto) minmax(2rem, auto) minmax(20fr, auto);
   grid-gap: 10px;
   height: 100%;
+  max-width: 98%;
+  margin: auto;
+  flex-wrap: wrap;
   outline: 0.1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 1rem;
-  padding: 1rem;
+  border-radius: 0.5rem;
+  padding: 0.25rem;
 }
 #css-previewTitle {
   display: grid;
@@ -1057,29 +1092,28 @@ nav > h5 {
   outline: 2px solid darkgray;
   border-radius: 0.25rem;
   box-sizing: content-box;
-  grid-row: 1;
-  grid-column: 1 / 3;
+  /* grid-row: 1;
+  grid-column: 1 / 3; */
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-image: linear-gradient(90deg, #f0f0f0 25%, #e5e5e5, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: skeleton-loading 5s linear infinite;
+  background-color: #ffffff;
 }
 #css-previewNav {
+  display: grid;
   grid-row: 2;
   grid-column: 1 / -1;
-  flex-grow: 1;
   min-height: 2rem;
-  width: 100%;
   text-align: center;
-  padding: auto;
+  align-items: center;
   outline: 2px solid darkgray;
   border-radius: 0.25rem;
-  background-image: linear-gradient(90deg, #f0f0f0 25%, #e2e2e2 50%, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: skeleton-loading 5s linear infinite;
+
+  flex-grow: 1;
+  width: 100%;
+  padding: auto;
+  background-color: #e2e2e2;
 }
 #css-previewSideNav {
   position: relative;
@@ -1087,48 +1121,50 @@ nav > h5 {
   grid-row: 3;
   grid-column: 1;
   min-height: 70vh;
-  margin-top: 1rem;
+  width: 130px;
+  justify-self: center;
   text-align: center;
   align-items: center;
   outline: 2px solid darkgray;
   border-radius: 0.25rem;
-  background-image: #e5e5e5;
-  background-size: 200% 100%;
-  animation: skeleton-bounce 5s ease-in-out infinite;
+  background-color: #e2e2e2;
 }
-main {
+/* main {
   border: 1px solid rgba(230, 230, 230, 0.8);
   padding: 1rem 0;
-  grid-row: 3 / 5;
-  min-height: fit-content;
+  grid-row: 3 / auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  height: auto;
+  min-height: max-content;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.1vw;
+  grid-gap: 0.1vw;
   justify-content: space-evenly;
   align-content: flex-start;
 }
 main > #css-previewCardContainer {
   display: grid;
-  grid-row: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  grid-column: 1 / span 3;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(200px, 1fr)
+  );
+  grid-auto-rows: 285.71px;
   grid-gap: 1vw;
-  position: relative;
+  justify-items: center;
+  align-items: center;
 }
+
 #css-previewCardContainer > #css-previewCard {
   display: flex;
   align-items: center;
-  text-align: center;
-  min-width: 18vw;
-  aspect-ratio: 9/16;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
   outline: 2px solid darkgray;
   border-radius: 0.25rem;
-  flex-grow: 1;
-  background-image: #e5e5e5;
-  background-size: 200% 100%;
-  animation: skeleton-bounce 5s ease-in-out infinite;
+  background-color: #e2e2e2;
 }
 #css-previewForm {
   position: relative;
@@ -1138,9 +1174,46 @@ main > #css-previewCardContainer {
   border-radius: 0.25rem;
   grid-row: 2;
   grid-column: 1 / span 3;
-  background-image: #e5e5e5;
-  background-size: 200% 100%;
-  animation: skeleton-bounce 5s ease-in-out infinite;
+  background-color: #e2e2e2;
+} */
+
+main {
+  border: 1px solid rgba(230, 230, 230, 0.8);
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.1vw;
+}
+
+#css-previewCardContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+  grid-auto-rows: minmax(285px, auto);
+  gap: 0.5vw;
+  width: 95%;
+}
+
+#css-previewCardContainer > #css-previewCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  outline: 2px solid darkgray;
+  border-radius: 0.25rem;
+  background-color: #e2e2e2;
+}
+
+.css-preview-pane-Main-Content > #css-previewForm {
+  width: 80%;
+  min-height: 30vh;
+  margin: 1rem;
+  padding: 0;
+  outline: 2px solid darkgray;
+  border-radius: 0.25rem;
+  background-color: #e2e2e2;
 }
 
 .css-preview-pane-Main-Content > #css-previewButtonContainer {
@@ -1160,30 +1233,9 @@ main > #css-previewCardContainer {
   border-radius: 0.25rem;
   box-sizing: border-box;
   grid-row: 3;
-  max-width: 50vw;
-  height: 20vh;
-  background-image: #e5e5e5;
-  background-size: 200% 100%;
-  animation: skeleton-bounce 5s ease-in-out infinite;
-}
-@keyframes skeleton-loading {
-  0% {
-    background-position: 100% 0;
-  }
-  100% {
-    background-position: -100% 0;
-  }
-}
-@keyframes skeleton-bounce {
-  0% {
-    background-color: #e5e5e5;
-  }
-  50% {
-    background-color: #e0e0e0;
-  }
-  100% {
-    background-color: #e5e5e5;
-  }
+  width: 20vw;
+  height: 10vh;
+  background-color: #e2e2e2;
 }
 
 /* Component list  -mt*/
@@ -1191,9 +1243,10 @@ main > #css-previewCardContainer {
 .css-componentlist {
   margin: auto;
   box-sizing: content-box;
-  width: fit-content;
-  border: 1px solid rgba(100, 100, 100, 0.2);
-  border-radius: 1rem;
+  min-width: fit-content;
+  width: 85%;
+  border: 1px solid rgba(100, 100, 100, 0.1);
+  border-radius: 0.5rem;
   text-align: center;
   display: flex;
   flex-direction: row;
@@ -1223,7 +1276,7 @@ main > #css-previewCardContainer {
   min-width: 15vw;
   margin-right: 1vw;
   min-height: calc(100% - 2vh);
-  border-radius: 1rem;
+  border-radius: 0.25rem;
 }
 .css-componentNames {
   font-size: calc(8px + 1vw);
@@ -1243,7 +1296,7 @@ main > #css-previewCardContainer {
   cursor: pointer;
   margin-bottom: 5px;
   padding: 0 0.5vw;
-  font-size: calc(8px + 2vw);
+  font-size: calc(6px + 1vw);
 }
 .css-componentlist ul li:hover {
   animation: rainbow 1.5s linear infinite;
@@ -1264,7 +1317,7 @@ main > #css-previewCardContainer {
 /* Headers with Navbar color -mt*/
 
 .css-header {
-  color: #2d545e;
+  color: #192d32;
   font-size: calc(12px + 1vw);
   text-align: center;
   margin: 6px auto;
@@ -1280,7 +1333,7 @@ main > #css-previewCardContainer {
 .css-header:hover {
   position: relative;
   display: inline-block;
-  color: #2d545e;
+  color: #192d32;
   position: relative;
 }
 .css-header:hover::after {
@@ -1514,10 +1567,10 @@ h5 {
 
 @media screen and (max-width: 1000px) {
   .css-preview-pane-container {
-    /* z-index: -1; */
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 10px;
+    max-width: 98%;
   }
 
   #css-previewSideNav {
@@ -1529,23 +1582,19 @@ h5 {
     flex-direction: column;
   }
 
-  .css-preview-pane-Main-Content > #css-previewCardContainer {
-    /* border: 1rem solid blue; */
-    /* margin-top: 1rem; */
+  /* .css-preview-pane-Main-Content > #css-previewCardContainer {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
-    grid-gap: 0.5vw;
-    justify-items: center;
+    grid-template-rows: auto;
+
   }
   #css-previewCardContainer > #css-previewCard {
     max-width: 40vw;
     min-width: 25vw;
-    aspect-ratio: 8/10;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+  } */
   .css-login {
     width: 45vw;
     /* height: 40vh; */
@@ -1571,7 +1620,7 @@ h5 {
     height: 4vh;
     border-radius: 2rem/3rem;
     padding: 0.2rem;
-    font-size: calc(6px + 0.5vw);
+    font-size: calc(8px + 0.5vw);
     white-space: normal;
   }
   .css-button-container > .css-instructions {
@@ -1586,33 +1635,31 @@ h5 {
     white-space: normal;
   }
   .css-preview-pane-container {
-    /* z-index: -1; */
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: minmax(4rem, auto) minmax(2rem, auto) minmax(0, 1fr);
     grid-gap: 10px;
+    max-width: 98%;
+    z-index: 0;
 
-    overflow: auto;
+    /* overflow: none; */
     min-height: 180vh;
   }
 
   #css-previewSideNav {
     display: none !important;
   }
-
+  /* 
   .css-preview-pane-Main-Content {
     grid-template-columns: 1fr;
     grid-row: 3 / 4;
   }
 
   .css-preview-pane-Main-Content > #css-previewCardContainer {
-    /* border: 1rem solid orange; */
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
-    /* justify-items: center; */
     grid-row-gap: 2vh;
-    min-height: 60vh;
   }
   #css-previewCardContainer > #css-previewCard {
     display: flex;
@@ -1620,8 +1667,7 @@ h5 {
     align-items: center;
     max-width: 60vw;
     min-width: 35vw;
-    aspect-ratio: 8/10;
-  }
+  } */
   .css-login {
     width: 55vw;
     /* height: 40vh; */
@@ -1644,13 +1690,16 @@ h5 {
 /* 2 columns. first row is the color palette and component selector, 2nd row is the preview pane in cell size*/
 
 @media screen and (max-width: 550px) {
-  .css-reset-button {
-    background-color: darkred;
-    color: white;
-    border-radius: 0.24rem;
-    font-size: calc(6px + 0.5vw);
-    margin-left: calc(100% - 25vw);
-    margin-bottom: 0.5rem;
+  .css-cpg-form-div > form {
+    font-size: calc(12px + 1vw);
+    margin: 2px auto;
+    max-width: 60%;
+    min-width: 25vw;
+  }
+  .css-cpg-form-div > form > input,
+  .css-cpg-form-div > form > select,
+  .css-cpg-form-div > form > option {
+    font-size: calc(12px + 1vw);
   }
   nav {
     display: grid;
@@ -1662,7 +1711,15 @@ h5 {
 
   nav > #css-navSiteTitle {
     grid-column: 2;
+    text-align: center;
     margin-bottom: 1rem;
+  }
+
+  .css-main-title {
+    font-size: calc(0.5rem + 8vw);
+  }
+  .css-main-subtitle {
+    font-size: calc(0.5rem + 2vw);
   }
 
   nav > img {
@@ -1692,6 +1749,7 @@ h5 {
   }
 
   .css-header {
+    font-size: calc(8px + 5vw);
     margin-bottom: 0px;
     margin-top: 2rem;
   }
@@ -1750,7 +1808,7 @@ h5 {
   .css-colorclass {
     font-style: italic;
     font-stretch: expanded;
-    font-size: calc(6px + 3vw);
+    font-size: calc(6px + 2vw);
     padding-left: 1rem;
   }
   .css-colorname-colorhex {
@@ -1772,36 +1830,39 @@ h5 {
   }
 
   .css-componentlist {
-    width: fit-content;
     min-height: 40vh;
   }
   .css-componentTypes {
-    margin: 1vh;
+    margin: 1vh 1vw;
     font-size: calc(8px + 2vw);
   }
   .css-componentNamesContainer {
     min-width: 55vw;
   }
-  #css-previewCardContainer {
-    min-height: 80vh;
+  .css-componentNames > ul > li {
+    padding: 2px;
+    font-size: calc(12px + 1vw);
   }
+  /* #css-previewCardContainer {
+    min-height: 80vh;
+    max-width: 95vw;
+  } */
   #css-previewSideNav {
     display: none !important;
   }
 
   #css-preview-pane-div {
     /* grid-column: 1 / -1; */
-    width: fit-content;
+    width: 90vw;
     margin: auto;
   }
   .css-preview-pane-container {
     display: grid;
     grid-template-columns: 1fr 0;
-    min-width: 100%;
-    max-width: 100%;
+    width: 90vw;
     padding: 10rem;
     margin: auto;
-    grid-template-rows: minmax(4rem, auto) minmax(2rem, auto) minmax(20rem, auto);
+    grid-template-rows: 70px, 70px, auto;
     grid-gap: 0px;
     padding: 0;
     justify-content: flex-start; /* Align cards to the top */
@@ -1863,18 +1924,18 @@ h5 {
     grid-row: 2;
   }
 
-  #css-previewCardContainer {
+  /* #css-previewCardContainer {
     display: unset;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(3, auto);
-    /* justify-items: center; */
+    justify-items: center;
     grid-row-gap: 2vh;
   }
-  #previewCardContainer > #css-previewCard {
+  #css-previewCardContainer > #css-previewCard {
+    margin: auto;
     max-width: 100%;
     min-width: 80%;
-    aspect-ratio: 4/5;
     display: unset;
   }
 
@@ -1887,7 +1948,7 @@ h5 {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+  } */
   .css-login {
     width: min-content;
     /* height: 40vh; */

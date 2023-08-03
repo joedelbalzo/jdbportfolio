@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { cssFetchComponents, cssSetColorsOnComponents } from "../store";
 
-const Components = ({ openInPreview }) => {
+const Components = ({ openInPreview, darkMode }) => {
   const { cssComponents, cssCpg } = useSelector((state) => state);
   const [activeType, setActiveType] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
@@ -72,15 +72,30 @@ const Components = ({ openInPreview }) => {
 
   return (
     <>
-      <h3 className="css-header" style={{ display: "block", textAlign: "center" }}>
+      <h3
+        className="css-header"
+        style={{ display: "block", textAlign: "center", color: darkMode === true ? "#F0FAFA" : "" }}
+      >
         Select Components
         <div className="css-instructions">next, add components to your template!</div>
       </h3>
-      <div className="css-componentlist">
+      <div
+        className="css-componentlist"
+        style={{
+          border: darkMode === true ? "1px solid #F0FAFA" : "",
+        }}
+      >
         <div className="css-componentContainer">
           <div className="css-componentTypes">
             {componentTypes.map((type) => (
-              <div className="css-componentTypes" key={type} onClick={() => handleTypeClick(type)}>
+              <div
+                className="css-componentTypes"
+                style={{
+                  color: darkMode === true ? "#F0FAFA" : "",
+                }}
+                key={type}
+                onClick={() => handleTypeClick(type)}
+              >
                 <span>{type}</span>
               </div>
             ))}
@@ -90,6 +105,7 @@ const Components = ({ openInPreview }) => {
           <div
             className="css-componentNamesContainer"
             style={{
+              color: darkMode === true ? "#F0FAFA" : "",
               backgroundColor:
                 cssCpg.length > 0
                   ? `rgba(${cssCpg[3].rgb.r}, ${cssCpg[3].rgb.g}, ${cssCpg[3].rgb.b}, 0.2)`
@@ -100,7 +116,7 @@ const Components = ({ openInPreview }) => {
               <div
                 className={`css-componentNames ${type === activeType ? "active" : ""}`}
                 key={type}
-                style={{ marginTop: 6 }}
+                style={{ marginTop: 6, color: darkMode === true ? "#F0FAFA" : "" }}
               >
                 <ul>
                   {cssComponents

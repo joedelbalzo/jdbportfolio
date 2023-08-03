@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  cssDeleteColor,
   cssDeleteColorPalette,
   cssFetchColorPalette,
   cssUpdateColorPalette,
@@ -53,7 +52,13 @@ const reorder = (list, startIndex, endIndex) => {
   return result;
 };
 
-const ColorGenForm = ({ openColorsInPreview, wholePageBackground, setWholePageBackground }) => {
+const ColorGenForm = ({
+  openColorsInPreview,
+  wholePageBackground,
+  setWholePageBackground,
+  darkMode,
+  setDarkMode,
+}) => {
   const { cssCpg } = useSelector((state) => state);
   const [hex, setHex] = useState("");
   const [mode, setMode] = useState("");
@@ -91,8 +96,15 @@ const ColorGenForm = ({ openColorsInPreview, wholePageBackground, setWholePageBa
     openColorsInPreview(cssCpg);
   };
 
+  // setdarkmode
+  useEffect(() => {
+    darkMode === true ? setWholePageBackground("#242424") : setWholePageBackground("#F0FAFA");
+    // console.log("dark mode use effect");
+    localStorage.setItem("savedWholePageBackground", JSON.stringify(wholePageBackground));
+  }, [darkMode]);
+
   const handleWholePageBackground = async () => {
-    await setWholePageBackground(`${hex}`);
+    await setWholePageBackground(`#${hex}`);
     localStorage.setItem("savedWholePageBackground", JSON.stringify(wholePageBackground));
   };
 
@@ -114,11 +126,9 @@ const ColorGenForm = ({ openColorsInPreview, wholePageBackground, setWholePageBa
     return options[randomIndex];
   };
   const randomMode = getRandomOption(cpgModes);
-  // const cpgCounts = [2, 3, 4];
 
   const runCPG = async (ev) => {
     ev.preventDefault();
-    // console.log("runcpg ev", hex);
 
     if (!hex) {
       // console.log("no hex");
@@ -137,7 +147,6 @@ const ColorGenForm = ({ openColorsInPreview, wholePageBackground, setWholePageBa
           mode,
           count,
         };
-        // console.log("runCPG func", search);
         dispatch(cssFetchColorPalette(search));
       } catch (error) {
         console.log(error);
@@ -152,7 +161,6 @@ const ColorGenForm = ({ openColorsInPreview, wholePageBackground, setWholePageBa
           mode,
           count,
         };
-        // console.log("runCPG func", search);
         dispatch(cssFetchColorPalette(search));
       } catch (error) {
         console.log(error);
@@ -200,19 +208,16 @@ const ColorGenForm = ({ openColorsInPreview, wholePageBackground, setWholePageBa
           mode,
           count,
         };
-        // console.log("runCPG func", search);
         dispatch(cssFetchColorPalette(search));
       } else {
         const unlocked = cssCpg.filter((_color) => !lockedColors.includes(_color));
         const length = unlocked.length;
-        // console.log("shuffle unlocked", lockedColors, length);
         let search = {
           hex: getRandomHexCode(),
           mode: randomMode,
           count: length,
           unlocked: unlocked,
         };
-        // console.log("search", search);
         dispatch(cssUpdateColorPalette(search));
       }
     } catch (err) {
@@ -222,7 +227,6 @@ const ColorGenForm = ({ openColorsInPreview, wholePageBackground, setWholePageBa
 
   const regenColor = async (color) => {
     if (lockedColors.includes(color)) {
-      // console.log("This color's locked.");
       return;
     }
     try {
@@ -258,7 +262,10 @@ const ColorGenForm = ({ openColorsInPreview, wholePageBackground, setWholePageBa
   return (
     <>
       {/* <div className="button-container" style={{ display: "block", textAlign: "center" }}> */}
-      <h3 className="css-header" style={{ display: "block", textAlign: "center" }}>
+      <h3
+        className="css-header"
+        style={{ display: "block", textAlign: "center", color: darkMode === true ? "#F0FAFA" : "" }}
+      >
         Create Palette
         <div className="css-instructions">first your color palette, then a component!</div>
       </h3>
@@ -325,7 +332,7 @@ const ColorGenForm = ({ openColorsInPreview, wholePageBackground, setWholePageBa
                   onChange={(ev) => setHex(ev.target.value)}
                   placeholder="Insert Hex Code"
                   style={{
-                    fontSize: "calc(8px + .5vw)",
+                    // fontSize: "calc(8px + .5vw)",
                     outline: errorMessage ? `2px solid ${errorMessage}` : "",
                   }}
                 />
@@ -333,9 +340,6 @@ const ColorGenForm = ({ openColorsInPreview, wholePageBackground, setWholePageBa
                   value={mode}
                   onChange={(ev) => setMode(ev.target.value)}
                   placeholder="Select Mode"
-                  style={{
-                    fontSize: "calc(8px + .5vw)",
-                  }}
                 >
                   {cpgModes.map((mode) => {
                     return (
@@ -348,10 +352,10 @@ const ColorGenForm = ({ openColorsInPreview, wholePageBackground, setWholePageBa
                 <button className="css-rainbowBtn" type="submit" onClick={(ev) => runCPG(ev)}>
                   Submit
                 </button>
+                <button className="css-setBackgroundButton" onClick={handleWholePageBackground}>
+                  set page background
+                </button>
               </form>
-              <button className="css-setBackgroundButton" onClick={handleWholePageBackground}>
-                set page background
-              </button>
             </div>
           </Collapse>
         </div>
@@ -379,12 +383,17 @@ const ColorGenForm = ({ openColorsInPreview, wholePageBackground, setWholePageBa
               >
                 <div
                   className="css-button-container"
-                  style={{ display: "flex", alignItems: "center" }}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    color: darkMode === true ? "#F0FAFA" : "",
+                  }}
                 >
                   <ShuffleIcon />
                   <span
                     style={{
-                      fontSize: "calc(8px + 1vw)",
+                      fontSize: "calc(7px + 1vw)",
+                      color: darkMode === true ? "#F0FAFA" : "",
                     }}
                     onClick={() => shuffleUnlockedColors()}
                   >
@@ -399,6 +408,7 @@ const ColorGenForm = ({ openColorsInPreview, wholePageBackground, setWholePageBa
                 style={{
                   display: "flex",
                   margin: "auto",
+                  color: darkMode === true ? "#F0FAFA" : "",
                   alignItems: "center",
                   ":hover": {
                     cursor: "pointer",
@@ -412,7 +422,8 @@ const ColorGenForm = ({ openColorsInPreview, wholePageBackground, setWholePageBa
                   <DeleteOutlineIcon />
                   <span
                     style={{
-                      fontSize: "calc(8px + 1vw)",
+                      fontSize: "calc(7px + 1vw)",
+                      color: darkMode === true ? "#F0FAFA" : "",
                     }}
                     onClick={() => {
                       dispatch(cssDeleteColorPalette(cssCpg));
@@ -425,7 +436,12 @@ const ColorGenForm = ({ openColorsInPreview, wholePageBackground, setWholePageBa
                 </div>
               </div>
             </div>
-            <div id="css-cpg-container">
+            <div
+              id="css-cpg-container"
+              style={{
+                border: darkMode === true ? "1px solid #F0FAFA" : "",
+              }}
+            >
               {/* reorder stuff beginning */}
 
               <DragDropContext onDragEnd={onDragEnd}>
@@ -457,7 +473,11 @@ const ColorGenForm = ({ openColorsInPreview, wholePageBackground, setWholePageBa
                         );
                         return (
                           <div key={uniqueKey}>
-                            <div key={`colorClass-${index}`} className="css-colorclass">
+                            <div
+                              key={`colorClass-${index}`}
+                              className="css-colorclass"
+                              style={{ color: darkMode === true ? "#F0FAFA" : "" }}
+                            >
                               {colorClass[index]}:
                             </div>
                             <Draggable key={uniqueKey} draggableId={uniqueKey} index={index}>

@@ -42,13 +42,11 @@ const CssApp = () => {
           {!cssAuth.id && (
             <>
               <Route path="/login" element={<Login />} />
-              {/* <Route path="/cpgform" element={<ColorGenForm />} /> */}
               <Route path="/register" element={<UserCreate />} />
             </>
           )}
           {cssAuth.id && (
             <>
-              {/* <Route path="/cpgform" element={<ColorGenForm />} /> */}
               <Route path="/profile" element={<Profile />} />
             </>
           )}

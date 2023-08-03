@@ -7,6 +7,12 @@ import FavHeart from "./FavHeart";
 import { saveAs } from "file-saver";
 import DownloadIcon from "@mui/icons-material/Download";
 import ClearIcon from "@mui/icons-material/Clear";
+import TitlePage from "./Components/TitlePage";
+import NavbarPage from "./Components/NavbarPage";
+import SideNavPage from "./Components/SideNavPage";
+import CardPage from "./Components/CardPage";
+import FormPage from "./Components/FormPage";
+import ButtonPage from "./Components/ButtonPage";
 
 const jsxGenerator = (component) => {
   if (!component.htmlText) {
@@ -26,7 +32,17 @@ const handleComponentChange = () => {
   config["jsxGenerator"] = jsxGenerator;
 };
 
-const PreviewPane = ({ wholePageBackground, form, nav, title, sideNav, card, button }) => {
+const PreviewPane = ({
+  wholePageBackground,
+  form,
+  nav,
+  title,
+  sideNav,
+  card,
+  button,
+  darkMode,
+  setDarkMode,
+}) => {
   const { cssAuth } = useSelector((state) => state);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -105,6 +121,8 @@ const PreviewPane = ({ wholePageBackground, form, nav, title, sideNav, card, but
     return null;
   };
 
+  // console.log(wholePageBackground);
+
   const clearComponents = (str) => {
     if (str === "all") {
       localStorage.removeItem("savedNavbar");
@@ -172,34 +190,49 @@ const PreviewPane = ({ wholePageBackground, form, nav, title, sideNav, card, but
 
   return (
     <div>
-      <h3 className="css-header" style={{ display: "block", textAlign: "center" }}>
+      <h3
+        className="css-header"
+        style={{ display: "block", textAlign: "center", color: darkMode === true ? "#F0FAFA" : "" }}
+      >
         Template Preview
         <div className="css-instructions">
           your preview template. you can save individual components or the template as a whole
         </div>
       </h3>
-      <button className="css-reset-button" onClick={() => clearComponents("all")}>
-        Reset Template
-      </button>
+      <div className="css-preview-option-buttons">
+        <button className="css-reset-button" onClick={() => clearComponents("all")}>
+          Reset Template
+        </button>
+        {darkMode === true ? (
+          <button className="css-light-mode-button" onClick={() => setDarkMode(false)}>
+            Template Light Mode
+          </button>
+        ) : (
+          <button className="css-dark-mode-button" onClick={() => setDarkMode(true)}>
+            Template Dark Mode
+          </button>
+        )}
+      </div>
       <div
         className="css-preview-pane-container"
         style={{
-          zIndex: -20,
-          backgroundColor: wholePageBackground ? `#${wholePageBackground}` : "#F0F0F0",
+          zIndex: -1,
+          backgroundColor: wholePageBackground ? `${wholePageBackground}` : "#F0FAFA",
         }}
       >
         {title ? (
           <div
             id="css-previewTitle"
-            style={{ background: "transparent", outline: "none", position: "relative" }}
+            style={{
+              background: "transparent",
+              outline: "none",
+              position: "relative",
+            }}
             onMouseEnter={() => setHoveredOnComponent(title)}
             onMouseLeave={() => setHoveredOnComponent(null)}
           >
-            <div
-              dangerouslySetInnerHTML={{
-                __html: jsxGenerator(title),
-              }}
-            />
+            <TitlePage title={title} />
+
             <span>
               {hoveredOnComponent === title
                 ? handleComponentOnHover(
@@ -227,6 +260,8 @@ const PreviewPane = ({ wholePageBackground, form, nav, title, sideNav, card, but
               justifyContent: "center",
               alignItems: "center",
               fontSize: "calc(12px + 0.5vw)",
+              backgroundColor: darkMode === true ? "#282828" : "#e2e2e2",
+              color: darkMode === true ? "#e2e2e2" : "black",
             }}
           >
             Your Website Title
@@ -235,21 +270,12 @@ const PreviewPane = ({ wholePageBackground, form, nav, title, sideNav, card, but
         {nav ? (
           <div
             id="css-previewNav"
-            style={{
-              background: "rgba(0,0,0,0)",
-              backgroundImage: "none",
-              animation: "none",
-              outline: "none",
-              position: "relative",
-            }}
+            style={{ background: "transparent", outline: "none", position: "relative" }}
             onMouseEnter={() => setHoveredOnComponent(nav)}
             onMouseLeave={() => setHoveredOnComponent(null)}
           >
-            <div
-              dangerouslySetInnerHTML={{
-                __html: jsxGenerator(nav),
-              }}
-            />
+            <NavbarPage nav={nav} />
+
             <span>
               {hoveredOnComponent === nav
                 ? handleComponentOnHover(
@@ -277,6 +303,8 @@ const PreviewPane = ({ wholePageBackground, form, nav, title, sideNav, card, but
               justifyContent: "center",
               alignItems: "center",
               fontSize: "calc(12px + 0.5vw)",
+              backgroundColor: darkMode === true ? "#282828" : "#e2e2e2",
+              color: darkMode === true ? "#e2e2e2" : "black",
             }}
           >
             Navigation
@@ -286,23 +314,12 @@ const PreviewPane = ({ wholePageBackground, form, nav, title, sideNav, card, but
         {sideNav ? (
           <div
             id="css-previewSideNav"
-            style={{
-              background: "rgba(0,0,0,0)",
-              backgroundImage: "none",
-              animation: "none",
-              outline: "none",
-              display: "flex",
-              alignItems: "flex-start",
-              minHeight: "70vh",
-            }}
+            style={{ background: "transparent", outline: "none", position: "relative" }}
             onMouseEnter={() => setHoveredOnComponent(sideNav)}
             onMouseLeave={() => setHoveredOnComponent(null)}
           >
-            <div
-              dangerouslySetInnerHTML={{
-                __html: jsxGenerator(sideNav),
-              }}
-            />
+            <SideNavPage sideNav={sideNav} />
+
             <span>
               {hoveredOnComponent === sideNav
                 ? handleComponentOnHover(
@@ -330,6 +347,8 @@ const PreviewPane = ({ wholePageBackground, form, nav, title, sideNav, card, but
               justifyContent: "center",
               alignItems: "center",
               fontSize: "calc(12px + 0.5vw)",
+              backgroundColor: darkMode === true ? "#282828" : "#e2e2e2",
+              color: darkMode === true ? "#e2e2e2" : "black",
             }}
           >
             Side Nav
@@ -344,21 +363,17 @@ const PreviewPane = ({ wholePageBackground, form, nav, title, sideNav, card, but
             {card ? (
               <div
                 id="css-previewCard"
-                style={{
-                  background: "rgba(0,0,0,0)",
-                  backgroundImage: "none",
-                  animation: "none",
-                  outline: "none",
-                }}
+                style={{ background: "transparent", outline: "none", position: "relative" }}
+                onMouseEnter={() => setHoveredOnComponent(card)}
+                onMouseLeave={() => setHoveredOnComponent(null)}
               >
-                <div>
-                  <div dangerouslySetInnerHTML={{ __html: jsxGenerator(card) }} />
-                  <span>
-                    {hoveredOnComponent === card
-                      ? handleComponentOnHover(
-                          card,
-                          card.htmlText,
-                          `<div id="css-previewTitle" 
+                <CardPage card={card} />
+                <span>
+                  {hoveredOnComponent === card
+                    ? handleComponentOnHover(
+                        card,
+                        card.htmlText,
+                        `<div id="css-previewTitle" 
                         style={{ 
                           background: "transparent", 
                           outline: "none", 
@@ -367,11 +382,10 @@ const PreviewPane = ({ wholePageBackground, form, nav, title, sideNav, card, but
                     dangerouslySetInnerHTML={{ __html: jsxGenerator(card) }}>
                     </div>
                   </div>`,
-                          "card"
-                        )
-                      : ""}
-                  </span>
-                </div>
+                        "card"
+                      )
+                    : ""}
+                </span>
               </div>
             ) : (
               <div
@@ -381,6 +395,8 @@ const PreviewPane = ({ wholePageBackground, form, nav, title, sideNav, card, but
                   alignItems: "center",
                   flexWrap: "wrap",
                   fontSize: "calc(12px + 0.5vw)",
+                  backgroundColor: darkMode === true ? "#404040" : "#e2e2e2",
+                  color: darkMode === true ? "#e2e2e2" : "black",
                 }}
               >
                 Info or Product Card
@@ -389,21 +405,17 @@ const PreviewPane = ({ wholePageBackground, form, nav, title, sideNav, card, but
             {card ? (
               <div
                 id="css-previewCard"
-                style={{
-                  background: "rgba(0,0,0,0)",
-                  backgroundImage: "none",
-                  animation: "none",
-                  outline: "none",
-                }}
+                style={{ background: "transparent", outline: "none", position: "relative" }}
+                onMouseEnter={() => setHoveredOnComponent(card)}
+                onMouseLeave={() => setHoveredOnComponent(null)}
               >
-                <div>
-                  <div dangerouslySetInnerHTML={{ __html: jsxGenerator(card) }} />
-                  <span>
-                    {hoveredOnComponent === card
-                      ? handleComponentOnHover(
-                          card,
-                          card.htmlText,
-                          `<div id="css-previewTitle" 
+                <CardPage card={card} />
+                <span>
+                  {hoveredOnComponent === card
+                    ? handleComponentOnHover(
+                        card,
+                        card.htmlText,
+                        `<div id="css-previewTitle" 
                         style={{ 
                           background: "transparent", 
                           outline: "none", 
@@ -412,11 +424,10 @@ const PreviewPane = ({ wholePageBackground, form, nav, title, sideNav, card, but
                     dangerouslySetInnerHTML={{ __html: jsxGenerator(card) }}>
                     </div>
                   </div>`,
-                          "card"
-                        )
-                      : ""}
-                  </span>
-                </div>
+                        "card"
+                      )
+                    : ""}
+                </span>
               </div>
             ) : (
               <div
@@ -426,6 +437,8 @@ const PreviewPane = ({ wholePageBackground, form, nav, title, sideNav, card, but
                   alignItems: "center",
                   flexWrap: "wrap",
                   fontSize: "calc(12px + 0.5vw)",
+                  backgroundColor: darkMode === true ? "#404040" : "#e2e2e2",
+                  color: darkMode === true ? "#e2e2e2" : "black",
                 }}
               >
                 Info or Product Card
@@ -434,21 +447,17 @@ const PreviewPane = ({ wholePageBackground, form, nav, title, sideNav, card, but
             {card ? (
               <div
                 id="css-previewCard"
-                style={{
-                  background: "rgba(0,0,0,0)",
-                  backgroundImage: "none",
-                  animation: "none",
-                  outline: "none",
-                }}
+                style={{ background: "transparent", outline: "none", position: "relative" }}
+                onMouseEnter={() => setHoveredOnComponent(card)}
+                onMouseLeave={() => setHoveredOnComponent(null)}
               >
-                <div>
-                  <div dangerouslySetInnerHTML={{ __html: jsxGenerator(card) }} />
-                  <span>
-                    {hoveredOnComponent === card
-                      ? handleComponentOnHover(
-                          card,
-                          card.htmlText,
-                          `<div id="css-previewTitle" 
+                <CardPage card={card} />
+                <span>
+                  {hoveredOnComponent === card
+                    ? handleComponentOnHover(
+                        card,
+                        card.htmlText,
+                        `<div id="css-previewTitle" 
                         style={{ 
                           background: "transparent", 
                           outline: "none", 
@@ -457,11 +466,10 @@ const PreviewPane = ({ wholePageBackground, form, nav, title, sideNav, card, but
                     dangerouslySetInnerHTML={{ __html: jsxGenerator(card) }}>
                     </div>
                   </div>`,
-                          "card"
-                        )
-                      : ""}
-                  </span>
-                </div>
+                        "card"
+                      )
+                    : ""}
+                </span>
               </div>
             ) : (
               <div
@@ -471,6 +479,8 @@ const PreviewPane = ({ wholePageBackground, form, nav, title, sideNav, card, but
                   alignItems: "center",
                   flexWrap: "wrap",
                   fontSize: "calc(12px + 0.5vw)",
+                  backgroundColor: darkMode === true ? "#404040" : "#e2e2e2",
+                  color: darkMode === true ? "#e2e2e2" : "black",
                 }}
               >
                 Info or Product Card
@@ -480,27 +490,17 @@ const PreviewPane = ({ wholePageBackground, form, nav, title, sideNav, card, but
           {form ? (
             <div
               id="css-previewForm"
-              style={{
-                background: "rgba(0,0,0,0)",
-                backgroundImage: "none",
-                animation: "none",
-                outline: "none",
-              }}
-              onMouseEnter={() => setHoveredOnComponent(form)}
+              style={{ background: "transparent", outline: "none", position: "relative" }}
+              onMouseEnter={() => setHoveredOnComponent(card)}
               onMouseLeave={() => setHoveredOnComponent(null)}
             >
-              <div>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: jsxGenerator(form),
-                  }}
-                />
-                <span>
-                  {hoveredOnComponent === form
-                    ? handleComponentOnHover(
-                        form,
-                        form.htmlText,
-                        `<div id="css-previewTitle" 
+              <FormPage form={form} />
+              <span>
+                {hoveredOnComponent === form
+                  ? handleComponentOnHover(
+                      form,
+                      form.htmlText,
+                      `<div id="css-previewTitle" 
                           style={{ 
                             background: "transparent", 
                             outline: "none", 
@@ -509,11 +509,10 @@ const PreviewPane = ({ wholePageBackground, form, nav, title, sideNav, card, but
                       dangerouslySetInnerHTML={{ __html: jsxGenerator(form) }}>
                       </div>
                     </div>`,
-                        "form"
-                      )
-                    : ""}
-                </span>
-              </div>
+                      "form"
+                    )
+                  : ""}
+              </span>
             </div>
           ) : (
             <div
@@ -523,7 +522,9 @@ const PreviewPane = ({ wholePageBackground, form, nav, title, sideNav, card, but
                 justifyContent: "center",
                 alignItems: "center",
                 fontSize: "calc(12px + 0.5vw)",
-                padding: "1rem",
+
+                backgroundColor: darkMode === true ? "#404040" : "#e2e2e2",
+                color: darkMode === true ? "#e2e2e2" : "black",
               }}
             >
               Login, Contact, General Information Form
@@ -533,34 +534,17 @@ const PreviewPane = ({ wholePageBackground, form, nav, title, sideNav, card, but
             {button ? (
               <div
                 id="css-previewButton"
-                style={{
-                  background: "rgba(0,0,0,0)",
-                  backgroundImage: "none",
-                  animation: "none",
-                  outline: "none",
-                }}
+                style={{ background: "transparent", outline: "none", position: "relative" }}
                 onMouseEnter={() => setHoveredOnComponent(button)}
                 onMouseLeave={() => setHoveredOnComponent(null)}
               >
-                <div
-                  style={{
-                    background: "rgba(0,0,0,0)",
-                    backgroundImage: "none",
-                    animation: "none",
-                    outline: "none",
-                  }}
-                >
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: jsxGenerator(button),
-                    }}
-                  />
-                  <span>
-                    {hoveredOnComponent === button
-                      ? handleComponentOnHover(
-                          button,
-                          button.htmlText,
-                          `<div id="css-previewTitle" 
+                <ButtonPage button={button} />
+                <span>
+                  {hoveredOnComponent === button
+                    ? handleComponentOnHover(
+                        button,
+                        button.htmlText,
+                        `<div id="css-previewTitle" 
                               style={{ 
                                 background: "transparent", 
                                 outline: "none", 
@@ -569,11 +553,10 @@ const PreviewPane = ({ wholePageBackground, form, nav, title, sideNav, card, but
                           dangerouslySetInnerHTML={{ __html: jsxGenerator(button) }}>
                           </div>
                         </div>`,
-                          "button"
-                        )
-                      : ""}
-                  </span>
-                </div>
+                        "button"
+                      )
+                    : ""}
+                </span>
               </div>
             ) : (
               <div
@@ -583,6 +566,8 @@ const PreviewPane = ({ wholePageBackground, form, nav, title, sideNav, card, but
                   justifyContent: "center",
                   alignItems: "center",
                   fontSize: "calc(12px + 0.5vw)",
+                  backgroundColor: darkMode === true ? "#B3B3B3" : "#e2e2e2",
+                  color: darkMode === true ? "#black" : "E2E2E2",
                 }}
               >
                 Submit Buttons

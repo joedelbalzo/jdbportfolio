@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import colorWheelImage from "./images/colorwheel320.png";
 import { cssLogout } from "../store";
-import Home from "./Home";
 
 const Nav = () => {
   const { cssAuth } = useSelector((state) => state);
@@ -23,11 +22,17 @@ const Nav = () => {
         <img src={colorWheelImage} />
         <div id="css-navSiteTitle">
           <h1>
-            <Link to="/dropofcss/" style={{ color: "white", textDecoration: "none" }}>
-              A Drop of CSS
+            <Link
+              to="/dropofcss/"
+              style={{ color: "white", textDecoration: "none" }}
+              className="css-main-title"
+            >
+              Drop of CSS
             </Link>
           </h1>
-          <h5 style={{ padding: 0, color: "white" }}>JSX Color Palette and Component Builder</h5>
+          <h5 style={{ padding: 0, color: "white" }} className="css-main-subtitle">
+            JSX Color Palette and Component Builder
+          </h5>
         </div>
 
         <div id="css-navlinks" style={{ justifyContent: "flex-end", marginRight: "2rem" }}>
