@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import reactElementToJSXString from "react-element-to-jsx-string";
+//make this navcss func
+import { navCSSFunc } from "./NavCSS";
+import { download } from "./Download";
+import { cssCreateCodeFile } from "../../store";
 
 const SimpleNavBar = styled.div`
 background-color: inherit;
@@ -214,6 +219,9 @@ const NavbarPage = ({ nav }) => {
   const [bgColorContrast, setBgColorContrast] = useState("");
   const [error, setError] = useState("");
   const [navbarPage, setNavbarPage] = useState("");
+  const [jsxString, setJsxString] = useState("");
+  const [downloadableCSS, setDownloadableCSS] = useState("");
+  const [dl, setDl] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -229,23 +237,58 @@ const NavbarPage = ({ nav }) => {
 
   useEffect(() => {
     try {
-      console.log(cssCpg);
-      setPrimaryColor(cssCpg[0].hex.value);
-      setSecondaryColor(cssCpg[1].hex.value);
-      setTertiaryColor(cssCpg[2].hex.value);
-      setBgColor(cssCpg[3].hex.value);
-      setPrimaryColorContrast(cssCpg[0].contrast.value);
-      setSecondaryColorContrast(cssCpg[1].contrast.value);
-      setTertiaryColorContrast(cssCpg[2].contrast.value);
-      setBgColorContrast(cssCpg[3].contrast.value);
-    } catch (err) {
-      setError(err);
-    }
-  }, [cssCpg]);
+      const savedColors = JSON.parse(localStorage.getItem("colors"));
+      if (savedColors) {
+        setPrimaryColor(savedColors[0].hex.value);
+        setSecondaryColor(savedColors[1].hex.value);
+        setTertiaryColor(savedColors[2].hex.value);
+        setBgColor(savedColors[3].hex.value);
+        setPrimaryColorContrast(savedColors[0].contrast.value);
+        setSecondaryColorContrast(savedColors[1].contrast.value);
+        setTertiaryColorContrast(savedColors[2].contrast.value);
+        setBgColorContrast(savedColors[3].contrast.value);
+      } else if (cssCpg) {
+        setPrimaryColor(cssCpg[0].hex.value);
+        setSecondaryColor(cssCpg[1].hex.value);
+        setTertiaryColor(cssCpg[2].hex.value);
+        setBgColor(cssCpg[3].hex.value);
+        setPrimaryColorContrast(cssCpg[0].contrast.value);
+        setSecondaryColorContrast(cssCpg[1].contrast.value);
+        setTertiaryColorContrast(cssCpg[2].contrast.value);
+        setBgColorContrast(cssCpg[3].contrast.value);
+      }
+    } catch (err) {}
+  }, []);
 
   useEffect(() => {
     setNavbarPage(navFunc(nav));
-  }, [nav]);
+    setDownloadableCSS(navCSSFunc(nav));
+  }, [nav, bgColorContrast]);
+
+  useEffect(() => {
+    try {
+      setJsxString(reactElementToJSXString(navbarPage, { indent: 2 }));
+    } catch (err) {
+      console.log();
+    }
+  }, [navbarPage]);
+
+  useEffect(() => {
+    try {
+      const result = download(jsxString, downloadableCSS, nav);
+      setDl(result);
+    } catch (err) {
+      console.log();
+    }
+  }, [jsxString]);
+
+  useEffect(() => {
+    try {
+      dispatch(cssCreateCodeFile(dl, nav.type));
+    } catch (err) {
+      console.log();
+    }
+  }, [dl]);
 
   const navFunc = (nav) => {
     if (nav.name === "Simple") {

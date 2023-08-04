@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import reactElementToJSXString from "react-element-to-jsx-string";
+import { titleCSSFunc } from "./TitleCSS";
+import { download } from "./Download";
+import { cssCreateCodeFile } from "../../store";
 
 const TitleSubtitle = styled.div`
   display: flex;
@@ -164,7 +168,6 @@ const TopBorderTitle = styled.h1`
 
 const TitlePage = ({ title }) => {
   const { cssAuth, cssCpg } = useSelector((state) => state);
-
   const [primaryColor, setPrimaryColor] = useState("");
   const [secondaryColor, setSecondaryColor] = useState("");
   const [tertiaryColor, setTertiaryColor] = useState("");
@@ -175,6 +178,9 @@ const TitlePage = ({ title }) => {
   const [bgColorContrast, setBgColorContrast] = useState("");
   const [error, setError] = useState("");
   const [titlePage, setTitlePage] = useState("");
+  const [jsxString, setJsxString] = useState("");
+  const [downloadableCSS, setDownloadableCSS] = useState("");
+  const [dl, setDl] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -182,31 +188,66 @@ const TitlePage = ({ title }) => {
   if (!cssCpg) {
     return null;
   }
-  if (title) {
-    // console.log("title:", title.name);
-  } else {
+  if (!title) {
     return null;
   }
 
   useEffect(() => {
     try {
-      console.log(cssCpg);
-      setPrimaryColor(cssCpg[0].hex.value);
-      setSecondaryColor(cssCpg[1].hex.value);
-      setTertiaryColor(cssCpg[2].hex.value);
-      setBgColor(cssCpg[3].hex.value);
-      setPrimaryColorContrast(cssCpg[0].contrast.value);
-      setSecondaryColorContrast(cssCpg[1].contrast.value);
-      setTertiaryColorContrast(cssCpg[2].contrast.value);
-      setBgColorContrast(cssCpg[3].contrast.value);
-    } catch (err) {
-      setError(err);
-    }
-  }, [cssCpg]);
+      const savedColors = JSON.parse(localStorage.getItem("colors"));
+      if (savedColors) {
+        setPrimaryColor(savedColors[0].hex.value);
+        setSecondaryColor(savedColors[1].hex.value);
+        setTertiaryColor(savedColors[2].hex.value);
+        setBgColor(savedColors[3].hex.value);
+        setPrimaryColorContrast(savedColors[0].contrast.value);
+        setSecondaryColorContrast(savedColors[1].contrast.value);
+        setTertiaryColorContrast(savedColors[2].contrast.value);
+        setBgColorContrast(savedColors[3].contrast.value);
+      } else if (cssCpg) {
+        setPrimaryColor(cssCpg[0].hex.value);
+        setSecondaryColor(cssCpg[1].hex.value);
+        setTertiaryColor(cssCpg[2].hex.value);
+        setBgColor(cssCpg[3].hex.value);
+        setPrimaryColorContrast(cssCpg[0].contrast.value);
+        setSecondaryColorContrast(cssCpg[1].contrast.value);
+        setTertiaryColorContrast(cssCpg[2].contrast.value);
+        setBgColorContrast(cssCpg[3].contrast.value);
+      }
+    } catch (err) {}
+  }, []);
 
   useEffect(() => {
-    setTitlePage(titleFunc(title));
-  }, [title]);
+    try {
+      setTitlePage(titleFunc(title));
+      setDownloadableCSS(titleCSSFunc(title));
+    } catch (err) {}
+  }, [title, bgColorContrast]);
+
+  useEffect(() => {
+    try {
+      setJsxString(reactElementToJSXString(titlePage, { indent: 2 }));
+    } catch (err) {
+      console.log();
+    }
+  }, [titlePage]);
+
+  useEffect(() => {
+    try {
+      const result = download(jsxString, downloadableCSS, title);
+      setDl(result);
+    } catch (err) {
+      console.log();
+    }
+  }, [jsxString]);
+
+  useEffect(() => {
+    try {
+      dispatch(cssCreateCodeFile(dl, title.type));
+    } catch (err) {
+      console.log();
+    }
+  }, [dl]);
 
   const titleFunc = (title) => {
     if (title.name === "Title & Subtitle") {

@@ -1,36 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { cssCreateTemplate } from "../store";
+import { cssCreateTemplate, clearCodeFiles } from "../store";
 import store from "../store";
 import { useNavigate } from "react-router-dom";
 import FavHeart from "./FavHeart";
-import { saveAs } from "file-saver";
 import DownloadIcon from "@mui/icons-material/Download";
 import ClearIcon from "@mui/icons-material/Clear";
-import TitlePage from "./Components/TitlePage";
+import TitlePage, { handleDownload } from "./Components/TitlePage";
 import NavbarPage from "./Components/NavbarPage";
 import SideNavPage from "./Components/SideNavPage";
 import CardPage from "./Components/CardPage";
 import FormPage from "./Components/FormPage";
 import ButtonPage from "./Components/ButtonPage";
 
-const jsxGenerator = (component) => {
-  if (!component.htmlText) {
-    component.htmlText = "";
-  }
-  const { htmlText } = component;
-  return htmlText;
-};
-
-const config = {};
-
-const handleComponentChange = () => {
-  const components = store.getState().components;
-  components.forEach((component) => {
-    config[component.type] = jsxGenerator(component);
-  });
-  config["jsxGenerator"] = jsxGenerator;
-};
+//for downloading
+import JSZip from "jszip";
+import { saveAs } from "file-saver";
+import { homejs } from "./ForDownloads/Home";
+import { appjs } from "./ForDownloads/App";
+import { indexjs } from "./ForDownloads";
+import { indexhtml } from "./ForDownloads/public/indexhtml";
+import { stylescss } from "./ForDownloads/public/stylescss";
+import { readme } from "./ForDownloads/README";
+import { webpackconfig } from "./ForDownloads/webpack.config";
+import { serverjs } from "./ForDownloads/server";
 
 const PreviewPane = ({
   wholePageBackground,
@@ -43,7 +36,7 @@ const PreviewPane = ({
   darkMode,
   setDarkMode,
 }) => {
-  const { cssAuth } = useSelector((state) => state);
+  const { cssAuth, cssCodeFile } = useSelector((state) => state);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -121,10 +114,14 @@ const PreviewPane = ({
     return null;
   };
 
-  // console.log(wholePageBackground);
+  useEffect(() => {
+    // console.log("it changed");
+    // console.log("css code file", cssCodeFile);
+  }, [cssCodeFile]);
 
   const clearComponents = (str) => {
     if (str === "all") {
+      dispatch(clearCodeFiles());
       localStorage.removeItem("savedNavbar");
       localStorage.removeItem("savedWholePageBackground");
       localStorage.removeItem("savedForm");
@@ -162,12 +159,16 @@ const PreviewPane = ({
     window.location.reload();
   };
 
-  const handleComponentOnHover = (comp, html, code, filename) => {
-    const downloadCode = () => {
-      const blobForJsx = new Blob([code], { type: "text/plain;charset=utf-8" });
-      const blobForHtml = new Blob([html], { type: "text/plain;charset=utf-8" });
-      saveAs(blobForJsx, `${filename}_jsx.txt`);
-      saveAs(blobForHtml, `${filename}_innerHTML.txt`);
+  const handleComponentOnHover = (comp) => {
+    const handleDownload = async () => {
+      console.log("component type!", comp.type);
+      const element = document.createElement("a");
+      const kind = comp.type;
+      const file = new Blob([cssCodeFile[kind]], { type: "text/plain" });
+      element.href = URL.createObjectURL(file);
+      element.download = `my${comp.type[0].toUpperCase() + comp.type.slice(1)}Component.jsx`;
+      document.body.appendChild(element);
+      element.click();
     };
 
     const clear = () => {
@@ -175,11 +176,39 @@ const PreviewPane = ({
     };
     return (
       <span id="css-hoverbox">
-        <DownloadIcon onClick={downloadCode}>{`Download code for ${filename}`}</DownloadIcon>
+        <DownloadIcon onClick={handleDownload}>{`Download code for ${comp.type}`}</DownloadIcon>
         <FavHeart component={comp} />
         <ClearIcon onClick={clear} />
       </span>
     );
+  };
+
+  const downloadTemplate = () => {
+    console.log("download template");
+    const zip = new JSZip();
+    const project = zip.folder("main folder to rename");
+    project.file("README.md", new Blob([readme()], { type: "text/plain" }));
+    project.file("webpack.config.js", new Blob([webpackconfig()], { type: "text/plain" }));
+    project.file("server.js", new Blob([serverjs()], { type: "text/plain" }));
+    const src = project.folder("src");
+    src.file("Title.js", new Blob([cssCodeFile["title"]], { type: "text/plain" }));
+    src.file("Navbar.js", new Blob([cssCodeFile["navbar"]], { type: "text/plain" }));
+    src.file("SideNav.js", new Blob([cssCodeFile["sideNav"]], { type: "text/plain" }));
+    src.file("Card.js", new Blob([cssCodeFile["card"]], { type: "text/plain" }));
+    src.file("Form.js", new Blob([cssCodeFile["form"]], { type: "text/plain" }));
+    src.file("Button.js", new Blob([cssCodeFile["button"]], { type: "text/plain" }));
+    src.file("App.js", new Blob([appjs()], { type: "text/plain" }));
+    src.file("Home.js", new Blob([homejs()], { type: "text/plain" }));
+    src.file("index.js", new Blob([indexjs()], { type: "text/plain" }));
+
+    const publicfolder = project.folder("public");
+    publicfolder.file("index.html", new Blob([indexhtml()], { type: "text/plain" }));
+    publicfolder.file("styles.css", new Blob([stylescss()], { type: "text/plain" }));
+
+    zip.generateAsync({ type: "blob" }).then(function (content) {
+      // see FileSaver.js
+      saveAs(content, `example.zip`);
+    });
   };
 
   //this is broken
@@ -202,6 +231,9 @@ const PreviewPane = ({
       <div className="css-preview-option-buttons">
         <button className="css-reset-button" onClick={() => clearComponents("all")}>
           Reset Template
+        </button>
+        <button className="css-reset-button" onClick={() => downloadTemplate()}>
+          Download Template
         </button>
         {darkMode === true ? (
           <button className="css-light-mode-button" onClick={() => setDarkMode(false)}>
@@ -233,24 +265,7 @@ const PreviewPane = ({
           >
             <TitlePage title={title} />
 
-            <span>
-              {hoveredOnComponent === title
-                ? handleComponentOnHover(
-                    title,
-                    title.htmlText,
-                    `<div id="css-previewTitle" 
-                        style={{ 
-                          background: "transparent", 
-                          outline: "none", 
-                          position: "relative" }}>
-                    <div 
-                    dangerouslySetInnerHTML={{ __html: jsxGenerator(title) }}>
-                    </div>
-                  </div>`,
-                    "title"
-                  )
-                : ""}
-            </span>
+            <span>{hoveredOnComponent === title ? handleComponentOnHover(title) : ""}</span>
           </div>
         ) : (
           <div
@@ -276,24 +291,7 @@ const PreviewPane = ({
           >
             <NavbarPage nav={nav} />
 
-            <span>
-              {hoveredOnComponent === nav
-                ? handleComponentOnHover(
-                    nav,
-                    nav.htmlText,
-                    `<div id="css-previewTitle" 
-                        style={{ 
-                          background: "transparent", 
-                          outline: "none", 
-                          position: "relative" }}>
-                    <div 
-                    dangerouslySetInnerHTML={{ __html: jsxGenerator(nav) }}>
-                    </div>
-                  </div>`,
-                    "nav"
-                  )
-                : ""}
-            </span>
+            <span>{hoveredOnComponent === nav ? handleComponentOnHover(nav) : ""}</span>
           </div>
         ) : (
           <div
@@ -320,24 +318,7 @@ const PreviewPane = ({
           >
             <SideNavPage sideNav={sideNav} />
 
-            <span>
-              {hoveredOnComponent === sideNav
-                ? handleComponentOnHover(
-                    sideNav,
-                    sideNav.htmlText,
-                    `<div id="css-previewTitle" 
-                        style={{ 
-                          background: "transparent", 
-                          outline: "none", 
-                          position: "relative" }}>
-                    <div 
-                    dangerouslySetInnerHTML={{ __html: jsxGenerator(sideNav) }}>
-                    </div>
-                  </div>`,
-                    "sideNav"
-                  )
-                : ""}
-            </span>
+            <span>{hoveredOnComponent === sideNav ? handleComponentOnHover(sideNav) : ""}</span>
           </div>
         ) : (
           <div
@@ -364,28 +345,11 @@ const PreviewPane = ({
               <div
                 id="css-previewCard"
                 style={{ background: "transparent", outline: "none", position: "relative" }}
-                onMouseEnter={() => setHoveredOnComponent(card)}
-                onMouseLeave={() => setHoveredOnComponent(null)}
+                // onMouseEnter={() => setHoveredOnComponent(card)}
+                // onMouseLeave={() => setHoveredOnComponent(null)}
               >
                 <CardPage card={card} />
-                <span>
-                  {hoveredOnComponent === card
-                    ? handleComponentOnHover(
-                        card,
-                        card.htmlText,
-                        `<div id="css-previewTitle" 
-                        style={{ 
-                          background: "transparent", 
-                          outline: "none", 
-                          position: "relative" }}>
-                    <div 
-                    dangerouslySetInnerHTML={{ __html: jsxGenerator(card) }}>
-                    </div>
-                  </div>`,
-                        "card"
-                      )
-                    : ""}
-                </span>
+                <span>{hoveredOnComponent === card ? handleComponentOnHover(card) : ""}</span>
               </div>
             ) : (
               <div
@@ -410,24 +374,7 @@ const PreviewPane = ({
                 onMouseLeave={() => setHoveredOnComponent(null)}
               >
                 <CardPage card={card} />
-                <span>
-                  {hoveredOnComponent === card
-                    ? handleComponentOnHover(
-                        card,
-                        card.htmlText,
-                        `<div id="css-previewTitle" 
-                        style={{ 
-                          background: "transparent", 
-                          outline: "none", 
-                          position: "relative" }}>
-                    <div 
-                    dangerouslySetInnerHTML={{ __html: jsxGenerator(card) }}>
-                    </div>
-                  </div>`,
-                        "card"
-                      )
-                    : ""}
-                </span>
+                <span>{hoveredOnComponent === card ? handleComponentOnHover(card) : ""}</span>
               </div>
             ) : (
               <div
@@ -452,24 +399,8 @@ const PreviewPane = ({
                 onMouseLeave={() => setHoveredOnComponent(null)}
               >
                 <CardPage card={card} />
-                <span>
-                  {hoveredOnComponent === card
-                    ? handleComponentOnHover(
-                        card,
-                        card.htmlText,
-                        `<div id="css-previewTitle" 
-                        style={{ 
-                          background: "transparent", 
-                          outline: "none", 
-                          position: "relative" }}>
-                    <div 
-                    dangerouslySetInnerHTML={{ __html: jsxGenerator(card) }}>
-                    </div>
-                  </div>`,
-                        "card"
-                      )
-                    : ""}
-                </span>
+
+                <span>{hoveredOnComponent === card ? handleComponentOnHover(card) : ""}</span>
               </div>
             ) : (
               <div
@@ -491,28 +422,11 @@ const PreviewPane = ({
             <div
               id="css-previewForm"
               style={{ background: "transparent", outline: "none", position: "relative" }}
-              onMouseEnter={() => setHoveredOnComponent(card)}
+              onMouseEnter={() => setHoveredOnComponent(form)}
               onMouseLeave={() => setHoveredOnComponent(null)}
             >
               <FormPage form={form} />
-              <span>
-                {hoveredOnComponent === form
-                  ? handleComponentOnHover(
-                      form,
-                      form.htmlText,
-                      `<div id="css-previewTitle" 
-                          style={{ 
-                            background: "transparent", 
-                            outline: "none", 
-                            position: "relative" }}>
-                      <div 
-                      dangerouslySetInnerHTML={{ __html: jsxGenerator(form) }}>
-                      </div>
-                    </div>`,
-                      "form"
-                    )
-                  : ""}
-              </span>
+              <span>{hoveredOnComponent === form ? handleComponentOnHover(form) : ""}</span>
             </div>
           ) : (
             <div
@@ -539,24 +453,7 @@ const PreviewPane = ({
                 onMouseLeave={() => setHoveredOnComponent(null)}
               >
                 <ButtonPage button={button} />
-                <span>
-                  {hoveredOnComponent === button
-                    ? handleComponentOnHover(
-                        button,
-                        button.htmlText,
-                        `<div id="css-previewTitle" 
-                              style={{ 
-                                background: "transparent", 
-                                outline: "none", 
-                                position: "relative" }}>
-                          <div 
-                          dangerouslySetInnerHTML={{ __html: jsxGenerator(button) }}>
-                          </div>
-                        </div>`,
-                        "button"
-                      )
-                    : ""}
-                </span>
+                <span>{hoveredOnComponent === button ? handleComponentOnHover(button) : ""}</span>
               </div>
             ) : (
               <div
@@ -582,5 +479,3 @@ const PreviewPane = ({
 };
 
 export default PreviewPane;
-
-export const PreviewPaneConfig = config;

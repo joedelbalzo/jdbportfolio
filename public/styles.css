@@ -1555,6 +1555,7 @@ h5 {
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(200, 200, 200, 1);
   border-radius: 0.25rem;
+  z-index: 9999;
 }
 #css-hoverbox > * {
   display: flex;
@@ -1859,12 +1860,10 @@ h5 {
   .css-preview-pane-container {
     display: grid;
     grid-template-columns: 1fr 0;
-    width: 90vw;
-    padding: 10rem;
+    padding: 1rem;
     margin: auto;
     grid-template-rows: 70px, 70px, auto;
     grid-gap: 0px;
-    padding: 0;
     justify-content: flex-start; /* Align cards to the top */
   }
   #css-previewTitle {

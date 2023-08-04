@@ -3,6 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
+import reactElementToJSXString from "react-element-to-jsx-string";
+//make this buttoncss func
+import { buttonCSSFunc } from "./ButtonCSS";
+import { download } from "./Download";
+import { cssCreateCodeFile } from "../../store";
 
 const ButtonWrapper = styled.div`
   display: flex;
@@ -25,11 +30,19 @@ const StyledButton = styled.button`
   cursor: pointer;
   margin: 2px;
   transition: background-color 0.3s ease;
-  background-color: ${(props) => props.bgColor};
-
   &:hover {
     background-color: #888;
     color: #333;
+  }
+
+  &.button1 {
+    background-color: ${(props) => props.$colors.primary};
+  }
+  &.button2 {
+    background-color: ${(props) => props.$colors.secondary};
+  }
+  &.button3 {
+    background-color: ${(props) => props.$colors.tertiary};
   }
 `;
 
@@ -42,22 +55,33 @@ const BasicTextButton = styled.button`
   height: 10vh;
   max-height: 50px;
   background-color: transparent;
-  color: ${(props) => props.color};
+  color: ${(props) => props.$colors.primary};
   font-size: calc(8px + 0.5vw);
   padding: 10px 20px;
   border: none;
   border-radius: 0;
   cursor: pointer;
   margin: 2px;
+  &.main {
+  }
+  &.outlined {
+    border: 2px solid ${(props) => props.$colors.primary};
+    border-radius: 5px;
+  }
+  &.contained {
+    background-color: ${(props) => props.$colors.secondary};
+    color: ${(props) => props.$colors.secondaryColorContrast};
+    border-radius: 5px;
+  }
 `;
 
 const BasicOutlinedButton = styled(BasicTextButton)`
-  border: 2px solid ${(props) => props.color};
+  border: 2px solid ${(props) => props.$color};
   border-radius: 5px;
 `;
 
 const BasicContainedButton = styled(BasicTextButton)`
-  background-color: ${(props) => props.color};
+  background-color: ${(props) => props.$color};
   color: #fff;
   border-radius: 5px;
 `;
@@ -72,9 +96,9 @@ const CustomAnchor = styled.a`
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  color: ${(props) => props.color};
-  background-color: ${(props) => props.bgColor};
-  border: ${(props) => props.border};
+  color: ${(props) => props.$color};
+  background-color: ${(props) => props.$bgColor};
+  border: ${(props) => props.$border};
 
   &:hover {
     background-color: #888;
@@ -122,7 +146,7 @@ const IconButtons = styled.button`
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   margin: 2px;
   transition: background-color 0.3s ease;
-  background-color: ${(props) => (props.disabled ? "#999" : props.color)};
+  background-color: ${(props) => (props.disabled ? "#999" : props.$color)};
   opacity: ${(props) => (props.disabled ? "0.5" : "1")};
 `;
 
@@ -139,6 +163,9 @@ const ButtonPage = ({ button }) => {
   const [bgColorContrast, setBgColorContrast] = useState("");
   const [error, setError] = useState("");
   const [buttonPage, setButtonPage] = useState("");
+  const [jsxString, setJsxString] = useState("");
+  const [downloadableCSS, setDownloadableCSS] = useState("");
+  const [dl, setDl] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -146,66 +173,141 @@ const ButtonPage = ({ button }) => {
   if (!cssCpg) {
     return null;
   }
-  if (button) {
-    // console.log("button:", button.name);
-  } else {
+  if (!button) {
     return null;
   }
 
   useEffect(() => {
     try {
-      console.log(cssCpg);
-      setPrimaryColor(cssCpg[0].hex.value);
-      setSecondaryColor(cssCpg[1].hex.value);
-      setTertiaryColor(cssCpg[2].hex.value);
-      setBgColor(cssCpg[3].hex.value);
-      setPrimaryColorContrast(cssCpg[0].contrast.value);
-      setSecondaryColorContrast(cssCpg[1].contrast.value);
-      setTertiaryColorContrast(cssCpg[2].contrast.value);
-      setBgColorContrast(cssCpg[3].contrast.value);
-    } catch (err) {
-      setError(err);
-    }
-  }, [cssCpg]);
+      const savedColors = JSON.parse(localStorage.getItem("colors"));
+      if (savedColors) {
+        setPrimaryColor(savedColors[0].hex.value);
+        setSecondaryColor(savedColors[1].hex.value);
+        setTertiaryColor(savedColors[2].hex.value);
+        setBgColor(savedColors[3].hex.value);
+        setPrimaryColorContrast(savedColors[0].contrast.value);
+        setSecondaryColorContrast(savedColors[1].contrast.value);
+        setTertiaryColorContrast(savedColors[2].contrast.value);
+        setBgColorContrast(savedColors[3].contrast.value);
+      } else if (cssCpg) {
+        setPrimaryColor(cssCpg[0].hex.value);
+        setSecondaryColor(cssCpg[1].hex.value);
+        setTertiaryColor(cssCpg[2].hex.value);
+        setBgColor(cssCpg[3].hex.value);
+        setPrimaryColorContrast(cssCpg[0].contrast.value);
+        setSecondaryColorContrast(cssCpg[1].contrast.value);
+        setTertiaryColorContrast(cssCpg[2].contrast.value);
+        setBgColorContrast(cssCpg[3].contrast.value);
+      }
+    } catch (err) {}
+  }, []);
 
   useEffect(() => {
     setButtonPage(buttonFunc(button));
-  }, [button]);
+    setDownloadableCSS(buttonCSSFunc(button));
+  }, [button, bgColorContrast]);
+
+  useEffect(() => {
+    try {
+      setJsxString(reactElementToJSXString(buttonPage, { indent: 2 }));
+    } catch (err) {
+      console.log();
+    }
+  }, [buttonPage]);
+
+  useEffect(() => {
+    try {
+      const result = download(jsxString, downloadableCSS, button);
+      setDl(result);
+    } catch (err) {
+      console.log();
+    }
+  }, [jsxString]);
+
+  useEffect(() => {
+    try {
+      dispatch(cssCreateCodeFile(dl, button.type));
+    } catch (err) {
+      console.log();
+    }
+  }, [dl]);
 
   const buttonFunc = (button) => {
-    console.log(button.name);
     if (button.name === "Basic Color Buttons") {
       return (
         <ButtonWrapper>
-          <StyledButton bgColor={primaryColor}>Click Me</StyledButton>
-          <StyledButton bgColor={secondaryColor}>Click Me</StyledButton>
-          <StyledButton bgColor={tertiaryColor}>Click Me</StyledButton>
+          <StyledButton
+            className="button1"
+            $colors={{
+              primary: primaryColor,
+            }}
+          >
+            Click Me
+          </StyledButton>
+          <StyledButton
+            className="button2"
+            $colors={{
+              secondary: secondaryColor,
+            }}
+          >
+            Click Me
+          </StyledButton>
+          <StyledButton
+            className="button3"
+            $colors={{
+              tertiary: tertiaryColor,
+            }}
+          >
+            Click Me
+          </StyledButton>
         </ButtonWrapper>
       );
     } else if (button.name === "Mixed Bag") {
       return (
         <ButtonWrapper>
-          <BasicTextButton color={primaryColor}>Click Me</BasicTextButton>
-          <BasicOutlinedButton color={primaryColor}>Click Me</BasicOutlinedButton>
-          <BasicContainedButton color={primaryColor}>Click Me</BasicContainedButton>
+          <BasicTextButton
+            className="main"
+            $colors={{
+              primary: primaryColor,
+            }}
+          >
+            Click Me
+          </BasicTextButton>
+          <BasicTextButton
+            className="outlined"
+            $colors={{
+              primary: primaryColor,
+            }}
+          >
+            Click Me
+          </BasicTextButton>
+          <BasicTextButton
+            className="contained"
+            $colors={{
+              secondary: secondaryColor,
+              secondaryColorContrast: secondaryColorContrast,
+            }}
+          >
+            Click Me
+          </BasicTextButton>
         </ButtonWrapper>
       );
     } else if (button.name === "Bold Buttons") {
       return (
         <ButtonWrapper>
-          <CustomAnchor color="#fff" bgColor={primaryColor} href="#">
+          <CustomAnchor $color={primaryColorContrast} $bgColor={primaryColor} href="#">
             Primary
           </CustomAnchor>
-          <CustomAnchor color="#fff" bgColor={secondaryColor} href="#">
+          <CustomAnchor $color={secondaryColorContrast} $bgColor={secondaryColor} href="#">
             Secondary
           </CustomAnchor>
-          <CustomAnchor color="#fff" bgColor={tertiaryColor} href="#">
+          <CustomAnchor $color={tertiaryColorContrast} $bgColor={tertiaryColor} href="#">
             Tertiary
           </CustomAnchor>
           <CustomAnchor
             color={primaryColor}
-            bgColor="transparent"
-            border={`2px solid ${primaryColor}`}
+            $bgColor="transparent"
+            $border={`2px solid ${primaryColor}`}
             href="#"
           >
             Outline
@@ -249,14 +351,14 @@ const ButtonPage = ({ button }) => {
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
           </Helmet>
           <ButtonWrapper>
-            <IconButtons color={primaryColor}>
-              <span class="material-icons">home</span>
+            <IconButtons $color={primaryColor}>
+              <span className="material-icons">home</span>
             </IconButtons>
-            <IconButtons color={secondaryColor}>
-              <span class="material-icons">favorite</span>
+            <IconButtons $color={secondaryColor}>
+              <span className="material-icons">favorite</span>
             </IconButtons>
-            <IconButtons color={tertiaryColor}>
-              <span class="material-icons">settings</span>
+            <IconButtons $color={tertiaryColor}>
+              <span className="material-icons">settings</span>
             </IconButtons>
           </ButtonWrapper>
         </>
@@ -269,13 +371,13 @@ const ButtonPage = ({ button }) => {
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
           </Helmet>
           <ButtonWrapper>
-            <IconButtons color={primaryColor} disabled>
+            <IconButtons $color={primaryColor} disabled>
               <span className="material-icons">home</span>
             </IconButtons>
-            <IconButtons color={secondaryColor} disabled>
+            <IconButtons $color={secondaryColor} disabled>
               <span className="material-icons">favorite</span>
             </IconButtons>
-            <IconButtons color={tertiaryColor} disabled>
+            <IconButtons $color={tertiaryColor} disabled>
               <span className="material-icons">settings</span>
             </IconButtons>
           </ButtonWrapper>

@@ -428,6 +428,7 @@ const ColorGenForm = ({
                     onClick={() => {
                       dispatch(cssDeleteColorPalette(cssCpg));
                       setExpanded(true);
+                      localStorage.clear("colors");
                     }}
                   >
                     clear all

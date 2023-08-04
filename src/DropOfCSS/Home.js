@@ -69,13 +69,12 @@ const Home = ({}) => {
   };
 
   return (
-    <div>
-      <div
-        id="css-page-container-div"
-        style={{
-          backgroundColor: darkMode === true ? "#575757" : "",
-        }}
-      >
+    <div
+      style={{
+        backgroundColor: darkMode === true ? "#575757" : "",
+      }}
+    >
+      <div id="css-page-container-div">
         <div id="css-page-container-left-divs">
           <div id="css-cpg-div">
             <ColorGenForm

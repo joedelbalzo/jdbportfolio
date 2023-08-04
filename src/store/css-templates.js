@@ -20,7 +20,6 @@ const cssTemplates = (state = [], action) => {
 
 export const cssSetTemplates = (userId) => {
   return async (dispatch) => {
-    // console.log("moe's id in setTemplates", userId);
     const response = await axios.get(`/api/css/templates/${userId}`);
     dispatch({ type: "SET_TEMPLATES", templates: response.data });
   };

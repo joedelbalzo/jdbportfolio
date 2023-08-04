@@ -12,8 +12,8 @@ import scriptDrinks from "./script-drinks";
 import scriptMerches from "./script-merches";
 import scriptReviews from "./script-reviews";
 import cssAuth from "./css-auth";
-import { cssComponents } from "./css-components";
-import { cssComponentColors } from "./css-components";
+import { cssComponents, cssCodeFile, cssComponentColors } from "./css-components";
+// import { cssComponentColors } from "./css-components";
 import cssCpg from "./css-cpg";
 import cssTemplates from "./css-templates";
 
@@ -32,6 +32,7 @@ const reducer = combineReducers({
   cssCpg,
   cssComponents,
   cssComponentColors,
+  cssCodeFile,
   cssTemplates,
 });
 

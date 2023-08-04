@@ -10,6 +10,15 @@ const FavHeart = ({ component }) => {
   const [heartClicked, setHeartClicked] = useState(false);
   const dispatch = useDispatch();
 
+  if (!cssTemplates) {
+    //here is the issue
+    return null;
+  } else if (cssTemplates) {
+    return null;
+  }
+  if (!cssAuth) {
+    return null;
+  }
   useEffect(() => {
     if (cssAuth) {
       dispatch(cssSetTemplates(cssAuth.id));

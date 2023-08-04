@@ -13,6 +13,16 @@ export const cssComponentColors = (state = [], action) => {
   }
   return state;
 };
+export const cssCodeFile = (state = {}, action) => {
+  if (action.type === "SET_DOWNLOAD") {
+    // console.log(action.downloads);
+    return { ...state, ...action.downloads };
+  }
+  if (action.type === "CLEAR_DOWNLOADS") {
+    return {};
+  }
+  return state;
+};
 
 export const cssFetchComponents = () => {
   return async (dispatch) => {
@@ -48,4 +58,22 @@ export const cssSetColorsOnComponents = (search) => {
   };
 };
 
-export default { cssComponents, cssComponentColors };
+export const cssCreateCodeFile = (dl, compType) => {
+  return async (dispatch, getState) => {
+    // console.log("in the create code file store", compType, dl);
+
+    const currentState = getState();
+    const downloads = currentState.downloads || {};
+
+    downloads[compType] = dl;
+
+    dispatch({ type: "SET_DOWNLOAD", downloads });
+  };
+};
+export const clearCodeFiles = () => {
+  return async (dispatch) => {
+    dispatch({ type: "CLEAR_DOWNLOADS" });
+  };
+};
+
+export default { cssComponents, cssComponentColors, cssCodeFile };

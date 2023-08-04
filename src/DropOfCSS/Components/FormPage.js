@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import reactElementToJSXString from "react-element-to-jsx-string";
+//make this formcss func
+import { formCSSFunc } from "./FormCSS";
+import { download } from "./Download";
+import { cssCreateCodeFile } from "../../store";
 
 const ContactUsLight = styled.div`
   background-color: ${(props) => props.colors.bg}26;
@@ -242,7 +247,8 @@ const OauthLogin = styled.div`
   }
 `;
 
-const GenericForm = styled.div`  font-size: calc(12px + 0.5vw);
+const GenericForm = styled.div`  
+font-size: calc(12px + 0.5vw);
 background-color: ${(props) => props.colors.primary};
 color: ${(props) => props.colors.primaryColorContrast};
 padding: 1rem;
@@ -421,6 +427,9 @@ const FormPage = ({ form }) => {
   const [bgColorContrast, setBgColorContrast] = useState("");
   const [error, setError] = useState("");
   const [formPage, setFormPage] = useState("");
+  const [jsxString, setJsxString] = useState("");
+  const [downloadableCSS, setDownloadableCSS] = useState("");
+  const [dl, setDl] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -429,33 +438,66 @@ const FormPage = ({ form }) => {
     return null;
   }
   if (form) {
-    // console.log("form:", form.name);
   } else {
     return null;
   }
 
   useEffect(() => {
     try {
-      console.log(cssCpg);
-      setPrimaryColor(cssCpg[0].hex.value);
-      setSecondaryColor(cssCpg[1].hex.value);
-      setTertiaryColor(cssCpg[2].hex.value);
-      setBgColor(cssCpg[3].hex.value);
-      setPrimaryColorContrast(cssCpg[0].contrast.value);
-      setSecondaryColorContrast(cssCpg[1].contrast.value);
-      setTertiaryColorContrast(cssCpg[2].contrast.value);
-      setBgColorContrast(cssCpg[3].contrast.value);
-    } catch (err) {
-      setError(err);
-    }
-  }, [cssCpg]);
+      const savedColors = JSON.parse(localStorage.getItem("colors"));
+      if (savedColors) {
+        setPrimaryColor(savedColors[0].hex.value);
+        setSecondaryColor(savedColors[1].hex.value);
+        setTertiaryColor(savedColors[2].hex.value);
+        setBgColor(savedColors[3].hex.value);
+        setPrimaryColorContrast(savedColors[0].contrast.value);
+        setSecondaryColorContrast(savedColors[1].contrast.value);
+        setTertiaryColorContrast(savedColors[2].contrast.value);
+        setBgColorContrast(savedColors[3].contrast.value);
+      } else if (cssCpg) {
+        setPrimaryColor(cssCpg[0].hex.value);
+        setSecondaryColor(cssCpg[1].hex.value);
+        setTertiaryColor(cssCpg[2].hex.value);
+        setBgColor(cssCpg[3].hex.value);
+        setPrimaryColorContrast(cssCpg[0].contrast.value);
+        setSecondaryColorContrast(cssCpg[1].contrast.value);
+        setTertiaryColorContrast(cssCpg[2].contrast.value);
+        setBgColorContrast(cssCpg[3].contrast.value);
+      }
+    } catch (err) {}
+  }, []);
 
   useEffect(() => {
     setFormPage(formFunc(form));
-  }, [form]);
+    setDownloadableCSS(formCSSFunc(form));
+  }, [form, bgColorContrast]);
+
+  useEffect(() => {
+    try {
+      setJsxString(reactElementToJSXString(formPage, { indent: 2 }));
+    } catch (err) {
+      console.log();
+    }
+  }, [formPage]);
+
+  useEffect(() => {
+    try {
+      const result = download(jsxString, downloadableCSS, form);
+      setDl(result);
+    } catch (err) {
+      console.log();
+    }
+  }, [jsxString]);
+
+  useEffect(() => {
+    try {
+      dispatch(cssCreateCodeFile(dl, form.type));
+    } catch (err) {
+      console.log();
+    }
+  }, [dl]);
 
   const formFunc = (form) => {
-    console.log(form.name);
     if (form.name === "Contact Us - Light") {
       return (
         <ContactUsLight
