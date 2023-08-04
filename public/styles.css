@@ -1051,6 +1051,14 @@ nav > h5 {
   width: 140px;
   cursor: pointer;
 }
+.css-reset-button {
+  background-color: dodgerblue;
+  color: white;
+  border-radius: 0.24rem;
+  margin: 0.1rem;
+  width: 140px;
+  cursor: pointer;
+}
 .css-dark-mode-button {
   background-color: darkslategray;
   color: white;

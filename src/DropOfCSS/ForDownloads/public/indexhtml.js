@@ -20,7 +20,7 @@ export const indexhtml = () => {
       </script>
     </head>
     <body>
-      <div id="root"></div>
+      <div id="root">this is under construction still! feel free to download individual components</div>
     </body>
   </html>
   `;

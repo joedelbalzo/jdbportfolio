@@ -232,7 +232,7 @@ const PreviewPane = ({
         <button className="css-reset-button" onClick={() => clearComponents("all")}>
           Reset Template
         </button>
-        <button className="css-reset-button" onClick={() => downloadTemplate()}>
+        <button className="css-download-button" onClick={() => downloadTemplate()}>
           Download Template
         </button>
         {darkMode === true ? (
