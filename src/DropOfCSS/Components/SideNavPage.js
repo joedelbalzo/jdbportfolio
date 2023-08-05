@@ -127,13 +127,21 @@ const DropdownSideNav = styled.div`
     }
   }
 
+  .dropdown {
+    position: relative;
+
+    &:hover .dropdown-content {
+      display: block;
+    }
+  }
+
   .dropdown-content {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
     margin-bottom: 50px;
-    width: 147px;
+    width: 100%;
     background-color: ${(props) => props.colors.bg};
     color: ${(props) => props.colors.bgColorContrast};
     border: 2px solid ${(props) => props.colors.primary};
@@ -142,8 +150,8 @@ const DropdownSideNav = styled.div`
     a {
       display: block;
       padding: 8px 16px;
-      color: black;
-      text-decoration: none;
+      color: ${(props) => props.colors.bgColorContrast};
+            text-decoration: none;
       transition: background-color 0.3s ease;
 
       &:hover {
@@ -151,11 +159,9 @@ const DropdownSideNav = styled.div`
         color: ${(props) => props.colors.secondaryColorContrast};
       }
     }
-  }
+  
 
-  &:hover .dropdown-content {
-    display: block;
-  }
+
 `;
 
 const SideNavbarPage = ({ sideNav }) => {
@@ -177,6 +183,7 @@ const SideNavbarPage = ({ sideNav }) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [tagName, setTagName] = useState("");
 
   if (!cssCpg) {
     return null;
@@ -224,6 +231,9 @@ const SideNavbarPage = ({ sideNav }) => {
       console.log();
     }
   }, [sideNav]);
+  useEffect(() => {
+    setJsxString(jsxString.replaceAll("styled", tagName));
+  }, [jsxString]);
 
   useEffect(() => {
     try {
@@ -244,6 +254,8 @@ const SideNavbarPage = ({ sideNav }) => {
 
   const sideNavFunc = (sideNav) => {
     if (sideNav.name === "Side Nav") {
+      setTagName("SideNav");
+
       return (
         <SideNav
           colors={{
@@ -262,6 +274,8 @@ const SideNavbarPage = ({ sideNav }) => {
         </SideNav>
       );
     } else if (sideNav.name === "SideNav 2") {
+      setTagName("SideNav2");
+
       return (
         <SideNav2
           colors={{
@@ -283,6 +297,8 @@ const SideNavbarPage = ({ sideNav }) => {
         </SideNav2>
       );
     } else if (sideNav.name === "SideNav 3") {
+      setTagName("SideNav3");
+
       return (
         <SideNav3
           colors={{
@@ -314,6 +330,8 @@ const SideNavbarPage = ({ sideNav }) => {
         </SideNav3>
       );
     } else if (sideNav.name === "Dropdown SideNav") {
+      setTagName("DropdownSideNav");
+
       return (
         <DropdownSideNav
           colors={{

@@ -181,6 +181,7 @@ const TitlePage = ({ title }) => {
   const [jsxString, setJsxString] = useState("");
   const [downloadableCSS, setDownloadableCSS] = useState("");
   const [dl, setDl] = useState("");
+  const [tagName, setTagName] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -233,6 +234,10 @@ const TitlePage = ({ title }) => {
   }, [titlePage]);
 
   useEffect(() => {
+    setJsxString(jsxString.replaceAll("styled", tagName));
+  }, [jsxString]);
+
+  useEffect(() => {
     try {
       const result = download(jsxString, downloadableCSS, title);
       setDl(result);
@@ -251,6 +256,7 @@ const TitlePage = ({ title }) => {
 
   const titleFunc = (title) => {
     if (title.name === "Title & Subtitle") {
+      setTagName("TitleSubtitle");
       return (
         <TitleSubtitle
           colors={{
@@ -265,6 +271,7 @@ const TitlePage = ({ title }) => {
         </TitleSubtitle>
       );
     } else if (title.name === "Text Shadow") {
+      setTagName("TextShadow");
       return (
         <TextShadow
           colors={{
@@ -278,6 +285,7 @@ const TitlePage = ({ title }) => {
         </TextShadow>
       );
     } else if (title.name === "Uppercase") {
+      setTagName("UppercaseTitle");
       return (
         <UppercaseTitle
           colors={{
@@ -291,6 +299,7 @@ const TitlePage = ({ title }) => {
         </UppercaseTitle>
       );
     } else if (title.name === "Underline") {
+      setTagName("UnderlineTitle");
       return (
         <UnderlineTitle
           colors={{
@@ -304,6 +313,7 @@ const TitlePage = ({ title }) => {
         </UnderlineTitle>
       );
     } else if (title.name === "Border Gradiant") {
+      setTagName("BorderGradientTitle");
       return (
         <BorderGradientTitle
           colors={{
@@ -317,6 +327,8 @@ const TitlePage = ({ title }) => {
         </BorderGradientTitle>
       );
     } else if (title.name === "Dark Mode") {
+      setTagName("DarkModeTitle");
+
       return (
         <DarkModeTitle
           colors={{
@@ -332,6 +344,7 @@ const TitlePage = ({ title }) => {
         </DarkModeTitle>
       );
     } else if (title.name === "Top Border") {
+      setTagName("TopBorderTitle");
       return (
         <TopBorderTitle
           colors={{

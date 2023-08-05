@@ -14,7 +14,7 @@ const ButtonWrapper = styled.div`
   justify-content: space-around;
 `;
 
-const StyledButton = styled.button`
+const BasicColorButtons = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,7 +46,7 @@ const StyledButton = styled.button`
   }
 `;
 
-const BasicTextButton = styled.button`
+const MixedButtons = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,18 +75,18 @@ const BasicTextButton = styled.button`
   }
 `;
 
-const BasicOutlinedButton = styled(BasicTextButton)`
+const BasicOutlinedButton = styled(MixedButtons)`
   border: 2px solid ${(props) => props.$color};
   border-radius: 5px;
 `;
 
-const BasicContainedButton = styled(BasicTextButton)`
+const BasicContainedButton = styled(MixedButtons)`
   background-color: ${(props) => props.$color};
   color: #fff;
   border-radius: 5px;
 `;
 
-const CustomAnchor = styled.a`
+const BoldButtons = styled.a`
   display: inline-block;
   padding: 10px 20px;
   font-size: 16px;
@@ -105,7 +105,7 @@ const CustomAnchor = styled.a`
   }
 `;
 
-const SocialButton = styled.button`
+const SocialMediaButtons = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -166,6 +166,7 @@ const ButtonPage = ({ button }) => {
   const [jsxString, setJsxString] = useState("");
   const [downloadableCSS, setDownloadableCSS] = useState("");
   const [dl, setDl] = useState("");
+  const [tagName, setTagName] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -216,6 +217,10 @@ const ButtonPage = ({ button }) => {
   }, [buttonPage]);
 
   useEffect(() => {
+    setJsxString(jsxString.replaceAll("styled", tagName));
+  }, [jsxString]);
+
+  useEffect(() => {
     try {
       const result = download(jsxString, downloadableCSS, button);
       setDl(result);
@@ -234,54 +239,58 @@ const ButtonPage = ({ button }) => {
 
   const buttonFunc = (button) => {
     if (button.name === "Basic Color Buttons") {
+      setTagName("BasicColorButtons");
+
       return (
         <ButtonWrapper>
-          <StyledButton
+          <BasicColorButtons
             className="button1"
             $colors={{
               primary: primaryColor,
             }}
           >
             Click Me
-          </StyledButton>
-          <StyledButton
+          </BasicColorButtons>
+          <BasicColorButtons
             className="button2"
             $colors={{
               secondary: secondaryColor,
             }}
           >
             Click Me
-          </StyledButton>
-          <StyledButton
+          </BasicColorButtons>
+          <BasicColorButtons
             className="button3"
             $colors={{
               tertiary: tertiaryColor,
             }}
           >
             Click Me
-          </StyledButton>
+          </BasicColorButtons>
         </ButtonWrapper>
       );
     } else if (button.name === "Mixed Bag") {
+      setTagName("MixedButtons");
+
       return (
         <ButtonWrapper>
-          <BasicTextButton
+          <MixedButtons
             className="main"
             $colors={{
               primary: primaryColor,
             }}
           >
             Click Me
-          </BasicTextButton>
-          <BasicTextButton
+          </MixedButtons>
+          <MixedButtons
             className="outlined"
             $colors={{
               primary: primaryColor,
             }}
           >
             Click Me
-          </BasicTextButton>
-          <BasicTextButton
+          </MixedButtons>
+          <MixedButtons
             className="contained"
             $colors={{
               secondary: secondaryColor,
@@ -289,32 +298,36 @@ const ButtonPage = ({ button }) => {
             }}
           >
             Click Me
-          </BasicTextButton>
+          </MixedButtons>
         </ButtonWrapper>
       );
     } else if (button.name === "Bold Buttons") {
+      setTagName("BoldButtons");
+
       return (
         <ButtonWrapper>
-          <CustomAnchor $color={primaryColorContrast} $bgColor={primaryColor} href="#">
+          <BoldButtons $color={primaryColorContrast} $bgColor={primaryColor} href="#">
             Primary
-          </CustomAnchor>
-          <CustomAnchor $color={secondaryColorContrast} $bgColor={secondaryColor} href="#">
+          </BoldButtons>
+          <BoldButtons $color={secondaryColorContrast} $bgColor={secondaryColor} href="#">
             Secondary
-          </CustomAnchor>
-          <CustomAnchor $color={tertiaryColorContrast} $bgColor={tertiaryColor} href="#">
+          </BoldButtons>
+          <BoldButtons $color={tertiaryColorContrast} $bgColor={tertiaryColor} href="#">
             Tertiary
-          </CustomAnchor>
-          <CustomAnchor
+          </BoldButtons>
+          <BoldButtons
             color={primaryColor}
             $bgColor="transparent"
             $border={`2px solid ${primaryColor}`}
             href="#"
           >
             Outline
-          </CustomAnchor>
+          </BoldButtons>
         </ButtonWrapper>
       );
     } else if (button.name === "Social Media Icons") {
+      setTagName("SocialMediaButtons");
+
       return (
         <>
           <Helmet>
@@ -325,25 +338,43 @@ const ButtonPage = ({ button }) => {
             />
           </Helmet>
           <ButtonWrapper>
-            <SocialButton $bgColor="#3b5998" $hoverBgColor={bgColor} $primaryColor={primaryColor}>
+            <SocialMediaButtons
+              $bgColor="#3b5998"
+              $hoverBgColor={bgColor}
+              $primaryColor={primaryColor}
+            >
               <i className="fab fa-facebook-f"></i>
-            </SocialButton>
+            </SocialMediaButtons>
 
-            <SocialButton $bgColor="#1da1f2" $hoverBgColor={bgColor} $primaryColor={primaryColor}>
+            <SocialMediaButtons
+              $bgColor="#1da1f2"
+              $hoverBgColor={bgColor}
+              $primaryColor={primaryColor}
+            >
               <i className="fab fa-twitter"></i>
-            </SocialButton>
+            </SocialMediaButtons>
 
-            <SocialButton $bgColor="#e4405f" $hoverBgColor={bgColor} $primaryColor={primaryColor}>
+            <SocialMediaButtons
+              $bgColor="#e4405f"
+              $hoverBgColor={bgColor}
+              $primaryColor={primaryColor}
+            >
               <i className="fab fa-instagram"></i>
-            </SocialButton>
+            </SocialMediaButtons>
 
-            <SocialButton $bgColor="#0077b5" $hoverBgColor={bgColor} $primaryColor={primaryColor}>
+            <SocialMediaButtons
+              $bgColor="#0077b5"
+              $hoverBgColor={bgColor}
+              $primaryColor={primaryColor}
+            >
               <i className="fab fa-linkedin-in"></i>
-            </SocialButton>
+            </SocialMediaButtons>
           </ButtonWrapper>
         </>
       );
     } else if (button.name === "Icon Buttons") {
+      setTagName("IconButtons");
+
       return (
         <>
           <Helmet>

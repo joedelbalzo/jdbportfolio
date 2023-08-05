@@ -122,6 +122,13 @@ const DropdownSideCSS = `
       color: [TERTIARY HEX];
     }
   }
+  .dropdown {
+    position: relative;
+
+    &:hover .dropdown-content {
+      display: block;
+    }
+  }
 
   .dropdown-content {
     display: none;
@@ -129,7 +136,7 @@ const DropdownSideCSS = `
     top: 100%;
     left: 0;
     margin-bottom: 50px;
-    width: 147px;
+    width: 100%;
     background-color: [BG HEX];
     color: [BG CONTRAST HEX];
     border: 2px solid [PRIMARY HEX];
@@ -138,7 +145,7 @@ const DropdownSideCSS = `
     a {
       display: block;
       padding: 8px 16px;
-      color: black;
+      color: [BG CONTRAST HEX];
       text-decoration: none;
       transition: background-color 0.3s ease;
 
@@ -147,10 +154,6 @@ const DropdownSideCSS = `
         color: [SECONDARY CONTRAST HEX];
       }
     }
-  }
-
-  &:hover .dropdown-content {
-    display: block;
   }
   \`;`;
 

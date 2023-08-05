@@ -8,7 +8,7 @@ import { formCSSFunc } from "./FormCSS";
 import { download } from "./Download";
 import { cssCreateCodeFile } from "../../store";
 
-const ContactUsLight = styled.div`
+const ContactUsLightForm = styled.div`
   background-color: ${(props) => props.colors.bg}26;
   color: ${(props) => props.colors.bgColorContrast};
   border: 2px solid ${(props) => props.colors.primary};
@@ -94,7 +94,7 @@ const ContactUsLight = styled.div`
   }
 `;
 
-const ContactUsDark = styled(ContactUsLight)`
+const ContactUsDarkForm = styled(ContactUsLightForm)`
   background-color: ${(props) => props.colors.primary};
   color: ${(props) => props.colors.primaryColorContrast};
   h1 {
@@ -102,7 +102,7 @@ const ContactUsDark = styled(ContactUsLight)`
   }
 `;
 
-const OauthLogin = styled.div`
+const OauthLoginForm = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -430,6 +430,7 @@ const FormPage = ({ form }) => {
   const [jsxString, setJsxString] = useState("");
   const [downloadableCSS, setDownloadableCSS] = useState("");
   const [dl, setDl] = useState("");
+  const [tagName, setTagName] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -481,6 +482,10 @@ const FormPage = ({ form }) => {
   }, [formPage]);
 
   useEffect(() => {
+    setJsxString(jsxString.replaceAll("styled", tagName));
+  }, [jsxString]);
+
+  useEffect(() => {
     try {
       const result = download(jsxString, downloadableCSS, form);
       setDl(result);
@@ -499,8 +504,9 @@ const FormPage = ({ form }) => {
 
   const formFunc = (form) => {
     if (form.name === "Contact Us - Light") {
+      setTagName("ContactUsLightForm");
       return (
-        <ContactUsLight
+        <ContactUsLightForm
           colors={{
             primary: primaryColor,
             primaryColorContrast: primaryColorContrast,
@@ -542,11 +548,12 @@ const FormPage = ({ form }) => {
             <span>email</span>
             <span>peter@peter.com</span>
           </p>
-        </ContactUsLight>
+        </ContactUsLightForm>
       );
     } else if (form.name === "Contact Us - Dark") {
+      setTagName("ContactUsDarkForm");
       return (
-        <ContactUsDark
+        <ContactUsDarkForm
           colors={{
             primary: primaryColor,
             primaryColorContrast: primaryColorContrast,
@@ -589,11 +596,12 @@ const FormPage = ({ form }) => {
             <span>email</span>
             <span>peter@peter.com</span>
           </p>
-        </ContactUsDark>
+        </ContactUsDarkForm>
       );
     } else if (form.name === "Login - with OAuth") {
+      setTagName("OauthLoginForm");
       return (
-        <OauthLogin
+        <OauthLoginForm
           colors={{
             primary: primaryColor,
             primaryColorContrast: primaryColorContrast,
@@ -629,9 +637,11 @@ const FormPage = ({ form }) => {
               </div>
             </div>
           </div>
-        </OauthLogin>
+        </OauthLoginForm>
       );
     } else if (form.name === "Generic Form") {
+      setTagName("GenericForm");
+
       return (
         <GenericForm
           colors={{
@@ -679,6 +689,8 @@ const FormPage = ({ form }) => {
         </GenericForm>
       );
     } else if (form.name === "Checkout - Payment") {
+      setTagName("PaymentForm");
+
       return (
         <PaymentForm
           colors={{
@@ -721,6 +733,8 @@ const FormPage = ({ form }) => {
         </PaymentForm>
       );
     } else if (form.name === "Checkout - Address") {
+      setTagName("AddressForm");
+
       return (
         <AddressForm
           colors={{

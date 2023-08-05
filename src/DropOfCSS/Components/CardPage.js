@@ -369,6 +369,7 @@ const CardPage = ({ card }) => {
   const [jsxString, setJsxString] = useState("");
   const [downloadableCSS, setDownloadableCSS] = useState("");
   const [dl, setDl] = useState("");
+  const [tagName, setTagName] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -421,6 +422,10 @@ const CardPage = ({ card }) => {
   }, [cardPage]);
 
   useEffect(() => {
+    setJsxString(jsxString.replaceAll("styled", tagName));
+  }, [jsxString]);
+
+  useEffect(() => {
     try {
       const result = download(jsxString, downloadableCSS, card);
       setDl(result);
@@ -440,6 +445,8 @@ const CardPage = ({ card }) => {
   const cardFunc = (card) => {
     console.log(card.name);
     if (card.name === "Product - Generic") {
+      setTagName("ProductCard");
+
       return (
         <ProductCard
           colors={{
@@ -466,6 +473,8 @@ const CardPage = ({ card }) => {
         </ProductCard>
       );
     } else if (card.name === "Product - Gradient") {
+      setTagName("ProductCardGradient");
+
       return (
         <ProductCardGradient
           colors={{
@@ -490,6 +499,8 @@ const CardPage = ({ card }) => {
         </ProductCardGradient>
       );
     } else if (card.name === "Product Card Subtle") {
+      setTagName("ProductCardSubtle");
+
       return (
         <ProductCardSubtle
           colors={{
@@ -518,6 +529,8 @@ const CardPage = ({ card }) => {
         </ProductCardSubtle>
       );
     } else if (card.name === "Photo Card") {
+      setTagName("PhotoCard");
+
       return (
         <PhotoCard
           colors={{
@@ -550,6 +563,8 @@ const CardPage = ({ card }) => {
         </PhotoCard>
       );
     } else if (card.name === "Social Media Photo") {
+      setTagName("SocialMediaCard");
+
       return (
         <SocialMediaCard
           colors={{

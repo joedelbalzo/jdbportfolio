@@ -32,7 +32,7 @@ a:active {
   }
 `;
 
-const Dropdown = styled.div`
+const DropdownNav = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
@@ -109,7 +109,7 @@ const Dropdown = styled.div`
     }
   }
 `;
-const GradientBackground = styled.div`
+const GradientBackgroundNav = styled.div`
 background: linear-gradient(to right, ${(props) => props.colors.bg}, ${(props) =>
   props.colors.secondary});
 color: ${(props) => props.colors.secondaryColorContrast};
@@ -136,12 +136,9 @@ a:hover{
   -webkit-backdrop-filter: blur(2.4px);
   outline: 1px solid rgba(255, 255, 255, 1); 
 }
-
-
-
 `;
 
-const BorderBottom = styled.div`
+const BorderBottomNav = styled.div`
   background-color: ${(props) => props.colors.bg};
   color: ${(props) => props.colors.bgColorContrast};
   padding: 10px;
@@ -162,7 +159,7 @@ const BorderBottom = styled.div`
     color: white;
   }
 `;
-const BorderBottomWithLogin = styled.div`
+const BorderBottomNavWithLogin = styled.div`
   background-color: ${(props) => props.colors.bg};
   color: ${(props) => props.colors.bgColorContrast};
   padding: 10px;
@@ -225,6 +222,7 @@ const NavbarPage = ({ nav }) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [tagName, setTagName] = useState("");
 
   if (!cssCpg) {
     return null;
@@ -274,6 +272,10 @@ const NavbarPage = ({ nav }) => {
   }, [navbarPage]);
 
   useEffect(() => {
+    setJsxString(jsxString.replaceAll("styled", tagName));
+  }, [jsxString]);
+
+  useEffect(() => {
     try {
       const result = download(jsxString, downloadableCSS, nav);
       setDl(result);
@@ -292,6 +294,8 @@ const NavbarPage = ({ nav }) => {
 
   const navFunc = (nav) => {
     if (nav.name === "Simple") {
+      setTagName("SimpleNavBar");
+
       return (
         <SimpleNavBar
           colors={{
@@ -308,8 +312,10 @@ const NavbarPage = ({ nav }) => {
         </SimpleNavBar>
       );
     } else if (nav.name === "Dropdown") {
+      setTagName("DropdownNav");
+
       return (
-        <Dropdown
+        <DropdownNav
           colors={{
             primary: primaryColor,
             primaryColorContrast: primaryColorContrast,
@@ -338,11 +344,13 @@ const NavbarPage = ({ nav }) => {
               </div>
             </li>{" "}
           </ul>
-        </Dropdown>
+        </DropdownNav>
       );
     } else if (nav.name === "Gradient Background") {
+      setTagName("GradientBackgroundNav");
+
       return (
-        <GradientBackground
+        <GradientBackgroundNav
           colors={{
             primary: primaryColor,
             secondary: secondaryColor,
@@ -356,11 +364,13 @@ const NavbarPage = ({ nav }) => {
           <a href="/#/dropofcss">About</a>
           <a href="/#/dropofcss">Services</a>
           <a href="/#/dropofcss">Contact</a>
-        </GradientBackground>
+        </GradientBackgroundNav>
       );
     } else if (nav.name === "Border Bottom") {
+      setTagName("BorderBottomNav");
+
       return (
-        <BorderBottom
+        <BorderBottomNav
           colors={{
             primary: primaryColor,
             secondary: secondaryColor,
@@ -373,11 +383,11 @@ const NavbarPage = ({ nav }) => {
           <a href="/#/dropofcss">About</a>
           <a href="/#/dropofcss">Services</a>
           <a href="/#/dropofcss">Contact</a>{" "}
-        </BorderBottom>
+        </BorderBottomNav>
       );
     } else if (nav.name === "Border with Login") {
       return (
-        <BorderBottomWithLogin
+        <BorderBottomNavWithLogin
           colors={{
             primary: primaryColor,
             secondary: secondaryColor,
@@ -394,7 +404,7 @@ const NavbarPage = ({ nav }) => {
             <a href="/#/dropofcss">Login</a>
           </div>
           <div className="login-small">///</div>
-        </BorderBottomWithLogin>
+        </BorderBottomNavWithLogin>
       );
     }
   };
