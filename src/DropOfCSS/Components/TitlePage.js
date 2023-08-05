@@ -240,6 +240,7 @@ const TitlePage = ({ title }) => {
   useEffect(() => {
     try {
       const result = download(jsxString, downloadableCSS, title);
+      console.log(result);
       setDl(result);
     } catch (err) {
       console.log();
@@ -312,7 +313,7 @@ const TitlePage = ({ title }) => {
           Your Website Title
         </UnderlineTitle>
       );
-    } else if (title.name === "Border Gradiant") {
+    } else if (title.name === "Border Gradient") {
       setTagName("BorderGradientTitle");
       return (
         <BorderGradientTitle

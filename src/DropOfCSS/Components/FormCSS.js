@@ -1,5 +1,5 @@
 const ContactLightCSS = `
-  const styled = styled.div\`
+  const ContactUsLightForm = styled.div\`
   background-color: [BG HEX]26;
   color: [BG CONTRAST HEX];
   border: 2px solid [PRIMARY HEX];
@@ -86,7 +86,7 @@ const ContactLightCSS = `
   \`;`;
 
 const ContactDarkCSS = `
-  const styled = styled.div\`
+  const ContactUsDarkForm = styled.div\`
   background-color: [PRIMARY HEX];
   color: [PRIMARY CONTRAST HEX];
   border: 2px solid [PRIMARY HEX];
@@ -173,7 +173,7 @@ const ContactDarkCSS = `
   \`;`;
 
 const LoginOauthCSS = `
-  const styled = styled.div\`
+  const OauthLoginForm = styled.div\`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -319,7 +319,7 @@ const LoginOauthCSS = `
   \`;`;
 
 const GenericFormCSS = `
-  const styled = styled.div\`
+  const GenericForm = styled.div\`
   font-size: calc(12px + 0.5vw);
   background-color: [PRIMARY HEX];
   color: [PRIMARY CONTRAST HEX];
@@ -371,6 +371,8 @@ const GenericFormCSS = `
   \`;`;
 
 const CheckoutPaymentCSS = `
+const PaymentForm = styled.div\`
+
 font-size: calc(10px + 1vw);
 
 min-width: 40vw;
@@ -429,7 +431,7 @@ h1 {
   \`;`;
 
 const CheckoutAddressCSS = `
-  const styled = styled.div\`
+  const AddressForm = styled.div\`
   font-size: calc(10px + 1vw);
   min-width: 40vw;
   max-width: 60vw;

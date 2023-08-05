@@ -1,5 +1,5 @@
 const GenericCSS = `
-  const styled = styled.div\`
+  const ProductCard = styled.div\`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -69,7 +69,7 @@ const GenericCSS = `
   \`;`;
 
 const GradientCSS = `
-const styled = styled.div\`
+const ProductCardGradient = styled.div\`
 
 display: flex;
 flex-direction: column;
@@ -143,7 +143,7 @@ img {
   \`;`;
 
 const SubtleCSS = `
-const styled = styled.div\`
+const ProductCardSubtle = styled.div\`
 
 display: flex;
 flex-direction: column;
@@ -214,7 +214,7 @@ img {
   \`;`;
 
 const PhotoCSS = `
-const styled = styled.div\`
+const PhotoCard = styled.div\`
 
 display: flex;
 flex-direction: column;
@@ -291,7 +291,7 @@ box-sizing: border-box;
   \`;`;
 
 const SocialMediaPhotoCSS = `
-const styled = styled.div\`
+const SocialMediaCard = styled.div\`
 
 border: 1px solid #dbdbdb;
 border-radius: 3px;

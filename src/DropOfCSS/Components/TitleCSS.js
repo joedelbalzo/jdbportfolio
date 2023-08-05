@@ -1,5 +1,5 @@
 const TitleSubtitleCSS = `
-  const styled = styled.div\`
+  const TitleSubtitle = styled.div\`
   display: flex;
   height: 90px;
   color: [PRIMARY HEX];
@@ -34,7 +34,7 @@ const TitleSubtitleCSS = `
   \`;`;
 
 const TextShadowCSS = `
-  const styled = styled.h1\`
+  const TextShadow = styled.h1\`
   height: 70px;
   width: 100%;
   margin: 0;
@@ -48,7 +48,7 @@ const TextShadowCSS = `
   \`;`;
 
 const UppercaseTitleCSS = `
-  const styled = styled.h1\`
+  const UppercaseTitle = styled.h1\`
   height: 70px;
   width: 100%;
   margin: 0;
@@ -69,7 +69,7 @@ const UppercaseTitleCSS = `
   \`;`;
 
 const UnderlineTitleCSS = `
-  const styled = styled.h1\`
+  const UnderlineTitle = styled.h1\`
   height: 70px;
   width: 100%;
   margin: 0;
@@ -90,7 +90,7 @@ const UnderlineTitleCSS = `
   \`;`;
 
 const BorderGradientTitleCSS = `
-  const styled = styled.h1\`
+  const BorderGradientTitle = styled.h1\`
   border-bottom: 8px solid;
   border-image: linear-gradient(
       to right,
@@ -117,7 +117,7 @@ const BorderGradientTitleCSS = `
   \`;`;
 
 const DarkModeTitleCSS = `
-  const styled = styled.h1\`
+  const DarkModeTitle = styled.h1\`
   height: calc(70px-4rem);
   width: 100%;
   margin: 0;
@@ -141,7 +141,7 @@ const DarkModeTitleCSS = `
   \`;`;
 
 const TopBorderTitleCSS = `
-  const styled = styled.h1\`
+  const TopBorderTitle = styled.h1\`
   height: 70px;
   width: calc(100% - 4rem);
   margin: 0;
@@ -173,7 +173,7 @@ export const titleCSSFunc = (title) => {
     return UppercaseTitleCSS;
   } else if (title.name === "Underline") {
     return UnderlineTitleCSS;
-  } else if (title.name === "Border Gradiant") {
+  } else if (title.name === "Border Gradient") {
     return BorderGradientTitleCSS;
   } else if (title.name === "Dark Mode") {
     return DarkModeTitleCSS;

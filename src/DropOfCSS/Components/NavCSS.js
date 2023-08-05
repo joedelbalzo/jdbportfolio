@@ -1,5 +1,5 @@
 const SimpleNavBar = `
-  const styled = styled.div\`
+const SimpleNavBar = styled.div\`
 background-color: inherit;
 font-size: calc(10px + 0.5vw);
 padding: 10px;
@@ -24,7 +24,7 @@ a:active {
   \`;`;
 
 const DropdownNav = `
-  const styled = styled.div\`
+  const DropdownNav = styled.div\`
 
   display: flex;
   width: 100%;
@@ -104,7 +104,7 @@ const DropdownNav = `
   \`;`;
 
 const GradientBackgroundNav = `
-  const styled = styled.div\`
+  const GradientBackgroundNav = styled.div\`
 background: linear-gradient(to right, [BG HEX], [SECONDARY HEX]);
 color: [SECONDARY CONTRAST HEX];
 padding: 1px;
@@ -133,7 +133,7 @@ a:hover{
   \`;`;
 
 const BorderBottomNav = `
-  const styled = styled.div\`
+  const BorderBottomNav = styled.div\`
   background-color: [BG HEX];
   color: [BG CONTRAST HEX];
   padding: 10px;
@@ -156,7 +156,7 @@ const BorderBottomNav = `
   \`;`;
 
 const BorderBottomNavWithLogin = `
-  const styled = styled.h1\`
+  const BorderBottomNavWithLogin = styled.div\`
   background-color: [BG HEX];
   color: [BG CONTRAST HEX];
   padding: 10px;

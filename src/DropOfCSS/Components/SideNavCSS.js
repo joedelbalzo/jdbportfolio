@@ -1,5 +1,5 @@
 const SideNavCSS = `
-  const styled = styled.div\`
+  const SideNav = styled.div\`
   display: flex;
   flex-direction: column;
   margin: 0;
@@ -15,7 +15,7 @@ const SideNavCSS = `
   \`;`;
 
 const SideNav2CSS = `
-const styled = styled.div\`
+const SideNav2 = styled.div\`
 
 @media screen and (max-width: 900px) {
   display: none;
@@ -48,7 +48,7 @@ a {
   \`;`;
 
 const SideNav3CSS = `
-  const styled = styled.div\`
+  const SideNav3 = styled.div\`
   @media screen and (max-width: 900px) {
     display: none;
   }
@@ -80,7 +80,7 @@ const SideNav3CSS = `
   \`;`;
 
 const DropdownSideCSS = `
-  const styled = styled.div\`
+  const DropdownSideNav = styled.div\`
   @media screen and (max-width: 900px) {
     display: none;
   }

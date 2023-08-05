@@ -116,6 +116,11 @@ const PreviewPane = ({
       ? localStorage.setItem("theme", "dark")
       : localStorage.setItem("theme", "light");
   }, []);
+  useEffect(() => {
+    darkMode === true
+      ? localStorage.setItem("theme", "dark")
+      : localStorage.setItem("theme", "light");
+  }, [darkMode]);
 
   const clearComponents = (str) => {
     if (str === "all") {
@@ -174,7 +179,7 @@ const PreviewPane = ({
     };
     return (
       <span id="css-hoverbox">
-        <DownloadIcon onClick={handleDownload}>{`Download code for ${comp.type}`}</DownloadIcon>
+        <DownloadIcon onClick={handleDownload} />
         <FavHeart component={comp} />
         <ClearIcon onClick={clear} />
       </span>
@@ -241,7 +246,11 @@ const PreviewPane = ({
         className="css-preview-pane-container"
         style={{
           zIndex: -1,
-          backgroundColor: wholePageBackground ? `${wholePageBackground}` : "#F0FAFA",
+          backgroundColor: wholePageBackground
+            ? `${wholePageBackground}`
+            : darkMode === true
+            ? "#242424"
+            : "#F0FAFA",
         }}
       >
         {title ? (

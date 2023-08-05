@@ -1580,6 +1580,7 @@ h5 {
 }
 #css-hoverbox > *:hover {
   color: white;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1000px) {
