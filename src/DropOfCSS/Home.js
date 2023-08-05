@@ -13,9 +13,15 @@ const Home = ({}) => {
   const [button, setButton] = useState(null);
   const [generatedColors, setGeneratedColors] = useState(null);
   const [wholePageBackground, setWholePageBackground] = useState("");
-  const [darkMode, setDarkMode] = useState(false);
-
-  // console.log("dark mode", darkMode);
+  const [darkMode, setDarkMode] = useState(() => {
+    const savedTheme = localStorage.getItem("theme");
+    return savedTheme === "dark" ? true : false;
+  });
+  // useEffect(() => {
+  //   const preferredTheme = localStorage.getItem("theme");
+  //   console.log(preferredTheme);
+  //   preferredTheme === "dark" ? setDarkMode(true) : setDarkMode(false);
+  // }, []);
 
   useEffect(() => {
     const savedNav = JSON.parse(localStorage.getItem("savedNavbar"));

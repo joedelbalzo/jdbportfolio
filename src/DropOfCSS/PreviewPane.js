@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { cssCreateTemplate, clearCodeFiles } from "../store";
-import store from "../store";
 import { useNavigate } from "react-router-dom";
 import FavHeart from "./FavHeart";
 import DownloadIcon from "@mui/icons-material/Download";
 import ClearIcon from "@mui/icons-material/Clear";
-import TitlePage, { handleDownload } from "./Components/TitlePage";
+import TitlePage from "./Components/TitlePage";
 import NavbarPage from "./Components/NavbarPage";
 import SideNavPage from "./Components/SideNavPage";
 import CardPage from "./Components/CardPage";
@@ -39,8 +38,6 @@ const PreviewPane = ({
   const { cssAuth, cssCodeFile } = useSelector((state) => state);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const [colors, setColors] = useState("");
   const [savedComponents, setSavedComponents] = useState([]);
   const [hoveredOnComponent, setHoveredOnComponent] = useState(null);
 
@@ -115,9 +112,10 @@ const PreviewPane = ({
   };
 
   useEffect(() => {
-    // console.log("it changed");
-    // console.log("css code file", cssCodeFile);
-  }, [cssCodeFile]);
+    darkMode === true
+      ? localStorage.setItem("theme", "dark")
+      : localStorage.setItem("theme", "light");
+  }, []);
 
   const clearComponents = (str) => {
     if (str === "all") {
@@ -210,12 +208,6 @@ const PreviewPane = ({
       saveAs(content, `example.zip`);
     });
   };
-
-  //this is broken
-  if (!wholePageBackground) {
-    const savedWholePageBackground = JSON.parse(localStorage.getItem("savedWholePageBackground"));
-    wholePageBackground = savedWholePageBackground;
-  }
 
   return (
     <div>
