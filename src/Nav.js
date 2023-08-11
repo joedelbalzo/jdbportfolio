@@ -35,7 +35,7 @@ const Nav = () => {
           <button className={`main-dropbtn ${dropdownActive ? "main-dropdown-hover" : ""}`}>
             Portfolio
           </button>
-          <div className="main-dropdown-links">
+          <div className="main-dropdown-links" style={{ zIndex: "9999" }}>
             <a href="#/portfolio" onClick={handleMenuItemClick}>
               About
             </a>
