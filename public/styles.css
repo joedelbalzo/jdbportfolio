@@ -139,6 +139,7 @@ h3 {
 #main-introParagraph {
   margin: 0 auto 1rem;
   width: fit-content;
+  max-width: 90%;
   font-size: calc(15px + 1vw);
   font-weight: 400;
   text-align: left;

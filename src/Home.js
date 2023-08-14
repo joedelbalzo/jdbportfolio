@@ -44,8 +44,8 @@ const Home = () => {
           </motion.div>
           <motion.div variants={child}>
             <p>
-              Former Lighting Designer, Network Designer, and Console Programmer.Musician, Cold Brew
-              Drinker, Sports Fanatic, Certified Cicerone®
+              Former Lighting Designer, Network Designer, and Console Programmer. Musician, Cold
+              Brew Drinker, Sports Fanatic, Certified Cicerone®
             </p>
           </motion.div>
         </div>
