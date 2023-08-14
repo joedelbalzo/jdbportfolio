@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sublinks from "./Sublinks";
 import Resume from "./Resume";
 import { Link } from "react-router-dom";
@@ -10,6 +10,10 @@ const Nav = () => {
   const handleMenuItemClick = () => {
     setDropdownActive(false);
   };
+
+  useEffect(() => {
+    setDropdownActive(false);
+  }, []);
 
   return (
     <>
@@ -36,16 +40,16 @@ const Nav = () => {
             Portfolio
           </button>
           <div className="main-dropdown-links" style={{ zIndex: "9999" }}>
-            <a href="#/portfolio" onClick={handleMenuItemClick}>
+            <a href="#/portfolio" onClick={() => handleMenuItemClick()}>
               About
             </a>
-            <a href="#/dropofcss/" onClick={handleMenuItemClick}>
+            <a href="#/dropofcss/" onClick={() => handleMenuItemClick()}>
               "Drop of CSS"
             </a>
-            <a href="#/openplaces/login" onClick={handleMenuItemClick}>
+            <a href="#/openplaces/login" onClick={() => handleMenuItemClick()}>
               "Open Places"
             </a>
-            <a href="#/scriptforjava" onClick={handleMenuItemClick}>
+            <a href="#/scriptforjava" onClick={() => handleMenuItemClick()}>
               "Script for Java"
             </a>
           </div>

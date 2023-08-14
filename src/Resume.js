@@ -1,144 +1,149 @@
 import React from "react";
+import { FadeComponent } from "./FadeComponent";
 
 const Resume = () => {
   return (
-    <>
-      <h1>
-        <span id="main-name" style={{ fontSize: "calc(14px + 2vw)" }}>
-          Resume
-        </span>
-      </h1>
-      <h3 style={{ fontSize: "calc(14px + 1vw)" }}>Full Stack Software Engineer</h3>
-      <h3 style={{ fontSize: "calc(14px + 1vw)", alignItems: "center" }}>
-        240-441-7689
-        <br />
-        jdelbalzo99@gmail.com <br />
-        New York, NY
-      </h3>
+    <FadeComponent>
+      <>
+        <h1>
+          <span id="main-name" style={{ fontSize: "calc(14px + 2vw)" }}>
+            Resume
+          </span>
+        </h1>
+        <h3 style={{ fontSize: "calc(14px + 1vw)" }}>Full Stack Software Engineer</h3>
+        <h3 style={{ fontSize: "calc(14px + 1vw)", alignItems: "center" }}>
+          240-441-7689
+          <br />
+          jdelbalzo99@gmail.com <br />
+          New York, NY
+        </h3>
 
-      <div id="main-resume">
-        <div id="borderdiv">
-          <h2>
-            <span id="main-name" style={{ fontSize: "calc(14px + 1vw)", color: "white" }}>
-              Skills
-            </span>
-          </h2>
+        <div id="main-resume">
+          <div id="borderdiv">
+            <h2>
+              <span id="main-name" style={{ fontSize: "calc(14px + 1vw)", color: "white" }}>
+                Skills
+              </span>
+            </h2>
 
-          <p>
-            JavaScript(ES6+), React, Redux, NodeJS, Express, PostgresQL, Python, Axios, RESTful
-            APIs, HTML/CSS, Bootstrap, Material UI, TDD (Jest, Mocha), Webpack, Git/GitHub Version
-            Control, AGILE(SCRUM)
-          </p>
-        </div>
-        <div id="borderdiv">
-          <h2>
-            <span id="main-name" style={{ fontSize: "calc(14px + 1vw)", color: "white" }}>
-              Experience
-            </span>
-          </h2>
-          <h3 style={{ marginLeft: "3%" }}>“Drop of CSS”</h3>
-          <ul>
-            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-              Led the design and technical implementation of a feature-rich color palette and
-              element generating tool allowing designers and freelance developers to build, preview,
-              and download built components.
-            </li>
-            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-              Developed a comprehensive React-based user interface with real-time component preview
-              functionality, powered by React-Redux for efficient state management.
-            </li>
-            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-              Utilized Axios to facilitate seamless communication and built custom API calls with
-              full CRUD functionality to efficiently retrieve and update user-requested data in
-              real-time.
-            </li>
-            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-              Built a robust backend using Node.js and Express, ensuring efficient request handling,
-              secure data transmission, and seamless database integration with PostgreSQL.
-            </li>
-            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-              Performed comprehensive audits of both front-end and back-end codebases, resulting in
-              improved coding standards and style guides for enhanced codebase consistency and
-              maintainability.
-            </li>
-          </ul>
-          <h3 style={{ marginLeft: "3%" }}>Console Programmer and Designer</h3>
-          <ul>
-            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-              Led productions into modern LED lighting, adapting new programming techniques with
-              data-managed lights and wireless communication technologies to seamlessly integrate
-              lighting designs into consoles, ensuring flawless execution of complex visual
-              concepts.
-            </li>
-            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-              Led the strategic construction, oversight, and maintenance of intricate wired and
-              wireless networks to establish high-speed transmission of data, enabling smooth and
-              uninterrupted production operations.
-            </li>
-            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-              Oversaw and implemented critical software and firmware updates to optimize
-              performance, bolster reliability, and ensure adherence to industry standards.
-            </li>
-            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-              Developed and programmed custom configurations within the console, showcasing an
-              exceptional attention to detail and creative problem-solving skills.
-            </li>
-            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-              Notable projects: John Wick 3, East New York Season 1, Bull Seasons 4-6, and Ray
-              Donovan: The Movie.
-            </li>
-          </ul>
-        </div>
-        <div id="borderdiv">
-          <h2>
-            <span id="main-name" style={{ fontSize: "calc(14px + 1vw)", color: "white" }}>
-              Open Source Projects
-            </span>
-          </h2>
-          <h3 style={{ marginLeft: "3%", marginTop: "4rem" }}>“AlgoRhythm”</h3>
-          Quiz application for JavaScript and Python algorithm studying.
-          <ul>
-            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-              Developed a quiz-style application designed to improve a user’s knowledge of common
-              algorithms and solving styles and patterns in JavaScript and Python.{" "}
-            </li>
+            <p>
+              JavaScript(ES6+), React, Redux, NodeJS, Express, PostgresQL, Python, Axios, RESTful
+              APIs, HTML/CSS, Bootstrap, Material UI, TDD (Jest, Mocha), Webpack, Git/GitHub Version
+              Control, AGILE(SCRUM)
+            </p>
+          </div>
+          <div id="borderdiv">
+            <h2>
+              <span id="main-name" style={{ fontSize: "calc(14px + 1vw)", color: "white" }}>
+                Experience
+              </span>
+            </h2>
+            <h3 style={{ marginLeft: "3%" }}>“Drop of CSS”</h3>
+            <ul>
+              <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+                Led the design and technical implementation of a feature-rich color palette and
+                element generating tool allowing designers and freelance developers to build,
+                preview, and download built components.
+              </li>
+              <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+                Developed a comprehensive React-based user interface with real-time component
+                preview functionality, powered by React-Redux for efficient state management.
+              </li>
+              <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+                Utilized Axios to facilitate seamless communication and built custom API calls with
+                full CRUD functionality to efficiently retrieve and update user-requested data in
+                real-time.
+              </li>
+              <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+                Built a robust backend using Node.js and Express, ensuring efficient request
+                handling, secure data transmission, and seamless database integration with
+                PostgreSQL.
+              </li>
+              <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+                Performed comprehensive audits of both front-end and back-end codebases, resulting
+                in improved coding standards and style guides for enhanced codebase consistency and
+                maintainability.
+              </li>
+            </ul>
+            <h3 style={{ marginLeft: "3%" }}>Console Programmer and Designer</h3>
+            <ul>
+              <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+                Led productions into modern LED lighting, adapting new programming techniques with
+                data-managed lights and wireless communication technologies to seamlessly integrate
+                lighting designs into consoles, ensuring flawless execution of complex visual
+                concepts.
+              </li>
+              <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+                Led the strategic construction, oversight, and maintenance of intricate wired and
+                wireless networks to establish high-speed transmission of data, enabling smooth and
+                uninterrupted production operations.
+              </li>
+              <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+                Oversaw and implemented critical software and firmware updates to optimize
+                performance, bolster reliability, and ensure adherence to industry standards.
+              </li>
+              <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+                Developed and programmed custom configurations within the console, showcasing an
+                exceptional attention to detail and creative problem-solving skills.
+              </li>
+              <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+                Notable projects: John Wick 3, East New York Season 1, Bull Seasons 4-6, and Ray
+                Donovan: The Movie.
+              </li>
+            </ul>
+          </div>
+          <div id="borderdiv">
+            <h2>
+              <span id="main-name" style={{ fontSize: "calc(14px + 1vw)", color: "white" }}>
+                Open Source Projects
+              </span>
+            </h2>
+            <h3 style={{ marginLeft: "3%", marginTop: "4rem" }}>“AlgoRhythm”</h3>
+            Quiz application for JavaScript and Python algorithm studying.
+            <ul>
+              <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+                Developed a quiz-style application designed to improve a user’s knowledge of common
+                algorithms and solving styles and patterns in JavaScript and Python.{" "}
+              </li>
 
-            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-              Built a substantial database with hundreds of quiz questions of different styles, from
-              coding to multiple-choice, all delivered to the front-end via custom Axios API calls.
-            </li>
-          </ul>
-          <h3 style={{ marginLeft: "3%", marginTop: "4rem" }}>“Open Places”</h3>
-          <ul>
-            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-              Developed in React and utilized Material-UI React library to ensure consistent and
-              responsive UI/UX designs for users across multiple device types.
-            </li>
-            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-              Utilized React-Redux, Axios, and the Google Places API to allow end-users to
-              seamlessly adjust their settings, from location radius to searched categories.
-            </li>
-            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-              Implemented testing mechanism built around a custom API that queries PostgreSQL
-              database of similar Google Places API object responses.
-            </li>
-          </ul>
-          <h3 style={{ marginLeft: "3%", marginTop: "4rem" }}>E-Commerce “A Script for Java”</h3>
-          <ul>
-            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-              Utilizing React, developed a robust interface allowing users to quickly find and
-              purchase products.
-            </li>
-            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-              Developed admin tools, using authentication and authorization to give an admin full
-              CRUD capabilities.
-            </li>
-            <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-              Implemented Material-UI and CSS grid to improve user experience across all platforms.
-            </li>
-          </ul>
-        </div>
-        {/* <div id="borderdiv">
+              <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+                Built a substantial database with hundreds of quiz questions of different styles,
+                from coding to multiple-choice, all delivered to the front-end via custom Axios API
+                calls.
+              </li>
+            </ul>
+            <h3 style={{ marginLeft: "3%", marginTop: "4rem" }}>“Open Places”</h3>
+            <ul>
+              <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+                Developed in React and utilized Material-UI React library to ensure consistent and
+                responsive UI/UX designs for users across multiple device types.
+              </li>
+              <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+                Utilized React-Redux, Axios, and the Google Places API to allow end-users to
+                seamlessly adjust their settings, from location radius to searched categories.
+              </li>
+              <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+                Implemented testing mechanism built around a custom API that queries PostgreSQL
+                database of similar Google Places API object responses.
+              </li>
+            </ul>
+            <h3 style={{ marginLeft: "3%", marginTop: "4rem" }}>E-Commerce “A Script for Java”</h3>
+            <ul>
+              <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+                Utilizing React, developed a robust interface allowing users to quickly find and
+                purchase products.
+              </li>
+              <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+                Developed admin tools, using authentication and authorization to give an admin full
+                CRUD capabilities.
+              </li>
+              <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+                Implemented Material-UI and CSS grid to improve user experience across all
+                platforms.
+              </li>
+            </ul>
+          </div>
+          {/* <div id="borderdiv">
           <h2>
             <span id="main-name" style={{ fontSize: "calc(14px + 1vw)", color: "white" }}>
               Professional Experience
@@ -210,28 +215,29 @@ const Resume = () => {
             <li>The Jinx: The Life and Deaths of Robert Durst (Dec. 2014), Produced by HBO</li>
           </ul>
         </div> */}
-        <div id="borderdiv">
-          <h2>
-            <span id="main-name" style={{ fontSize: "calc(14px + 1vw)", color: "white" }}>
-              Education
-            </span>
-          </h2>
-          <p>
-            Fullstack Academy Web Development Bootcamp | June 2023
-            <br />
-            <li style={{ marginLeft: "3%" }}> Software Engineering Certificate</li>
-            <li style={{ marginLeft: "3%" }}>
-              Full-time, Full Stack Javascript Web Development Immersive
-            </li>
-          </p>
+          <div id="borderdiv">
+            <h2>
+              <span id="main-name" style={{ fontSize: "calc(14px + 1vw)", color: "white" }}>
+                Education
+              </span>
+            </h2>
+            <p>
+              Fullstack Academy Web Development Bootcamp | June 2023
+              <br />
+              <li style={{ marginLeft: "3%" }}> Software Engineering Certificate</li>
+              <li style={{ marginLeft: "3%" }}>
+                Full-time, Full Stack Javascript Web Development Immersive
+              </li>
+            </p>
 
-          <p>
-            New York University, Tisch School of the Arts | May 2011
-            <li style={{ marginLeft: "3%" }}>Bachelor of Fine Arts, Film and Television</li>
-          </p>
+            <p>
+              New York University, Tisch School of the Arts | May 2011
+              <li style={{ marginLeft: "3%" }}>Bachelor of Fine Arts, Film and Television</li>
+            </p>
+          </div>
         </div>
-      </div>
-    </>
+      </>
+    </FadeComponent>
   );
 };
 

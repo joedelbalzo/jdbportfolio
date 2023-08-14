@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { cssLoginWithToken, cssFetchComponents, cssFetchColorPalette } from "../store";
 import UserCreate from "./UserCreate";
+import { FadeComponent } from "../FadeComponent";
 
 const CssApp = () => {
   const { cssAuth } = useSelector((state) => state);
@@ -34,25 +35,27 @@ const CssApp = () => {
   });
 
   return (
-    <div className="DropOfCss">
-      <Nav />
-      <div>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          {!cssAuth.id && (
-            <>
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<UserCreate />} />
-            </>
-          )}
-          {cssAuth.id && (
-            <>
-              <Route path="/profile" element={<Profile />} />
-            </>
-          )}
-        </Routes>
+    <FadeComponent>
+      <div className="DropOfCss">
+        <Nav />
+        <div>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            {!cssAuth.id && (
+              <>
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<UserCreate />} />
+              </>
+            )}
+            {cssAuth.id && (
+              <>
+                <Route path="/profile" element={<Profile />} />
+              </>
+            )}
+          </Routes>
+        </div>
       </div>
-    </div>
+    </FadeComponent>
   );
 };
 
