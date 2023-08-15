@@ -27,15 +27,24 @@ const childVariants = {
     },
   },
 };
+console.log(window);
 
 const App = () => {
   return (
     <div>
-      <motion.div variants={containerVariants} initial="hidden" animate="show">
-        <motion.div variants={childVariants}>
+      {window.location.hash === "#/home" ? (
+        <>
+          <motion.div variants={containerVariants} initial="hidden" animate="show">
+            <motion.div variants={childVariants}>
+              <Nav />
+            </motion.div>
+          </motion.div>
+        </>
+      ) : (
+        <>
           <Nav />
-        </motion.div>
-      </motion.div>
+        </>
+      )}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />

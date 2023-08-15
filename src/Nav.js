@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
-import Sublinks from "./Sublinks";
-import Resume from "./Resume";
-import { Link } from "react-router-dom";
-import Portfolio from "./Portfolio";
+import React, { useState, useEffect, useRef } from "react";
+// import Sublinks from "./Sublinks";
+// import Resume from "./Resume";
+// import { Link } from "react-router-dom";
+// import Portfolio from "./Portfolio";
 
 const Nav = () => {
   const [dropdownActive, setDropdownActive] = useState(false);
 
-  const handleMenuItemClick = () => {
+  const handleMenuItemClick = (e, href) => {
+    e.preventDefault();
     setDropdownActive(false);
+    window.location.href = href;
   };
 
   useEffect(() => {
@@ -40,16 +42,19 @@ const Nav = () => {
             Portfolio
           </button>
           <div className="main-dropdown-links" style={{ zIndex: "9999" }}>
-            <a href="#/portfolio" onClick={() => handleMenuItemClick()}>
+            <a href="#/portfolio" onClick={(e) => handleMenuItemClick(e, "#/portfolio")}>
               About
             </a>
-            <a href="#/dropofcss/" onClick={() => handleMenuItemClick()}>
+            <a href="#/dropofcss/" onClick={(e) => handleMenuItemClick(e, "/#/dropofcss/")}>
               "Drop of CSS"
             </a>
-            <a href="#/openplaces/login" onClick={() => handleMenuItemClick()}>
+            <a
+              href="#/openplaces/login"
+              onClick={(e) => handleMenuItemClick(e, "/#/openplaces/login")}
+            >
               "Open Places"
             </a>
-            <a href="#/scriptforjava" onClick={() => handleMenuItemClick()}>
+            <a href="#/scriptforjava" onClick={(e) => handleMenuItemClick(e, "/#/scriptforjava")}>
               "Script for Java"
             </a>
           </div>
