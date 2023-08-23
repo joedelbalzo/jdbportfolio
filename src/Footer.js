@@ -11,7 +11,7 @@ const Footer = () => {
           paddingBottom: "1rem",
         }}
       >
-        <p>&copy; Joe Del Balzo, 2023</p>
+        <p>&copy; Joe Del Balzo, 2023. Email me at jdelbalzo99@gmail.com.</p>
       </div>
     </>
   );

@@ -32,14 +32,17 @@ const Sublinks = () => {
       </div>
 
       <div id="main-links">
+        <a id="main-link" href="https://dawnryan.onrender.com/#/" target="_blank">
+          Dawn Ryan
+        </a>
         <Link id="main-link" to={"/dropofcss"} element={<CssApp />}>
-          Portfolio: "Drop of CSS"
+          Drop of CSS
         </Link>
         <Link id="main-link" to={"/openplaces/login"} element={<Login />}>
-          Portfolio: "Open Places"
+          Open Places
         </Link>
         <Link id="main-link" to={"/scriptforjava"} element={<AScriptForJavaApp />}>
-          Portfolio: "Script for Java"
+          Script for Java
         </Link>
       </div>
     </div>

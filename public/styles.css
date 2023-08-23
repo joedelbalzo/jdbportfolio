@@ -193,7 +193,7 @@ h3 {
   flex-direction: column;
   flex-wrap: wrap;
   /* justify-content: center; */
-  backdrop-filter: blur(4px);
+  /* backdrop-filter: blur(4px); */
 }
 
 #main-links > a {
@@ -205,14 +205,14 @@ h3 {
 #main-link:hover {
   border: 3px solid;
   border-image: linear-gradient(to right bottom, dodgerblue, transparent, transparent, lightgreen) 1;
-  backdrop-filter: blur(2px);
-  background-color: rgba(100, 100, 100, 0.3);
+  /* backdrop-filter: blur(2px); */
+  background-color: rgba(100, 100, 100, 0.5);
   font-size: calc(15px + 0.5vw);
 }
 
 #main-link {
-  background-color: rgba(75, 75, 75, 0.2);
-  backdrop-filter: blur(2px);
+  background-color: rgba(75, 75, 75, 0.5);
+  /* backdrop-filter: blur(2px); */
   padding: 0.5rem 0.1rem;
   display: flex;
   justify-content: center;
@@ -279,9 +279,10 @@ h3 {
 
 #borderdiv {
   font-size: calc(12px + 1vw);
+  font-weight: 350;
   padding: 1rem 2rem;
   margin: 1rem auto;
-  line-height: 2rem;
+  line-height: 2.5rem;
   border-radius: 4;
   background: linear-gradient(to right, rgba(30, 144, 255, 0.3) 2px, transparent 2px) 0 0,
     linear-gradient(to right, rgba(120, 120, 120, 0.3) 2px, transparent 2px) 0 100%,

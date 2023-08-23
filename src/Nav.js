@@ -45,6 +45,9 @@ const Nav = () => {
             <a href="#/portfolio" onClick={(e) => handleMenuItemClick(e, "#/portfolio")}>
               About
             </a>
+            <a href="https://dawnryan.onrender.com/#/" target="_blank">
+              Dawn Ryan
+            </a>
             <a href="#/dropofcss/" onClick={(e) => handleMenuItemClick(e, "/#/dropofcss/")}>
               "Drop of CSS"
             </a>

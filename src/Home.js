@@ -37,7 +37,7 @@ const Home = () => {
         </h1>
         <div id="main-introParagraph">
           <motion.div variants={child}>
-            <p>Software Engineer and Full Stack Web Developer</p>
+            <p>Software Engineer and Full Stack Web Developer.</p>
           </motion.div>
           <motion.div variants={child}>
             <p>Artist-turned-coder. I liked creating beauty before; I like creating beauty now.</p>
