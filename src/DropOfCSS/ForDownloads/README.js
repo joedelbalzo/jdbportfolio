@@ -1,6 +1,9 @@
 const savedColors = JSON.parse(localStorage.getItem("colors"));
 if (savedColors) {
-  console.log(savedColors);
+  console.log(
+    "hey! hope you're enjoying the tool. here's your previously stored saved colors:",
+    savedColors
+  );
 }
 
 export const readme = () => {

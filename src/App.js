@@ -27,7 +27,7 @@ const childVariants = {
     },
   },
 };
-console.log(window);
+// console.log(window);
 
 const App = () => {
   return (
