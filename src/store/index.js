@@ -36,13 +36,7 @@ const reducer = combineReducers({
   cssTemplates,
 });
 
-const store = createStore(
-  reducer
-  // applyMiddleware(
-  //   thunk,
-  //   logger
-  // )
-);
+const store = createStore(reducer, applyMiddleware(thunk));
 
 export default store;
 
