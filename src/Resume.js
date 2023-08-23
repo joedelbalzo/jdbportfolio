@@ -35,29 +35,41 @@ const Resume = () => {
           <div id="borderdiv">
             <h2>
               <span id="main-name" style={{ fontSize: "calc(14px + 1vw)", color: "white" }}>
-                Experience
+                Projects
               </span>
             </h2>
-            <h3 style={{ marginLeft: "3%" }}>“Drop of CSS”</h3>
+            <h3>“dawngryan.com”</h3>
+            <div style={{ fontSize: "calc(8px + 1vw)", lineHeight: "1rem", fontStyle: "italic" }}>
+              Front-end Designer and Developer || React, React-Redux, Node.js, Express
+            </div>
             <ul>
               <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-                Led the design and technical implementation of a feature-rich color palette and
-                element generating tool allowing designers and freelance developers to build,
-                preview, and download built components.
+                Designed and developed a portfolio and advertising website for a client freelance
+                writer and copy-editor.
               </li>
               <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-                Developed a comprehensive React-based user interface with real-time component
-                preview functionality, powered by React-Redux for efficient state management.
+                Utilized React, React-Router, and Framer Motion to allow for a seamless user
+                experience.
               </li>
               <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-                Utilized Axios to facilitate seamless communication and built custom API calls with
-                full CRUD functionality to efficiently retrieve and update user-requested data in
-                real-time.
+                Implemented Formspree’s library of front-end forms for end-user and client
+                communication.
+              </li>
+            </ul>
+            <h3>“Drop of CSS”</h3>
+            <div style={{ fontSize: "calc(8px + 1vw)", lineHeight: "1rem", fontStyle: "italic" }}>
+              Front-end Designer and Developer || React, React-Redux, Node.js, Express, PostgreSQL
+            </div>
+            <ul>
+              <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+                Led the building of a developer tool that allows developers to select and apply
+                colors to pre-built design elements (forms, buttons, product cards) and then
+                download the front-end code.
               </li>
               <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-                Built a robust backend using Node.js and Express, ensuring efficient request
-                handling, secure data transmission, and seamless database integration with
-                PostgreSQL.
+                Leveraged React-Redux’s state management to move data swiftly through front-end
+                React components as well as calling custom Color Palette generating APIs through
+                Axios and Express.
               </li>
               <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
                 Performed comprehensive audits of both front-end and back-end codebases, resulting
@@ -65,156 +77,81 @@ const Resume = () => {
                 maintainability.
               </li>
             </ul>
-            <h3 style={{ marginLeft: "3%" }}>Console Programmer and Designer</h3>
+            <h3 style={{ marginTop: "4rem" }}>“AlgoRhythm”</h3>
+            <div style={{ fontSize: "calc(8px + 1vw)", lineHeight: "1rem", fontStyle: "italic" }}>
+              Front-end Designer and Developer || Next.js, Node.js, Express, PostgreSQL
+            </div>
+            Quiz application for JavaScript and Python algorithm studying.
             <ul>
               <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-                Led productions into modern LED lighting, adapting new programming techniques with
-                data-managed lights and wireless communication technologies to seamlessly integrate
-                lighting designs into consoles, ensuring flawless execution of complex visual
-                concepts.
+                Developed a quiz-style application designed to improve a user’s knowledge of common
+                algorithms and solving styles and patterns in JavaScript and Python.
+              </li>
+
+              <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+                Built a rich database with hundreds of quiz questions delivered to the front-end via
+                Axios API fetches.
+              </li>
+            </ul>
+            <h3 style={{ marginTop: "4rem" }}>“Open Places”</h3>
+            <div style={{ fontSize: "calc(8px + 1vw)", lineHeight: "1rem", fontStyle: "italic" }}>
+              Front-end Designer and Developer || React, React-Redux, Node.js, Express, PostgreSQL
+            </div>
+            <ul>
+              <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+                Developed a location-based map search application utilizing the Google Places API,
+                React, and Material-UI to ensure consistent and responsive UI/UX designs for users
+                across multiple device types.
               </li>
               <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-                Led the strategic construction, oversight, and maintenance of intricate wired and
-                wireless networks to establish high-speed transmission of data, enabling smooth and
-                uninterrupted production operations.
+                Designed a custom testing mechanism API that queries a PostgreSQL database of
+                similar Google Places API object responses, eliminating API costs while in
+                development.
+              </li>
+            </ul>
+            <h3 style={{ marginTop: "4rem" }}>E-Commerce “A Script for Java”</h3>
+            <div style={{ fontSize: "calc(8px + 1vw)", lineHeight: "1rem", fontStyle: "italic" }}>
+              Front-end Designer and Developer || React, React-Redux, Node.js, Express, PostgreSQL
+            </div>
+            <ul>
+              <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
+                Designed and built an e-commerce template for small chains of cafes.
               </li>
               <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-                Oversaw and implemented critical software and firmware updates to optimize
-                performance, bolster reliability, and ensure adherence to industry standards.
-              </li>
-              <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-                Developed and programmed custom configurations within the console, showcasing an
-                exceptional attention to detail and creative problem-solving skills.
-              </li>
-              <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-                Notable projects: John Wick 3, East New York Season 1, Bull Seasons 4-6, and Ray
-                Donovan: The Movie.
+                Built administrative tools, authorizing a cafe manager full CRUD capabilities.
               </li>
             </ul>
           </div>
           <div id="borderdiv">
             <h2>
               <span id="main-name" style={{ fontSize: "calc(14px + 1vw)", color: "white" }}>
-                Open Source Projects
+                Experience
               </span>
             </h2>
-            <h3 style={{ marginLeft: "3%", marginTop: "4rem" }}>“AlgoRhythm”</h3>
-            Quiz application for JavaScript and Python algorithm studying.
+            <h3 style={{ marginBottom: 0 }}>Entertainment Partners & Cast and Crew</h3>
+            <h3 style={{ marginTop: 0 }}>Console Programmer and Designer</h3>
             <ul>
               <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-                Developed a quiz-style application designed to improve a user’s knowledge of common
-                algorithms and solving styles and patterns in JavaScript and Python.{" "}
-              </li>
-
-              <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-                Built a substantial database with hundreds of quiz questions of different styles,
-                from coding to multiple-choice, all delivered to the front-end via custom Axios API
-                calls.
-              </li>
-            </ul>
-            <h3 style={{ marginLeft: "3%", marginTop: "4rem" }}>“Open Places”</h3>
-            <ul>
-              <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-                Developed in React and utilized Material-UI React library to ensure consistent and
-                responsive UI/UX designs for users across multiple device types.
+                Programming lighting consoles and build robust data networks for film and television
+                productions.
               </li>
               <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-                Utilized React-Redux, Axios, and the Google Places API to allow end-users to
-                seamlessly adjust their settings, from location radius to searched categories.
+                Leading productions from antiquated lighting into modern, LED lighting, with huge
+                increases in efficiency. Individual projects were completed 17% more quickly and
+                energy efficiency increased 30%.
               </li>
               <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-                Implemented testing mechanism built around a custom API that queries PostgreSQL
-                database of similar Google Places API object responses.
-              </li>
-            </ul>
-            <h3 style={{ marginLeft: "3%", marginTop: "4rem" }}>E-Commerce “A Script for Java”</h3>
-            <ul>
-              <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-                Utilizing React, developed a robust interface allowing users to quickly find and
-                purchase products.
+                Communicating regularly in teams of 10 to 15 technicians as well as with
+                high-profile clients and executive producers to efficiently purchase and implement
+                newer lighting technologies, faster networks (both wired and wireless), and deliver
+                critical software and hardware updates to optimize performance and reliability.
               </li>
               <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-                Developed admin tools, using authentication and authorization to give an admin full
-                CRUD capabilities.
-              </li>
-              <li style={{ paddingBottom: "2vh", fontSize: "calc(10px + 1vw)" }}>
-                Implemented Material-UI and CSS grid to improve user experience across all
-                platforms.
+                Notable productions: John Wick 3, East New York Season 1, Bull Seasons 4-6, and Ray
+                Donovan: The Movie.
               </li>
             </ul>
           </div>
-          {/* <div id="borderdiv">
-          <h2>
-            <span id="main-name" style={{ fontSize: "calc(14px + 1vw)", color: "white" }}>
-              Professional Experience
-            </span>
-          </h2>
-
-          <h3 style={{ marginLeft: "3%" }}>
-            Lighting Console Programmer | Local 52 | New York, NY
-          </h3>
-          <p>May, 2019 – Current</p>
-          <ul>
-            <li>
-              Headed the department that designed, programmed, and operated lighting console
-              programs and networks for film and television. I built extensive networks to
-              distribute gigabits per second of show-critical lighting data to minimize time costs
-              to productions.
-            </li>
-          </ul>
-          <p>Projects include:</p>
-          <ul>
-            <li>
-              East New York, Season 1 (Summer 2022 – Spring 2023), Produced by Warner Brothers
-            </li>
-            <li>Bull, Seasons 4-6 (Fall 2019 – Spring 2022), Produced by CBS</li>
-            <li>Ray Donovan: The Movie (Spring 2021), Produced by Showtime</li>
-            <li>Chemical Hearts (Spring 2021), Produced by Amazon</li>
-            <li>John Wick 3 (Spring 2019), Produced by Dune Films</li>
-            <li>Little America, Season 1 (Spring 2019), Produced by Apple TV</li>
-          </ul>
-
-          <h3 style={{ marginLeft: "3%" }}>Chief Lighting Technician | Local 52 | New York, NY</h3>
-          <p>May, 2011 – June, 2016</p>
-          <ul>
-            <li style={{ maxWidth: "80%" }}>
-              Headed the department that designed and executed the desired look of a film or
-              television show through lighting. I oversaw the department, managed all of the
-              electricity and lighting decision-making, technicians, and inventory during
-              production.
-            </li>
-          </ul>
-          <p>Projects include:</p>
-          <ul>
-            <li>Trouble (Spring 2016), Directed by Theresa Rebeck</li>
-            <li>Wildling (Fall 2015), Directed by Fritz Bohm</li>
-            <li>Fan Girl (Fall 2014), Directed by Paul Jarrett</li>
-            <li>Dean (Fall 2014), Directed by Demetri Martin</li>
-            <li>Tracing the Rope: Eva Hesse (Fall 2013), Directed by Marcie Begleiter</li>
-          </ul>
-
-          <h3 style={{ marginLeft: "3%" }}>
-            IATSE Local 52 Film and TV Electrician | Local 52 | New York, NY
-          </h3>
-          <p>May, 2011 – Current</p>
-          <ul>
-            <li style={{ maxWidth: "80%" }}>
-              Delivered the desired look of a film or television series through lighting, executing
-              anything relating to electricity and lighting on a production. Both positions above as
-              department head were under the umbrella of a Local 52 Electrician.
-            </li>
-          </ul>
-
-          <p>Projects include:</p>
-          <ul>
-            <li>Succession, Season 4 (Spring 2023), Produced by HBO</li>
-            <li>West Side Story (Fall 2019), Produced by 20th Century Studios</li>
-            <li>Bull, Seasons 1-3 (Summer 2016 – Spring 2019), Produced by CBS</li>
-            <li>The Americans, Season 4 (Winter 2016), Produced by FX</li>
-            <li>Daredevil, Season 1 (Fall, 2015), Produced by Netflix</li>
-            <li>The Jinx: The Life and Deaths of Robert Durst (Dec. 2014), Produced by HBO</li>
-          </ul>
-        </div> */}
           <div id="borderdiv">
             <h2>
               <span id="main-name" style={{ fontSize: "calc(14px + 1vw)", color: "white" }}>
@@ -224,15 +161,13 @@ const Resume = () => {
             <p>
               Fullstack Academy Web Development Bootcamp | June 2023
               <br />
-              <li style={{ marginLeft: "3%" }}> Software Engineering Certificate</li>
-              <li style={{ marginLeft: "3%" }}>
-                Full-time, Full Stack Javascript Web Development Immersive
-              </li>
+              <li> Software Engineering Certificate</li>
+              <li>Full-time, Full Stack Javascript Web Development Immersive</li>
             </p>
 
             <p>
               New York University, Tisch School of the Arts | May 2011
-              <li style={{ marginLeft: "3%" }}>Bachelor of Fine Arts, Film and Television</li>
+              <li>Bachelor of Fine Arts, Film and Television</li>
             </p>
           </div>
         </div>

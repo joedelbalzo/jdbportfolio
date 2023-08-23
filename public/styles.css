@@ -282,7 +282,7 @@ h3 {
   font-weight: 350;
   padding: 1rem 2rem;
   margin: 1rem auto;
-  line-height: 2.5rem;
+  line-height: 2rem;
   border-radius: 4;
   background: linear-gradient(to right, rgba(30, 144, 255, 0.3) 2px, transparent 2px) 0 0,
     linear-gradient(to right, rgba(120, 120, 120, 0.3) 2px, transparent 2px) 0 100%,
