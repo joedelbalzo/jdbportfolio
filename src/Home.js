@@ -3,6 +3,7 @@ import Sublinks from "./Sublinks";
 import Footer from "./Footer";
 import { FadeComponent } from "./FadeComponent";
 import { motion } from "framer-motion";
+import Contact from "./Contact";
 
 const container = {
   hidden: { opacity: 0 },
@@ -29,9 +30,9 @@ const Home = () => {
   return (
     <FadeComponent>
       <motion.div variants={container} initial="hidden" animate="show">
-        <h1 style={{ fontSize: "calc(22px + 4vw)" }}>
+        <h1 style={{ fontSize: "calc(22px + 4vw)", margin: "1.5rem auto" }}>
           Hey, I'm{" "}
-          <span id="main-name" style={{ fontSize: "calc(22px + 4.5vw)", marginBottom: ".5rem" }}>
+          <span id="main-name" style={{ fontSize: "calc(22px + 4.5vw)", marginBottom: "0" }}>
             Joe Del Balzo
           </span>
         </h1>
@@ -48,10 +49,20 @@ const Home = () => {
               Brew Drinker, Sports Fanatic, Certified Cicerone®
             </p>
           </motion.div>
+          <motion.div variants={child}>
+            <p>
+              <span id="main-name" style={{ fontSize: "inherit", marginBottom: "0" }}>
+                Let's build something together!
+              </span>
+            </p>
+          </motion.div>
+          <motion.div variants={child}>
+            <Contact />
+          </motion.div>
         </div>
-        <motion.div variants={child}>
+        {/* <motion.div variants={child}>
           <Sublinks />
-        </motion.div>
+        </motion.div> */}
         <motion.div variants={child}>
           <Footer />
         </motion.div>

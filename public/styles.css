@@ -139,7 +139,7 @@ h3 {
 #main-introParagraph {
   margin: 0 auto 1rem;
   width: fit-content;
-  max-width: 90%;
+  max-width: 70%;
   font-size: calc(15px + 1vw);
   font-weight: 400;
   text-align: left;
@@ -168,6 +168,53 @@ h3 {
 
 #main-introParagraph > p {
   margin: 1rem 0.5rem;
+}
+
+.main-form {
+  min-width: 350px;
+  max-width: 600px;
+  margin: 4rem auto;
+  border: 1px solid whitesmoke;
+  padding: 0.5rem;
+  border-radius: 4px;
+  background-color: rgba(10, 12, 20, 0.5);
+}
+
+.main-form > input,
+.main-form > textarea {
+  box-shadow: none;
+  outline: none;
+  border: none;
+  font-family: verdana;
+  padding: 0.5rem;
+  font-size: calc(10px + 1vw);
+  background-color: #101318;
+  color: whitesmoke;
+}
+.main-form > input:focus,
+.main-form > textarea:focus {
+  outline: 2px solid whitesmoke;
+  background-color: #101318;
+}
+
+.main-form > button {
+  font-size: calc(10px + 0.5vw);
+  color: rgb(20, 30, 70);
+  padding: 0.5rem 1rem;
+  margin: 1rem auto;
+  width: 30%;
+  background-color: rgba(250, 250, 255, 0.6);
+  border: 2px solid #101318;
+  outline: 2px solid #101318;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+.main-form > button:hover {
+  color: white;
+  outline: 2px solid whitesmoke;
+  background-color: #101318;
+  border-radius: 0.5rem;
+  cursor: pointer;
 }
 
 #main-linkPage {
