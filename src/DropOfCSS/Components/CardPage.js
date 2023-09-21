@@ -443,7 +443,7 @@ const CardPage = ({ card }) => {
   }, [dl]);
 
   const cardFunc = (card) => {
-    console.log(card.name);
+    // console.log(card.name);
     if (card.name === "Product - Generic") {
       setTagName("ProductCard");
 

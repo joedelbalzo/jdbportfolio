@@ -240,7 +240,7 @@ const TitlePage = ({ title }) => {
   useEffect(() => {
     try {
       const result = download(jsxString, downloadableCSS, title);
-      console.log(result);
+      // console.log(result);
       setDl(result);
     } catch (err) {
       console.log();
