@@ -10,7 +10,9 @@ const {
   Order,
   Review,
 } = require("./db/scriptDB");
+
 const { syncAndSeedCss, CssUser, Component, Template, Palette } = require("./db/cssDB");
+const { syncAndSeedAlgo, Question, CodingQuestion } = require("./db/algorhythmDB");
 
 const init = async () => {
   try {
@@ -23,6 +25,8 @@ const init = async () => {
     console.log("open places has synced");
     await syncAndSeedCss();
     console.log("css has synced");
+    await syncAndSeedAlgo();
+    console.log("algo synced");
 
     const port = process.env.PORT || 3000;
     const server = app.listen(port, () => console.log(`listening on port ${port}`));

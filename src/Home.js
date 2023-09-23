@@ -60,9 +60,6 @@ const Home = () => {
             <Contact />
           </motion.div>
         </div>
-        {/* <motion.div variants={child}>
-          <Sublinks />
-        </motion.div> */}
         <motion.div variants={child}>
           <Footer />
         </motion.div>

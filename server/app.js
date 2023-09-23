@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const appAlgo = require("./api/algorhythm");
 
 app.use(express.json());
 
@@ -10,6 +11,8 @@ app.use("/public", express.static(path.join(__dirname, "../public")));
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"), { client_id: process.env.client_id });
 });
+
+app.use("/api/algorhythm", appAlgo);
 
 app.use("/api/script/reviews", require("./api/script/reviews"));
 app.use("/api/script/auth", require("./api/script/auth"));
