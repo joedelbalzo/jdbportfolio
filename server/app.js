@@ -5,6 +5,10 @@ const appAlgo = require("./api/algorhythm");
 
 app.use(express.json());
 
+const cors = require("cors");
+
+app.use(cors());
+
 app.use("/dist", express.static(path.join(__dirname, "../dist")));
 app.use("/public", express.static(path.join(__dirname, "../public")));
 
