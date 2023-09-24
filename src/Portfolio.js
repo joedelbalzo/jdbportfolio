@@ -26,6 +26,20 @@ const Portfolio = () => {
             </p>
           </div>
           <div id="borderdiv">
+            <span id="main-name" style={{ fontStyle: "italic" }}>
+              AlgoRhythm
+            </span>
+            <p>
+              This application is a Multiple Choice study-guide for Algorhithms, Data Structures,
+              and basic questions about popular languages like JavaScript and Python as well as
+              popular frameworks like React and NodeJs. At the moment, it's only Multiple Choice.
+              I've written the JS coderunner, but I'm hoping to implement a Python coderunner as
+              well before launching that page. The goal is to eventually incorporate Oauth so a user
+              can share data between devices (which will eventually also include iOS and Android
+              devices!) and user-selected categories.
+            </p>
+          </div>
+          <div id="borderdiv">
             These three following applications can be accessed fully with the username "moe" and
             pass "123." Feel free to dig in! All three are built in Javascript using the PERN stack
             -- PostgreSQL, Express, React, Node, and mostly vanilla CSS with some Material-UI

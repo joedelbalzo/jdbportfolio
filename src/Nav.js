@@ -48,6 +48,9 @@ const Nav = () => {
             <a href="https://www.dawngryan.com" target="_blank">
               Dawn Ryan
             </a>
+            <a href="https://algorhythm-joedelbalzo.vercel.app/" target="_blank">
+              AlgoRhythm
+            </a>
             <a href="#/dropofcss/" onClick={(e) => handleMenuItemClick(e, "/#/dropofcss/")}>
               "Drop of CSS"
             </a>
