@@ -22,8 +22,8 @@ const childVariants = {
   show: {
     opacity: 1,
     transition: {
-      delay: 2.5,
-      duration: 2,
+      delay: 0,
+      duration: 0.5,
     },
   },
 };

@@ -1,7 +1,7 @@
 const savedColors = JSON.parse(localStorage.getItem("colors"));
 if (savedColors) {
   console.log(
-    "hey! hope you're enjoying the tool. here's your previously stored saved colors:",
+    "hey! hope you're enjoying my website. it looks like you've played with the Drop of CSS tool. that's great! here's your previously stored saved colors in your local storage:",
     savedColors
   );
 }
