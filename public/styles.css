@@ -5,7 +5,7 @@ html {
       rgba(0, 0, 0, 0.6) 50%,
       rgba(0, 0, 0, 0.9) 80%
     ),
-    url("IMG-0103.jpg");
+    url("IMG-0103.avif");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -167,7 +167,7 @@ h3 {
 .main-form {
   width: 600px;
   margin: 2rem auto;
-  padding: 0.5rem;
+  padding: 1rem 0.5rem;
   border-radius: 8px;
   outline: 2px solid rgba(40, 48, 80, 0.7);
 }
@@ -355,7 +355,7 @@ h3 {
         rgba(0, 0, 0, 0.6) 50%,
         rgba(0, 0, 0, 0.9) 80%
       ),
-      url("IMG-0103.jpg");
+      url("IMG-0103.avif");
     background-position: 55%;
   }
   h1 {
@@ -367,6 +367,7 @@ h3 {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    padding-top: 8px;
   }
   .main-navbar > a {
     padding: calc(4px + 0.2vw);
@@ -414,7 +415,7 @@ h3 {
   .main-form {
     width: 80vw;
     margin: 2rem auto;
-    padding: 0.2rem;
+    padding: 1rem 0.5rem;
   }
 
   .main-form > input,

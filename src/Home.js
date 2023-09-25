@@ -11,7 +11,7 @@ const container = {
     opacity: 1,
     transition: {
       delayChildren: 1,
-      staggerChildren: 0.5,
+      staggerChildren: 0.4,
     },
   },
 };
@@ -21,7 +21,7 @@ const child = {
   show: {
     opacity: 1,
     transition: {
-      duration: 2,
+      duration: 1.8,
     },
   },
 };
