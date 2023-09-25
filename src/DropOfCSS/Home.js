@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import PreviewPane from "./PreviewPane";
 import Components from "./Components";
 import ColorGenForm from "./ColorGenForm";
-// import UserNavBar from "./UserNavBar";
+import PortfolioFooters from "../PortfolioFooters";
 
 const Home = ({}) => {
   const [form, setForm] = useState(null);
@@ -113,9 +113,9 @@ const Home = ({}) => {
             darkMode={darkMode}
             setDarkMode={setDarkMode}
           />
-          {/* <UserNavBar /> */}
         </div>
       </div>
+      <PortfolioFooters />
     </div>
   );
 };

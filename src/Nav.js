@@ -42,25 +42,46 @@ const Nav = () => {
             Portfolio
           </button>
           <div className="main-dropdown-links" style={{ zIndex: "9999" }}>
-            <a href="#/portfolio" onClick={(e) => handleMenuItemClick(e, "#/portfolio")}>
+            <a
+              href="#/portfolio"
+              onClick={(e) => handleMenuItemClick(e, "#/portfolio")}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               About
             </a>
-            <a href="https://www.dawngryan.com" target="_blank">
+            <a href="https://www.dawngryan.com" target="_blank" rel="noreferrer noopener">
               Dawn Ryan
             </a>
-            <a href="https://algorhythm-joedelbalzo.vercel.app/" target="_blank">
+            <a
+              href="https://algorhythm-joedelbalzo.vercel.app/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               AlgoRhythm
             </a>
-            <a href="#/dropofcss/" onClick={(e) => handleMenuItemClick(e, "/#/dropofcss/")}>
+            <a
+              href="https://www.joedelbalzo.com/#/dropofcss/"
+              onClick={(e) => handleMenuItemClick(e, "/#/dropofcss/")}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               "Drop of CSS"
             </a>
             <a
-              href="#/openplaces/login"
+              href="https://www.joedelbalzo.com/#/openplaces/login"
               onClick={(e) => handleMenuItemClick(e, "/#/openplaces/login")}
+              target="_blank"
+              rel="noreferrer noopener"
             >
               "Open Places"
             </a>
-            <a href="#/scriptforjava" onClick={(e) => handleMenuItemClick(e, "/#/scriptforjava")}>
+            <a
+              href="https://www.joedelbalzo.com/#/scriptforjava"
+              onClick={(e) => handleMenuItemClick(e, "/#/scriptforjava")}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               "Script for Java"
             </a>
           </div>

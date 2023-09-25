@@ -25,7 +25,7 @@ import AboutCareers from "./About/AboutCareers";
 import AboutContact from "./About/AboutContact";
 import Logout from "./Logout";
 import Review from "./Review";
-// import ReviewsAll from "./ReviewsAll";
+import PortfolioFooters from "../PortfolioFooters";
 
 import Admin from "./Admin/Admin";
 import NotAdmin from "./Admin/NotAdmin";
@@ -145,6 +145,7 @@ const AScriptForJavaApp = () => {
         <div></div>
 
         <FooterNav />
+        <PortfolioFooters />
       </div>
     </FadeComponent>
     // </div>

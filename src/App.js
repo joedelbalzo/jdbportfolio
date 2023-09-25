@@ -32,7 +32,7 @@ const childVariants = {
 const App = () => {
   return (
     <div>
-      {window.location.hash === "#/home" ? (
+      {window.location.hash === "#/home" || window.location.hash === "" ? (
         <>
           <motion.div variants={containerVariants} initial="hidden" animate="show">
             <motion.div variants={childVariants}>
@@ -40,15 +40,18 @@ const App = () => {
             </motion.div>
           </motion.div>
         </>
-      ) : (
+      ) : window.location.hash === "#/resume" || window.location.hash === "#/portfolio" ? (
         <>
           <Nav />
         </>
+      ) : (
+        ""
       )}
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/links" element={<Sublinks />} />
+        {/* <Route path="/links" element={<Sublinks />} /> */}
         <Route path="/resume" element={<Resume />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/dropofcss/*" element={<CssApp />} />

@@ -11,6 +11,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Register from "./Register";
 import { FadeComponent } from "../FadeComponent";
 import { Fade } from "@mui/material";
+import PortfolioFooters from "../PortfolioFooters";
 
 const OpenPlacesApp = () => {
   const { placesAuth } = useSelector((state) => state);
@@ -49,6 +50,7 @@ const OpenPlacesApp = () => {
 
           <Route path="/register" element={<Register />} />
         </Routes>
+        <PortfolioFooters />
       </div>
     </FadeComponent>
   );

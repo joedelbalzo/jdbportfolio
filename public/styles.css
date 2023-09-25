@@ -19,6 +19,8 @@ body {
   font-family: "Roboto", sans-serif;
   text-align: center;
   font-size: calc(16px + 1.5vw);
+  margin: 0;
+  padding: 0;
 }
 
 .main-navbar {
@@ -154,21 +156,8 @@ h3 {
   border-radius: 2rem;
   padding: 1rem;
   border-radius: 0;
-  /* background: linear-gradient(to right, rgba(30, 144, 255, 0.1) 2px, transparent 2px) 0 0,
-    linear-gradient(to right, rgba(120, 120, 120, 0.1) 4px, transparent 0px) 0 100%,
-    linear-gradient(to left, rgba(120, 120, 120, 0.1) 4px, transparent 0px) 100% 0,
-    linear-gradient(to left, rgba(50, 205, 50, 0.1) 2px, transparent 2px) 100% 100%,
-    linear-gradient(to bottom, rgba(30, 144, 255, 0.1) 2px, transparent 2px) 0 0,
-    linear-gradient(to bottom, rgba(120, 120, 120, 0.1) 2px, transparent 0px) 100% 0,
-    linear-gradient(to top, rgba(120, 120, 120, 0.1) 2px, transparent 0px) 0 100%,
-    linear-gradient(to top, rgba(50, 205, 50, 0.1) 2px, transparent 2px) 100% 100%;
-
-  background-repeat: no-repeat;
-  background-size: calc(100px + 8vw) calc(50px + 2vh); */
   background-color: rgba(0, 0, 0, 0.1);
   box-shadow: 0rem 0rem 5rem 2rem rgba(0, 0, 0, 0.1);
-
-  /* background-color: rgba(0, 0, 0, 0.4); */
 }
 
 #main-introParagraph > p {
@@ -178,10 +167,9 @@ h3 {
 .main-form {
   width: 600px;
   margin: 4rem auto;
-  border: 1px solid whitesmoke;
   padding: 0.5rem;
   border-radius: 4px;
-  background-color: rgba(10, 12, 20, 0.5);
+  outline: 1px solid rgba(20, 24, 40, 0.7);
 }
 
 .main-form > input,
@@ -193,6 +181,7 @@ h3 {
   padding: 0.5rem;
   font-size: calc(10px + 1vw);
   background-color: #101318;
+  outline: 1px solid rgb(220, 220, 220);
   color: whitesmoke;
 }
 .main-form > input:focus,
@@ -851,11 +840,11 @@ a drop of css
   font-family: "Roboto", sans-serif;
   background-color: #fafafa;
   margin: 0;
-  min-height: 90vh;
+  /* min-height: 90vh;
   height: fit-content;
   border-width: 3px;
   border-style: solid;
-  border-image: linear-gradient(to right bottom, dodgerblue, lightgreen) 1;
+  border-image: linear-gradient(to right bottom, dodgerblue, lightgreen) 1; */
   overflow-x: hidden;
 }
 
