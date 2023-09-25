@@ -485,13 +485,13 @@ script for java
 */
 
 .ScriptForJava {
-  max-width: 95%;
+  /* max-width: 95%;
   min-height: 90vh;
-  height: fit-content;
+  height: fit-content; */
   overflow-y: scroll;
-  border-width: 3px;
+  /* border-width: 3px;
   border-style: solid;
-  border-image: linear-gradient(to right bottom, dodgerblue, lightgreen) 1;
+  border-image: linear-gradient(to right bottom, dodgerblue, lightgreen) 1; */
   font-family: "Roboto", sans-serif;
   margin: auto;
   background-color: #e6f4f6;
@@ -678,17 +678,17 @@ open places
 */
 
 .OpenPlaces {
-  max-width: 700px;
-  min-height: 90vh;
+  /* max-width: 700px;
+  min-height: 90vh; */
   height: fit-content;
   margin: auto;
   font-family: "Roboto", sans-serif;
   font-size: 2rem;
   color: rgb(0, 30, 17);
-  border-width: 3px;
+  /* border-width: 3px;
   border-style: solid;
-  border-image: linear-gradient(to right bottom, dodgerblue, lightgreen) 1;
-  padding: 1px;
+  border-image: linear-gradient(to right bottom, dodgerblue, lightgreen) 1; */
+  /* padding: 1px; */
   background-color: #fbfdfd;
 }
 
