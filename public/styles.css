@@ -166,10 +166,10 @@ h3 {
 
 .main-form {
   width: 600px;
-  margin: 4rem auto;
+  margin: 2rem auto;
   padding: 0.5rem;
-  border-radius: 4px;
-  outline: 1px solid rgba(20, 24, 40, 0.7);
+  border-radius: 8px;
+  outline: 2px solid rgba(40, 48, 80, 0.7);
 }
 
 .main-form > input,
@@ -179,15 +179,21 @@ h3 {
   border: none;
   font-family: verdana;
   padding: 0.5rem;
+  margin: 4px 2rem;
   font-size: calc(10px + 1vw);
   background-color: #101318;
   outline: 1px solid rgb(220, 220, 220);
   color: whitesmoke;
+  border-radius: 4px;
+}
+.main-form > textarea {
+  min-height: 4rem;
 }
 .main-form > input:focus,
 .main-form > textarea:focus {
   outline: 2px solid whitesmoke;
   background-color: #101318;
+  border-radius: 4px;
 }
 
 .main-form > button {

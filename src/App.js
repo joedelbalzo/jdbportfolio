@@ -27,7 +27,7 @@ const childVariants = {
     },
   },
 };
-// console.log(window);
+console.log("hash", window.location.hash);
 
 const App = () => {
   return (

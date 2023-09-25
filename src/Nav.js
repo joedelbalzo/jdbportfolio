@@ -62,7 +62,7 @@ const Nav = () => {
             </a>
             <a
               href="https://www.joedelbalzo.com/#/dropofcss/"
-              onClick={(e) => handleMenuItemClick(e, "/#/dropofcss/")}
+              // onClick={(e) => handleMenuItemClick(e, "/#/dropofcss/")}
               target="_blank"
               rel="noreferrer noopener"
             >
@@ -70,7 +70,7 @@ const Nav = () => {
             </a>
             <a
               href="https://www.joedelbalzo.com/#/openplaces/login"
-              onClick={(e) => handleMenuItemClick(e, "/#/openplaces/login")}
+              // onClick={(e) => handleMenuItemClick(e, "/#/openplaces/login")}
               target="_blank"
               rel="noreferrer noopener"
             >
@@ -78,7 +78,7 @@ const Nav = () => {
             </a>
             <a
               href="https://www.joedelbalzo.com/#/scriptforjava"
-              onClick={(e) => handleMenuItemClick(e, "/#/scriptforjava")}
+              // onClick={(e) => handleMenuItemClick(e, "/#/scriptforjava")}
               target="_blank"
               rel="noreferrer noopener"
             >
