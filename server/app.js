@@ -16,6 +16,10 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"), { client_id: process.env.client_id });
 });
 
+app.get("/sitemap.xml", (req, res) => {
+  res.sendFile(path.join(__dirname, "../sitemap.xml"));
+});
+
 app.use("/api/algorhythm", appAlgo);
 
 app.use("/api/script/reviews", require("./api/script/reviews"));
