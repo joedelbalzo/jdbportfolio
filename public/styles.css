@@ -358,11 +358,14 @@ h3 {
     background-image: linear-gradient(
         180deg,
         rgba(30, 30, 30, 0.2) 10%,
-        rgba(0, 0, 0, 0.6) 30%,
-        rgba(0, 0, 0, 0.9) 50%
+        rgba(0, 0, 0, 0.6) 25%,
+        rgba(0, 0, 0, 0.9) 40%
       ),
       url("IMG-0103.avif");
-    background-position: 55%;
+    background-position: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
   h1 {
     font-size: 2.5rem;
