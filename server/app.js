@@ -10,11 +10,13 @@ app.use(cors());
 //middleware
 const restrictAccess = (req, res, next) => {
   const origin = req.headers.origin || req.headers.referer || "localhost:3000";
-
+  console.log("origin", origin);
   if (origin) {
     if (
       origin === "https://algorhythm-joedelbalzo.vercel.app/" ||
-      origin.startsWith("https://algorhythm-joedelbalzo.vercel.app/")
+      "https://algorhythm-joedelbalzo.vercel.app" ||
+      origin.startsWith("https://algorhythm-joedelbalzo") ||
+      origin.startsWith("algorhythm-joedelbalzo")
     ) {
       next();
     } else {
