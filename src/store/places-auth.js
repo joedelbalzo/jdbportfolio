@@ -45,8 +45,14 @@ export const placesUpdateAuth = (auth) => {
 
 export const placesAttemptLogin = (credentials) => {
   return async (dispatch) => {
+    console.log("attempting");
     const response = await axios.post("/api/openplaces/auth", credentials);
     window.localStorage.setItem("token", response.data);
+    console.log("response", response.data.status);
+    if (response.data.status === 401) {
+      dispatch({ type: "SET_AUTH", auth: "failed" });
+    }
+
     dispatch(placesLoginWithToken());
   };
 };

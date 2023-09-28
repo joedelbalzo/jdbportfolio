@@ -1,6 +1,6 @@
 // react imports
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 // mui imports
 import { Button, TextField } from "@mui/material";
@@ -16,14 +16,11 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const theme = useTheme();
-  const [passwordError, setPasswordError] = useState("");
-
+  const [passwordError, setPasswordError] = useState(false);
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
   });
-
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const onChange = (ev) => {
     setCredentials({ ...credentials, [ev.target.name]: ev.target.value });
@@ -35,12 +32,13 @@ const Login = () => {
       dispatch(placesAttemptLogin(credentials));
       console.log("dispatching");
       navigate("/openplaces/home");
+      console.log("should have navigated by now.");
     } catch (err) {
       console.log("incorrect");
-      setPasswordError("Incorrect username or password. Please try again.");
       console.log(err);
     }
   };
+
   return (
     <div id="places-loginPage">
       <h2>Login</h2>
@@ -54,6 +52,9 @@ const Login = () => {
           variant="outlined"
           value={credentials.username}
           onChange={onChange}
+          inputProps={{
+            autoCapitalize: "none",
+          }}
         />
 
         <TextField
@@ -93,22 +94,6 @@ const Login = () => {
             Create New User
           </Link>
         </Button>
-
-        {/* <Button 
-          type="submit" 
-          style={{fontSize: "1.2rem"}}> 
-            <a href={`https://github.com/login/oauth/authorize?client_id=${window.client_id}`} style={{ textDecoration: 'none'  }}>
-            Login with Google (doesn't work yet...)
-            </a>
-        </Button>
-
-        <Button 
-          type="submit" 
-          style={{fontSize: "1.2rem"}}> 
-            <a href={`https://github.com/login/oauth/authorize?client_id=${window.client_id}`} style={{ textDecoration: 'none'  }}>
-            Login with Github
-            </a> */}
-        {/* </Button> */}
       </form>
     </div>
   );

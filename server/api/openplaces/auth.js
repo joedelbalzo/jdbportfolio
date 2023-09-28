@@ -7,7 +7,8 @@ module.exports = app;
 
 app.post("/", async (req, res, next) => {
   try {
-    res.send(await User.authenticate(req.body));
+    const auth = await User.authenticate(req.body);
+    res.send(auth);
   } catch (ex) {
     next(ex);
   }
@@ -24,7 +25,6 @@ app.post("/register", async (req, res, next) => {
 
 app.get("/", isLoggedIn, (req, res, next) => {
   try {
-    // console.log('ok youre in the GET call')
     res.send(req.user);
   } catch (ex) {
     next(ex);

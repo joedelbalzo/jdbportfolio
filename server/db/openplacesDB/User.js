@@ -80,25 +80,18 @@ User.prototype.generateToken = function () {
 };
 
 User.authenticate = async function (credentials) {
-  // console.log("places attempt login");
-  // console.log(credentials);
   const { username, password } = credentials;
   const user = await this.findOne({
     where: {
       username,
     },
   });
-  // console.log(user);
-  // console.log(password);
-  // console.log(user.password);
   if (user && (await bcrypt.compare(password, user.password))) {
-    // console.log("places attempt login");
-
     return jwt.sign({ id: user.id }, JWT);
   }
   const error = new Error("bad credentials");
   error.status = 401;
-  throw error;
+  return error;
 };
 
 module.exports = User;

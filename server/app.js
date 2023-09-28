@@ -2,12 +2,32 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const appAlgo = require("./api/algorhythm");
-
-app.use(express.json());
-
 const cors = require("cors");
 
+app.use(express.json());
 app.use(cors());
+
+//middleware
+const restrictAccess = (req, res, next) => {
+  const origin = req.headers.origin || req.headers.referer || "localhost:3000";
+
+  if (origin) {
+    if (
+      origin === "https://algorhythm-joedelbalzo.vercel.app/" ||
+      origin.startsWith("https://algorhythm-joedelbalzo.vercel.app/")
+    ) {
+      next();
+    } else {
+      res
+        .status(403)
+        .send(
+          "Access Denied: Only https://algorhythm-joedelbalzo.vercel.app/ and its subpaths can access the database."
+        );
+    }
+  } else {
+    res.status(403).send("Access Denied: Origin or Referer header is not set.");
+  }
+};
 
 app.use("/dist", express.static(path.join(__dirname, "../dist")));
 app.use("/public", express.static(path.join(__dirname, "../public")));
@@ -20,7 +40,7 @@ app.get("/sitemap.xml", (req, res) => {
   res.sendFile(path.join(__dirname, "../sitemap.xml"));
 });
 
-app.use("/api/algorhythm", appAlgo);
+app.use("/api/algorhythm", restrictAccess, appAlgo);
 
 app.use("/api/script/reviews", require("./api/script/reviews"));
 app.use("/api/script/auth", require("./api/script/auth"));

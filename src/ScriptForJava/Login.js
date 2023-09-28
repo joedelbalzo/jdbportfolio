@@ -37,6 +37,9 @@ const Login = () => {
           value={credentials.username}
           name="username"
           onChange={onChange}
+          inputProps={{
+            autoCapitalize: "none",
+          }}
         />
         <div style={{ marginBottom: 1 }} />
         <TextField
