@@ -4,10 +4,6 @@
   <hr>
 </p>
 
-<div align="center">
-  <img src="https://media.giphy.com/media/uhkgRdrMSnqDBofJru/giphy.gif" width="200" height="200"/>
-</div>
-
 ## Welcome To My Portfolio Website!
 
 I'm a passionate developer specializing in JavaScript technologies. I love to build scalable and maintainable applications, and I have experience working with React, React-Redux, Express, Node, and PostgreSQL.</br><br/>
