@@ -4347,6 +4347,420 @@ const questionData = [
     timesCorrect: 0,
     timesIncorrect: 0,
   },
+  {
+    questionNumber: 285,
+    category: "Data Structures and Algorithms",
+    question: "Which of the following traversal methods processes a node before its children?",
+    correctAnswerArray: [false, true, false, false, false],
+    answerOne: "Breadth-First Search (BFS)",
+    answerTwo: "Depth-First Search (DFS)",
+    answerThree: "In-order traversal",
+    answerFour: "Post-order traversal",
+    answerFive: "Level-order traversal",
+    timesCorrect: 0,
+    timesIncorrect: 0,
+  },
+  {
+    questionNumber: 286,
+    category: "Data Structures and Algorithms",
+    question: "What is the purpose of the following code snippet?",
+    codeSnippet: `
+      function randomFunctionName(root) {
+        let result = [];
+        function dfs(node) {
+          if (!node) return;
+          result.push(node.val);
+          dfs(node.left);
+          dfs(node.right);
+        }
+        dfs(root);
+        return result;
+      }
+      `,
+    correctAnswerArray: [true, false, false, false, false],
+    answerOne:
+      "Performs a DFS traversal on a binary tree and returns node values in the order of traversal.",
+    answerTwo: "Performs a BFS traversal on the binary tree.",
+    answerThree: "Evaluates the average of all tree nodes.",
+    answerFour: "Returns the sum of all nodes in a binary tree.",
+    answerFive: "Counts the number of leaf nodes in the tree.",
+    timesCorrect: 0,
+    timesIncorrect: 0,
+  },
+  {
+    questionNumber: 287,
+    category: "Data Structures and Algorithms",
+    question: "Which traversal method processes a node's left child before the right child?",
+    correctAnswerArray: [false, true, false, false, false],
+    answerOne: "Breadth-First Search (BFS)",
+    answerTwo: "Pre-order DFS traversal",
+    answerThree: "Post-order DFS traversal",
+    answerFour: "Level-order traversal",
+    answerFive: "None of the above",
+    timesCorrect: 0,
+    timesIncorrect: 0,
+  },
+  {
+    questionNumber: 288,
+    category: "Data Structures and Algorithms",
+    question: "In which traversal method do we process a node's children before the node itself?",
+    correctAnswerArray: [false, false, false, true, false],
+    answerOne: "Pre-order DFS traversal",
+    answerTwo: "In-order DFS traversal",
+    answerThree: "Breadth-First Search (BFS)",
+    answerFour: "Post-order DFS traversal",
+    answerFive: "Level-order traversal",
+    timesCorrect: 0,
+    timesIncorrect: 0,
+  },
+  {
+    questionNumber: 289,
+    category: "Data Structures and Algorithms",
+    question: "What is the primary disadvantage of DFS when compared to BFS?",
+    correctAnswerArray: [false, false, true, false, false],
+    answerOne: "DFS is slower than BFS.",
+    answerTwo: "DFS cannot handle cycles.",
+    answerThree: "DFS can consume more stack space, leading to a stack overflow.",
+    answerFour: "DFS cannot be used on trees.",
+    answerFive: "DFS does not use recursion.",
+    timesCorrect: 0,
+    timesIncorrect: 0,
+  },
+  {
+    questionNumber: 290,
+    category: "Data Structures and Algorithms",
+    question:
+      "Why are two heaps often used in problems related to finding the median in a stream of numbers?",
+    correctAnswerArray: [false, true, false, false, false],
+    answerOne: "To improve time complexity.",
+    answerTwo: "To keep track of the smallest and largest numbers efficiently.",
+    answerThree: "To reduce space complexity.",
+    answerFour: "For balancing binary search trees.",
+    answerFive: "To ensure stable sorting.",
+    timesCorrect: 0,
+    timesIncorrect: 0,
+  },
+  {
+    questionNumber: 291,
+    category: "Data Structures and Algorithms",
+    question: "What is the purpose of the following code snippet?",
+    codeSnippet: `
+      function randomFunctionName(numbers) {
+        const maxHeap = new MaxHeap(); // lower half
+        const minHeap = new MinHeap(); // higher half
+        for (let num of numbers) {
+          maxHeap.add(num);
+          minHeap.add(maxHeap.poll());
+          if (maxHeap.size < minHeap.size) {
+            maxHeap.add(minHeap.poll());
+          }
+        }
+        return maxHeap.size > minHeap.size ? maxHeap.peek() : (maxHeap.peek() + minHeap.peek()) / 2;
+      }
+      `,
+    correctAnswerArray: [true, false, false, false, false],
+    answerOne: "Finds the median of a dynamic list of numbers.",
+    answerTwo: "Sorts the list of numbers.",
+    answerThree: "Finds the largest and smallest numbers in the list.",
+    answerFour: "Calculates the sum of all numbers.",
+    answerFive: "Performs a heap sort on the list.",
+    timesCorrect: 0,
+    timesIncorrect: 0,
+  },
+  {
+    questionNumber: 292,
+    category: "Data Structures and Algorithms",
+    question:
+      "In the Two Heaps method for finding the median, if both heaps have the same number of elements, how is the median determined?",
+    correctAnswerArray: [false, false, true, false, false],
+    answerOne: "By taking the top element of the max-heap.",
+    answerTwo: "By taking the top element of the min-heap.",
+    answerThree: "By averaging the top elements of both heaps.",
+    answerFour: "By summing the top elements of both heaps.",
+    answerFive: "By taking the middle element of the merged heaps.",
+    timesCorrect: 0,
+    timesIncorrect: 0,
+  },
+  {
+    questionNumber: 293,
+    category: "Data Structures and Algorithms",
+    question: "In the Two Heaps method, which heap typically stores the lower half of the numbers?",
+    correctAnswerArray: [true, false, false, false, false],
+    answerOne: "Max-heap",
+    answerTwo: "Min-heap",
+    answerThree: "Both heaps store the same numbers.",
+    answerFour: "Neither heap stores the lower half.",
+    answerFive: "It depends on the implementation.",
+    timesCorrect: 0,
+    timesIncorrect: 0,
+  },
+  {
+    questionNumber: 294,
+    category: "Data Structures and Algorithms",
+    question:
+      "What advantage does the Two Heaps method provide when finding the median from a stream of numbers?",
+    correctAnswerArray: [false, false, false, true, false],
+    answerOne: "It ensures that numbers are always sorted.",
+    answerTwo: "It reduces the space complexity to O(1).",
+    answerThree: "It guarantees constant time insertion.",
+    answerFour: "It allows for O(1) time retrieval of the median.",
+    answerFive: "It guarantees that both heaps have the same number of elements.",
+    timesCorrect: 0,
+    timesIncorrect: 0,
+  },
+  {
+    questionNumber: 295,
+    category: "Data Structures and Algorithms",
+    question: "Which approach is commonly used to generate all subsets of a given set?",
+    correctAnswerArray: [false, true, false, false, false],
+    answerOne: "Divide and Conquer.",
+    answerTwo: "Backtracking.",
+    answerThree: "Dynamic Programming.",
+    answerFour: "Greedy Algorithms.",
+    answerFive: "Breadth-First Search.",
+    timesCorrect: 0,
+    timesIncorrect: 0,
+  },
+  {
+    questionNumber: 296,
+    category: "Data Structures and Algorithms",
+    question: "What is the purpose of the following code snippet?",
+    codeSnippet: `
+      function randomFunctionName(nums) {
+        const subsets = [];
+        generateSubsets([], 0);
+        function generateSubsets(current, index) {
+          if (index === nums.length) {
+            subsets.push([...current]);
+            return;
+          }
+          generateSubsets([...current, nums[index]], index + 1);
+          generateSubsets(current, index + 1);
+        }
+        return subsets;
+      }
+      `,
+    correctAnswerArray: [true, false, false, false, false],
+    answerOne: "Generates all possible subsets of the given array.",
+    answerTwo: "Finds the largest subset of the given array.",
+    answerThree: "Counts the number of subsets in the given array.",
+    answerFour: "Generates all possible permutations of the given array.",
+    answerFive: "Finds the smallest subset of the given array.",
+    timesCorrect: 0,
+    timesIncorrect: 0,
+  },
+  {
+    questionNumber: 297,
+    category: "Data Structures and Algorithms",
+    question: "How many subsets can be generated from a set with 'n' elements?",
+    correctAnswerArray: [false, true, false, false, false],
+    answerOne: "n!",
+    answerTwo: "2^n",
+    answerThree: "n^2",
+    answerFour: "n(log n)",
+    answerFive: "n(n-1)/2",
+    timesCorrect: 0,
+    timesIncorrect: 0,
+  },
+  {
+    questionNumber: 298,
+    category: "Data Structures and Algorithms",
+    question: "Which of the following is NOT a common application of the subsets method?",
+    correctAnswerArray: [false, false, true, false, false],
+    answerOne: "Generating power sets.",
+    answerTwo: "Finding subsets that sum to a specific target.",
+    answerThree: "Shortest path in a graph.",
+    answerFour: "Finding all combinations of k elements.",
+    answerFive: "Generating all possible binary strings of length n.",
+    timesCorrect: 0,
+    timesIncorrect: 0,
+  },
+  {
+    questionNumber: 299,
+    category: "Data Structures and Algorithms",
+    question:
+      "When generating subsets using backtracking, what crucial step is taken after exploring a choice?",
+    correctAnswerArray: [false, false, false, true, false],
+    answerOne: "Incrementing the counter.",
+    answerTwo: "Checking the validity of the choice.",
+    answerThree: "Doubling the size of the current subset.",
+    answerFour: "Undoing the choice to backtrack.",
+    answerFive: "Sorting the current subset.",
+    timesCorrect: 0,
+    timesIncorrect: 0,
+  },
+  {
+    questionNumber: 300,
+    category: "Data Structures and Algorithms",
+    question: "Which of the following best describes a modified binary search?",
+    correctAnswerArray: [true, false, false, false, false],
+    answerOne: "A variation of standard binary search to solve more complex problems.",
+    answerTwo: "A binary search that only works on negative integers.",
+    answerThree: "A binary search that doesn't require a sorted array.",
+    answerFour: "A binary search implemented using a stack.",
+    answerFive: "A binary search that only returns the first and last occurrence of an element.",
+    timesCorrect: 0,
+    timesIncorrect: 0,
+  },
+  {
+    questionNumber: 301,
+    category: "Data Structures and Algorithms",
+    question: "What is the purpose of the following code snippet?",
+    codeSnippet: `
+      function randomFunctionName(arr, target) {
+        let start = 0, end = arr.length - 1;
+        while (start <= end) {
+          let mid = Math.floor(start + (end - start) / 2);
+          if (arr[mid] === target) return mid;
+          if (arr[start] <= arr[mid]) {
+            if (target >= arr[start] && target < arr[mid]) end = mid - 1;
+            else start = mid + 1;
+          } else {
+            if (target > arr[mid] && target <= arr[end]) start = mid + 1;
+            else end = mid - 1;
+          }
+        }
+        return -1;
+      }
+      `,
+    correctAnswerArray: [true, false, false, false, false],
+    answerOne: "Searches for a target in a rotated sorted array using modified binary search.",
+    answerTwo: "Searches for the smallest element in the array.",
+    answerThree: "Finds the pivot element in a rotated sorted array.",
+    answerFour: "Counts the number of occurrences of the target in the array.",
+    answerFive: "Returns the median of the array.",
+    timesCorrect: 0,
+    timesIncorrect: 0,
+  },
+  {
+    questionNumber: 302,
+    category: "Data Structures and Algorithms",
+    question:
+      "In a modified binary search, when might the standard condition of comparing the middle element to the target change?",
+    correctAnswerArray: [false, true, false, false, false],
+    answerOne: "When the array is in descending order.",
+    answerTwo:
+      "When dealing with variations like searching in a bitonic array or a rotated sorted array.",
+    answerThree: "When the target is an even number.",
+    answerFour: "When the array contains duplicate elements.",
+    answerFive: "When the array has an even length.",
+    timesCorrect: 0,
+    timesIncorrect: 0,
+  },
+  {
+    questionNumber: 303,
+    category: "Data Structures and Algorithms",
+    question:
+      "Which of the following problems can be efficiently solved using a modified binary search?",
+    correctAnswerArray: [false, false, true, false, false],
+    answerOne: "Finding the shortest path in a graph.",
+    answerTwo: "Sorting an array of strings.",
+    answerThree: "Finding the peak element in a bitonic array.",
+    answerFour: "Finding all subsets of a set.",
+    answerFive: "Determining if a graph is cyclic.",
+    timesCorrect: 0,
+    timesIncorrect: 0,
+  },
+  {
+    questionNumber: 304,
+    category: "Data Structures and Algorithms",
+    question:
+      "When performing a modified binary search on a rotated sorted array, what additional check might be necessary compared to a regular binary search?",
+    correctAnswerArray: [false, false, true, false, false],
+    answerOne: "Checking if the array is fully sorted.",
+    answerTwo: "Comparing every element to its adjacent elements.",
+    answerThree: "Determining which part of the array (left or right of the middle) is sorted.",
+    answerFour: "Counting the number of elements in the array.",
+    answerFive: "Finding the median of the array.",
+    timesCorrect: 0,
+    timesIncorrect: 0,
+  },
+  {
+    questionNumber: 305,
+    category: "Data Structures and Algorithms",
+    question:
+      "Which data structure is most commonly associated with solving 'Top K elements' problems efficiently?",
+    correctAnswerArray: [false, true, false, false, false],
+    answerOne: "Array",
+    answerTwo: "Heap",
+    answerThree: "Queue",
+    answerFour: "Stack",
+    answerFive: "Binary Tree",
+    timesCorrect: 0,
+    timesIncorrect: 0,
+  },
+  {
+    questionNumber: 306,
+    category: "Data Structures and Algorithms",
+    question: "What is the purpose of the following code snippet?",
+    codeSnippet: `
+      function randomFunctionName(nums, k) {
+        let heap = [];
+        for (let num of nums) {
+          if (heap.length < k) {
+            heap.push(num);
+          } else if (num > heap[0]) {
+            heap.shift();
+            heap.push(num);
+          }
+        }
+        return heap.shift();
+      }
+      `,
+    correctAnswerArray: [true, false, false, false, false],
+    answerOne: "Finds the Kth largest element in an array.",
+    answerTwo: "Sorts the array in descending order.",
+    answerThree: "Finds the Kth smallest element in an array.",
+    answerFour: "Returns the top K elements from the array.",
+    answerFive: "None of the above.",
+    timesCorrect: 0,
+    timesIncorrect: 0,
+  },
+  {
+    questionNumber: 307,
+    category: "Data Structures and Algorithms",
+    question: "In 'Top K elements' problems, what is the primary advantage of using a heap?",
+    correctAnswerArray: [false, true, false, false, false],
+    answerOne: "To improve space complexity.",
+    answerTwo: "To get O(1) time for accessing the largest (or smallest) element.",
+    answerThree: "To ensure the data is sorted.",
+    answerFour: "To improve the worst-case time complexity.",
+    answerFive: "To decrease the overall number of operations.",
+    timesCorrect: 0,
+    timesIncorrect: 0,
+  },
+  {
+    questionNumber: 308,
+    category: "Data Structures and Algorithms",
+    question:
+      "Which of the following best describes a scenario where you might use the 'Top K elements' approach?",
+    correctAnswerArray: [false, false, false, true, false],
+    answerOne: "Finding all subsets of a set.",
+    answerTwo: "Determining if an array contains duplicate elements.",
+    answerThree: "Identifying the median of an array.",
+    answerFour: "Finding the K most frequent elements in an array.",
+    answerFive: "Sorting an array of strings.",
+    timesCorrect: 0,
+    timesIncorrect: 0,
+  },
+  {
+    questionNumber: 309,
+    category: "Data Structures and Algorithms",
+    question: "What is the purpose of the following code snippet?",
+    codeSnippet: `
+      function randomFunctionName(points, k) {
+        return points.sort((a, b) => (a[0] ** 2 + a[1] ** 2) - (b[0] ** 2 + b[1] ** 2)).slice(0, k);
+      }
+      `,
+    correctAnswerArray: [true, false, false, false, false],
+    answerOne: "Returns the K closest points to the origin.",
+    answerTwo: "Finds the K farthest points from the origin.",
+    answerThree: "Sorts the points based on their x-coordinates.",
+    answerFour: "Returns all points within a K radius from the origin.",
+    answerFive: "None of the above.",
+    timesCorrect: 0,
+    timesIncorrect: 0,
+  },
 ];
 
 module.exports = questionData;
