@@ -21,11 +21,7 @@ const Nav = () => {
     <>
       <div className="main-navbar">
         <a href="#/home">Home</a>
-        <a
-          href="https://www.linkedin.com/in/joe-delbalzo/"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
+        <a href="https://www.linkedin.com/in/joe-delbalzo/" target="_blank" rel="noreferrer noopener">
           LinkedIn
         </a>
         <a href="https://github.com/joedelbalzo" target="_blank" rel="noreferrer noopener">
@@ -34,30 +30,16 @@ const Nav = () => {
         <a href="#/resume" rel="noreferrer noopener">
           Resume
         </a>
-        <div
-          className={`main-dropdown ${dropdownActive ? "active" : ""}`}
-          onClick={() => setDropdownActive(!dropdownActive)}
-        >
-          <button className={`main-dropbtn ${dropdownActive ? "main-dropdown-hover" : ""}`}>
-            Portfolio
-          </button>
+        <div className={`main-dropdown ${dropdownActive ? "active" : ""}`} onClick={() => setDropdownActive(!dropdownActive)}>
+          <button className={`main-dropbtn ${dropdownActive ? "main-dropdown-hover" : ""}`}>Portfolio</button>
           <div className="main-dropdown-links" style={{ zIndex: "9999" }}>
-            <a
-              href="#/portfolio"
-              onClick={(e) => handleMenuItemClick(e, "#/portfolio")}
-              target="_blank"
-              rel="noreferrer noopener"
-            >
+            <a href="#/portfolio" onClick={(e) => handleMenuItemClick(e, "#/portfolio")} target="_blank" rel="noreferrer noopener">
               About
             </a>
             <a href="https://www.dawngryan.com" target="_blank" rel="noreferrer noopener">
               Dawn Ryan
             </a>
-            <a
-              href="https://algorhythm-joedelbalzo.vercel.app/"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
+            <a href="https://algorhythm-joedelbalzo.vercel.app/" target="_blank" rel="noreferrer noopener">
               AlgoRhythm
             </a>
             <a
@@ -66,7 +48,7 @@ const Nav = () => {
               target="_blank"
               rel="noreferrer noopener"
             >
-              "Drop of CSS"
+              Drop of CSS
             </a>
             <a
               href="https://www.joedelbalzo.com/#/openplaces/login"
@@ -74,7 +56,7 @@ const Nav = () => {
               target="_blank"
               rel="noreferrer noopener"
             >
-              "Open Places"
+              Open Places
             </a>
             <a
               href="https://www.joedelbalzo.com/#/scriptforjava"
@@ -82,7 +64,7 @@ const Nav = () => {
               target="_blank"
               rel="noreferrer noopener"
             >
-              "Script for Java"
+              Script for Java
             </a>
           </div>
         </div>
