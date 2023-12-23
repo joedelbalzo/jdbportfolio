@@ -3,9 +3,14 @@ const app = express();
 const path = require("path");
 const appAlgo = require("./api/algorhythm");
 const cors = require("cors");
+const { warmSite } = require("./siteWarmer");
 
 app.use(express.json());
 app.use(cors());
+
+warmSite("https://www.usevali.com");
+warmSite("https://www.dawngryan.com");
+console.log("warming");
 
 //middleware
 const restrictAccess = (req, res, next) => {
@@ -20,11 +25,7 @@ const restrictAccess = (req, res, next) => {
     ) {
       next();
     } else {
-      res
-        .status(403)
-        .send(
-          "Access Denied: Only https://algorhythm-joedelbalzo.vercel.app/ and its subpaths can access the database."
-        );
+      res.status(403).send("Access Denied: Only https://algorhythm-joedelbalzo.vercel.app/ and its subpaths can access the database.");
     }
   } else {
     res.status(403).send("Access Denied: Origin or Referer header is not set.");
@@ -34,7 +35,7 @@ const restrictAccess = (req, res, next) => {
 app.use("/dist", express.static(path.join(__dirname, "../dist")));
 app.use("/public", express.static(path.join(__dirname, "../public")));
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"), { client_id: process.env.client_id });
 });
 

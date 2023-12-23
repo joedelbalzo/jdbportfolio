@@ -36,6 +36,9 @@ const Nav = () => {
             <a href="#/portfolio" onClick={(e) => handleMenuItemClick(e, "#/portfolio")} target="_blank" rel="noreferrer noopener">
               About
             </a>
+            <a href="https://www.usevali.com" target="_blank" rel="noreferrer noopener">
+              Vali
+            </a>
             <a href="https://www.dawngryan.com" target="_blank" rel="noreferrer noopener">
               Dawn Ryan
             </a>
