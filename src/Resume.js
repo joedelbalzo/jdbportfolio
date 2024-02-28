@@ -54,8 +54,8 @@ const Resume = () => {
               </li>
             </ul>
             <h3 style={{ marginBottom: 0 }}>Vali</h3>
-            <a href="https://www.usevali.com/" style={{ color: "whitesmoke", fontSize: "smaller" }}>
-              https://www.usevali.com/
+            <a href="https://asitenamedkaasisindev.onrender.com/" style={{ color: "whitesmoke", fontSize: "smaller" }}>
+              https://asitenamedkaasisindev.onrender.com/
             </a>
             <h3 style={{ marginTop: 0 }}>Founding Software Engineer</h3>
             <ul>
