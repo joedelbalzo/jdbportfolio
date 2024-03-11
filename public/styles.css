@@ -170,18 +170,18 @@ h3 {
 }
 
 .share-buttons {
-  width: 400px;
+  width: 375px;
   margin: auto;
 }
 
 .share-buttons > button {
-  margin: 8px;
+  margin: 4px;
   background: none;
   background-color: none;
   border-radius: 1rem;
 }
 .share-buttons > button:hover {
-  outline: 2px solid #82a3a3;
+  outline: 1px solid #82a3a3;
   cursor: pointer;
 }
 
