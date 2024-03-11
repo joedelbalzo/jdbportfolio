@@ -8,7 +8,6 @@ const { warmSite } = require("./siteWarmer");
 app.use(express.json());
 app.use(cors());
 
-warmSite("https://www.usevali.com");
 warmSite("https://www.dawngryan.com");
 console.log("warming");
 

@@ -1,11 +1,5 @@
 html {
-  background-image: linear-gradient(
-      180deg,
-      rgba(30, 30, 30, 0.2) 10%,
-      rgba(0, 0, 0, 0.6) 50%,
-      rgba(0, 0, 0, 0.9) 80%
-    ),
-    url("IMG-0103.avif");
+  background-image: linear-gradient(180deg, rgba(30, 30, 30, 0.2) 10%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.9) 80%), url("IMG-0103.avif");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -162,6 +156,33 @@ h3 {
 
 #main-introParagraph > p {
   margin: 1rem 0.5rem;
+  font-size: calc(12px + 1vw);
+  line-height: 30px;
+  max-width: 70%;
+}
+#main-introParagraph > p > a {
+  text-decoration: none;
+  color: inherit;
+}
+#main-introParagraph > p > a:hover {
+  text-decoration: none;
+  color: #82a3a3;
+}
+
+.share-buttons {
+  width: 400px;
+  margin: auto;
+}
+
+.share-buttons > button {
+  margin: 8px;
+  background: none;
+  background-color: none;
+  border-radius: 1rem;
+}
+.share-buttons > button:hover {
+  outline: 2px solid #82a3a3;
+  cursor: pointer;
 }
 
 .main-form {
@@ -355,12 +376,7 @@ h3 {
 
 @media screen and (max-width: 768px) {
   html {
-    background-image: linear-gradient(
-        180deg,
-        rgba(30, 30, 30, 0.2) 10%,
-        rgba(0, 0, 0, 0.6) 25%,
-        rgba(0, 0, 0, 0.9) 40%
-      ),
+    background-image: linear-gradient(180deg, rgba(30, 30, 30, 0.2) 10%, rgba(0, 0, 0, 0.6) 25%, rgba(0, 0, 0, 0.9) 40%),
       url("IMG-0103.avif");
     background-position: 50%;
     background-size: cover;
@@ -419,6 +435,7 @@ h3 {
 
   #main-introParagraph > p {
     margin: 1rem 1rem 1rem;
+    font-size: 400px;
   }
 
   .main-form {

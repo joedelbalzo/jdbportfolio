@@ -1,11 +1,13 @@
 const path = require("path");
+const svgLoader = require("svg-inline-loader");
 
 module.exports = {
   devtool: "source-map",
   module: {
     rules: [
+      { test: /\.svg$/, loader: "svg-inline-loader" },
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: "babel-loader",
         options: {
@@ -25,5 +27,8 @@ module.exports = {
         ],
       },
     ],
+  },
+  resolve: {
+    extensions: [".js", ".jsx"],
   },
 };

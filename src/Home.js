@@ -1,6 +1,7 @@
 import React from "react";
 import Sublinks from "./Sublinks";
 import Footer from "./Footer";
+import Socials from "./Socials";
 import { FadeComponent } from "./FadeComponent";
 import { motion } from "framer-motion";
 import Contact from "./Contact";
@@ -29,41 +30,26 @@ const child = {
 const Home = () => {
   return (
     <FadeComponent>
-      <motion.div variants={container} initial="hidden" animate="show">
-        <h1 style={{ fontSize: "calc(22px + 4vw)", margin: "1.5rem auto" }}>
-          Hey, I'm{" "}
-          <span id="main-name" style={{ fontSize: "calc(22px + 4.5vw)", marginBottom: "0" }}>
-            Joe Del Balzo
-          </span>
-        </h1>
-        <div id="main-introParagraph">
-          <motion.div variants={child}>
-            <p>Software Engineer and Full Stack Web Developer.</p>
-          </motion.div>
-          <motion.div variants={child}>
-            <p>Artist-turned-coder. I liked creating beauty before; I like creating beauty now.</p>
-          </motion.div>
-          <motion.div variants={child}>
-            <p>
-              Former Lighting Designer, Network Designer, and Console Programmer. Musician, Cold
-              Brew Drinker, Sports Fanatic, Certified Cicerone®
-            </p>
-          </motion.div>
-          <motion.div variants={child}>
-            <p>
-              <span id="main-name" style={{ fontSize: "inherit", marginBottom: "0" }}>
-                Let's build something together!
-              </span>
-            </p>
-          </motion.div>
-          <motion.div variants={child}>
-            <Contact />
-          </motion.div>
-        </div>
-        <motion.div variants={child}>
-          <Footer />
-        </motion.div>
-      </motion.div>
+      <h1 style={{ fontSize: "calc(22px + 4vw)", margin: "1.5rem auto 0" }}>
+        Hey, I'm{" "}
+        <span id="main-name" style={{ fontSize: "calc(22px + 4.5vw)", marginBottom: "0" }}>
+          Joe Del Balzo
+        </span>
+      </h1>
+      <h2 style={{ fontSize: "calc(12px + 2vw)", margin: "0 auto 2rem", color: "rgba(240, 240, 240, 0.9)" }}>
+        Software Engineer and Full Stack Web Developer.
+      </h2>
+      <div id="main-introParagraph">
+        <p>
+          Artist-turned-coder.I liked creating beauty before; I like creating beauty now.
+          <br />
+          <br />
+          <a href="https://www.imdb.com/name/nm3631957/">Former lighting designer and programmer.</a> Musician, cold brew drinker, sports
+          fanatic, Certified Cicerone®
+        </p>
+      </div>
+      <Socials />
+      <Footer />
     </FadeComponent>
   );
 };
