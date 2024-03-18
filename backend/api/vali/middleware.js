@@ -34,6 +34,7 @@ const isValiAdmin = async (req, res, next) => {
 };
 
 const restrictValiAccess = (req, res, next) => {
+  console.log("restricted2");
   const origin =
     req.headers.origin || req.headers.referer || "localhost:3000" || "http://localhost:3000" || "localhost:5000" || "http://localhost:5000";
   console.log("origin is...", origin);
