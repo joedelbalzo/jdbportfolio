@@ -10,6 +10,7 @@ const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const session = require("express-session");
 require("dotenv").config({ path: path.resolve(__dirname, "../", ".env") });
+console.log(process.env.DEV_SITE);
 
 let salt1 = bcrypt.genSaltSync();
 let salt2 = bcrypt.genSaltSync();
@@ -18,7 +19,7 @@ let secret = bcrypt.hashSync(salt1 + salt2, 10);
 const callbackURL =
   process.env.NODE_ENV === "development"
     ? "http://localhost:3000/api/auth/google/callback"
-    : "https://www.usevali.com/api/auth/google/callback";
+    : "https://www.joinvali.com/api/auth/google/callback";
 
 passport.use(
   new GoogleStrategy(
@@ -76,7 +77,7 @@ authRoutes.get("/google/callback", passport.authenticate("google", { failureRedi
       res.redirect(`https://localhost:3000/client-route?token=${tokenData.token}`);
     }
     if (tokenData && tokenData.token && process.env.NODE_ENV == "production") {
-      res.redirect(`https://www.usevali.com/client-route?token=${tokenData.token}`);
+      res.redirect(`https://www.joinvali.com/client-route?token=${tokenData.token}`);
     }
   } catch (err) {
     console.log(err);

@@ -60,22 +60,11 @@ const restrictValiAccess = (req, res, next) => {
   }
 };
 
-app.use("/dist", express.static(path.join(__dirname, "../dist")));
-app.use("/public", express.static(path.join(__dirname, "../public")));
-
-app.get("/", async (req, res) => {
-  res.sendFile(path.join(__dirname, "../public/index.html"), { client_id: process.env.client_id });
-});
-
 app.get("/sitemap.xml", (req, res) => {
   res.sendFile(path.join(__dirname, "../sitemap.xml"));
 });
 
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
-
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
-// });
 
 app.use("/api/algorhythm", restrictAccess, appAlgo);
 app.use("/api/vali/", restrictValiAccess, appVali);
