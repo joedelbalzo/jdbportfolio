@@ -1357,7 +1357,7 @@ main {
 .css-componentContainer {
   display: flex;
   flex-direction: column;
-  min-height: calc(100%-2vh);
+  min-height: calc(100% - 2vh);
 }
 .css-componentTypes {
   display: flex;
