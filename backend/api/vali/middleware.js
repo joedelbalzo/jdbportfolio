@@ -34,9 +34,8 @@ const isValiAdmin = async (req, res, next) => {
 };
 
 const restrictValiAccess = (req, res, next) => {
-  console.log("restricted2");
-  const origin =
-    req.headers.origin || req.headers.referer || "localhost:3000" || "http://localhost:3000" || "localhost:5000" || "http://localhost:5000";
+  console.log("restricted 2");
+  const origin = req.headers.origin || req.headers.referer;
   console.log("origin is...", origin);
   const allowedOrigins = [
     "https://www.joinvali.com",
@@ -49,17 +48,13 @@ const restrictValiAccess = (req, res, next) => {
   if (process.env.DEV_SITE) {
     allowedOrigins.push(process.env.DEV_SITE);
   }
-  if (origin) {
-    if (allowedOrigins.some((allowedOrigin) => origin.startsWith(allowedOrigin))) {
-      next();
-    } else {
-      res.status(403).send("Access Denied: This origin is not allowed access.");
-    }
+
+  if (origin && allowedOrigins.some((allowedOrigin) => origin.startsWith(allowedOrigin))) {
+    next();
   } else {
-    res.status(403).send("Access Denied: Origin or Referer header is not set.");
+    res.status(403).send("Access Denied: This origin is not allowed access.");
   }
 };
-
 module.exports = {
   isValiAdmin,
   isValiLoggedIn,
