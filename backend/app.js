@@ -80,4 +80,8 @@ app.use("/api/css/components", require("./api/css/components"));
 app.use("/api/css/cpg", require("./api/css/cpg"));
 app.use("/api/css/templates", require("./api/css/templates"));
 
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+});
+
 module.exports = app;
