@@ -7,8 +7,46 @@ import Resume from "./Resume.jsx";
 import AScriptForJavaApp from "./ScriptForJava/App.jsx";
 import OpenPlacesApp from "./Open-Places/App.jsx";
 import CssApp from "./DropOfCSS/App.jsx";
+import LetsChatApp from "./WebRTC/App.jsx";
 import Portfolio from "./Portfolio.jsx";
 import { motion } from "framer-motion";
+
+//mui
+import useScrollTrigger from "@mui/material/useScrollTrigger";
+import Fab from "@mui/material/Fab";
+import ArrowUpwardOutlinedIcon from "@mui/icons-material/ArrowUpwardOutlined";
+import Fade from "@mui/material/Fade";
+import Box from "@mui/material/Box";
+
+function ScrollTop(props) {
+  const { children } = props;
+
+  const trigger = useScrollTrigger({
+    target: window,
+    disableHysteresis: true,
+    threshold: 100,
+  });
+
+  const smoothScrollToTop = (duration) => {
+    const scrollStep = -window.scrollY / (duration / 15),
+      scrollInterval = setInterval(function () {
+        if (window.scrollY != 0) {
+          window.scrollBy(0, scrollStep);
+        } else clearInterval(scrollInterval);
+      }, 15);
+  };
+
+  const handleClick = () => {
+    smoothScrollToTop(200);
+  };
+  return (
+    <Fade in={trigger}>
+      <Box onClick={handleClick} role="presentation" sx={{ position: "fixed", bottom: 24, right: 24, zIndex: "1000" }}>
+        {children}
+      </Box>
+    </Fade>
+  );
+}
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -28,7 +66,7 @@ const childVariants = {
   },
 };
 
-const App = () => {
+const App = (props) => {
   return (
     <div>
       <Nav />
@@ -41,7 +79,25 @@ const App = () => {
         <Route path="/dropofcss/*" element={<CssApp />} />
         <Route path="/scriptforjava/*" element={<AScriptForJavaApp />} />
         <Route path="/openplaces/*" element={<OpenPlacesApp />} />
+        <Route path="/letschat/*" element={<LetsChatApp />} />
       </Routes>
+
+      <ScrollTop {...props}>
+        <Fab
+          size="large"
+          sx={{
+            border: "1px solid rgb(20,30,70)",
+            height: "36px",
+            width: "36px",
+            borderRadius: "4px",
+            boxShadow: "2px 2px 2px rgba(20,30,70, .5)",
+          }}
+          className="scroll-button"
+          aria-label="scroll back to top"
+        >
+          <ArrowUpwardOutlinedIcon />
+        </Fab>
+      </ScrollTop>
     </div>
   );
 };

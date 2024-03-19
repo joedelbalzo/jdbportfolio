@@ -137,15 +137,16 @@ h3 {
   }
 }
 
-#main-introParagraph {
+#main-introParagraph,
+#about-me {
   margin: 0 auto 1rem;
   width: fit-content;
   max-width: 70%;
-  font-size: calc(15px + 1vw);
-  font-weight: 400;
-  text-align: left;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: 350;
   color: rgba(240, 240, 240, 0.9);
-  line-height: 2rem;
+  line-height: 2.2rem;
   letter-spacing: 1px;
   border-radius: 2rem;
   padding: 1rem;
@@ -156,9 +157,8 @@ h3 {
 
 #main-introParagraph > p {
   margin: 1rem 0.5rem;
-  font-size: calc(12px + 1vw);
+  font-size: calc(16px + 0.8vw);
   line-height: 30px;
-  max-width: 70%;
 }
 #main-introParagraph > p > a {
   text-decoration: none;
@@ -374,6 +374,20 @@ h3 {
   margin: 0;
 }
 
+.devicons {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.devicons > img {
+  width: 55px;
+  height: 55px;
+  border-radius: 8px;
+  margin: 8px;
+}
+
 @media screen and (max-width: 768px) {
   html {
     background-image: linear-gradient(180deg, rgba(30, 30, 30, 0.2) 10%, rgba(0, 0, 0, 0.6) 25%, rgba(0, 0, 0, 0.9) 40%),
@@ -435,7 +449,7 @@ h3 {
 
   #main-introParagraph > p {
     margin: 1rem 1rem 1rem;
-    font-size: calc(12px + 1vw);
+    font-size: calc(18px + 0.8vw);
     line-height: 25px;
     max-width: 100%;
   }
@@ -503,11 +517,16 @@ h3 {
 
   #main-name {
     font-size: calc(14px + 1vw);
-    display: block;
   }
   #borderdiv {
     font-size: calc(12px + 1vw);
     background-size: calc(70px + 8vw) calc(25px + 2vh);
+  }
+}
+
+@media screen and (max-width: 450px) {
+  #main-name {
+    display: block;
   }
 }
 
