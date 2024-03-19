@@ -27,16 +27,16 @@ const Nav = () => {
         <a href="https://github.com/joedelbalzo" target="_blank" rel="noreferrer noopener">
           GitHub
         </a>
-        <a href="#/resume" rel="noreferrer noopener">
+        <a href="../resume" rel="noreferrer noopener">
           Resume
         </a>
         <div className={`main-dropdown ${dropdownActive ? "active" : ""}`} onClick={() => setDropdownActive(!dropdownActive)}>
           <button className={`main-dropbtn ${dropdownActive ? "main-dropdown-hover" : ""}`}>Portfolio</button>
           <div className="main-dropdown-links" style={{ zIndex: "9999" }}>
-            <a href="#/portfolio" onClick={(e) => handleMenuItemClick(e, "#/portfolio")} target="_blank" rel="noreferrer noopener">
+            <a href="/portfolio" onClick={(e) => handleMenuItemClick(e, "/portfolio")} target="_blank" rel="noreferrer noopener">
               About
             </a>
-            <a href="https://asitenamedkaasisindev.onrender.com/" target="_blank" rel="noreferrer noopener">
+            <a href="https://joinvali.com/" target="_blank" rel="noreferrer noopener">
               Vali
             </a>
             <a href="https://www.dawngryan.com" target="_blank" rel="noreferrer noopener">
@@ -46,7 +46,7 @@ const Nav = () => {
               AlgoRhythm
             </a>
             <a
-              href="https://www.joedelbalzo.com/dropofcss/"
+              href="../dropofcss/"
               // onClick={(e) => handleMenuItemClick(e, "/dropofcss/")}
               target="_blank"
               rel="noreferrer noopener"
@@ -54,7 +54,7 @@ const Nav = () => {
               Drop of CSS
             </a>
             <a
-              href="https://www.joedelbalzo.com/openplaces/login"
+              href="../openplaces/login"
               // onClick={(e) => handleMenuItemClick(e, "/openplaces/login")}
               target="_blank"
               rel="noreferrer noopener"
@@ -62,7 +62,7 @@ const Nav = () => {
               Open Places
             </a>
             <a
-              href="https://www.joedelbalzo.com/scriptforjava"
+              href="../scriptforjava"
               // onClick={(e) => handleMenuItemClick(e, "/scriptforjava")}
               target="_blank"
               rel="noreferrer noopener"
