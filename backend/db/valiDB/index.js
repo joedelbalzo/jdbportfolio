@@ -18,14 +18,14 @@ const syncAndSeedVali = async () => {
       adminStatus: true,
     });
     const notAdmin = await User.create({
-      username: "jimbo",
+      username: "moe",
       password: "123",
       email: "jdelbalzotest@gmail.com",
       adminStatus: false,
       businessId: null,
       isNewUser: false,
       firstName: "James",
-      lastName: "Del Balzo",
+      lastName: "Jimothy",
       city: "Astoria",
       state: "New York",
       mailingList: true,
