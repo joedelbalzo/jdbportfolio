@@ -1,6 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import { FadeComponent } from "./FadeComponent";
 
+import valiScreenshot from "../assets/Vali_Screenshot.png";
+import dawnRyanScreenshot from "../assets/DawnRyan_Screenshot.png";
+import algoScreenshot from "../assets/Algo_Screenshot.png";
+import cssScreenshot from "../assets/CSS_Screenshot.png";
+import openScreenshot from "../assets/OpenPlaces_Screenshot.png";
+import scriptScreenshot from "../assets/Script_Screenshot.png";
+
 const Portfolio = () => {
   const valiRef = useRef(null);
   const dawnRef = useRef(null);
@@ -44,12 +51,7 @@ const Portfolio = () => {
               </p>
             </div>
             <div className="image-wrapper">
-              <img
-                src="../assets/Vali_Screenshot.png"
-                alt="Screenshot of www.joinvali.com"
-                className="portfolio-images odds"
-                ref={valiRef}
-              ></img>
+              <img src={valiScreenshot} alt="Screenshot of www.joinvali.com" className="portfolio-images odds" ref={valiRef}></img>
             </div>
           </div>
           <div id="borderdiv">
@@ -64,12 +66,7 @@ const Portfolio = () => {
               </p>
             </div>
             <div className="image-wrapper">
-              <img
-                src="../assets/DawnRyan_Screenshot.png"
-                alt="Screenshot of www.dawngryan.com"
-                className="portfolio-images evens"
-                ref={dawnRef}
-              />
+              <img src={dawnRyanScreenshot} alt="Screenshot of www.dawngryan.com" className="portfolio-images evens" ref={dawnRef} />
             </div>
           </div>
           <div id="borderdiv">
@@ -85,12 +82,7 @@ const Portfolio = () => {
             </div>
 
             <div className="image-wrapper">
-              <img
-                src="../assets/Algo_Screenshot.png"
-                alt="Screenshot of www.dawngryan.com"
-                className="portfolio-images odds"
-                ref={algoRef}
-              />
+              <img src={algoScreenshot} alt="Screenshot of www.dawngryan.com" className="portfolio-images odds" ref={algoRef} />
             </div>
           </div>
           <div>
@@ -109,7 +101,7 @@ const Portfolio = () => {
               </p>
             </div>
             <div className="image-wrapper">
-              <img src="../assets/CSS_Screenshot.png" alt="Screenshot of Drop of CSS" className="portfolio-images evens" ref={cssRef} />
+              <img src={cssScreenshot} alt="Screenshot of Drop of CSS" className="portfolio-images evens" ref={cssRef} />
             </div>
           </div>
           <div id="borderdiv">
@@ -133,12 +125,7 @@ const Portfolio = () => {
               </p>
             </div>
             <div className="image-wrapper">
-              <img
-                src="../assets/OpenPlaces_Screenshot.png"
-                alt="Screenshot of Open Places"
-                className="portfolio-images odds"
-                ref={openPlacesRef}
-              />
+              <img src={openScreenshot} alt="Screenshot of Open Places" className="portfolio-images odds" ref={openPlacesRef} />
             </div>
           </div>
           <div id="borderdiv">
@@ -154,12 +141,7 @@ const Portfolio = () => {
               </p>
             </div>
             <div className="image-wrapper">
-              <img
-                src="../assets/Script_Screenshot.png"
-                alt="Screenshot of Script for Java"
-                className="portfolio-images evens"
-                ref={scriptRef}
-              />
+              <img src={scriptScreenshot} alt="Screenshot of Script for Java" className="portfolio-images evens" ref={scriptRef} />
             </div>
           </div>
         </div>

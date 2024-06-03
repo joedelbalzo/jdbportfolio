@@ -354,11 +354,9 @@ h1 {
 
 #main-portfolioContainer {
   width: 80%;
-  font-size: calc(14px + 0.5vw);
   margin: auto;
   display: flex;
   flex-wrap: wrap;
-  line-height: 1.5rem;
   text-align: left;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 2rem;
@@ -376,6 +374,7 @@ h1 {
   grid-template-rows: 40px 1fr;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
+  font-size: calc(14px + 0.8vw);
 }
 
 #main-portfolioContainer > #borderdiv > h2 {
@@ -407,7 +406,6 @@ h1 {
   border-radius: 1rem;
   position: relative;
   overflow: hidden;
-  cursor: pointer;
 }
 
 .image-wrapper > .odds {
@@ -719,6 +717,47 @@ h1 {
   #borderdiv {
     font-size: calc(12px + 1vw);
     background-size: calc(70px + 8vw) calc(25px + 2vh);
+  }
+
+  #main-portfolioContainer {
+    width: 95%;
+  }
+  #main-portfolioContainer > #borderdiv {
+    padding: 0.5rem;
+    display: grid;
+    grid-template-rows: 40px auto auto;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    font-size: calc(14px + 0.8vw);
+  }
+
+  #main-portfolioContainer > #borderdiv > h2 {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .portfolio-descriptions.odds {
+    grid-row: 2;
+    grid-column: 1;
+    margin: auto;
+  }
+
+  .portfolio-descriptions.evens {
+    grid-row: 2;
+    grid-column: 1;
+    margin: auto;
+  }
+
+  .image-wrapper > .odds {
+    grid-column: 1;
+    grid-row: 3;
+    margin: auto;
+  }
+
+  .image-wrapper > .evens {
+    grid-column: 1;
+    grid-row: 3;
+    margin: auto;
   }
 }
 
