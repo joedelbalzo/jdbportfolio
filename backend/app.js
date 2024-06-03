@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 warmSite("https://www.dawngryan.com");
+warmSite("https://www.joinvali.com");
 console.log("warming");
 
 //middleware

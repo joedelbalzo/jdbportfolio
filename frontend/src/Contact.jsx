@@ -46,9 +46,7 @@ function Contact() {
             SUBMIT
           </button>
         )}
-        <div style={{ fontSize: "calc(8px + 0.5vw)", margin: ".5rem auto" }}>
-          or email me at jdelbalzo99@gmail.com
-        </div>
+        <div style={{ fontSize: "calc(8px + 0.5vw)", margin: ".5rem auto" }}>or email me at jdelbalzo99@gmail.com</div>
       </form>
     </FadeComponent>
   );
