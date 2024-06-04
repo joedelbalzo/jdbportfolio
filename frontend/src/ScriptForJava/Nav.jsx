@@ -17,22 +17,19 @@ import MenuItem from "@mui/material/MenuItem";
 import { ShoppingCartSharp } from "@mui/icons-material";
 import EmojiFoodBeverageIcon from "@mui/icons-material/EmojiFoodBeverage";
 import { useNavigate, Link } from "react-router-dom";
-import Home from "../Home";
+import HomeJava from "../Home";
 
 export default function Nav() {
-  const { scriptAuth, scriptCart } = useSelector((state) => state);
+  const scriptAuth = useSelector((state) => state.scriptAuth);
+  const scriptCart = useSelector((state) => state.scriptCart);
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   let pages = [];
-  scriptAuth.adminStatus === true
-    ? (pages = ["Home", "Menu", "Merch", "About", "Admin"])
-    : (pages = ["Home", "Menu", "Merch", "About"]);
+  scriptAuth.adminStatus === true ? (pages = ["Home", "Menu", "Merch", "About", "Admin"]) : (pages = ["Home", "Menu", "Merch", "About"]);
   let settings = [];
-  scriptAuth.id
-    ? (settings = ["Account", "Cart", "Logout"])
-    : (settings = ["Account", "Cart", "Login"]);
+  scriptAuth.id ? (settings = ["Account", "Cart", "Logout"]) : (settings = ["Account", "Cart", "Login"]);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -121,7 +118,7 @@ export default function Nav() {
             </Menu>
           </Box>
           {/* THIS IS THE SMALL ONE */}
-          <Link to={"/scriptforjava/home"} element={<Home />} style={{ color: "white" }}>
+          <Link to={"/scriptforjava/home"} element={<HomeJava />} style={{ color: "white" }}>
             <EmojiFoodBeverageIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           </Link>
           {/* <Typography
@@ -145,11 +142,7 @@ export default function Nav() {
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={() => navigateTo(page)}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
+              <Button key={page} onClick={() => navigateTo(page)} sx={{ my: 2, color: "white", display: "block" }}>
                 {page}
               </Button>
             ))}

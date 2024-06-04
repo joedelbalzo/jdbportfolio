@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 // import Sublinks from "./Sublinks";
 // import Resume from "./Resume";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import Portfolio from "./Portfolio";
+import Login from "./Open-Places/Login";
+import HomeJava from "./ScriptForJava/App";
+import Home from "./DropOfCSS/Home";
 
 const Nav = () => {
   const [dropdownActive, setDropdownActive] = useState(false);
@@ -45,30 +48,15 @@ const Nav = () => {
             <a href="https://algorhythm-joedelbalzo.vercel.app/" target="_blank" rel="noreferrer noopener">
               AlgoRhythm
             </a>
-            <a
-              href="../dropofcss/"
-              // onClick={(e) => handleMenuItemClick(e, "/dropofcss/")}
-              target="_blank"
-              rel="noreferrer noopener"
-            >
+            <Link to={"../dropofcss"} element={<Home />}>
               Drop of CSS
-            </a>
-            <a
-              href="../openplaces/login"
-              // onClick={(e) => handleMenuItemClick(e, "/openplaces/login")}
-              target="_blank"
-              rel="noreferrer noopener"
-            >
+            </Link>
+            <Link to={"../openplaces/login"} element={<Login />}>
               Open Places
-            </a>
-            <a
-              href="../scriptforjava"
-              // onClick={(e) => handleMenuItemClick(e, "/scriptforjava")}
-              target="_blank"
-              rel="noreferrer noopener"
-            >
+            </Link>
+            <Link to={"../scriptforjava"} element={<HomeJava />}>
               Script for Java
-            </a>
+            </Link>
           </div>
         </div>
       </div>

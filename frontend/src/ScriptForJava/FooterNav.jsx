@@ -72,7 +72,8 @@ const ScrollToTop = () => {
 };
 
 export default function FooterNav() {
-  const { auth, cart } = useSelector((state) => state);
+  const scriptAuth = useSelector((state) => state.scriptAuth);
+  const scriptCart = useSelector((state) => state.scriptCart);
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -261,7 +262,7 @@ export default function FooterNav() {
           </div>
           <Box sx={{ flexGrow: 1 }} />
           <IconButton size="large" color="inherit">
-            <Badge badgeContent={getCartLength(cart)} color="error">
+            <Badge badgeContent={getCartLength(scriptCart)} color="error">
               <Link to="/scriptforjava/cart">
                 <ShoppingCartSharp sx={{ pr: 1, color: "white" }} />
               </Link>

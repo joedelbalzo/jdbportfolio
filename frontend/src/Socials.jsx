@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Facebook, Email, LinkedIn, Twitter, GitHub } from "./ShareIcons/Email.jsx";
+import { Facebook, Email, LinkedIn, Twitter, GitHub } from "./ShareIcons/SocialIcons.jsx";
 
 const Socials = () => {
   const share = (platform) => {

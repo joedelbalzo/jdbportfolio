@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import Slider from "react-slick";
-import Home from "./HomeComponents/Home";
+import HomeJava from "./HomeComponents/Home";
 import Login from "./Login";
 import Cart from "./Cart";
 import Checkout from "./Checkout";
@@ -44,6 +44,7 @@ import { FadeComponent } from "../FadeComponent";
 
 const AScriptForJavaApp = () => {
   const { scriptAuth } = useSelector((state) => state);
+
   const dispatch = useDispatch();
   const prevAuth = useRef({});
 
@@ -79,6 +80,7 @@ const AScriptForJavaApp = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+
   return (
     <FadeComponent>
       <div className="ScriptForJava">
@@ -87,8 +89,8 @@ const AScriptForJavaApp = () => {
 
         <div className="scriptforjava-app-body">
           <Routes>
-            <Route path="*" element={<Home />} />
-            <Route path="/home" element={<Home />} />
+            <Route path="*" element={<HomeJava />} />
+            <Route path="/home" element={<HomeJava />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/order/:id" element={<Order />} />
