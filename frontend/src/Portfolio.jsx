@@ -85,7 +85,7 @@ const Portfolio = () => {
               <img src={algoScreenshot} alt="Screenshot of www.dawngryan.com" className="portfolio-images odds" ref={algoRef} />
             </div>
           </div>
-          <div>
+          <div style={{ margin: "0 auto", width: "90%", padding: "1rem" }}>
             These three following applications can be accessed fully with the username "moe" and pass "123." Feel free to dig in! All three
             are built in Javascript using the PERN stack -- PostgreSQL, Express, React, Node, and mostly vanilla CSS with some Material-UI
             components.

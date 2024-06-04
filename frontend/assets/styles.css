@@ -577,18 +577,20 @@ h1 {
   }
 
   .main-navbar {
+    width: 95%;
     overflow: hidden;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    padding-top: 8px;
+    padding-top: 12px;
+    padding-bottom: 12px;
   }
   .main-navbar > a {
-    padding: calc(4px + 0.2vw);
+    padding: calc(3px + 0.2vw);
   }
 
   .main-dropdown .main-dropbtn {
-    padding: calc(4px + 0.2vw);
+    padding: calc(3px + 0.2vw);
   }
 
   .main-dropdown-links {
@@ -607,8 +609,8 @@ h1 {
   }
 
   #main-name {
-    font-size: 60px;
-    width: 380px;
+    font-size: 40px;
+    width: 350px;
   }
 
   .main-name {
@@ -723,7 +725,7 @@ h1 {
     width: 95%;
   }
   #main-portfolioContainer > #borderdiv {
-    padding: 0.5rem;
+    padding: 0 1rem;
     display: grid;
     grid-template-rows: 40px auto auto;
     grid-template-columns: 1fr;
@@ -746,6 +748,8 @@ h1 {
     grid-row: 2;
     grid-column: 1;
     margin: auto;
+    justify-items: center;
+    align-items: center;
   }
 
   .image-wrapper > .odds {
@@ -758,6 +762,39 @@ h1 {
     grid-column: 1;
     grid-row: 3;
     margin: auto;
+  }
+
+  .image-wrapper > .portfolio-images {
+    width: 95%;
+  }
+
+  .image-wrapper::before {
+    content: "";
+    position: absolute;
+    border-radius: 1rem;
+    width: 95%;
+    height: var(--img-height);
+    border: 1px solid lightblue;
+    top: 10px;
+    left: 15px;
+    z-index: -1;
+    transition: transform 0.2s ease;
+  }
+
+  .devicons {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .devicons > img {
+    width: 45px;
+    height: 45px;
+    border-radius: 8px;
+    margin: 8px;
   }
 }
 
