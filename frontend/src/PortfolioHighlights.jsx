@@ -86,10 +86,10 @@ const PortfolioHighlights = () => {
                   and I'll happily email you back the password.
                 </p>
                 <span className="devicons-open-and-github">
-                  <a href="https://www.joinvali.com" target="_blank">
+                  <a href="https://www.joinvali.com" aria-label="a link to this project" target="_blank">
                     <OpenWindow style={{ padding: "1rem" }} />
                   </a>
-                  <a href="https://github.com/joedelbalzo/kan-th" target="_blank">
+                  <a href="https://github.com/joedelbalzo/kan-th" aria-label="a link to this project's GitHub Repository" target="_blank">
                     <GitHub style={{ padding: "1rem" }} />
                   </a>
                 </span>
@@ -117,10 +117,10 @@ const PortfolioHighlights = () => {
                   client's needs change!
                 </p>
                 <span className="devicons-open-and-github">
-                  <a href="https://www.dawngryan.com" target="_blank">
+                  <a href="https://www.dawngryan.com" aria-label="a link to this project" target="_blank">
                     <OpenWindow style={{ padding: "1rem" }} />
                   </a>
-                  <a href="https://github.com/joedelbalzo/jdb-dr" target="_blank">
+                  <a href="https://github.com/joedelbalzo/jdb-dr" aria-label="a link to this project's GitHub Repository" target="_blank">
                     <GitHub style={{ padding: "1rem" }} />
                   </a>
                 </span>
@@ -149,10 +149,10 @@ const PortfolioHighlights = () => {
                   also include iOS and Android devices!) and user-selected categories.
                 </p>
                 <span className="devicons-open-and-github">
-                  <a href="https://algorhythm-joedelbalzo.vercel.app/" target="_blank">
+                  <a href="https://algorhythm-joedelbalzo.vercel.app/" aria-label="a link to this project" target="_blank">
                     <OpenWindow style={{ padding: "1rem" }} />
                   </a>
-                  <a href="https://github.com/joedelbalzo/jdb-algo" target="_blank">
+                  <a href="https://github.com/joedelbalzo/jdb-algo" aria-label="a link to this project's GitHub Repository" target="_blank">
                     <GitHub style={{ padding: "1rem" }} />
                   </a>
                 </span>

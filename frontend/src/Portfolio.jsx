@@ -131,10 +131,14 @@ const Portfolio = () => {
                   and we aimed to make that as simple as possible!
                 </p>
                 <span className="devicons-open-and-github">
-                  <Link to={"../dropofcss"} element={<Home />}>
+                  <Link to={"../dropofcss"} aria-label="a link to this project" element={<Home />}>
                     <OpenWindow style={{ padding: "1rem" }} />
                   </Link>
-                  <a href="https://github.com/react-cpg-capstone/react-color-gen-capstone" target="_blank">
+                  <a
+                    href="https://github.com/react-cpg-capstone/react-color-gen-capstone"
+                    aria-label="a link to this project's GitHub Repository"
+                    target="_blank"
+                  >
                     <GitHub style={{ padding: "1rem" }} />
                   </a>
                 </span>
@@ -165,10 +169,14 @@ const Portfolio = () => {
                   <br />
                   <br />
                   <span className="devicons-open-and-github">
-                    <Link to={"../openplaces/login"} element={<Login />}>
+                    <Link to={"../openplaces/login"} aria-label="a link to this project" element={<Login />}>
                       <OpenWindow style={{ padding: "1rem" }} />
                     </Link>
-                    <a href="https://github.com/joedelbalzo/jdb-openplaces" target="_blank">
+                    <a
+                      href="https://github.com/joedelbalzo/jdb-openplaces"
+                      aria-label="a link to this project's GitHub Repository"
+                      target="_blank"
+                    >
                       <GitHub style={{ padding: "1rem" }} />
                     </a>
                   </span>
@@ -193,10 +201,14 @@ const Portfolio = () => {
                   <br />
                 </p>
                 <span className="devicons-open-and-github">
-                  <Link to={"../scriptforjava"} element={<HomeJava />}>
+                  <Link to={"../scriptforjava"} aria-label="a link to this project" element={<HomeJava />}>
                     <OpenWindow style={{ padding: "1rem" }} />
                   </Link>
-                  <a href="https://github.com/joedelbalzo/jdb-openplaces" target="_blank">
+                  <a
+                    href="https://github.com/joedelbalzo/jdb-openplaces"
+                    aria-label="a link to this project's GitHub Repository"
+                    target="_blank"
+                  >
                     <GitHub style={{ padding: "1rem" }} />
                   </a>
                 </span>

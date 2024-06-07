@@ -7,7 +7,6 @@ const { syncAndSeedAlgo, Question, CodingQuestion } = require("./db/algorhythmDB
 const { syncAndSeedVali } = require("./db/valiDB");
 
 const cors = require("cors");
-
 app.use(cors());
 
 const init = async () => {
