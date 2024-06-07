@@ -1,8 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-// import Sublinks from "./Sublinks";
-// import Resume from "./Resume";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-// import Portfolio from "./Portfolio";
 import Login from "./Open-Places/Login";
 import HomeJava from "./ScriptForJava/App";
 import Home from "./DropOfCSS/Home";

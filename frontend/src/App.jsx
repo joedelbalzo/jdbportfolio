@@ -2,14 +2,13 @@ import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import Home from "./Home.jsx";
 import Nav from "./Nav.jsx";
-import Sublinks from "./Sublinks.jsx";
 import Resume from "./Resume.jsx";
 import AScriptForJavaApp from "./ScriptForJava/App.jsx";
 import OpenPlacesApp from "./Open-Places/App.jsx";
 import CssApp from "./DropOfCSS/App.jsx";
 import LetsChatApp from "./WebRTC/App.jsx";
 import Portfolio from "./Portfolio.jsx";
-import { motion } from "framer-motion";
+import FourOhFour from "./FourOhFour.jsx";
 
 //mui
 import useScrollTrigger from "@mui/material/useScrollTrigger";
@@ -80,6 +79,7 @@ const App = (props) => {
         <Route path="/scriptforjava/*" element={<AScriptForJavaApp />} />
         <Route path="/openplaces/*" element={<OpenPlacesApp />} />
         <Route path="/letschat/*" element={<LetsChatApp />} />
+        <Route path="/*" element={<FourOhFour />} />
       </Routes>
 
       <ScrollTop {...props}>

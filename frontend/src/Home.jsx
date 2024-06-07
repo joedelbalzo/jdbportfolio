@@ -1,11 +1,8 @@
 import React, { useEffect, useRef } from "react";
-import Sublinks from "./Sublinks";
 import Footer from "./Footer";
 import Socials from "./Socials";
 import AboutMe from "./AboutMe";
 import { FadeComponent } from "./FadeComponent";
-import { motion, useAnimation } from "framer-motion";
-import Contact from "./Contact";
 
 const Home = () => {
   return (
