@@ -2,12 +2,9 @@ import React, { useEffect, useRef } from "react";
 import { FadeComponent } from "./FadeComponent";
 import { Link } from "react-router-dom";
 
-import valiScreenshot from "../assets/Vali_Screenshot.png";
-import dawnRyanScreenshot from "../assets/DawnRyan_Screenshot.png";
-import algoScreenshot from "../assets/Algo_Screenshot.png";
-import cssScreenshot from "../assets/CSS_Screenshot.png";
-import openScreenshot from "../assets/OpenPlaces_Screenshot.png";
-import scriptScreenshot from "../assets/Script_Screenshot.png";
+import cssScreenshot from "../assets/site-screenshots/CSS_Screenshot.webp";
+import openScreenshot from "../assets/site-screenshots/OpenPlaces_Screenshot.webp";
+import scriptScreenshot from "../assets/site-screenshots/Script_Screenshot.webp";
 import { OpenWindow } from "./ShareIcons/OpenWindow";
 import { GitHub } from "./ShareIcons/SocialIcons";
 import Login from "./Open-Places/Login";

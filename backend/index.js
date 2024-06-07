@@ -15,35 +15,30 @@ const init = async () => {
     await conn.sync({ force: true });
     try {
       await syncAndSeedScript();
-      console.log("script has synced");
     } catch (err) {
       console.log("err syncing script");
     }
 
     try {
       await syncAndSeed();
-      console.log("open places has synced");
     } catch (err) {
       console.log("err syncing open places");
     }
 
     try {
       await syncAndSeedCss();
-      console.log("css has synced");
     } catch (err) {
       console.log("err syncing css");
     }
 
     try {
       await syncAndSeedAlgo();
-      console.log("algo has synced");
     } catch (err) {
       console.log("err syncing algo");
     }
 
     try {
       await syncAndSeedVali();
-      console.log("vali has synced");
     } catch (err) {
       console.log("err syncing vali");
     }

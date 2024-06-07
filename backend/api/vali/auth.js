@@ -10,7 +10,7 @@ const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const session = require("express-session");
 require("dotenv").config({ path: path.resolve(__dirname, "../", ".env") });
-console.log(process.env.DEV_SITE);
+// console.log(process.env.DEV_SITE);
 
 let salt1 = bcrypt.genSaltSync();
 let salt2 = bcrypt.genSaltSync();

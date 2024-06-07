@@ -19,7 +19,7 @@ console.log("warming");
 //middleware
 const restrictAccess = (req, res, next) => {
   const origin = req.headers.origin || req.headers.referer || "localhost:5000";
-  console.log("origin", origin);
+  // console.log("origin", origin);
   if (origin) {
     if (
       origin === "https://algorhythm-joedelbalzo.vercel.app/" ||
@@ -36,9 +36,9 @@ const restrictAccess = (req, res, next) => {
   }
 };
 const restrictValiAccess = (req, res, next) => {
-  console.log("restricted 1");
+  // console.log("restricted 1");
   const origin = req.headers.origin || req.headers.referer;
-  console.log("origin is...", origin);
+  // console.log("origin is...", origin);
   const allowedOrigins = [
     "https://www.joinvali.com",
     "https://joinvali.com",

@@ -3,9 +3,9 @@ import { FadeComponent } from "./FadeComponent";
 
 import { motion, useAnimation } from "framer-motion";
 
-import valiScreenshot from "../assets/Vali_Screenshot.png";
-import dawnRyanScreenshot from "../assets/DawnRyan_Screenshot.png";
-import algoScreenshot from "../assets/Algo_Screenshot.png";
+import valiScreenshot from "../assets/site-screenshots/Vali_Screenshot.webp";
+import dawnRyanScreenshot from "../assets/site-screenshots/DawnRyan_Screenshot.webp";
+import algoScreenshot from "../assets/site-screenshots/Algo_Screenshot.webp";
 import { OpenWindow } from "./ShareIcons/OpenWindow";
 import { GitHub } from "./ShareIcons/SocialIcons";
 

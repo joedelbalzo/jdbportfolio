@@ -3,6 +3,16 @@ import { FadeComponent } from "./FadeComponent";
 import { motion, useAnimation } from "framer-motion";
 import Contact from "./Contact";
 import PortfolioHighlights from "./PortfolioHighlights";
+import css3 from "../assets/to-move-to-static/coding-svgs/css3.svg";
+import express from "../assets/to-move-to-static/coding-svgs/express.svg";
+import html5 from "../assets/to-move-to-static/coding-svgs/html5.svg";
+import javascript from "../assets/to-move-to-static/coding-svgs/javascript.svg";
+import less from "../assets/to-move-to-static/coding-svgs/less.svg";
+import nodejs from "../assets/to-move-to-static/coding-svgs/nodejs.svg";
+import postgresql from "../assets/to-move-to-static/coding-svgs/postgresql.svg";
+import python from "../assets/to-move-to-static/coding-svgs/python.svg";
+import react from "../assets/to-move-to-static/coding-svgs/react.svg";
+import typescript from "../assets/to-move-to-static/coding-svgs/typescript.svg";
 
 const AboutMe = () => {
   const controls1 = useAnimation();
@@ -119,21 +129,18 @@ const AboutMe = () => {
         </motion.div>
         <motion.div ref={ref7} initial={{ opacity: 0, y: "50px" }} animate={controls7} transition={transition}>
           <p className="devicons">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" />{" "}
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" />{" "}
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" />{" "}
+            <img src={javascript} alt="logo of JavaScript" />
+            <img src={typescript} alt="logo of TypeScript" />
+            <img src={python} alt="logo of Python" />
           </p>
           <p className="devicons">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original-wordmark.svg" />{" "}
-            <img
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg"
-              style={{ backgroundColor: "rgba(230,230,230,.8)" }}
-            />{" "}
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" />{" "}
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" />{" "}
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" />{" "}
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/less/less-plain-wordmark.svg" />
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" />
+            <img src={react} alt="logo of React" />
+            <img src={express} alt="logo of Express" />
+            <img src={nodejs} alt="logo of Node.js" />
+            <img src={postgresql} alt="logo of PostgreSQL" />
+            <img src={less} alt="logo of less" />
+            <img src={css3} alt="logo of CSS" />
+            <img src={html5} alt="logo of HTML5" />
           </p>
         </motion.div>
         <motion.div
