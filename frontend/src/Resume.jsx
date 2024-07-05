@@ -6,13 +6,14 @@ const Resume = () => {
     <FadeComponent>
       <>
         <div className="resume-header">
-          <h1>Resume</h1>
-          <h2>
+          <h1>Joseph Del Balzo</h1>
+          {/* <h2>Software Engineer</h2> */}
+          <h3>
+            jdelbalzo99@gmail.com <br />
             240-441-7689
             <br />
-            jdelbalzo99@gmail.com <br />
             Beacon, NY
-          </h2>
+          </h3>
         </div>
         <div id="main-resume">
           <div id="borderdiv">
@@ -20,54 +21,58 @@ const Resume = () => {
 
             <p>
               <strong>Languages, Frameworks, & Databases: </strong>
-              <br /> JavaScript (ES6+), Typescript, Python, React, Redux, Node.js, Express, Django, PostgreSQL, Sequelize, Axios, Mocha,
-              Jest, Material UI, Framer Motion <br /> <br />
-              <strong>Practices, Methodologies, & Technologies: </strong> <br />
+              <br />
+              <br />
+              JavaScript (ES6+), Typescript, Python, React, Redux, Node.js, Express, Django, PostgreSQL, Sequelize, Axios, Mocha, Jest,
+              Material UI, Framer Motion <br /> <br />
+              <strong>Practices, Methodologies, & Technologies: </strong>
+              <br />
+              <br />
               RESTful API, Test Driven Development, Git Version Control, Agile (Scrum), AWS S3, Google OAuth2.0 and APIs, Shopify,
               Squarespace, Google Analytics
             </p>
           </div>
           <div id="borderdiv">
-            <h2>Professional Experience</h2>
-            <h3 style={{ marginBottom: 0 }}>the future of agency, LLC</h3>
+            <h2>Work Experience</h2>
+            <h3 style={{ marginBottom: "10px" }}>the future of agency, LLC</h3>
             <a href="https://www.thefutureofagency.com/">https://www.thefutureofagency.com/</a>
-            <h3 style={{ marginTop: 0 }}>Software Engineer</h3>
+            <h3 style={{ marginTop: "10px" }}>Software Engineer</h3>
             <ul>
-              <li>Developing and managing web applications designed to market and advertise authors.</li>
-              <li>Collaborating directly with clients to improve design, troubleshoot bugs, and improve SEO. </li>
+              <li>Leading the development and management of web applications to market and advertise books.</li>
               <li>
-                Creating CSS and JavaScript enhancements to improve UI/UX and visual responsiveness, notably on{" "}
+                Collaborating with clients to enhance design and SEO performance, substantially improving unique visitor traffic and Google
+                Search traffic across our portfolio over 400%.
+              </li>
+              <li>
+                Engineering and embedding custom full-stack applications on client-side web development platforms, utilizing technologies
+                such as React.js, Node.js, RESTful APIs, reCAPTCHA, to provide our clients more tailored solutions, contributing to enhanced
+                client satisfaction and retention.
+              </li>
+              <li>
+                Enhancing UI/UX and accessibility with CSS and JavaScript on websites like{" "}
                 <a href="https://www.melodybeattie.com/">melodybeattie.com</a>,{" "}
                 <a href="https://www.benjaminherold.com/">benjaminherold.com</a>, and{" "}
                 <a href="https://www.umanaidoomd.com/">umanaidoomd.com</a>.
               </li>
               <li>
-                Managing DNS configurations and optimizing email delivery system infrastructure, ensuring robust and scalable communication
-                for mailing lists ranging from 50 to over 49,000 subscribers.
+                Optimizing DNS configurations and email delivery systems, ensuring robust and reliable communication for mailing lists up to
+                50,000 subscribers.
               </li>
               <li>
-                Leading SEO enhancements on all of our sites, leading to increases in unique visitors by 400-600% and a 550% surge in visits
-                from Google Search-derived traffic across our whole portfolio.
-              </li>
-              <li>
-                Developing the company's inaugural portfolio-wide PostgreSQL database and Express.js server, enabling unique client-specific
-                configurations including dedicated user authorization, API secrets, and expandable custom features.
-              </li>
-              <li>
-                Implementing version control for custom Squarespace and Shopify code by maintaining a comprehensive history of changes on
-                GitHub, ensuring code recoverability and facilitating smoother updates and troubleshooting.
+                Implementing company-wide version control for custom designs in Squarespace and Shopify by maintaining a comprehensive
+                version history on GitHub, minimizing down time by 70% with easy code recoverability, smoother updates, and troubleshooting.
               </li>
             </ul>
-            <h3 style={{ marginBottom: 0 }}>Vali</h3>
+            <h3 style={{ marginBottom: "10px" }}>Vali</h3>
             <a href="https://www.joinvali.com/">https://www.joinvali.com/</a>
-            <h3 style={{ marginTop: 0 }}>Founding Software Engineer</h3>
+            <h3 style={{ marginTop: "10px" }}>Founding Software Engineer</h3>
             <ul>
               <li>Designer, architect of an MVP-stage startup, increasing valuation accuracy for small businesses.</li>
               <li>Implemented AWS S3 and Google OAuth2.0 to increase privacy for data uploads and user sessions.</li>
               <li>Tech Used: React, React-Redux, Node.js, Express, PostgreSQL, AWS S3, Google OAuth2.0</li>
             </ul>
-            <h3 style={{ marginBottom: 0 }}>Entertainment Partners & Cast and Crew</h3>
-            <h3 style={{ marginTop: 0 }}>Console Programmer and Designer</h3>
+            <h3 style={{ marginBottom: "10px" }}>Entertainment Partners & Cast and Crew</h3>
+            <h3 style={{ marginTop: "10px" }}>Console Programmer and Designer</h3>
             <ul>
               <li>Programming lighting consoles and build robust data networks for film and television productions.</li>
               <li>
@@ -151,14 +156,14 @@ const Resume = () => {
 
           <div id="borderdiv">
             <h2>Education</h2>
-            <p>
+            {/* <p>
               Fullstack Academy || June 2023
               <br />
               <li> Certificate in Software Engineering, Web Development, and Computer Science</li>
-            </p>
+            </p> */}
 
             <p>
-              New York University, Tisch School of the Arts || May 2011
+              New York University, Tisch School of the Arts
               <li>Bachelor of Fine Arts, Film and Television</li>
             </p>
           </div>

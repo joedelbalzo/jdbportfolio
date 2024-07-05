@@ -86,11 +86,17 @@ const App = (props) => {
         <Fab
           size="large"
           sx={{
-            border: "1px solid rgb(20,30,70)",
-            height: "36px",
-            width: "36px",
+            border: "1px solid #FF5722;",
+            height: "42px",
+            width: "42px",
             borderRadius: "4px",
             boxShadow: "2px 2px 2px rgba(20,30,70, .5)",
+            backgroundColor: "transparent",
+            color: "whitesmoke",
+            "&:hover": {
+              backgroundColor: "#FF5722",
+              color: "#FFF",
+            },
           }}
           className="scroll-button"
           aria-label="scroll back to top"

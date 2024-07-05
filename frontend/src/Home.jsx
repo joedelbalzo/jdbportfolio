@@ -8,9 +8,8 @@ const Home = () => {
   return (
     <FadeComponent>
       <div className="main-name">
-        <h1>
-          Hey, I'm <div id="main-name">Joe Del Balzo.</div>
-        </h1>
+        <div>Hello, there!</div>
+        <h1 id="main-name">I'm Joe Del Balzo.</h1>
         <h2>Software Engineer. Full Stack Web Developer.</h2>
       </div>
       <div id="main-introParagraph">

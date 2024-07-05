@@ -6,6 +6,7 @@ import { motion, useAnimation } from "framer-motion";
 import valiScreenshot from "../assets/site-screenshots/Vali_Screenshot.webp";
 import dawnRyanScreenshot from "../assets/site-screenshots/DawnRyan_Screenshot.webp";
 import algoScreenshot from "../assets/site-screenshots/Algo_Screenshot.webp";
+import yhgScreenshot from "../assets/site-screenshots/YHG-ss.webp";
 import { OpenWindow } from "./ShareIcons/OpenWindow";
 import { GitHub } from "./ShareIcons/SocialIcons";
 
@@ -13,10 +14,12 @@ const PortfolioHighlights = () => {
   const controls11 = useAnimation();
   const controls12 = useAnimation();
   const controls13 = useAnimation();
+  const controls14 = useAnimation();
 
   const ref11 = useRef(null);
   const ref12 = useRef(null);
   const ref13 = useRef(null);
+  const ref14 = useRef(null);
 
   const transition = {
     type: "spring",
@@ -32,6 +35,7 @@ const PortfolioHighlights = () => {
             if (entry.target === ref11.current) controls11.start({ opacity: 1, y: 0 });
             if (entry.target === ref12.current) controls12.start({ opacity: 1, y: 0 });
             if (entry.target === ref13.current) controls13.start({ opacity: 1, y: 0 });
+            if (entry.target === ref14.current) controls14.start({ opacity: 1, y: 0 });
           }
         });
       },
@@ -41,10 +45,12 @@ const PortfolioHighlights = () => {
     observer.observe(ref11.current);
     observer.observe(ref12.current);
     observer.observe(ref13.current);
+    observer.observe(ref14.current);
 
     return () => observer.disconnect();
   }, []);
 
+  const yhgRef = useRef(null);
   const valiRef = useRef(null);
   const dawnRef = useRef(null);
   const algoRef = useRef(null);
@@ -57,6 +63,7 @@ const PortfolioHighlights = () => {
   };
 
   useEffect(() => {
+    setOutlineSize(yhgRef);
     setOutlineSize(valiRef);
     setOutlineSize(dawnRef);
     setOutlineSize(algoRef);
@@ -70,6 +77,44 @@ const PortfolioHighlights = () => {
             initial={{ opacity: 0, y: "50px" }}
             id="about-me-paragraph-container"
             animate={controls11}
+            transition={transition}
+          >
+            <div id="borderdiv">
+              <h2>Your Hidden Genius</h2>
+              <div className="portfolio-descriptions evens">
+                <p>
+                  This is a site for the authors of the book <i>Your Hidden Genius</i>, who are clients of mine at the future of agency. I'm
+                  particularly proud of my work on this site. It was built on a web design platform that allows the agency to fully transfer
+                  the website to the clients at the end of the contract, so it was built with ease-of-use in mind, but also involves the
+                  company's first fully embedded full-stack application.
+                </p>
+                <p>
+                  The site has not officially launched, so please feel free to email me if you would like to see more. I would be happy to
+                  walk you through a beta version of the designs.
+                </p>
+                <span className="devicons-open-and-github">
+                  <a href="https://www.yourhiddengenius.com" aria-label="a link to yourhiddengenius.com" target="_blank">
+                    <OpenWindow style={{ padding: "1rem" }} />
+                  </a>
+                  <a
+                    href="https://github.com/joedelbalzo/yhg-assessment"
+                    aria-label="a link to this project's GitHub Repository"
+                    target="_blank"
+                  >
+                    <GitHub style={{ padding: "1rem" }} />
+                  </a>
+                </span>
+              </div>
+              <div className="image-wrapper">
+                <img src={yhgScreenshot} alt="Screenshot of www.yourhiddengenius.com" className="portfolio-images evens" ref={yhgRef}></img>
+              </div>
+            </div>
+          </motion.div>
+          <motion.div
+            ref={ref12}
+            initial={{ opacity: 0, y: "50px" }}
+            id="about-me-paragraph-container"
+            animate={controls12}
             transition={transition}
           >
             <div id="borderdiv">
@@ -100,10 +145,10 @@ const PortfolioHighlights = () => {
             </div>
           </motion.div>
           <motion.div
-            ref={ref12}
+            ref={ref13}
             initial={{ opacity: 0, y: "50px" }}
             id="about-me-paragraph-container"
-            animate={controls12}
+            animate={controls13}
             transition={transition}
           >
             <div id="borderdiv">
@@ -132,10 +177,10 @@ const PortfolioHighlights = () => {
             </div>
           </motion.div>
           <motion.div
-            ref={ref13}
+            ref={ref14}
             initial={{ opacity: 0, y: "50px" }}
             id="about-me-paragraph-container"
-            animate={controls13}
+            animate={controls14}
             transition={transition}
           >
             <div id="borderdiv">

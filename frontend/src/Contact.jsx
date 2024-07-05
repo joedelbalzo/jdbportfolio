@@ -42,8 +42,11 @@ function Contact() {
         {submit ? (
           <button disabled>SUBMITTED!</button>
         ) : (
+          // <button type="submit" disabled={state.submitting}>
+          //   SUBMIT <span id="submit-arrow">&#8594;</span>
+          // </button>
           <button type="submit" disabled={state.submitting}>
-            SUBMIT
+            <span id="submit-text">SUBMIT</span> <span id="submit-arrow">&#x27A9;</span>
           </button>
         )}
         <div style={{ fontSize: "calc(8px + 0.5vw)", margin: ".5rem auto" }}>or email me at jdelbalzo99@gmail.com</div>

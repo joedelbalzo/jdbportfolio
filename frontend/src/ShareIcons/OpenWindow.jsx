@@ -1,15 +1,15 @@
 export const OpenWindow = () => {
   return (
     <svg
-      fill="#82A3A3"
+      fill="whitesmoke"
       viewBox="0 0 24.00 24.00"
       xmlns="http://www.w3.org/2000/svg"
-      stroke="#82A3A3"
+      stroke="whitesmoke"
       strokeWidth="0.00024000000000000003"
       style={{
         display: "inline-block",
         verticalAlign: "middle",
-        stroke: "#82A3A3",
+        stroke: "whitesmoke",
         strokeWidth: 0,
         width: "40px",
         height: "40px",
