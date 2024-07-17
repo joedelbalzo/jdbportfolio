@@ -694,11 +694,12 @@ h1 {
 
 @media screen and (max-width: 800px) {
   html {
-    background-image: linear-gradient(180deg, rgba(30, 30, 30, 0.2) 10%, rgba(0, 0, 0, 0.6) 25%, rgba(0, 0, 0, 0.9) 40%),
-      url("IMG-0103.avif");
-    /* background-position: 50%; */
-    background-position: center center;
-    background-size: 200vh;
+    background: linear-gradient(180deg, rgba(30, 30, 30, 0.2) 10%, rgba(0, 0, 0, 0.6) 25%, rgba(0, 0, 0, 0.9) 40%),
+      url("IMG-0103.avif") no-repeat center center fixed;
+    background-size: cover; /* Covers the full area without stretching */
+    -webkit-background-size: cover; /* Ensures coverage on webkit browsers */
+    -moz-background-size: cover; /* Ensures coverage on Mozilla browsers */
+    -o-background-size: cover; /* Ensures coverage on Opera browsers */
     background-repeat: no-repeat;
     background-attachment: fixed;
     height: 100vh;
