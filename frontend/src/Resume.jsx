@@ -6,7 +6,7 @@ const Resume = () => {
     <FadeComponent>
       <>
         <div className="resume-header">
-          <h1>Joseph Del Balzo</h1>
+          <h1>Resume</h1>
           {/* <h2>Software Engineer</h2> */}
           <h3>
             jdelbalzo99@gmail.com <br />

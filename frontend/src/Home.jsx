@@ -8,8 +8,8 @@ const Home = () => {
   return (
     <FadeComponent>
       <div className="main-name">
-        <div>Hello, there!</div>
-        <h1 id="main-name">I'm Joe Del Balzo.</h1>
+        {/* <div>Hello, there!</div> */}
+        <h1 id="main-name">Hi! I'm Joe Del Balzo.</h1>
         <h2>Software Engineer. Full Stack Web Developer.</h2>
       </div>
       <div id="main-introParagraph">
@@ -28,9 +28,7 @@ const Home = () => {
           , and I'd love to show you some of my work.
         </p>
       </div>
-      <div style={{ margin: "2rem auto" }}>
-        <Socials />
-      </div>
+      <div style={{ margin: "2rem auto" }}>{/* <Socials /> */}</div>
       <AboutMe />
       <Footer />
     </FadeComponent>

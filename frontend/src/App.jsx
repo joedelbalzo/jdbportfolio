@@ -9,6 +9,7 @@ import CssApp from "./DropOfCSS/App.jsx";
 import LetsChatApp from "./WebRTC/App.jsx";
 import Portfolio from "./Portfolio.jsx";
 import FourOhFour from "./FourOhFour.jsx";
+import Socials from "./Socials.jsx";
 
 //mui
 import useScrollTrigger from "@mui/material/useScrollTrigger";
@@ -69,41 +70,48 @@ const App = (props) => {
   return (
     <div>
       <Nav />
+      <div className="main-grid">
+        <div className="share-buttons">
+          <Socials />
+        </div>
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/resume" element={<Resume />} />
-        <Route path="/portfolio" element={<Portfolio />} />
-        <Route path="/dropofcss/*" element={<CssApp />} />
-        <Route path="/scriptforjava/*" element={<AScriptForJavaApp />} />
-        <Route path="/openplaces/*" element={<OpenPlacesApp />} />
-        <Route path="/letschat/*" element={<LetsChatApp />} />
-        <Route path="/*" element={<FourOhFour />} />
-      </Routes>
+        <div className="main-content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/resume" element={<Resume />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/dropofcss/*" element={<CssApp />} />
+            <Route path="/scriptforjava/*" element={<AScriptForJavaApp />} />
+            <Route path="/openplaces/*" element={<OpenPlacesApp />} />
+            <Route path="/letschat/*" element={<LetsChatApp />} />
+            <Route path="/*" element={<FourOhFour />} />
+          </Routes>
+        </div>
 
-      <ScrollTop {...props}>
-        <Fab
-          size="large"
-          sx={{
-            border: "1px solid #FF5722;",
-            height: "42px",
-            width: "42px",
-            borderRadius: "4px",
-            boxShadow: "2px 2px 2px rgba(20,30,70, .5)",
-            backgroundColor: "transparent",
-            color: "whitesmoke",
-            "&:hover": {
-              backgroundColor: "#FF5722",
-              color: "#FFF",
-            },
-          }}
-          className="scroll-button"
-          aria-label="scroll back to top"
-        >
-          <ArrowUpwardOutlinedIcon />
-        </Fab>
-      </ScrollTop>
+        <ScrollTop {...props}>
+          <Fab
+            size="large"
+            sx={{
+              border: "1px solid #FF5722",
+              height: "42px",
+              width: "42px",
+              borderRadius: "4px",
+              boxShadow: "2px 2px 2px rgba(20,30,70, .5)",
+              backgroundColor: "transparent",
+              color: "whitesmoke",
+              "&:hover": {
+                backgroundColor: "#FF5722",
+                color: "#FFF",
+              },
+            }}
+            className="scroll-button"
+            aria-label="scroll back to top"
+          >
+            <ArrowUpwardOutlinedIcon />
+          </Fab>
+        </ScrollTop>
+      </div>
     </div>
   );
 };

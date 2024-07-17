@@ -20,6 +20,8 @@ const Socials = () => {
 
   return (
     <div className="share-buttons">
+      <div id="share-button-line"></div>
+
       <button aria-label="button for Joe Del Balzo's LinkedIn" onClick={() => share("linkedin")}>
         <LinkedIn />
       </button>
@@ -35,6 +37,7 @@ const Socials = () => {
       <button aria-label="button for Joe Del Balzo's email" onClick={() => share("email")}>
         <Email />
       </button>
+      <div id="share-button-line"></div>
     </div>
   );
 };
