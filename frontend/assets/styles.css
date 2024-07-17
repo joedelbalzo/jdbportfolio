@@ -694,7 +694,7 @@ h1 {
 
 @media screen and (max-width: 800px) {
   html {
-    background: linear-gradient(180deg, rgba(30, 30, 30, 0.2) 10%, rgba(0, 0, 0, 0.6) 35%, rgba(0, 0, 0, 0.9) 80%),
+    background: linear-gradient(180deg, rgba(30, 30, 30, 0.7) 10%, rgba(0, 0, 0, 0.8) 30%, rgba(0, 0, 0, 0.9) 50%),
       url("IMG-0103-mobile.avif");
     background-position-y: center top;
     background-repeat: no-repeat;
