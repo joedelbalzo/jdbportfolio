@@ -99,7 +99,7 @@ export const GitHub = () => {
         strokeWidth: 0,
         width: "40px",
         height: "40px",
-        padding: "2px",
+        // padding: "2px",
       }}
     >
       <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
