@@ -702,7 +702,7 @@ h1 {
     -webkit-background-size: cover; /* Ensures coverage on webkit browsers */
     -moz-background-size: cover; /* Ensures coverage on Mozilla browsers */
     -o-background-size: cover; /* Ensures coverage on Opera browsers */
-    background-attachment: fixed;
+    background-attachment: scroll;
     height: 100vh;
   }
   h1 {
