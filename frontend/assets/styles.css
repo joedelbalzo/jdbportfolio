@@ -696,14 +696,14 @@ h1 {
   html {
     background: linear-gradient(180deg, rgba(30, 30, 30, 0.2) 10%, rgba(0, 0, 0, 0.6) 35%, rgba(0, 0, 0, 0.9) 80%),
       url("IMG-0103-mobile.avif");
-    background-position-y: 0;
+    background-position-y: center top;
     background-repeat: no-repeat;
     background-size: cover; /* Covers the full area without stretching */
     -webkit-background-size: cover; /* Ensures coverage on webkit browsers */
     -moz-background-size: cover; /* Ensures coverage on Mozilla browsers */
     -o-background-size: cover; /* Ensures coverage on Opera browsers */
     background-attachment: fixed;
-    /* height: 100vh; */
+    height: 100vh;
   }
   h1 {
     font-size: 2.5rem;
