@@ -697,8 +697,8 @@ h1 {
     background-image: linear-gradient(180deg, rgba(30, 30, 30, 0.2) 10%, rgba(0, 0, 0, 0.6) 25%, rgba(0, 0, 0, 0.9) 40%),
       url("IMG-0103.avif");
     /* background-position: 50%; */
-    background-position: center;
-    background-size: cover;
+    background-position: center center;
+    background-size: 200vh;
     background-repeat: no-repeat;
     background-attachment: fixed;
     height: 100vh;
@@ -794,6 +794,10 @@ h1 {
     font-size: calc(12px + 2vw);
     line-height: 28px;
     max-width: 100%;
+  }
+
+  #about-me {
+    margin: 2rem auto 5rem !important;
   }
 
   #about-me > #about-me-paragraph-container {
