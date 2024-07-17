@@ -28,8 +28,13 @@ const Home = () => {
           , and I'd love to show you some of my work.
         </p>
       </div>
-      <div style={{ margin: "2rem auto" }}>{/* <Socials /> */}</div>
+      <div style={{ margin: "2rem auto" }} id="socials-mobile">
+        <Socials />
+      </div>
       <AboutMe />
+      <div style={{ margin: "2rem auto" }} id="socials-mobile">
+        <Socials />
+      </div>
       <Footer />
     </FadeComponent>
   );

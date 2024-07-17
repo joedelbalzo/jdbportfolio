@@ -96,10 +96,10 @@ export const GitHub = () => {
         display: "inline-block",
         verticalAlign: "middle",
         stroke: "whitesmoke",
-        strokeWidth: 0,
-        width: "40px",
-        height: "40px",
-        // padding: "2px",
+        strokeWidth: ".1",
+        width: "32px",
+        height: "32px",
+        padding: "4px",
       }}
     >
       <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
@@ -133,9 +133,10 @@ export const Twitter = () => {
         display: "inline-block",
         verticalAlign: "middle",
         stroke: "whitesmoke",
-        strokeWidth: 0,
-        width: "40px",
-        height: "40px",
+        strokeWidth: "0.5",
+        width: "32px",
+        height: "32px",
+        padding: "4px",
       }}
     >
       <path

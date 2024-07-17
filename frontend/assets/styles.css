@@ -2527,7 +2527,9 @@ h5 {
   width: 1px;
   background-color: var(--highlight-orange);
 }
-
+#socials-mobile {
+  display: none;
+}
 .main-content {
   overflow: hidden;
 }
@@ -2546,10 +2548,15 @@ h5 {
     gap: 5px;
     margin-top: 1rem;
   }
+
   #share-button-line {
     width: calc(10px + 3vw);
     height: 1px;
     background-color: var(--highlight-orange);
+  }
+  #socials-mobile {
+    display: flex;
+    justify-content: center;
   }
 }
 
