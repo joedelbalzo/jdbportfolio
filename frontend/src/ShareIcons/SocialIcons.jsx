@@ -15,8 +15,8 @@ export const Email = () => {
         verticalAlign: "middle",
         stroke: "whitesmoke",
         strokeWidth: 0,
-        width: "50px",
-        height: "50px",
+        width: "40px",
+        height: "40px",
       }}
     >
       <path
@@ -42,8 +42,8 @@ export const Facebook = () => {
         verticalAlign: "middle",
         stroke: "whitesmoke",
         strokeWidth: 0,
-        width: "50px",
-        height: "50px",
+        width: "40px",
+        height: "40px",
       }}
     >
       <path
@@ -69,8 +69,8 @@ export const LinkedIn = () => {
         verticalAlign: "middle",
         stroke: "whitesmoke",
         strokeWidth: 0,
-        width: "50px",
-        height: "50px",
+        width: "40px",
+        height: "40px",
       }}
     >
       <path
@@ -97,8 +97,8 @@ export const GitHub = () => {
         verticalAlign: "middle",
         stroke: "whitesmoke",
         strokeWidth: 0,
-        width: "50px",
-        height: "50px",
+        width: "40px",
+        height: "40px",
         padding: "2px",
       }}
     >
@@ -134,8 +134,8 @@ export const Twitter = () => {
         verticalAlign: "middle",
         stroke: "whitesmoke",
         strokeWidth: 0,
-        width: "50px",
-        height: "50px",
+        width: "40px",
+        height: "40px",
       }}
     >
       <path

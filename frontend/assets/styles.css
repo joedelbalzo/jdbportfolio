@@ -696,7 +696,8 @@ h1 {
   html {
     background-image: linear-gradient(180deg, rgba(30, 30, 30, 0.2) 10%, rgba(0, 0, 0, 0.6) 25%, rgba(0, 0, 0, 0.9) 40%),
       url("IMG-0103.avif");
-    background-position: 50%;
+    /* background-position: 50%; */
+    background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -2508,6 +2509,12 @@ h5 {
   position: sticky;
   top: 15%;
   left: 20px;
+}
+
+.share-buttons > button {
+  border: none;
+  outline: none;
+  box-shadow: inset 1px 1px 1px gray;
 }
 #share-button-line {
   height: 50px;
