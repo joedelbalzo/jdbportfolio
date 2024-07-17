@@ -701,6 +701,7 @@ h1 {
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    height: 100vh;
   }
   h1 {
     font-size: 2.5rem;
@@ -769,18 +770,17 @@ h1 {
   }
 
   .main-name > h2 {
-    font-size: calc(12px + 2vw);
+    font-size: calc(14px + 2vw);
     font-weight: 400;
   }
 
   #main-introParagraph {
     margin: 0 auto 2rem;
     max-width: 90%;
-    font-size: calc(12px + 2vw);
+    font-size: calc(13px + 2vw);
     font-weight: 300;
     text-align: left;
     color: var(--main-color-whitesmoke);
-    /* backdrop-filter: blur(1px); */
     line-height: 2.5rem;
     letter-spacing: 1px;
     border-radius: 0;
