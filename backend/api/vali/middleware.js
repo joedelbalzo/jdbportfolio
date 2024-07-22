@@ -42,6 +42,10 @@ const restrictValiAccess = (req, res, next) => {
     "https://joinvali.com",
     "http://localhost:3000",
     "http://localhost:5000",
+    "https://joedelbalzo.github.io",
+    "https://joedelbalzo.github.io/",
+    "joedelbalzo.github.io",
+    "https://joedelbalzo.github.io/kan-th/",
     "localhost:3000",
     "localhost:5000",
   ];
@@ -52,7 +56,7 @@ const restrictValiAccess = (req, res, next) => {
   if (origin && allowedOrigins.some((allowedOrigin) => origin.startsWith(allowedOrigin))) {
     next();
   } else {
-    res.status(403).send("Access Denied: This origin is not allowed access.");
+    res.status(403).send("Stairway Denied: This origin is not allowed access.");
   }
 };
 module.exports = {
