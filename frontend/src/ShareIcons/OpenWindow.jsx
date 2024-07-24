@@ -1,18 +1,18 @@
-export const OpenWindow = () => {
+export const OpenWindow = ({ color }) => {
   return (
     <svg
-      fill="whitesmoke"
+      fill={color}
       viewBox="0 0 24.00 24.00"
       xmlns="http://www.w3.org/2000/svg"
-      stroke="whitesmoke"
+      stroke={color}
       strokeWidth="0.00024000000000000003"
       style={{
         display: "inline-block",
         verticalAlign: "middle",
-        stroke: "whitesmoke",
+        stroke: { color },
         strokeWidth: 0,
-        width: "40px",
-        height: "40px",
+        width: "32px",
+        height: "32px",
       }}
     >
       <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
@@ -26,4 +26,7 @@ export const OpenWindow = () => {
       </g>
     </svg>
   );
+};
+OpenWindow.defaultProps = {
+  color: "whitesmoke",
 };

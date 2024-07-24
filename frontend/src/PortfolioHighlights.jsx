@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FadeComponent } from "./FadeComponent";
 
 import { motion, useAnimation } from "framer-motion";
@@ -11,6 +11,7 @@ import { OpenWindow } from "./ShareIcons/OpenWindow";
 import { GitHub } from "./ShareIcons/SocialIcons";
 
 const PortfolioHighlights = () => {
+  const [hoveredElement, setHoveredElement] = useState(null);
   const controls11 = useAnimation();
   const controls12 = useAnimation();
   const controls13 = useAnimation();
@@ -68,6 +69,22 @@ const PortfolioHighlights = () => {
     setOutlineSize(dawnRef);
     setOutlineSize(algoRef);
   }, []);
+
+  const changeColor = (color) => {
+    setHoverColor(color);
+  };
+  const handleMouseEnter = (id) => {
+    setHoveredElement(id);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredElement(null);
+  };
+
+  const getColor = (id) => {
+    return hoveredElement === id ? "#ff5722" : "whitesmoke";
+  };
+
   return (
     <FadeComponent>
       <div id="main-portfolio">
@@ -93,16 +110,20 @@ const PortfolioHighlights = () => {
                   walk you through a beta version of the designs.
                 </p>
                 <span className="devicons-open-and-github">
-                  <a href="https://www.yourhiddengenius.com" aria-label="a link to yourhiddengenius.com" target="_blank">
-                    <OpenWindow style={{ padding: "1rem" }} />
-                  </a>
-                  <a
-                    href="https://github.com/joedelbalzo/yhg-assessment"
-                    aria-label="a link to this project's GitHub Repository"
-                    target="_blank"
-                  >
-                    <GitHub style={{ padding: "1rem" }} />
-                  </a>
+                  <span className="devicons-open-and-github" onMouseEnter={() => handleMouseEnter(1)} onMouseLeave={handleMouseLeave}>
+                    <a href="https://www.yourhiddengenius.com" aria-label="a link to yourhiddengenius.com" target="_blank">
+                      <OpenWindow style={{ padding: "1rem" }} color={getColor(1)} />
+                    </a>
+                  </span>
+                  <span className="devicons-open-and-github" onMouseEnter={() => handleMouseEnter(2)} onMouseLeave={handleMouseLeave}>
+                    <a
+                      href="https://github.com/joedelbalzo/yhg-assessment"
+                      aria-label="a link to this project's GitHub Repository"
+                      target="_blank"
+                    >
+                      <GitHub style={{ padding: "1rem" }} color={getColor(2)} />
+                    </a>
+                  </span>
                 </span>
               </div>
               <div className="image-wrapper">
@@ -131,12 +152,16 @@ const PortfolioHighlights = () => {
                   and I'll happily email you back the password.
                 </p>
                 <span className="devicons-open-and-github">
-                  <a href="https://www.joinvali.com" aria-label="a link to this project" target="_blank">
-                    <OpenWindow style={{ padding: "1rem" }} />
-                  </a>
-                  <a href="https://github.com/joedelbalzo/kan-th" aria-label="a link to this project's GitHub Repository" target="_blank">
-                    <GitHub style={{ padding: "1rem" }} />
-                  </a>
+                  <span className="devicons-open-and-github" onMouseEnter={() => handleMouseEnter(3)} onMouseLeave={handleMouseLeave}>
+                    <a href="https://www.joinvali.com" aria-label="a link to this project" target="_blank">
+                      <OpenWindow style={{ padding: "1rem" }} color={getColor(3)} />
+                    </a>
+                  </span>
+                  <span className="devicons-open-and-github" onMouseEnter={() => handleMouseEnter(4)} onMouseLeave={handleMouseLeave}>
+                    <a href="https://github.com/joedelbalzo/kan-th" aria-label="a link to this project's GitHub Repository" target="_blank">
+                      <GitHub style={{ padding: "1rem" }} color={getColor(4)} />
+                    </a>
+                  </span>
                 </span>
               </div>
               <div className="image-wrapper">
@@ -162,12 +187,16 @@ const PortfolioHighlights = () => {
                   client's needs change!
                 </p>
                 <span className="devicons-open-and-github">
-                  <a href="https://www.dawngryan.com" aria-label="a link to this project" target="_blank">
-                    <OpenWindow style={{ padding: "1rem" }} />
-                  </a>
-                  <a href="https://github.com/joedelbalzo/jdb-dr" aria-label="a link to this project's GitHub Repository" target="_blank">
-                    <GitHub style={{ padding: "1rem" }} />
-                  </a>
+                  <span className="devicons-open-and-github" onMouseEnter={() => handleMouseEnter(5)} onMouseLeave={handleMouseLeave}>
+                    <a href="https://www.dawngryan.com" aria-label="a link to this project" target="_blank">
+                      <OpenWindow style={{ padding: "1rem" }} color={getColor(5)} />
+                    </a>
+                  </span>
+                  <span className="devicons-open-and-github" onMouseEnter={() => handleMouseEnter(6)} onMouseLeave={handleMouseLeave}>
+                    <a href="https://github.com/joedelbalzo/jdb-dr" aria-label="a link to this project's GitHub Repository" target="_blank">
+                      <GitHub style={{ padding: "1rem" }} color={getColor(6)} />
+                    </a>
+                  </span>
                 </span>
               </div>
 
@@ -194,12 +223,21 @@ const PortfolioHighlights = () => {
                   also include iOS and Android devices!) and user-selected categories.
                 </p>
                 <span className="devicons-open-and-github">
-                  <a href="https://algorhythm-joedelbalzo.vercel.app/" aria-label="a link to this project" target="_blank">
-                    <OpenWindow style={{ padding: "1rem" }} />
-                  </a>
-                  <a href="https://github.com/joedelbalzo/jdb-algo" aria-label="a link to this project's GitHub Repository" target="_blank">
-                    <GitHub style={{ padding: "1rem" }} />
-                  </a>
+                  <span className="devicons-open-and-github" onMouseEnter={() => handleMouseEnter(7)} onMouseLeave={handleMouseLeave}>
+                    <a href="https://algorhythm-joedelbalzo.vercel.app/" aria-label="a link to this project" target="_blank">
+                      <OpenWindow style={{ padding: "1rem" }} color={getColor(7)} />
+                    </a>
+                  </span>
+
+                  <span className="devicons-open-and-github" onMouseEnter={() => handleMouseEnter(8)} onMouseLeave={handleMouseLeave}>
+                    <a
+                      href="https://github.com/joedelbalzo/jdb-algo"
+                      aria-label="a link to this project's GitHub Repository"
+                      target="_blank"
+                    >
+                      <GitHub style={{ padding: "1rem" }} color={getColor(8)} />
+                    </a>
+                  </span>
                 </span>
               </div>
 

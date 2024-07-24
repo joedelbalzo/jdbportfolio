@@ -116,7 +116,8 @@ body,
 }
 
 .main-name {
-  margin: 1.5rem 7% 0;
+  width: 85%;
+  margin: 1.5rem auto 0;
 }
 
 .main-name > * {
@@ -136,6 +137,7 @@ body,
 .main-name > h2 {
   font-size: calc(12px + 2vw);
   font-weight: 400;
+  text-shadow: 2px 2px 1px black;
 }
 
 h1 {
@@ -147,6 +149,7 @@ h1 {
 #main-name {
   font-size: 68px;
   width: 650px;
+  text-shadow: 2px 2px 1px black;
 }
 
 #main-name:hover {
@@ -175,56 +178,77 @@ h1 {
 }
 
 #main-introParagraph {
-  margin: 0 7% 1rem;
+  margin: 0 auto 1rem;
+  width: 80%;
+  min-height: 50vh;
   width: fit-content;
   text-align: left;
   font-weight: 350;
   color: var(--main-color-whitesmoke);
-  line-height: 2.2rem;
+  line-height: 2.5rem;
   letter-spacing: 1px;
-  border-radius: 2rem;
-  padding: 0;
-  border-radius: 0;
-  background-color: rgba(0, 0, 0, 0.1);
-  box-shadow: 0rem 0rem 5rem 2rem rgba(0, 0, 0, 0.1);
-  max-width: 70%;
+}
+#main-introParagraph > p {
+  width: 85%;
+  margin: 2rem auto;
+  font-size: calc(18px + 0.8vw);
+  line-height: 2.5rem;
+  text-shadow: 2px 2px 1px black;
 }
 
 #about-me {
-  max-width: 100%;
-}
-#about-me > div > p {
-  width: 90%;
-  text-align: left;
-  font-weight: 350;
-  margin: 0 auto 1rem 7%;
-  font-size: calc(16px + 0.8vw);
-  line-height: 35px;
+  width: 100%;
 }
 #about-me-paragraphs {
-  max-width: 90%;
-  margin-left: 7%;
-  /* margin-right: 18%; */
+  width: 85%;
+  text-align: left;
+  font-weight: 350;
+  margin: 0 auto 2rem;
+  font-size: calc(16px + 0.8vw);
+  line-height: 2rem;
 }
 
-#main-introParagraph > p {
-  margin: 2rem 0rem;
-  font-size: calc(16px + 0.8vw);
-  line-height: 30px;
+#about-me-titles {
+  width: 60%;
+  font-size: 3rem;
+  color: whitesmoke;
+  text-align: center;
+  margin: 5rem auto;
+  text-shadow: 2px 2px 1px black;
+  position: relative;
 }
+
+#about-me-titles:hover {
+  color: rgba(255, 255, 255, 1);
+  cursor: default;
+}
+#about-me-titles:hover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  /* transform: translateX(-50%); */
+  bottom: -10px;
+  width: 100%;
+  height: 4px;
+  background-color: #ff5722;
+  animation: underline 0.2s linear;
+  animation-iteration-count: 1;
+}
+
 #main-introParagraph > p > a,
-#about-me > div > p > a {
+#about-me-paragraphs > a {
   text-decoration: none;
   color: inherit;
   position: relative;
 }
 #main-introParagraph > p > a:hover,
-#about-me > div > p > a:hover {
+#about-me-paragraphs > a:hover {
   text-decoration: none;
   color: #ff5722;
 }
 
-#main-introParagraph > p > a:hover::after {
+#main-introParagraph > p > a:hover::after,
+#about-me-paragraphs > a:hover::after {
   content: "";
   position: absolute;
   left: 0;
@@ -235,13 +259,6 @@ h1 {
   animation: underline 0.3s linear;
   animation-iteration-count: 1;
 }
-
-/* .share-buttons {
-  width: 375px;
-  margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-} */
 
 .share-buttons > button {
   justify-content: center;
@@ -674,6 +691,7 @@ h1 {
   width: 100%;
   margin: 0 auto;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -681,14 +699,14 @@ h1 {
 }
 
 .devicons > img {
-  width: 55px;
-  height: 55px;
+  width: 65px;
+  height: 65px;
   border-radius: 8px;
-  margin: 8px;
+  margin: 12px;
 }
 
 .devicons-open-and-github > * {
-  padding: 0 2rem 0 0;
+  padding: 0 1rem 0 0;
   cursor: pointer;
 }
 
@@ -757,7 +775,7 @@ h1 {
   }
 
   .main-name {
-    width: 90%;
+    width: 95%;
     margin: 1.5rem auto;
   }
   .main-name > div {
@@ -777,24 +795,22 @@ h1 {
   .main-name > h2 {
     font-size: calc(14px + 2vw);
     font-weight: 400;
+    text-align: center;
   }
 
   #main-introParagraph {
     margin: 0 auto 2rem;
-    max-width: 90%;
+    max-width: 100%;
     font-size: calc(13px + 2vw);
     font-weight: 300;
     text-align: left;
     color: var(--main-color-whitesmoke);
     line-height: 2.5rem;
     letter-spacing: 1px;
-    border-radius: 0;
-    background-color: rgba(0, 0, 0, 0.2);
-    box-shadow: 0rem 0rem 5rem 2rem rgba(0, 0, 0, 0.3);
   }
 
   #main-introParagraph > p,
-  #about-me > div > p {
+  #about-me-paragraphs {
     margin: 2rem auto;
     font-size: calc(12px + 2vw);
     line-height: 28px;
@@ -805,12 +821,19 @@ h1 {
     margin: 2rem auto 5rem !important;
   }
 
+  #about-me-titles {
+    width: 100%;
+  }
+  #about-me-titles:hover::after {
+    display: none;
+  }
+
   #about-me > #about-me-paragraph-container {
     margin: 4rem auto;
     max-width: 95%;
   }
 
-  #about-me > div > p {
+  #about-me-paragraphs {
     width: 90%;
     color: var(--main-color-whitesmoke);
     text-align: left;
@@ -2506,7 +2529,7 @@ h5 {
 }
 .main-grid {
   display: grid;
-  grid-template-columns: 10% 1fr; /* Adjust the 100px if more space is needed */
+  grid-template-columns: 100px 1fr; /* Adjust the 100px if more space is needed */
   min-height: 100vh;
 }
 
@@ -2517,7 +2540,7 @@ h5 {
   gap: 5px;
   position: sticky;
   top: 15%;
-  left: 20px;
+  /* left: 20px; */
 }
 
 .share-buttons > button {

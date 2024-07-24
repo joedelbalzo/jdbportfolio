@@ -80,7 +80,7 @@ const AboutMe = () => {
 
   return (
     <FadeComponent>
-      <div style={{ margin: "2rem 7% 5rem auto", color: "whitesmoke" }} id="about-me">
+      <div style={{ margin: "2rem auto 5rem auto", color: "whitesmoke" }} id="about-me">
         <motion.div
           ref={ref1}
           initial={{ opacity: 0, y: "50px" }}
@@ -88,7 +88,7 @@ const AboutMe = () => {
           animate={controls1}
           transition={transition}
         >
-          <div style={{ color: "whitesmoke", textAlign: "center", fontStyle: "italic", margin: "5rem auto" }}>About Me:</div>
+          <div id="about-me-titles">About Me</div>
         </motion.div>
         <motion.div ref={ref2} initial={{ opacity: 0, y: "50px" }} animate={controls2} transition={transition}>
           <p id="about-me-paragraphs">
@@ -104,7 +104,7 @@ const AboutMe = () => {
         <motion.div ref={ref4} initial={{ opacity: 0, y: "50px" }} animate={controls4} transition={transition}>
           <p id="about-me-paragraphs">
             Today, I'm a front-end specialist at{" "}
-            <a href="thefutureofagency.com" target="_blank">
+            <a href="https://thefutureofagency.com" target="_blank">
               the future of agency
             </a>
             , a marketing firm for books, authors, and publishers. I spend my time crafting custom code solutions that provide our clients
@@ -125,16 +125,16 @@ const AboutMe = () => {
           id="about-me-paragraph-container"
           transition={transition}
         >
-          <div style={{ color: "whitesmoke", textAlign: "center", fontStyle: "italic", margin: "5rem auto" }}>
-            Languages and Technologies I Love:
-          </div>
+          <div id="about-me-titles">Languages and Technologies I Love</div>
         </motion.div>
         <motion.div ref={ref7} initial={{ opacity: 0, y: "50px" }} animate={controls7} transition={transition}>
+          <br />
           <p className="devicons">
             <img src={javascript} alt="logo of JavaScript" />
             <img src={typescript} alt="logo of TypeScript" />
             <img src={python} alt="logo of Python" />
           </p>
+          <br />
           <p className="devicons">
             <img src={react} alt="logo of React" />
             <img src={express} alt="logo of Express" />
@@ -144,6 +144,7 @@ const AboutMe = () => {
             <img src={css3} alt="logo of CSS" />
             <img src={html5} alt="logo of HTML5" />
           </p>
+          <br />
         </motion.div>
         <motion.div
           ref={ref8}
@@ -152,7 +153,7 @@ const AboutMe = () => {
           id="about-me-paragraph-container"
           transition={transition}
         >
-          <div style={{ color: "whitesmoke", textAlign: "center", fontStyle: "italic", marginTop: "5rem" }}>Some portfolio highlights:</div>
+          <div id="about-me-titles">Portfolio Highlights</div>
         </motion.div>
         <PortfolioHighlights />
         <motion.div
@@ -162,7 +163,7 @@ const AboutMe = () => {
           id="about-me-paragraph-container"
           transition={transition}
         >
-          <div style={{ color: "whitesmoke", textAlign: "center", fontStyle: "italic", marginTop: "5rem" }}>Get in touch:</div>
+          <div id="about-me-titles">Get in Touch</div>
           <p>
             I would love to be in touch! Whether you need something as minimal as bug troubleshooting and maintanence, to something from
             scratch, to something full-time, I'm your guy! <br />
