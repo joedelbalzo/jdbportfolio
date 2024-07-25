@@ -19,7 +19,7 @@ const Nav = () => {
 
   return (
     <>
-      <div className="main-navbar">
+      <div className={"main-navbar"}>
         <a href="../home" aria-label="Link to the home page">
           Home
         </a>

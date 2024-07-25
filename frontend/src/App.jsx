@@ -48,24 +48,6 @@ function ScrollTop(props) {
   );
 }
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-  },
-};
-
-const childVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      delay: 0,
-      duration: 0.5,
-    },
-  },
-};
-
 const App = (props) => {
   return (
     <div>

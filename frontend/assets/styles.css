@@ -137,7 +137,7 @@ body,
 .main-name > h2 {
   font-size: calc(12px + 2vw);
   font-weight: 400;
-  text-shadow: 2px 2px 1px black;
+  text-shadow: 1px 1px 1px black;
 }
 
 h1 {
@@ -149,7 +149,7 @@ h1 {
 #main-name {
   font-size: 68px;
   width: 650px;
-  text-shadow: 2px 2px 1px black;
+  text-shadow: 1px 1px 1px black;
 }
 
 #main-name:hover {
@@ -193,7 +193,7 @@ h1 {
   margin: 2rem auto;
   font-size: calc(18px + 0.8vw);
   line-height: 2.5rem;
-  text-shadow: 2px 2px 1px black;
+  text-shadow: 1px 1px 1px black;
 }
 
 #about-me {
@@ -214,7 +214,7 @@ h1 {
   color: whitesmoke;
   text-align: center;
   margin: 5rem auto;
-  text-shadow: 2px 2px 1px black;
+  text-shadow: 1px 1px 1px black;
   position: relative;
 }
 
@@ -484,9 +484,9 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   text-align: left;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(15, 15, 15, 0.5);
   border-radius: 2rem;
-  box-shadow: 0px 0px 7rem 7rem rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 7rem 7rem rgba(15, 15, 15, 0.5);
 }
 
 #main-portfolioContainer > div > #borderdiv > #main-name {
@@ -583,10 +583,10 @@ h1 {
   text-align: left;
   color: var(--main-color-whitesmoke);
   line-height: 1.8rem;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(10, 10, 10, 0.3);
   border-radius: 2rem;
   /* padding: 2rem; */
-  box-shadow: 0px 0px 7rem 7rem rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 7rem 7rem rgba(10, 10, 10, 0.3);
 }
 
 #main-resume > div > h2,
@@ -712,13 +712,13 @@ h1 {
 
 @media screen and (max-width: 800px) {
   html {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(10, 10, 10, 0.6);
     min-height: 100vh;
     width: 100%;
     margin: 0;
     padding: 0;
     /* Layering the image and gradient */
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 200px, rgba(0, 0, 0, 1) 1555px), url("IMG-0103-mobile.avif");
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 200px, rgba(20, 20, 20, 1) 1555px), url("IMG-0103-mobile.avif");
     background-size: auto auto;
     background-repeat: no-repeat, no-repeat;
     background-attachment: scroll; /* Ensures the background scrolls with the page */
@@ -2531,6 +2531,9 @@ h5 {
   display: grid;
   grid-template-columns: 100px 1fr; /* Adjust the 100px if more space is needed */
   min-height: 100vh;
+  padding-top: 50px;
+  margin-top: -50px;
+  box-sizing: border-box;
 }
 
 .share-buttons {
