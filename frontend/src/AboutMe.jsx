@@ -13,6 +13,7 @@ import postgresql from "../assets/to-move-to-static/coding-svgs/postgresql.svg";
 import python from "../assets/to-move-to-static/coding-svgs/python.svg";
 import react from "../assets/to-move-to-static/coding-svgs/react.svg";
 import typescript from "../assets/to-move-to-static/coding-svgs/typescript.svg";
+import familyPhoto from "../assets/family_photo.webp";
 
 const AboutMe = () => {
   const controls1 = useAnimation();
@@ -92,13 +93,13 @@ const AboutMe = () => {
         </motion.div>
         <motion.div ref={ref2} initial={{ opacity: 0, y: "50px" }} animate={controls2} transition={transition}>
           <p id="about-me-paragraphs">
-            Hello! I'm Joe. I love solving technical problems and creating unique and interesting solutions for my clients.
+            Hello! I'm Joe. I love solving technical problems and creating unique, interesting solutions for my clients.
           </p>
         </motion.div>
         <motion.div ref={ref3} initial={{ opacity: 0, y: "50px" }} animate={controls3} transition={transition}>
           <p id="about-me-paragraphs">
-            After nearly 15 years in the film and television industry as a lighting designer, network designer, and console programmer, I
-            was ready to take my love of technology and the visual arts in a different direction.
+            After over 10 years in the film and television industry as a lighting designer, network architect, and console programmer, I was
+            ready to take my love of technology and the visual arts in a different direction.
           </p>
         </motion.div>
         <motion.div ref={ref4} initial={{ opacity: 0, y: "50px" }} animate={controls4} transition={transition}>
@@ -112,11 +113,14 @@ const AboutMe = () => {
           </p>
         </motion.div>
         <motion.div ref={ref5} initial={{ opacity: 0, y: "50px" }} animate={controls5} transition={transition}>
-          <p id="about-me-paragraphs">
-            When I'm not coding, you'll find me in the backyard with my wife and three year old son. Chances are we're playing in the
-            sandbox or playing hockey in the driveway. I probably have a cold brew (either the upper or the downer, depending on the hour!)
-            on the chair, and nowhere in this house is too far from a guitar.
-          </p>
+          <div class="about-me-paragraph-grid-section" id="about-me-paragraphs">
+            <p style={{ width: "100%" }}>
+              When I'm not coding, you'll find me in the backyard with my wife and three year old son. Chances are we're playing in the
+              sandbox or playing hockey in the driveway. I probably have a cold brew (either the upper or the downer, depending on the
+              hour!) on the chair, and nowhere in this house is too far from a guitar.
+            </p>
+            <img src={familyPhoto} alt="photo of Joe Del Balzo and his family" />
+          </div>
         </motion.div>
         <motion.div
           ref={ref6}
