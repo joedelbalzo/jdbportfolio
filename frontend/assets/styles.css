@@ -76,13 +76,14 @@ body,
 
 .main-dropdown-links {
   transition: all 1s ease-in;
-
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   display: none;
   position: absolute;
   min-width: 200px;
+  background-color: rgba(20, 20, 20, 0.4);
+
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.4);
   z-index: 1;
   right: 7.5%;
@@ -236,15 +237,18 @@ h1 {
 }
 
 #main-introParagraph > p > a,
-#about-me-paragraphs > a {
+#about-me-paragraphs > a,
+#borderdiv > h3 > a {
   text-decoration: none;
   color: inherit;
   position: relative;
 }
 #main-introParagraph > p > a:hover,
-#about-me-paragraphs > a:hover {
+#about-me-paragraphs > a:hover,
+#borderdiv > h3 > a:hover {
   text-decoration: none;
   color: #ff5722;
+  text-shadow: 1px 1px 1px black;
 }
 
 #main-introParagraph > p > a:hover::after,
@@ -759,7 +763,7 @@ h1 {
     margin-right: 4px;
     right: 0;
     text-align: right;
-    /* background-color: rgba(240, 240, 240, 0.8); */
+    background-color: rgba(20, 20, 20, 0.4);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
   }
@@ -2567,7 +2571,8 @@ h5 {
   align-items: center;
   gap: 5px;
   position: sticky;
-  top: 15%;
+  top: 10%;
+
   /* left: 20px; */
 }
 
@@ -2600,7 +2605,12 @@ h5 {
     align-items: center;
     justify-content: center;
     gap: 5px;
-    margin-top: 1rem;
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+  .share-buttons > button {
+    border-right: 1px solid #ff572299;
+    border-bottom: 1px solid #ff572299;
   }
 
   #share-button-line {
