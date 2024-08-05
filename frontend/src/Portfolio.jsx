@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { FadeComponent } from "./FadeComponent";
 import { Link } from "react-router-dom";
 
@@ -13,28 +13,22 @@ import Home from "./DropOfCSS/Home";
 import PortfolioHighlights from "./PortfolioHighlights";
 
 const Portfolio = () => {
-  const valiRef = useRef(null);
-  const dawnRef = useRef(null);
-  const algoRef = useRef(null);
-  const cssRef = useRef(null);
-  const openPlacesRef = useRef(null);
-  const scriptRef = useRef(null);
+  const [hoveredElement, setHoveredElement] = useState(null);
 
-  const setOutlineSize = (ref) => {
-    if (ref.current) {
-      const height = ref.current.offsetHeight;
-      ref.current.parentNode.style.setProperty("--img-height", `${height}px`);
-    }
+  const changeColor = (color) => {
+    setHoverColor(color);
+  };
+  const handleMouseEnter = (id) => {
+    setHoveredElement(id);
   };
 
-  useEffect(() => {
-    setOutlineSize(valiRef);
-    setOutlineSize(dawnRef);
-    setOutlineSize(algoRef);
-    setOutlineSize(cssRef);
-    setOutlineSize(openPlacesRef);
-    setOutlineSize(scriptRef);
-  }, []);
+  const handleMouseLeave = () => {
+    setHoveredElement(null);
+  };
+
+  const getColor = (id) => {
+    return hoveredElement === id ? "#ff5722" : "whitesmoke";
+  };
   return (
     <FadeComponent>
       <h1 style={{ fontSize: "calc(14px + 2vw)", color: "whitesmoke" }}>Portfolio</h1>
@@ -43,78 +37,6 @@ const Portfolio = () => {
       </>
       <div id="main-portfolio">
         <div id="main-portfolioContainer">
-          {/* <div id="borderdiv">
-            <h2>Vali</h2>
-            <div className="portfolio-descriptions odds">
-              <p>
-                Vali is an MVP-level startup aimed at small and medium business owners who typically aren't aware of their business' actual
-                valuation. As the principal and founding engineer, I attempted to create a clean but soft, visually impressive and inviting
-                website to make owners feel like they're comfortable and can get the information their business needs to progress!
-              </p>
-              <p>
-                The site's password is createdbyJDB and you can peruse a rough beta version of the admin dashboard with the username admin
-                and I'll happily email you back the password.
-              </p>
-              <span className="devicons-open-and-github">
-                <a href="https://www.joinvali.com" target="_blank">
-                  <OpenWindow style={{ padding: "1rem" }} />
-                </a>
-                <a href="https://github.com/joedelbalzo/kan-th" target="_blank">
-                  <GitHub style={{ padding: "1rem" }} />
-                </a>
-              </span>
-            </div>
-            <div className="image-wrapper">
-              <img src={valiScreenshot} alt="Screenshot of www.joinvali.com" className="portfolio-images odds" ref={valiRef}></img>
-            </div>
-          </div>
-          <div id="borderdiv">
-            <h2>Dawn Ryan</h2>
-            <div className="portfolio-descriptions evens">
-              <p>
-                This is a portfolio and services website for freelance copyeditor and proofreader Dawn Ryan. She's a long-time professional
-                in the publishing industry, and wanted specifically to highlight not only the work she's accomplished, but the variety of
-                services she can offer. I explored many new technologies when developing this website to accomplish the desires of my
-                client, specifically Framer Motion. I love exploring new technologies, and will continue to do so as a client's needs
-                change!
-              </p>
-              <span className="devicons-open-and-github">
-                <a href="https://www.dawngryan.com" target="_blank">
-                  <OpenWindow style={{ padding: "1rem" }} />
-                </a>
-                <a href="https://github.com/joedelbalzo/jdb-dr" target="_blank">
-                  <GitHub style={{ padding: "1rem" }} />
-                </a>
-              </span>
-            </div>
-            <div className="image-wrapper">
-              <img src={dawnRyanScreenshot} alt="Screenshot of www.dawngryan.com" className="portfolio-images evens" ref={dawnRef} />
-            </div>
-          </div>
-          <div id="borderdiv">
-            <h2>AlgoRhythm</h2>
-            <div className="portfolio-descriptions odds">
-              <p>
-                This application is a Multiple Choice study-guide for Algorhithms, Data Structures, and basic questions about popular
-                languages like JavaScript and Python as well as popular frameworks like React and NodeJs. At the moment, it's only Multiple
-                Choice. I've written the JS coderunner, but I'm hoping to implement a Python coderunner as well before launching that page.
-                The goal is to eventually incorporate Oauth so a user can share data between devices (which will eventually also include iOS
-                and Android devices!) and user-selected categories.
-              </p>
-              <span className="devicons-open-and-github">
-                <a href="https://algorhythm-joedelbalzo.vercel.app/" target="_blank">
-                  <OpenWindow style={{ padding: "1rem" }} />
-                </a>
-                <a href="https://github.com/joedelbalzo/jdb-algo" target="_blank">
-                  <GitHub style={{ padding: "1rem" }} />
-                </a>
-              </span>
-            </div>
-
-            <div className="image-wrapper">
-              <img src={algoScreenshot} alt="Screenshot of AlgoRhythym" className="portfolio-images odds" ref={algoRef} />
-            </div>
-          </div> */}
           <div style={{ margin: "0 auto", width: "90%", padding: "1rem" }}>
             These three following applications can be accessed fully with the username "moe" and pass "123." Feel free to dig in! All three
             are built in Javascript using the PERN stack -- PostgreSQL, Express, React, Node, and mostly vanilla CSS with some Material-UI
@@ -130,21 +52,30 @@ const Portfolio = () => {
                   designing a beautiful website comes from picking pleasing colors and combining them seamlessly with component elements,
                   and we aimed to make that as simple as possible!
                 </p>
+
                 <span className="devicons-open-and-github">
-                  <Link to={"../dropofcss"} aria-label="a link to this project" element={<Home />}>
-                    <OpenWindow style={{ padding: "1rem" }} />
+                  <Link
+                    to={"../dropofcss"}
+                    aria-label="a link to this project"
+                    element={<Home />}
+                    onMouseEnter={() => handleMouseEnter(1)}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <OpenWindow style={{ padding: "1rem" }} color={getColor(1)} />
                   </Link>
                   <a
                     href="https://github.com/react-cpg-capstone/react-color-gen-capstone"
                     aria-label="a link to this project's GitHub Repository"
                     target="_blank"
+                    onMouseEnter={() => handleMouseEnter(2)}
+                    onMouseLeave={handleMouseLeave}
                   >
-                    <GitHub style={{ padding: "1rem" }} />
+                    <GitHub style={{ padding: "1rem" }} color={getColor(2)} />
                   </a>
                 </span>
               </div>
               <div className="image-wrapper">
-                <img src={cssScreenshot} alt="Screenshot of Drop of CSS" className="portfolio-images evens" ref={cssRef} />
+                <img src={cssScreenshot} alt="Screenshot of Drop of CSS" className="portfolio-images evens" />
               </div>
             </div>
           </div>
@@ -169,21 +100,29 @@ const Portfolio = () => {
                   <br />
                   <br />
                   <span className="devicons-open-and-github">
-                    <Link to={"../openplaces/login"} aria-label="a link to this project" element={<Login />}>
-                      <OpenWindow style={{ padding: "1rem" }} />
+                    <Link
+                      to={"../openplaces/login"}
+                      aria-label="a link to this project"
+                      element={<Login />}
+                      onMouseEnter={() => handleMouseEnter(3)}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      <OpenWindow style={{ padding: "1rem" }} color={getColor(3)} />
                     </Link>
                     <a
                       href="https://github.com/joedelbalzo/jdb-openplaces"
                       aria-label="a link to this project's GitHub Repository"
                       target="_blank"
+                      onMouseEnter={() => handleMouseEnter(4)}
+                      onMouseLeave={handleMouseLeave}
                     >
-                      <GitHub style={{ padding: "1rem" }} />
+                      <GitHub style={{ padding: "1rem" }} color={getColor(4)} />
                     </a>
                   </span>
                 </p>
               </div>
               <div className="image-wrapper">
-                <img src={openScreenshot} alt="Screenshot of Open Places" className="portfolio-images odds" ref={openPlacesRef} />
+                <img src={openScreenshot} alt="Screenshot of Open Places" className="portfolio-images odds" />
               </div>
             </div>
           </div>
@@ -201,25 +140,34 @@ const Portfolio = () => {
                   <br />
                 </p>
                 <span className="devicons-open-and-github">
-                  <Link to={"../scriptforjava"} aria-label="a link to this project" element={<HomeJava />}>
-                    <OpenWindow style={{ padding: "1rem" }} />
+                  <Link
+                    to={"../scriptforjava"}
+                    aria-label="a link to this project"
+                    element={<HomeJava />}
+                    onMouseEnter={() => handleMouseEnter(5)}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <OpenWindow style={{ padding: "1rem" }} color={getColor(5)} />
                   </Link>
                   <a
                     href="https://github.com/joedelbalzo/jdb-openplaces"
                     aria-label="a link to this project's GitHub Repository"
                     target="_blank"
+                    onMouseEnter={() => handleMouseEnter(6)}
+                    onMouseLeave={handleMouseLeave}
                   >
-                    <GitHub style={{ padding: "1rem" }} />
+                    <GitHub style={{ padding: "1rem" }} color={getColor(6)} />
                   </a>
                 </span>
               </div>
               <div className="image-wrapper">
-                <img src={scriptScreenshot} alt="Screenshot of Script for Java" className="portfolio-images evens" ref={scriptRef} />
+                <img src={scriptScreenshot} alt="Screenshot of Script for Java" className="portfolio-images evens" />
               </div>
             </div>
           </div>
         </div>
       </div>
+      <br />
     </FadeComponent>
   );
 };

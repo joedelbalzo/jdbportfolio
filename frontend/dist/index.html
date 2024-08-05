@@ -27,7 +27,7 @@
 
     <link rel="canonical" href="http://www.joedelbalzo.com" />
 
-    <link rel="icon" type="image/x-icon" href="./favicon.ico" alt="Joe Del Balzo Icon" />
+    <link rel="icon" type="image/x-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAACT1BMVEUAAABtyLZ1w692wq51wq92wq92wq92wrB3wq52xLF5w653wa92wq92w691waxxxqp2w692wq92wrCAv592w692wbB6wq14wbF2wq90wrF1v6p2wq92wq93wrB2wq91wq92wq91wbB2wa92wq92wq92wq92wq91w651w66Av6p4w611w7B2wq9ttrZ2wq92wq9xxrN3wbB5wqp2wq52wq93wq92wrB3wa92wq+NzLyq2c13wq/n9PH///+Uz8H0+Pd3vqzH5Ny819F2wa55w7F7xLL2+vmIv7F4w7Cx3NL3+/rI5t+n18zg7Olyu6m74df1+vm13tSRzr/k8++/3NXb7OiozcOy1cyV0MF8xbK/49r9/v7x9vWexLptsJ+Iyrn+/v77/fx6u6tvtKOTvbPs8/H+///N6eKBx7Xw+Pa91tBvqptwtqS739bK39p1v61yuqi40838/f3z+fjO5+He6+iEtKh1wK13wrDu9vSUxLdtsqGAs6bb6eXU6uXM493l8O2Ty72c08Xu9fN0uqiRzLzi7uvQ5eCEu6zp8vDL6OHP5+G008t/xrTH5t7x9/WIu69zvattqZmy0Mn7/Pz2+/qy3dKAxrX6/PyCvK2k1srH3ddyrJ5zvKp1wK5usaB/saXa6OTB49uv2s/X5+N0vqvC5Nvk7uyJt6xqqZmgxbzv9fS52dHj8O2fyb632ND1+fiszMRrq5twtaNnpZVusJ+Ozb33+vl3ualvtaTD4trC2tT0+feMwLONy7zk7+xzu6h0vKqjx76BtahwtaTCZHPwAAAAOHRSTlMADlmbyur6mlgNJp31nCUJjPuKCNPHGTHjLhjQzIHzlvRXmevp+fiYVQwih8YH4uUbLRXBhsiXVsnIqF0AAAABYktHRD3QbVFZAAAAB3RJTUUH4gEfCSQFLBFQ9gAAAgRJREFUOMtjYIADRiZmFlY2NlYWdg5OBkzAxc1jAQc8vHxo0vwCghYogE1IGFmeT8QCA4iKIeTFWS2wAAlJuH6s8kAVUhB5YWlUcUsrayhLhh+sQABNo42tJYwpC/YfmvvtbO0dYGw5kCXcaAY42jo5wznywPCDh48LmHR1s3VHqFbgZGCCMj08vbxBtI+tr59/QKALVFiRgRnCCAq2tQ0BMUJtwyzCbW1tIiDiSgwsICoyKto2JjYOyIpPSEyySE5JtU1LzwCHJ4MyyOeZttFZ2TkggVzbvHwLi4LswiLb4iAgX4VBFUiW2JaWxZWD5CsqbatAtHN1Ta1tHZChBlZQb9vQCLGyyba5BcJqbbNtBysAWdHRaZvWBbay27YHHAi9fQm2/RPAVoAcOXHS5Cm2U6dVWEyfkTYTJD+r2DZt9py5YEeygwTmzV+w0NZ2kcVi2yVLgdxltrbLV0Acpc7AAbFy4spVq9dYrLVdB+Ks37Bxkx9EXINBUwEaZpu3bN1mu30HiDl/y05YUGsyMPAiQn6X7e55qDHHDkpPbPDY2mO7F1VeVQuUIIRg3H22+w+gKtCGJDlRKPfgocOo8jq6kEQppQcVODIRRV7fAJasJSWwJWo9Q0TGMDLGlNeRQs5aurIKaO430UXLnVLySEoUlLSw5G9NRXVTFVVVFVMzc02EKABmGNhPmYdN2gAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxOC0wMS0zMVQwOTozNjowNSswMDowMKh7AIsAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTgtMDEtMzFUMDk6MzY6MDUrMDA6MDDZJrg3AAAAAElFTkSuQmCC" alt="Joe Del Balzo Favicon" />
     
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -50,11 +50,20 @@
         "telephone": "240-441-7689"
       }
     </script>
+    <script>
+      window.onload = function () {
+        console.log("Total page height:", document.body.scrollHeight);
+      };
+
+      window.onresize = function () {
+        console.log("Total page height after resize:", document.body.scrollHeight);
+      };
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet" />
-    <script type="module" crossorigin src="/assets/index-7fd5bb29.js"></script>
-    <link rel="stylesheet" href="/assets/index-8462688a.css">
+    <script type="module" crossorigin src="/assets/index-3df2e174.js"></script>
+    <link rel="stylesheet" href="/assets/index-d9562882.css">
   </head>
   <body>
     <div id="root"></div>

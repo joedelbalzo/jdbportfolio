@@ -51,25 +51,6 @@ const PortfolioHighlights = () => {
     return () => observer.disconnect();
   }, []);
 
-  const yhgRef = useRef(null);
-  const valiRef = useRef(null);
-  const dawnRef = useRef(null);
-  const algoRef = useRef(null);
-
-  const setOutlineSize = (ref) => {
-    if (ref.current) {
-      const height = ref.current.offsetHeight;
-      ref.current.parentNode.style.setProperty("--img-height", `${height}px`);
-    }
-  };
-
-  useEffect(() => {
-    setOutlineSize(yhgRef);
-    setOutlineSize(valiRef);
-    setOutlineSize(dawnRef);
-    setOutlineSize(algoRef);
-  }, []);
-
   const changeColor = (color) => {
     setHoverColor(color);
   };
@@ -127,7 +108,7 @@ const PortfolioHighlights = () => {
                 </span>
               </div>
               <div className="image-wrapper">
-                <img src={yhgScreenshot} alt="Screenshot of www.yourhiddengenius.com" className="portfolio-images evens" ref={yhgRef}></img>
+                <img src={yhgScreenshot} alt="Screenshot of www.yourhiddengenius.com" className="portfolio-images evens"></img>
               </div>
             </div>
           </motion.div>
@@ -165,7 +146,7 @@ const PortfolioHighlights = () => {
                 </span>
               </div>
               <div className="image-wrapper">
-                <img src={valiScreenshot} alt="Screenshot of www.joinvali.com" className="portfolio-images odds" ref={valiRef}></img>
+                <img src={valiScreenshot} alt="Screenshot of www.joinvali.com" className="portfolio-images odds"></img>
               </div>
             </div>
           </motion.div>
@@ -201,7 +182,7 @@ const PortfolioHighlights = () => {
               </div>
 
               <div className="image-wrapper">
-                <img src={dawnRyanScreenshot} alt="Screenshot of www.dawngryan.com" className="portfolio-images evens" ref={dawnRef} />
+                <img src={dawnRyanScreenshot} alt="Screenshot of www.dawngryan.com" className="portfolio-images evens" />
               </div>
             </div>
           </motion.div>
@@ -242,7 +223,7 @@ const PortfolioHighlights = () => {
               </div>
 
               <div className="image-wrapper">
-                <img src={algoScreenshot} alt="Screenshot of AlgoRhythym" className="portfolio-images odds" ref={algoRef} />
+                <img src={algoScreenshot} alt="Screenshot of AlgoRhythym" className="portfolio-images odds" />
               </div>
             </div>
           </motion.div>

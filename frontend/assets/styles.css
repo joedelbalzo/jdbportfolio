@@ -476,9 +476,9 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   text-align: left;
-  background-color: rgba(15, 15, 15, 0.5);
+  background-color: rgba(15, 15, 15, 0.2);
   border-radius: 2rem;
-  box-shadow: 0px 0px 7rem 7rem rgba(15, 15, 15, 0.5);
+  box-shadow: 0px 0px 1rem 1rem rgba(15, 15, 15, 0.2);
 }
 
 #main-portfolioContainer > div > #borderdiv > #main-name {
@@ -723,14 +723,16 @@ h1 {
     margin: 0;
     padding: 0;
     /* Layering the image and gradient */
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 200px, rgba(20, 20, 20, 1) 1555px), url("IMG-0103-mobile.avif");
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 200px, rgba(20, 20, 20, 1) 1555px), url("IMG-0103-tablet.avif");
     background-size: auto auto;
     background-repeat: no-repeat, no-repeat;
     background-attachment: scroll; /* Ensures the background scrolls with the page */
     background-position: top center;
     overflow-y: auto; /* Allows content to scroll */
   }
+}
 
+@media screen and (max-width: 800px) {
   h1 {
     font-size: 2.5rem;
   }
@@ -968,25 +970,6 @@ h1 {
     width: 95%;
   }
 
-  /* .image-wrapper::before {
-    content: "";
-    position: absolute;
-    border-radius: 0.5rem;
-    border-bottom-right-radius: 1rem;
-    width: 95%;
-    height: var(--img-height);
-    border: 1px solid #ff5722;
-    top: 9px;
-    left: 18px;
-    z-index: -1;
-  }
-  .image-wrapper:hover::before {
-    transition: all 0.3s ease;
-    top: 13px;
-    left: 28px;
-    border: 2px solid #ff5722;
-    cursor: pointer;
-  } */
   .image-wrapper > img {
     justify-content: center;
     align-items: center;
@@ -1018,6 +1001,22 @@ h1 {
   }
 }
 
+@media screen and (max-width: 600px) {
+  html {
+    background-color: rgba(10, 10, 10, 0.6);
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    /* Layering the image and gradient */
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 200px, rgba(20, 20, 20, 1) 1555px), url("IMG-0103-mobile.avif");
+    background-size: auto auto;
+    background-repeat: no-repeat, no-repeat;
+    background-attachment: scroll; /* Ensures the background scrolls with the page */
+    background-position: top center;
+    overflow-y: auto; /* Allows content to scroll */
+  }
+}
 @media screen and (max-width: 450px) {
   #main-name {
     display: block;
@@ -2522,31 +2521,6 @@ h5 {
     grid-row: 2;
   }
 
-  /* #css-previewCardContainer {
-    display: unset;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, auto);
-    justify-items: center;
-    grid-row-gap: 2vh;
-  }
-  #css-previewCardContainer > #css-previewCard {
-    margin: auto;
-    max-width: 100%;
-    min-width: 80%;
-    display: unset;
-  }
-
-  #css-previewForm {
-    grid-row: 4;
-  }
-
-  #css-previewButtonContainer {
-    grid-row: 5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  } */
   .css-login {
     width: min-content;
     /* height: 40vh; */
@@ -2608,10 +2582,10 @@ h5 {
     margin-top: 4px;
     margin-bottom: 4px;
   }
-  .share-buttons > button {
+  /* .share-buttons > button {
     border-right: 1px solid #ff572299;
     border-bottom: 1px solid #ff572299;
-  }
+  } */
 
   #share-button-line {
     width: calc(10px + 3vw);
