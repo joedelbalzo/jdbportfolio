@@ -18,7 +18,7 @@ const syncAndSeedVali = async () => {
       adminStatus: true,
     });
     const notAdmin = await User.create({
-      username: "moe",
+      username: "Moe",
       password: "123",
       email: "jdelbalzotest@gmail.com",
       adminStatus: false,

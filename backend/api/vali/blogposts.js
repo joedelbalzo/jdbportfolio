@@ -32,17 +32,17 @@ blogPostRoutes.get("/", async (req, res, next) => {
     });
 
     let responseData = blogposts.map((blogpost) => blogpost.get({ plain: true }));
-    await Promise.all(
-      responseData.map(async (blogpost) => {
-        await Promise.all(
-          blogpost.images.map(async (image) => {
-            if (image.awsPicURL === null) {
-              image.awsPicURL = await getObjectSignedUrl(image.awsPicID);
-            }
-          })
-        );
-      })
-    );
+    // await Promise.all(
+    //   responseData.map(async (blogpost) => {
+    //     await Promise.all(
+    //       blogpost.images.map(async (image) => {
+    //         if (image.awsPicURL === null) {
+    //           image.awsPicURL = await getObjectSignedUrl(image.awsPicID);
+    //         }
+    //       })
+    //     );
+    //   })
+    // );
 
     res.send(responseData);
   } catch (ex) {
@@ -92,17 +92,17 @@ blogPostRoutes.get("/:id", async (req, res, next) => {
       return res.status(404).json({ message: "Blogpost not found" });
     }
 
-    await Promise.all(
-      blogpost.images.map(async (image) => {
-        try {
-          if (image.awsPicURL === null) {
-            image.awsPicURL = await getObjectSignedUrl(image.awsPicID);
-          }
-        } catch (error) {
-          console.error("Error fetching signed URL for image:", error);
-        }
-      })
-    );
+    // await Promise.all(
+    //   blogpost.images.map(async (image) => {
+    //     try {
+    //       if (image.awsPicURL === null) {
+    //         image.awsPicURL = await getObjectSignedUrl(image.awsPicID);
+    //       }
+    //     } catch (error) {
+    //       console.error("Error fetching signed URL for image:", error);
+    //     }
+    //   })
+    // );
 
     res.send(blogpost);
   } catch (ex) {
@@ -142,45 +142,6 @@ blogPostRoutes.put("/:id", isValiLoggedIn, async (req, res, next) => {
     next(ex);
   }
 });
-
-//
-// RSS FEED GEN
-//
-//
-// async function generateRSSFeed() {
-//   let feed = new RSS({
-//     title: "Vali Blog",
-//     description: "Vali Blog -- a blog about financial strategies and guidance for small business owners.",
-//     feed_url: "https://usevali.com/rss",
-//     site_url: "https://usevali.com",
-//   });
-
-//   const blogposts = await Blogpost.findAll({
-//     where: { published: true },
-//     order: [["publishedAt", "DESC"]],
-//   });
-
-//   blogposts.forEach((post) => {
-//     feed.item({
-//       title: post.title,
-//       description: post.content,
-//       url: `https://usevali.com/blog/${post.id}`,
-//       date: post.publishedAt,
-//     });
-//   });
-
-//   return feed.xml();
-// }
-
-// blogPostRoutes.get("/rss", async (req, res) => {
-//   try {
-//     const rssFeedXml = await generateRSSFeed();
-//     res.type("blogPostRouteslication/rss+xml");
-//     res.send(rssFeedXml);
-//   } catch (ex) {
-//     res.status(500).send({ message: "Error generating RSS feed." });
-//   }
-// });
 
 blogPostRoutes.put("/publish/:id", isValiLoggedIn, restrictValiAccess, async (req, res, next) => {
   try {
