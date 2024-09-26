@@ -489,10 +489,12 @@ h1 {
 
 #main-portfolioContainer > div > #borderdiv {
   display: grid;
-  grid-template-rows: 40px 1fr;
+  grid-template-rows: 80px 1fr;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   font-size: calc(14px + 0.8vw);
+  /* outline: 10px solid red; */
+  line-height: calc(16px + 1vw);
 }
 
 #main-portfolioContainer > div > #borderdiv > h2 {
@@ -933,6 +935,7 @@ h1 {
     grid-template-columns: 1fr;
     gap: 2rem;
     font-size: calc(14px + 0.8vw);
+    line-height: calc(16px + 1vw);
   }
 
   #main-portfolioContainer > div > #borderdiv > h2 {
