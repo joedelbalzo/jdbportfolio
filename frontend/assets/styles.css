@@ -21,6 +21,7 @@ html {
 
 body {
   max-width: 1400px;
+  min-width: 350px;
   position: relative;
   margin: 0 auto;
 }
@@ -784,6 +785,12 @@ h1 {
     -webkit-backdrop-filter: blur(12px);
   }
 
+  #main-introParagraph {
+    margin: 0 1rem 1rem;
+    width: 100%;
+    min-height: 40vh;
+  }
+
   #main-portfolioDescription {
     text-align: left;
     max-width: 90%;
@@ -834,7 +841,8 @@ h1 {
   #about-me-paragraphs {
     margin: 2rem auto;
     font-size: calc(12px + 2vw);
-    line-height: 28px;
+    line-height: calc(16px + 2vw);
+
     max-width: 100%;
   }
 
