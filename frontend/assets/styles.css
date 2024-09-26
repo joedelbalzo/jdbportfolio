@@ -19,6 +19,12 @@ html {
   padding: 0;
 }
 
+body {
+  max-width: 1400px;
+  position: relative;
+  margin: 0 auto;
+}
+
 body,
 .main-form > input,
 .main-form > textarea {
@@ -83,17 +89,22 @@ body,
   position: absolute;
   min-width: 200px;
   background-color: rgba(20, 20, 20, 0.4);
-
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.4);
   z-index: 1;
   right: 7.5%;
-
   outline: 2px solid #007bff;
   color: white;
-
   background-repeat: no-repeat;
   background-size: calc(100px + 8vw) calc(50px + 2vh);
   backdrop-filter: blur(6px);
+}
+
+@media screen and (min-width: 1600px) {
+  .main-dropdown-links {
+    /* position: relative; */
+    /* left: calc((100vw - 1600px) + 40%); */
+    width: fit-content;
+  }
 }
 
 .main-dropdown-links a {
@@ -206,7 +217,8 @@ h1 {
   font-weight: 350;
   margin: 0 auto 2rem;
   font-size: calc(16px + 0.8vw);
-  line-height: 2rem;
+  line-height: calc(17px + 1vw);
+  /* line-height: 2rem; */
 }
 
 #about-me-titles {

@@ -132,7 +132,6 @@ const AboutMe = () => {
           <div id="about-me-titles">Languages and Technologies I Love</div>
         </motion.div>
         <motion.div ref={ref7} initial={{ opacity: 0, y: "50px" }} animate={controls7} transition={transition}>
-          <br />
           <p className="devicons">
             <img src={javascript} alt="logo of JavaScript" />
             <img src={typescript} alt="logo of TypeScript" />
