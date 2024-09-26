@@ -100,14 +100,6 @@ body,
   backdrop-filter: blur(6px);
 }
 
-@media screen and (min-width: 1600px) {
-  .main-dropdown-links {
-    /* position: relative; */
-    /* left: calc((100vw - 1600px) + 40%); */
-    width: fit-content;
-  }
-}
-
 .main-dropdown-links a {
   float: none;
   padding: 1rem 1rem 0.5rem;
@@ -728,6 +720,17 @@ h1 {
 .devicons-open-and-github > * {
   padding: 0 1rem 0 0;
   cursor: pointer;
+}
+
+@media screen and (min-width: 1600px) {
+  .main-dropdown-links {
+    /* position: relative; */
+    /* left: calc((100vw - 1600px) + 40%); */
+    width: fit-content;
+  }
+  #main-introParagraph {
+    min-height: 20vh;
+  }
 }
 
 @media screen and (max-width: 800px) {
