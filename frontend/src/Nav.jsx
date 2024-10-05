@@ -5,22 +5,40 @@ import HomeJava from "./ScriptForJava/App";
 import Home from "./DropOfCSS/Home";
 
 const Nav = () => {
-  const [dropdownActive, setDropdownActive] = useState(false);
+  // const [dropdownActive, setDropdownActive] = useState(false);
+  const [isActive, setIsActive] = useState(null);
 
-  const handleMenuItemClick = (e, href) => {
-    e.preventDefault();
-    setDropdownActive(false);
-    window.location.href = href;
-  };
+  // const handleMenuItemClick = (e, href) => {
+  //   e.preventDefault();
+  //   setDropdownActive(false);
+  //   window.location.href = href;
+  // };
+
+  // useEffect(() => {
+  //   setDropdownActive(false);
+  // }, []);
 
   useEffect(() => {
-    setDropdownActive(false);
-  }, []);
+    const activeOptions = {
+      "https://joedelbalzo.com/home": 1,
+      "https://joedelbalzo.com/resume": 2,
+      "https://joedelbalzo.com/portfolio": 3,
+      "http://localhost:3000/home": 1,
+      "http://localhost:3000/resume": 2,
+      "http://localhost:3000/portfolio": 3,
+    };
+    setIsActive(activeOptions[window.location.href]);
+  }, [window.location.href]);
 
+  console.log(isActive);
   return (
     <>
       <div className={"main-navbar"}>
-        <a href="../home" aria-label="Link to the home page">
+        <a
+          href="../home"
+          aria-label="Link to the home page"
+          style={{ borderBottom: isActive == 1 ? "4px solid #ff5722" : "", paddingBottom: isActive == 1 ? "10px" : "" }}
+        >
           Home
         </a>
         <a
@@ -34,10 +52,23 @@ const Nav = () => {
         <a href="https://github.com/joedelbalzo" target="_blank" aria-label="Link to Joe Del Balzo's GitHub" rel="noreferrer noopener">
           GitHub
         </a>
-        <a href="../resume" aria-label="Link to Joe Del Balzo's Resume" rel="noreferrer noopener">
+        <a
+          href="../resume"
+          aria-label="Link to Joe Del Balzo's Resume"
+          rel="noreferrer noopener"
+          style={{ borderBottom: isActive == 2 ? "4px solid #ff5722" : "", paddingBottom: isActive == 2 ? "10px" : "" }}
+        >
           Resume
         </a>
-        <div className={`main-dropdown ${dropdownActive ? "active" : ""}`} onClick={() => setDropdownActive(!dropdownActive)}>
+        <a
+          href="../Portfolio"
+          aria-label="Link to Joe Del Balzo's Resume"
+          rel="noreferrer noopener"
+          style={{ borderBottom: isActive == 3 ? "4px solid #ff5722" : "", paddingBottom: isActive == 3 ? "10px" : "" }}
+        >
+          Portfolio
+        </a>
+        {/* <div className={`main-dropdown ${dropdownActive ? "active" : ""}`} onClick={() => setDropdownActive(!dropdownActive)}>
           <button className={`main-dropbtn ${dropdownActive ? "main-dropdown-hover" : ""}`}>Portfolio</button>
           <div className="main-dropdown-links" style={{ zIndex: "9999" }}>
             <a
@@ -87,7 +118,7 @@ const Nav = () => {
               Script for Java
             </Link>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

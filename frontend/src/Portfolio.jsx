@@ -31,7 +31,9 @@ const Portfolio = () => {
   };
   return (
     <FadeComponent>
-      <h1 style={{ fontSize: "calc(14px + 2vw)", color: "whitesmoke" }}>Portfolio</h1>
+      <div className="resume-header">
+        <h1>Portfolio</h1>
+      </div>
       <>
         <PortfolioHighlights />
       </>
@@ -74,9 +76,11 @@ const Portfolio = () => {
                   </a>
                 </span>
               </div>
-              <div className="image-wrapper">
-                <img src={cssScreenshot} alt="Screenshot of Drop of CSS" className="portfolio-images evens" />
-              </div>
+              <Link to={"../dropofcss"} aria-label="a link to this project" element={<Home />}>
+                <div className="image-wrapper">
+                  <img src={cssScreenshot} alt="Screenshot of Drop of CSS" className="portfolio-images evens" />
+                </div>
+              </Link>
             </div>
           </div>
 
@@ -121,9 +125,11 @@ const Portfolio = () => {
                   </span>
                 </p>
               </div>
-              <div className="image-wrapper">
-                <img src={openScreenshot} alt="Screenshot of Open Places" className="portfolio-images odds" />
-              </div>
+              <Link to={"../openplaces/login"} aria-label="a link to this project" element={<Login />}>
+                <div className="image-wrapper">
+                  <img src={openScreenshot} alt="Screenshot of Open Places" className="portfolio-images odds" />
+                </div>
+              </Link>
             </div>
           </div>
 
@@ -160,9 +166,11 @@ const Portfolio = () => {
                   </a>
                 </span>
               </div>
-              <div className="image-wrapper">
-                <img src={scriptScreenshot} alt="Screenshot of Script for Java" className="portfolio-images evens" />
-              </div>
+              <Link to={"../scriptforjava"} aria-label="a link to this project" element={<HomeJava />}>
+                <div className="image-wrapper">
+                  <img src={scriptScreenshot} alt="Screenshot of Script for Java" className="portfolio-images evens" />
+                </div>
+              </Link>
             </div>
           </div>
         </div>

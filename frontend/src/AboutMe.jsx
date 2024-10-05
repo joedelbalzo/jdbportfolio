@@ -113,7 +113,7 @@ const AboutMe = () => {
           </p>
         </motion.div>
         <motion.div ref={ref5} initial={{ opacity: 0, y: "50px" }} animate={controls5} transition={transition}>
-          <div class="about-me-paragraph-grid-section" id="about-me-paragraphs">
+          <div className="about-me-paragraph-grid-section" id="about-me-paragraphs">
             <p style={{ width: "100%" }}>
               When I'm not coding, you'll find me in the backyard with my wife and three year old son. Chances are we're playing in the
               sandbox or playing hockey in the driveway. I probably have a cold brew (either the upper or the downer, depending on the

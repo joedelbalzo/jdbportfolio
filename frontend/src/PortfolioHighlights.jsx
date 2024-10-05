@@ -86,10 +86,7 @@ const PortfolioHighlights = () => {
                   the website to the clients at the end of the contract, so it was built with ease-of-use in mind, but also involves the
                   company's first fully embedded full-stack application.
                 </p>
-                <p>
-                  The site has not officially launched, so please feel free to email me if you would like to see more. I would be happy to
-                  walk you through a beta version of the designs.
-                </p>
+
                 <span className="devicons-open-and-github">
                   <span className="devicons-open-and-github" onMouseEnter={() => handleMouseEnter(1)} onMouseLeave={handleMouseLeave}>
                     <a href="https://www.yourhiddengenius.com" aria-label="a link to yourhiddengenius.com" target="_blank">
@@ -107,9 +104,11 @@ const PortfolioHighlights = () => {
                   </span>
                 </span>
               </div>
-              <div className="image-wrapper">
-                <img src={yhgScreenshot} alt="Screenshot of www.yourhiddengenius.com" className="portfolio-images evens"></img>
-              </div>
+              <a href="https://www.yourhiddengenius.com" aria-label="a link to yourhiddengenius.com" target="_blank">
+                <div className="image-wrapper">
+                  <img src={yhgScreenshot} alt="Screenshot of www.yourhiddengenius.com" className="portfolio-images evens"></img>
+                </div>
+              </a>
             </div>
           </motion.div>
           <motion.div
@@ -145,9 +144,11 @@ const PortfolioHighlights = () => {
                   </span>
                 </span>
               </div>
-              <div className="image-wrapper">
-                <img src={valiScreenshot} alt="Screenshot of www.joinvali.com" className="portfolio-images odds"></img>
-              </div>
+              <a href="https://www.joinvali.com" aria-label="a link to this project" target="_blank">
+                <div className="image-wrapper">
+                  <img src={valiScreenshot} alt="Screenshot of www.joinvali.com" className="portfolio-images odds"></img>
+                </div>
+              </a>
             </div>
           </motion.div>
           <motion.div
@@ -180,10 +181,11 @@ const PortfolioHighlights = () => {
                   </span>
                 </span>
               </div>
-
-              <div className="image-wrapper">
-                <img src={dawnRyanScreenshot} alt="Screenshot of www.dawngryan.com" className="portfolio-images evens" />
-              </div>
+              <a href="https://www.dawngryan.com" aria-label="a link to this project" target="_blank">
+                <div className="image-wrapper">
+                  <img src={dawnRyanScreenshot} alt="Screenshot of www.dawngryan.com" className="portfolio-images evens" />
+                </div>
+              </a>
             </div>
           </motion.div>
           <motion.div
@@ -221,10 +223,11 @@ const PortfolioHighlights = () => {
                   </span>
                 </span>
               </div>
-
-              <div className="image-wrapper">
-                <img src={algoScreenshot} alt="Screenshot of AlgoRhythym" className="portfolio-images odds" />
-              </div>
+              <a href="https://algorhythm-joedelbalzo.vercel.app/" aria-label="a link to this project" target="_blank">
+                <div className="image-wrapper">
+                  <img src={algoScreenshot} alt="Screenshot of AlgoRhythym" className="portfolio-images odds" />
+                </div>
+              </a>
             </div>
           </motion.div>
         </div>
