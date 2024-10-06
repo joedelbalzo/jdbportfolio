@@ -385,8 +385,12 @@ const CardPage = ({ card }) => {
 
   useEffect(() => {
     try {
-      const savedColors = JSON.parse(localStorage.getItem("colors"));
-      if (savedColors) {
+      let savedColors = JSON.parse(localStorage.getItem("colors"));
+      if (cssCpg) {
+        setColorsFromRedux();
+        localStorage.setItem("colors", JSON.stringify(cssCpg));
+      } else {
+        localStorage.setItem("colors", JSON.stringify(cssCpg));
         setPrimaryColor(savedColors[0].hex.value);
         setSecondaryColor(savedColors[1].hex.value);
         setTertiaryColor(savedColors[2].hex.value);
@@ -395,23 +399,28 @@ const CardPage = ({ card }) => {
         setSecondaryColorContrast(savedColors[1].contrast.value);
         setTertiaryColorContrast(savedColors[2].contrast.value);
         setBgColorContrast(savedColors[3].contrast.value);
-      } else if (cssCpg) {
-        setPrimaryColor(cssCpg[0].hex.value);
-        setSecondaryColor(cssCpg[1].hex.value);
-        setTertiaryColor(cssCpg[2].hex.value);
-        setBgColor(cssCpg[3].hex.value);
-        setPrimaryColorContrast(cssCpg[0].contrast.value);
-        setSecondaryColorContrast(cssCpg[1].contrast.value);
-        setTertiaryColorContrast(cssCpg[2].contrast.value);
-        setBgColorContrast(cssCpg[3].contrast.value);
       }
-    } catch (err) {}
-  }, []);
+      setForceRerender((prev) => prev + 1);
+    } catch (err) {
+      console.error("Error reading colors from localStorage", err);
+    }
+  }, [cssCpg]);
+
+  const setColorsFromRedux = () => {
+    setPrimaryColor(cssCpg[0].hex.value);
+    setSecondaryColor(cssCpg[1].hex.value);
+    setTertiaryColor(cssCpg[2].hex.value);
+    setBgColor(cssCpg[3].hex.value);
+    setPrimaryColorContrast(cssCpg[0].contrast.value);
+    setSecondaryColorContrast(cssCpg[1].contrast.value);
+    setTertiaryColorContrast(cssCpg[2].contrast.value);
+    setBgColorContrast(cssCpg[3].contrast.value);
+  };
 
   useEffect(() => {
     setCardPage(cardFunc(card));
     setDownloadableCSS(cardCSSFunc(card));
-  }, [card, bgColorContrast]);
+  }, [card, primaryColor, secondaryColor, tertiaryColor, bgColor]);
 
   useEffect(() => {
     try {
@@ -579,9 +588,7 @@ const CardPage = ({ card }) => {
         >
           <div className="card-header">
             <img
-              src={
-                "https://www.pngfind.com/pngs/m/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.png"
-              }
+              src={"https://www.pngfind.com/pngs/m/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.png"}
               alt="username"
             />
             <span className="username">username</span>
@@ -601,16 +608,8 @@ const CardPage = ({ card }) => {
                 src="https://clipart-library.com/new_gallery/23-239546_png-black-and-white-library-chalk-heart-clipart.png"
                 alt="Like"
               />
-              <img
-                className="icon"
-                src="https://clipart-library.com/images/8T686eR7c.png"
-                alt="Comment"
-              />
-              <img
-                className="icon"
-                src="https://clipart-library.com/data_images/405621.png"
-                alt="Share"
-              />
+              <img className="icon" src="https://clipart-library.com/images/8T686eR7c.png" alt="Comment" />
+              <img className="icon" src="https://clipart-library.com/data_images/405621.png" alt="Share" />
             </div>
             <p className="caption">Caption</p>
             <div id="likesandcomments">
@@ -623,11 +622,7 @@ const CardPage = ({ card }) => {
     }
   };
 
-  return (
-    <div style={{ height: "100%", width: "100%", display: "unset", margin: "auto" }}>
-      {cardPage}
-    </div>
-  );
+  return <div style={{ height: "100%", width: "100%", display: "unset", margin: "auto" }}>{cardPage}</div>;
 };
 
 export default CardPage;

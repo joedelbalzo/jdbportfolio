@@ -180,8 +180,12 @@ const ButtonPage = ({ button }) => {
 
   useEffect(() => {
     try {
-      const savedColors = JSON.parse(localStorage.getItem("colors"));
-      if (savedColors) {
+      let savedColors = JSON.parse(localStorage.getItem("colors"));
+      if (cssCpg) {
+        setColorsFromRedux();
+        localStorage.setItem("colors", JSON.stringify(cssCpg));
+      } else {
+        localStorage.setItem("colors", JSON.stringify(cssCpg));
         setPrimaryColor(savedColors[0].hex.value);
         setSecondaryColor(savedColors[1].hex.value);
         setTertiaryColor(savedColors[2].hex.value);
@@ -190,23 +194,28 @@ const ButtonPage = ({ button }) => {
         setSecondaryColorContrast(savedColors[1].contrast.value);
         setTertiaryColorContrast(savedColors[2].contrast.value);
         setBgColorContrast(savedColors[3].contrast.value);
-      } else if (cssCpg) {
-        setPrimaryColor(cssCpg[0].hex.value);
-        setSecondaryColor(cssCpg[1].hex.value);
-        setTertiaryColor(cssCpg[2].hex.value);
-        setBgColor(cssCpg[3].hex.value);
-        setPrimaryColorContrast(cssCpg[0].contrast.value);
-        setSecondaryColorContrast(cssCpg[1].contrast.value);
-        setTertiaryColorContrast(cssCpg[2].contrast.value);
-        setBgColorContrast(cssCpg[3].contrast.value);
       }
-    } catch (err) {}
-  }, []);
+      setForceRerender((prev) => prev + 1);
+    } catch (err) {
+      console.error("Error reading colors from localStorage", err);
+    }
+  }, [cssCpg]);
+
+  const setColorsFromRedux = () => {
+    setPrimaryColor(cssCpg[0].hex.value);
+    setSecondaryColor(cssCpg[1].hex.value);
+    setTertiaryColor(cssCpg[2].hex.value);
+    setBgColor(cssCpg[3].hex.value);
+    setPrimaryColorContrast(cssCpg[0].contrast.value);
+    setSecondaryColorContrast(cssCpg[1].contrast.value);
+    setTertiaryColorContrast(cssCpg[2].contrast.value);
+    setBgColorContrast(cssCpg[3].contrast.value);
+  };
 
   useEffect(() => {
     setButtonPage(buttonFunc(button));
     setDownloadableCSS(buttonCSSFunc(button));
-  }, [button, bgColorContrast]);
+  }, [button, primaryColor, secondaryColor, tertiaryColor, bgColor]);
 
   useEffect(() => {
     try {
@@ -315,12 +324,7 @@ const ButtonPage = ({ button }) => {
           <BoldButtons $color={tertiaryColorContrast} $bgColor={tertiaryColor} href="#">
             Tertiary
           </BoldButtons>
-          <BoldButtons
-            color={primaryColor}
-            $bgColor="transparent"
-            $border={`2px solid ${primaryColor}`}
-            href="#"
-          >
+          <BoldButtons color={primaryColor} $bgColor="transparent" $border={`2px solid ${primaryColor}`} href="#">
             Outline
           </BoldButtons>
         </ButtonWrapper>
@@ -332,41 +336,22 @@ const ButtonPage = ({ button }) => {
         <>
           <Helmet>
             {/*note, you'll need helmet to include this stylesheet*/}
-            <link
-              rel="stylesheet"
-              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-            />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
           </Helmet>
           <ButtonWrapper>
-            <SocialMediaButtons
-              $bgColor="#3b5998"
-              $hoverBgColor={bgColor}
-              $primaryColor={primaryColor}
-            >
+            <SocialMediaButtons $bgColor="#3b5998" $hoverBgColor={bgColor} $primaryColor={primaryColor}>
               <i className="fab fa-facebook-f"></i>
             </SocialMediaButtons>
 
-            <SocialMediaButtons
-              $bgColor="#1da1f2"
-              $hoverBgColor={bgColor}
-              $primaryColor={primaryColor}
-            >
+            <SocialMediaButtons $bgColor="#1da1f2" $hoverBgColor={bgColor} $primaryColor={primaryColor}>
               <i className="fab fa-twitter"></i>
             </SocialMediaButtons>
 
-            <SocialMediaButtons
-              $bgColor="#e4405f"
-              $hoverBgColor={bgColor}
-              $primaryColor={primaryColor}
-            >
+            <SocialMediaButtons $bgColor="#e4405f" $hoverBgColor={bgColor} $primaryColor={primaryColor}>
               <i className="fab fa-instagram"></i>
             </SocialMediaButtons>
 
-            <SocialMediaButtons
-              $bgColor="#0077b5"
-              $hoverBgColor={bgColor}
-              $primaryColor={primaryColor}
-            >
+            <SocialMediaButtons $bgColor="#0077b5" $hoverBgColor={bgColor} $primaryColor={primaryColor}>
               <i className="fab fa-linkedin-in"></i>
             </SocialMediaButtons>
           </ButtonWrapper>
@@ -417,11 +402,7 @@ const ButtonPage = ({ button }) => {
     }
   };
 
-  return (
-    <div style={{ height: "100%", width: "100%", display: "unset", margin: "auto" }}>
-      {buttonPage}
-    </div>
-  );
+  return <div style={{ height: "100%", width: "100%", display: "unset", margin: "auto" }}>{buttonPage}</div>;
 };
 
 export default ButtonPage;

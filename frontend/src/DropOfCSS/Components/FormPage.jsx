@@ -445,8 +445,12 @@ const FormPage = ({ form }) => {
 
   useEffect(() => {
     try {
-      const savedColors = JSON.parse(localStorage.getItem("colors"));
-      if (savedColors) {
+      let savedColors = JSON.parse(localStorage.getItem("colors"));
+      if (cssCpg) {
+        setColorsFromRedux();
+        localStorage.setItem("colors", JSON.stringify(cssCpg));
+      } else {
+        localStorage.setItem("colors", JSON.stringify(cssCpg));
         setPrimaryColor(savedColors[0].hex.value);
         setSecondaryColor(savedColors[1].hex.value);
         setTertiaryColor(savedColors[2].hex.value);
@@ -455,23 +459,28 @@ const FormPage = ({ form }) => {
         setSecondaryColorContrast(savedColors[1].contrast.value);
         setTertiaryColorContrast(savedColors[2].contrast.value);
         setBgColorContrast(savedColors[3].contrast.value);
-      } else if (cssCpg) {
-        setPrimaryColor(cssCpg[0].hex.value);
-        setSecondaryColor(cssCpg[1].hex.value);
-        setTertiaryColor(cssCpg[2].hex.value);
-        setBgColor(cssCpg[3].hex.value);
-        setPrimaryColorContrast(cssCpg[0].contrast.value);
-        setSecondaryColorContrast(cssCpg[1].contrast.value);
-        setTertiaryColorContrast(cssCpg[2].contrast.value);
-        setBgColorContrast(cssCpg[3].contrast.value);
       }
-    } catch (err) {}
-  }, []);
+      setForceRerender((prev) => prev + 1);
+    } catch (err) {
+      console.error("Error reading colors from localStorage", err);
+    }
+  }, [cssCpg]);
+
+  const setColorsFromRedux = () => {
+    setPrimaryColor(cssCpg[0].hex.value);
+    setSecondaryColor(cssCpg[1].hex.value);
+    setTertiaryColor(cssCpg[2].hex.value);
+    setBgColor(cssCpg[3].hex.value);
+    setPrimaryColorContrast(cssCpg[0].contrast.value);
+    setSecondaryColorContrast(cssCpg[1].contrast.value);
+    setTertiaryColorContrast(cssCpg[2].contrast.value);
+    setBgColorContrast(cssCpg[3].contrast.value);
+  };
 
   useEffect(() => {
     setFormPage(formFunc(form));
     setDownloadableCSS(formCSSFunc(form));
-  }, [form, bgColorContrast]);
+  }, [form, primaryColor, secondaryColor, tertiaryColor, bgColor]);
 
   useEffect(() => {
     try {
@@ -619,19 +628,13 @@ const FormPage = ({ form }) => {
             <div className="oauth-buttons">
               <div className="google-btn">
                 <div className="google-icon-wrapper">
-                  <img
-                    className="google-icon-svg"
-                    src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
-                  />
+                  <img className="google-icon-svg" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
                 </div>
                 <p className="btn-text">Login with Google</p>
               </div>
               <div className="google-btn">
                 <div className="google-icon-wrapper">
-                  <img
-                    className="google-icon-svg"
-                    src="https://upload.wikimedia.org/wikipedia/commons/9/91/036-facebook.png"
-                  />
+                  <img className="google-icon-svg" src="https://upload.wikimedia.org/wikipedia/commons/9/91/036-facebook.png" />
                 </div>
                 <p className="btn-text">Login with Facebook</p>
               </div>
@@ -705,8 +708,7 @@ const FormPage = ({ form }) => {
         >
           <h1>Payment Details</h1>
           <p style={{ fontStyle: "italic" }}>
-            note: you may see "automatic credit card filling" errors until you implement a secure
-            payment system
+            note: you may see "automatic credit card filling" errors until you implement a secure payment system
           </p>
           <div className="form-row">
             <label htmlFor="card-number">Card Number</label>
@@ -829,11 +831,7 @@ const FormPage = ({ form }) => {
     }
   };
 
-  return (
-    <div style={{ height: "100%", width: "100%", display: "unset", margin: "auto" }}>
-      {formPage}
-    </div>
-  );
+  return <div style={{ height: "100%", width: "100%", display: "unset", margin: "auto" }}>{formPage}</div>;
 };
 
 export default FormPage;

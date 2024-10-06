@@ -196,8 +196,12 @@ const SideNavbarPage = ({ sideNav }) => {
 
   useEffect(() => {
     try {
-      const savedColors = JSON.parse(localStorage.getItem("colors"));
-      if (savedColors) {
+      let savedColors = JSON.parse(localStorage.getItem("colors"));
+      if (cssCpg) {
+        setColorsFromRedux();
+        localStorage.setItem("colors", JSON.stringify(cssCpg));
+      } else {
+        localStorage.setItem("colors", JSON.stringify(cssCpg));
         setPrimaryColor(savedColors[0].hex.value);
         setSecondaryColor(savedColors[1].hex.value);
         setTertiaryColor(savedColors[2].hex.value);
@@ -206,23 +210,28 @@ const SideNavbarPage = ({ sideNav }) => {
         setSecondaryColorContrast(savedColors[1].contrast.value);
         setTertiaryColorContrast(savedColors[2].contrast.value);
         setBgColorContrast(savedColors[3].contrast.value);
-      } else if (cssCpg) {
-        setPrimaryColor(cssCpg[0].hex.value);
-        setSecondaryColor(cssCpg[1].hex.value);
-        setTertiaryColor(cssCpg[2].hex.value);
-        setBgColor(cssCpg[3].hex.value);
-        setPrimaryColorContrast(cssCpg[0].contrast.value);
-        setSecondaryColorContrast(cssCpg[1].contrast.value);
-        setTertiaryColorContrast(cssCpg[2].contrast.value);
-        setBgColorContrast(cssCpg[3].contrast.value);
       }
-    } catch (err) {}
-  }, []);
+      setForceRerender((prev) => prev + 1);
+    } catch (err) {
+      console.error("Error reading colors from localStorage", err);
+    }
+  }, [cssCpg]);
+
+  const setColorsFromRedux = () => {
+    setPrimaryColor(cssCpg[0].hex.value);
+    setSecondaryColor(cssCpg[1].hex.value);
+    setTertiaryColor(cssCpg[2].hex.value);
+    setBgColor(cssCpg[3].hex.value);
+    setPrimaryColorContrast(cssCpg[0].contrast.value);
+    setSecondaryColorContrast(cssCpg[1].contrast.value);
+    setTertiaryColorContrast(cssCpg[2].contrast.value);
+    setBgColorContrast(cssCpg[3].contrast.value);
+  };
 
   useEffect(() => {
     setSideNavbarPage(sideNavFunc(sideNav));
     setDownloadableCSS(sideNavCSSFunc(sideNav));
-  }, [sideNav, bgColorContrast]);
+  }, [sideNav, primaryColor, secondaryColor, tertiaryColor, bgColor]);
 
   useEffect(() => {
     try {
@@ -363,11 +372,7 @@ const SideNavbarPage = ({ sideNav }) => {
     }
   };
 
-  return (
-    <div style={{ height: "100%", width: "100%", display: "unset", margin: "auto" }}>
-      {sideNavbarPage}
-    </div>
-  );
+  return <div style={{ height: "100%", width: "100%", display: "unset", margin: "auto" }}>{sideNavbarPage}</div>;
 };
 
 export default SideNavbarPage;

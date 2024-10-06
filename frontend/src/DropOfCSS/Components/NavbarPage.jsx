@@ -9,7 +9,7 @@ import { download } from "./Download";
 import { cssCreateCodeFile } from "../../store";
 
 const SimpleNavBar = styled.div`
-background-color: inherit;
+background-color: ${(props) => props.bg};
 font-size: calc(10px + 0.5vw);
 padding: 10px;
 text-align: center;
@@ -18,15 +18,15 @@ text-align: center;
 }
 a {
 text-decoration: none;
-color: ${(props) => props.colors.primary};
+color: ${(props) => props.primary};
 padding: 8px;
 }
 a:hover{
-border-bottom: 2px solid ${(props) => props.colors.tertiary};
+border-bottom: 2px solid ${(props) => props.tertiary};
 border-radius: .5rem;
 }
 a:active {
-  color: ${(props) => props.colors.secondary}
+  color: ${(props) => props.secondary}
 
 }
   }
@@ -42,8 +42,8 @@ const DropdownNav = styled.div`
   padding: 0;
   position: relative;
   z-index: 1;
-  background-color: ${(props) => props.colors.primary};
-  color: ${(props) => props.colors.primaryColorContrast};
+  background-color: ${(props) => props.primary};
+  color: ${(props) => props.primaryColorContrast};
   @media screen and (max-width: 768px) {
     justify-content: center;
   }
@@ -60,7 +60,7 @@ const DropdownNav = styled.div`
     a,
     .dropbtn {
       display: inline-block;
-      color: ${(props) => props.colors.primaryColorContrast};
+      color: ${(props) => props.primaryColorContrast};
       text-align: center;
       padding: 16px;
       text-decoration: none;
@@ -68,12 +68,12 @@ const DropdownNav = styled.div`
 
     a:hover,
     .dropdown:hover .dropbtn {
-      background-color: ${(props) => props.colors.bgColor};
-      color: ${(props) => props.colors.bgColorContrast};
+      background-color: ${(props) => props.bgColor};
+      color: ${(props) => props.bgColorContrast};
     }
     a:hover {
-      background-color: ${(props) => props.colors.secondary};
-      color: ${(props) => props.colors.bgColorContrast};
+      background-color: ${(props) => props.secondary};
+      color: ${(props) => props.bgColorContrast};
     }
 
     .dropdown {
@@ -84,13 +84,13 @@ const DropdownNav = styled.div`
       display: none;
       position: absolute;
       z-index: 1;
-      background-color: ${(props) => props.colors.secondary};
-      color: ${(props) => props.colors.secondaryColorContrast};
+      background-color: ${(props) => props.secondary};
+      color: ${(props) => props.secondaryColorContrast};
       min-width: 160px;
       box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 
       a {
-        color: ${(props) => props.colors.secondaryColorContrast};
+        color: ${(props) => props.secondaryColorContrast};
         padding: 12px 12px;
         text-decoration: none;
         display: block;
@@ -98,21 +98,20 @@ const DropdownNav = styled.div`
       }
 
       a:hover {
-        background-color: ${(props) => props.colors.primary};
-        color: ${(props) => props.colors.primaryColorContrast};
+        background-color: ${(props) => props.primary};
+        color: ${(props) => props.primaryColorContrast};
       }
     }
 
     &:hover .dropdown-content {
       display: block;
-      color: ${(props) => props.colors.primary};
+      color: ${(props) => props.primary};
     }
   }
 `;
 const GradientBackgroundNav = styled.div`
-background: linear-gradient(to right, ${(props) => props.colors.bg}, ${(props) =>
-  props.colors.secondary});
-color: ${(props) => props.colors.secondaryColorContrast};
+background: linear-gradient(to right, ${(props) => props.bg}, ${(props) => props.secondary});
+color: ${(props) => props.secondaryColorContrast};
 padding: 1px;
 display: flex;
 justify-content: center;
@@ -125,11 +124,11 @@ a {
   font-size: calc(10px + 1vw);
 
 text-decoration: none;
-color: ${(props) => props.colors.secondaryColorContrast};
+color: ${(props) => props.secondaryColorContrast};
 padding: 1rem;
 }
 a:hover{
-  background: ${(props) => props.colors.secondary}40;
+  background: ${(props) => props.secondary}40;
   border-radius: 4px;
   box-shadow: 0 4px 30px rgba(100, 100, 100, 0.2);
   backdrop-filter: blur(21.4px);
@@ -139,20 +138,20 @@ a:hover{
 `;
 
 const BorderBottomNav = styled.div`
-  background-color: ${(props) => props.colors.bg};
-  color: ${(props) => props.colors.bgColorContrast};
+  background-color: ${(props) => props.bg};
+  color: ${(props) => props.bgColorContrast};
   padding: 10px;
   display: flex;
   justify-content: space-evenly;
   font-size: calc(10px + 0.5vw);
-  border-bottom: 4px solid ${(props) => props.colors.secondary};
+  border-bottom: 4px solid ${(props) => props.secondary};
   @media screen and (max-width: 768px) {
     font-size: calc(12px + 1vw);
   }
 
   a {
     text-decoration: none;
-    color: ${(props) => props.colors.primary};
+    color: ${(props) => props.primary};
     padding: 8px;
   }
   a:hover {
@@ -160,8 +159,8 @@ const BorderBottomNav = styled.div`
   }
 `;
 const BorderBottomNavWithLogin = styled.div`
-  background-color: ${(props) => props.colors.bg};
-  color: ${(props) => props.colors.bgColorContrast};
+  background-color: ${(props) => props.bg};
+  color: ${(props) => props.bgColorContrast};
   padding: 10px;
   display: flex;
   justify-content: start;
@@ -169,14 +168,14 @@ const BorderBottomNavWithLogin = styled.div`
 
   flex: 1;
   font-size: calc(10px + 1vw);
-  border-bottom: 4px solid ${(props) => props.colors.secondary};
+  border-bottom: 4px solid ${(props) => props.secondary};
   @media screen and (max-width: 768px) {
     font-size: calc(10px + 1vw);
   }
 
   a {
     text-decoration: none;
-    color: ${(props) => props.colors.primary};
+    color: ${(props) => props.primary};
     padding: 8px;
   }
   a:hover {
@@ -205,7 +204,7 @@ const BorderBottomNavWithLogin = styled.div`
 
 const NavbarPage = ({ nav }) => {
   const { cssAuth, cssCpg } = useSelector((state) => state);
-
+  const [forceRerender, setForceRerender] = useState(0);
   const [primaryColor, setPrimaryColor] = useState("");
   const [secondaryColor, setSecondaryColor] = useState("");
   const [tertiaryColor, setTertiaryColor] = useState("");
@@ -235,8 +234,12 @@ const NavbarPage = ({ nav }) => {
 
   useEffect(() => {
     try {
-      const savedColors = JSON.parse(localStorage.getItem("colors"));
-      if (savedColors) {
+      let savedColors = JSON.parse(localStorage.getItem("colors"));
+      if (cssCpg) {
+        setColorsFromRedux();
+        localStorage.setItem("colors", JSON.stringify(cssCpg));
+      } else {
+        localStorage.setItem("colors", JSON.stringify(cssCpg));
         setPrimaryColor(savedColors[0].hex.value);
         setSecondaryColor(savedColors[1].hex.value);
         setTertiaryColor(savedColors[2].hex.value);
@@ -245,23 +248,28 @@ const NavbarPage = ({ nav }) => {
         setSecondaryColorContrast(savedColors[1].contrast.value);
         setTertiaryColorContrast(savedColors[2].contrast.value);
         setBgColorContrast(savedColors[3].contrast.value);
-      } else if (cssCpg) {
-        setPrimaryColor(cssCpg[0].hex.value);
-        setSecondaryColor(cssCpg[1].hex.value);
-        setTertiaryColor(cssCpg[2].hex.value);
-        setBgColor(cssCpg[3].hex.value);
-        setPrimaryColorContrast(cssCpg[0].contrast.value);
-        setSecondaryColorContrast(cssCpg[1].contrast.value);
-        setTertiaryColorContrast(cssCpg[2].contrast.value);
-        setBgColorContrast(cssCpg[3].contrast.value);
       }
-    } catch (err) {}
-  }, []);
+      setForceRerender((prev) => prev + 1);
+    } catch (err) {
+      console.error("Error reading colors from localStorage", err);
+    }
+  }, [cssCpg]);
+
+  const setColorsFromRedux = () => {
+    setPrimaryColor(cssCpg[0].hex.value);
+    setSecondaryColor(cssCpg[1].hex.value);
+    setTertiaryColor(cssCpg[2].hex.value);
+    setBgColor(cssCpg[3].hex.value);
+    setPrimaryColorContrast(cssCpg[0].contrast.value);
+    setSecondaryColorContrast(cssCpg[1].contrast.value);
+    setTertiaryColorContrast(cssCpg[2].contrast.value);
+    setBgColorContrast(cssCpg[3].contrast.value);
+  };
 
   useEffect(() => {
     setNavbarPage(navFunc(nav));
     setDownloadableCSS(navCSSFunc(nav));
-  }, [nav, bgColorContrast]);
+  }, [nav, primaryColor, secondaryColor, tertiaryColor, bgColor]);
 
   useEffect(() => {
     try {
@@ -298,12 +306,14 @@ const NavbarPage = ({ nav }) => {
 
       return (
         <SimpleNavBar
-          colors={{
-            primary: primaryColor,
-            secondary: secondaryColor,
-            tertiary: tertiaryColor,
-            bg: bgColor,
-          }}
+          key={`${primaryColor}-${secondaryColor}-${bgColor}-${forceRerender}`}
+          primary={primaryColor}
+          primaryColorContrast={primaryColorContrast}
+          secondary={secondaryColor}
+          secondaryColorContrast={secondaryColorContrast}
+          tertiary={tertiaryColor}
+          bg={bgColor}
+          bgColorContrast={bgColorContrast}
         >
           <a href="/#/dropofcss">Home</a>
           <a href="/#/dropofcss">About</a>
@@ -316,15 +326,14 @@ const NavbarPage = ({ nav }) => {
 
       return (
         <DropdownNav
-          colors={{
-            primary: primaryColor,
-            primaryColorContrast: primaryColorContrast,
-            secondary: secondaryColor,
-            secondaryColorContrast: secondaryColorContrast,
-            tertiary: tertiaryColor,
-            bg: bgColor,
-            bgColorContrast: bgColorContrast,
-          }}
+          key={`drop-${primaryColor}-${secondaryColor}-${bgColor}-${forceRerender}`}
+          primary={primaryColor}
+          primaryColorContrast={primaryColorContrast}
+          secondary={secondaryColor}
+          secondaryColorContrast={secondaryColorContrast}
+          tertiary={tertiaryColor}
+          bg={bgColor}
+          bgColorContrast={bgColorContrast}
         >
           <ul style={{ listStyleType: "none", padding: 0, margin: 0 }}>
             <li className="drop-li">
@@ -351,14 +360,14 @@ const NavbarPage = ({ nav }) => {
 
       return (
         <GradientBackgroundNav
-          colors={{
-            primary: primaryColor,
-            secondary: secondaryColor,
-            secondaryColorContrast: secondaryColorContrast,
-
-            tertiary: tertiaryColor,
-            bg: bgColor,
-          }}
+          key={`grad-${primaryColor}-${secondaryColor}-${bgColor}-${forceRerender}`}
+          primary={primaryColor}
+          primaryColorContrast={primaryColorContrast}
+          secondary={secondaryColor}
+          secondaryColorContrast={secondaryColorContrast}
+          tertiary={tertiaryColor}
+          bg={bgColor}
+          bgColorContrast={bgColorContrast}
         >
           <a href="/#/dropofcss">Home</a>
           <a href="/#/dropofcss">About</a>
@@ -371,13 +380,14 @@ const NavbarPage = ({ nav }) => {
 
       return (
         <BorderBottomNav
-          colors={{
-            primary: primaryColor,
-            secondary: secondaryColor,
-            tertiary: tertiaryColor,
-            bg: bgColor,
-            bgColorContrast: bgColorContrast,
-          }}
+          key={`border-${primaryColor}-${secondaryColor}-${bgColor}-${forceRerender}`}
+          primary={primaryColor}
+          primaryColorContrast={primaryColorContrast}
+          secondary={secondaryColor}
+          secondaryColorContrast={secondaryColorContrast}
+          tertiary={tertiaryColor}
+          bg={bgColor}
+          bgColorContrast={bgColorContrast}
         >
           <a href="/#/dropofcss">Home</a>
           <a href="/#/dropofcss">About</a>
@@ -386,15 +396,18 @@ const NavbarPage = ({ nav }) => {
         </BorderBottomNav>
       );
     } else if (nav.name === "Border with Login") {
+      console.log(nav.name);
+      console.log(`border-with-login-${primaryColor}-${secondaryColor}-${bgColor}-${forceRerender}`);
       return (
         <BorderBottomNavWithLogin
-          colors={{
-            primary: primaryColor,
-            secondary: secondaryColor,
-            tertiary: tertiaryColor,
-            bg: bgColor,
-            bgColorContrast: bgColorContrast,
-          }}
+          key={`border-with-login-${primaryColor}-${secondaryColor}-${bgColor}-${forceRerender}`}
+          primary={primaryColor}
+          primaryColorContrast={primaryColorContrast}
+          secondary={secondaryColor}
+          secondaryColorContrast={secondaryColorContrast}
+          tertiary={tertiaryColor}
+          bg={bgColor}
+          bgColorContrast={bgColorContrast}
         >
           <a href="/#/dropofcss">Home</a>
           <a href="/#/dropofcss">About</a>
@@ -409,11 +422,7 @@ const NavbarPage = ({ nav }) => {
     }
   };
 
-  return (
-    <div style={{ height: "100%", width: "100%", display: "unset", margin: "auto" }}>
-      {navbarPage}
-    </div>
-  );
+  return <div style={{ height: "100%", width: "100%", display: "unset", margin: "auto" }}>{navbarPage}</div>;
 };
 
 export default NavbarPage;
