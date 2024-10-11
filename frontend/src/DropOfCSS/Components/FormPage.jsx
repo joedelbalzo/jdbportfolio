@@ -13,7 +13,7 @@ const ContactUsLightForm = styled.div`
   color: ${(props) => props.colors.bgColorContrast};
   border: 2px solid ${(props) => props.colors.primary};
   border-radius: 2px;
-  width: 50vw;
+  width: 100%;
   min-height: 45vh;
   display: grid;
   grid-template-columns: 2fr 1fr;

@@ -1,151 +1,151 @@
 const components = [
   //NAVBARS
   {
-    type: "navbar",
+    type: "Nav Bars",
     name: "Simple",
   },
   {
-    type: "navbar",
+    type: "Nav Bars",
     name: "Dropdown",
   },
   {
-    type: "navbar",
+    type: "Nav Bars",
     name: "Gradient Background",
   },
   {
-    type: "navbar",
+    type: "Nav Bars",
     name: "Border Bottom",
   },
   {
-    type: "navbar",
+    type: "Nav Bars",
     name: "Border with Login",
   },
 
   //FORMS
 
   {
-    type: "form",
+    type: "Forms",
     name: "Contact Us - Light",
     //front end preview window html
   },
   {
-    type: "form",
+    type: "Forms",
     name: "Contact Us - Dark",
   },
   {
-    type: "form",
+    type: "Forms",
     name: "Login - with OAuth",
   },
 
   {
-    type: "form",
+    type: "Forms",
     name: "Generic Form",
   },
 
   {
-    type: "form",
+    type: "Forms",
     name: "Checkout - Payment",
   },
   {
-    type: "form",
+    type: "Forms",
     name: "Checkout - Address",
   },
 
   //TITLES
 
   {
-    type: "title",
+    type: "Titles",
     name: "Title & Subtitle",
   },
   {
-    type: "title",
+    type: "Titles",
     name: "Text Shadow",
   },
   {
-    type: "title",
+    type: "Titles",
     name: "Uppercase",
   },
   {
-    type: "title",
+    type: "Titles",
     name: "Dark Mode",
   },
   {
-    type: "title",
+    type: "Titles",
     name: "Underline",
   },
 
   {
-    type: "title",
+    type: "Titles",
     name: "Top Border",
   },
   {
-    type: "title",
+    type: "Titles",
     name: "Border Gradient",
   },
 
   //BUTTONS
   {
-    type: "button",
+    type: "Buttons",
     name: "Basic Color Buttons",
   },
   {
-    type: "button",
+    type: "Buttons",
     name: "Mixed Bag",
   },
   {
-    type: "button",
+    type: "Buttons",
     name: "Bold Buttons",
   },
   {
-    type: "button",
+    type: "Buttons",
     name: "Social Media Icons",
   },
   {
-    type: "button",
+    type: "Buttons",
     name: "Icon Buttons",
   },
   {
-    type: "button",
+    type: "Buttons",
     name: "Disabled Icon Buttons",
   },
 
   //CARDS
   {
-    type: "card",
+    type: "Cards",
     name: "Product - Generic",
   },
   {
-    type: "card",
+    type: "Cards",
     name: "Product - Gradient",
   },
   {
-    type: "card",
+    type: "Cards",
     name: "Product Card Subtle",
   },
   {
-    type: "card",
+    type: "Cards",
     name: "Social Media Photo",
   },
   {
-    type: "card",
+    type: "Cards",
     name: "Photo Card",
   },
 
   //SIDENAV
   {
-    type: "sideNav",
+    type: "Side Nav Bars",
     name: "Side Nav",
   },
   {
-    type: "sideNav",
-    name: "SideNav 2",
+    type: "Side Nav Bars",
+    name: "Side Nav Bars 2",
   },
   {
-    type: "sideNav",
-    name: "SideNav 3",
+    type: "Side Nav Bars",
+    name: "Side Nav Bars 3",
   },
   {
-    type: "sideNav",
+    type: "Side Nav Bars",
     name: "Dropdown SideNav",
   },
 ];

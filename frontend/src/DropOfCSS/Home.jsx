@@ -54,22 +54,22 @@ const Home = ({}) => {
   }, []);
 
   const handleOpenInPreview = (component) => {
-    if (component.type === "navbar") {
+    if (component.type === "Nav Bars") {
       setNavBar(component);
     }
-    if (component.type === "form") {
+    if (component.type === "Forms") {
       setForm(component);
     }
-    if (component.type === "title") {
+    if (component.type === "Titles") {
       setTitle(component);
     }
-    if (component.type === "sideNav") {
+    if (component.type === "Side Nav Bars") {
       setSideNav(component);
     }
-    if (component.type === "card") {
+    if (component.type === "Cards") {
       setCard(component);
     }
-    if (component.type === "button") {
+    if (component.type === "Buttons") {
       setButton(component);
     }
   };

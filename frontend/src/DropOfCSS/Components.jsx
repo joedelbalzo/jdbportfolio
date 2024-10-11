@@ -43,22 +43,22 @@ const Components = ({ openInPreview, darkMode }) => {
         );
         openInPreview(colorsOnComponents);
 
-        if (component.type === "navbar") {
+        if (component.type === "Nav Bars") {
           localStorage.setItem("savedNavbar", JSON.stringify(colorsOnComponents));
         }
-        if (component.type === "form") {
+        if (component.type === "Forms") {
           localStorage.setItem("savedForm", JSON.stringify(colorsOnComponents));
         }
-        if (component.type === "title") {
+        if (component.type === "Titles") {
           localStorage.setItem("savedTitle", JSON.stringify(colorsOnComponents));
         }
-        if (component.type === "sideNav") {
+        if (component.type === "Side Nav Bars") {
           localStorage.setItem("savedSideNav", JSON.stringify(colorsOnComponents));
         }
-        if (component.type === "card") {
+        if (component.type === "Cards") {
           localStorage.setItem("savedCard", JSON.stringify(colorsOnComponents));
         }
-        if (component.type === "button") {
+        if (component.type === "Buttons") {
           localStorage.setItem("savedButton", JSON.stringify(colorsOnComponents));
         }
         localStorage.setItem("colors", JSON.stringify(cssCpg));
@@ -72,10 +72,7 @@ const Components = ({ openInPreview, darkMode }) => {
 
   return (
     <>
-      <h3
-        className="css-header"
-        style={{ display: "block", textAlign: "center", color: darkMode === true ? "#F0FAFA" : "" }}
-      >
+      <h3 className="css-header" style={{ display: "block", textAlign: "center", color: darkMode === true ? "#F0FAFA" : "" }}>
         Select Components
         <div className="css-instructions">next, add components to your template!</div>
       </h3>
@@ -106,10 +103,7 @@ const Components = ({ openInPreview, darkMode }) => {
             className="css-componentNamesContainer"
             style={{
               color: darkMode === true ? "#F0FAFA" : "",
-              backgroundColor:
-                cssCpg.length > 0
-                  ? `rgba(${cssCpg[3].rgb.r}, ${cssCpg[3].rgb.g}, ${cssCpg[3].rgb.b}, 0.2)`
-                  : "",
+              backgroundColor: cssCpg.length > 0 ? `rgba(${cssCpg[3].rgb.r}, ${cssCpg[3].rgb.g}, ${cssCpg[3].rgb.b}, 0.2)` : "",
             }}
           >
             {componentTypes.map((type) => (
@@ -136,7 +130,7 @@ const Components = ({ openInPreview, darkMode }) => {
         style={{
           margin: "0 auto",
           color: "darkred",
-          fontSize: "calc(5px + 2vw)",
+          fontSize: "calc(5px + 1vw)",
           fontStyle: "italic",
           minHeight: "2vh",
           textAlign: "center",
