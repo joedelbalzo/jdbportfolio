@@ -7,34 +7,39 @@ import { FadeComponent } from "./FadeComponent";
 const Home = () => {
   return (
     <FadeComponent>
-      <div className="main-name">
-        {/* <div>Hello, there!</div> */}
-        <h1 id="main-name">Hi! I'm Joe Del Balzo.</h1>
-        <h2>Software Engineer. Full Stack Web Developer.</h2>
+      <div className="home-background-image-wrapper">
+        <div className="home-content">
+          <div className="main-name">
+            <h1 id="main-name">Hi! I'm Joe Del Balzo.</h1>
+            <h2>Full Stack Software Engineer</h2>
+          </div>
+          <div id="main-introParagraph">
+            {/* <p>Artist-turned-coder.I liked creating beauty before; I like creating beauty now.</p> */}
+            <p>
+              Software Engineer at{" "}
+              <a href="thefutureofagency.com" target="_blank">
+                the future of agency
+              </a>
+              , and I'd love to show you some of my work.
+            </p>
+            <p>
+              <a href="https://www.imdb.com/name/nm3631957/" target="_blank">
+                Former lighting designer and console programmer.
+              </a>{" "}
+              Musician, cold brew drinker, sports fanatic, Certified Cicerone®
+            </p>
+          </div>
+        </div>
+        <div style={{ margin: "2rem auto" }} id="socials-mobile">
+          <Socials />
+        </div>
       </div>
-      <div id="main-introParagraph">
-        <p>Artist-turned-coder.I liked creating beauty before; I like creating beauty now.</p>
-        <p>
-          <a href="https://www.imdb.com/name/nm3631957/" target="_blank">
-            Former lighting designer and console programmer.
-          </a>{" "}
-          Musician, cold brew drinker, sports fanatic, Certified Cicerone®
-        </p>
-        <p>
-          Currently a Software Engineer at{" "}
-          <a href="thefutureofagency.com" target="_blank">
-            the future of agency
-          </a>
-          , and I'd love to show you some of my work.
-        </p>
-      </div>
-      <div style={{ margin: "2rem auto" }} id="socials-mobile">
-        <Socials />
-      </div>
+
       <AboutMe />
       <div style={{ margin: "2rem auto" }} id="socials-mobile">
         <Socials />
       </div>
+
       <Footer />
     </FadeComponent>
   );

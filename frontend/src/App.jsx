@@ -53,7 +53,7 @@ const App = (props) => {
     <div>
       <Nav />
       <div className="main-grid">
-        <div className="share-buttons">
+        <div className="share-buttons-container">
           <Socials />
         </div>
 
