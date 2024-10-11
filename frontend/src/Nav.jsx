@@ -37,7 +37,11 @@ const Nav = () => {
         <a
           href="../home"
           aria-label="Link to the home page"
-          style={{ borderBottom: isActive == 1 ? "4px solid #ff5722" : "", paddingBottom: isActive == 1 ? "10px" : "" }}
+          style={{
+            color: isActive == 1 ? "#ff5722" : "",
+            fontWeight: isActive == 1 ? "400" : "",
+            textShadow: "2px 2px 1px black",
+          }}
         >
           Home
         </a>

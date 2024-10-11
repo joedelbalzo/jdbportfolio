@@ -816,7 +816,7 @@ h1 {
       url("IMG-0103.avif");
     background-size: cover;
     background-repeat: repeat;
-    background-attachment: fixed;
+    background-attachment: scroll;
     filter: sepia(10%) saturate(100%);
     border-bottom-left-radius: 2%;
     border-bottom-right-radius: 2%;
@@ -840,7 +840,7 @@ h1 {
   }
   .main-navbar > a {
     padding: calc(4px + 0.2vw);
-    font-size: calc(14px + 2vw);
+    font-size: calc(14px + 1vw);
   }
 
   /* .main-dropdown .main-dropbtn {
@@ -850,7 +850,7 @@ h1 {
   .main-navbar a:hover
   /*, .main-dropdown:hover .main-dropbtn  */ {
     border-bottom: 4px solid #ff5722;
-    padding-bottom: calc(0.2vw - 4px);
+    padding-bottom: 2px;
   }
 
   /* .main-dropdown-links {
