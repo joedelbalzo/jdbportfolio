@@ -133,7 +133,7 @@ const AboutMe = () => {
         </div>
       </div>
       <div className="recordspinning">
-        <div id="about-me-titles" style={{ paddingTop: "10%" }}>
+        <div id="about-me-titles" style={{ paddingTop: "8%" }}>
           Languages and Technologies I Love
         </div>
         <motion.div ref={ref7} initial={{ opacity: 0, y: "50px" }} animate={controls7} transition={transition}>
