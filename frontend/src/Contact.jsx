@@ -30,21 +30,15 @@ function Contact() {
   return (
     <FadeComponent>
       <form className="main-form" onSubmit={handleSubmit}>
-        {/* <label htmlFor="email">Email Address:</label> */}
         <input id="name" type="name" name="name" placeholder="Your Name" />
         <input id="email" type="email" name="email" placeholder="Your Email Address" />
         <ValidationError prefix="Email" field="email" errors={state.errors} />
-        {/* <label htmlFor="subject">Subject:</label> */}
         <input id="subject" type="subject" name="subject" placeholder="Subject" />
-        {/* <label htmlFor="message">Message:</label> */}
         <textarea id="message" name="message" placeholder="Your message" />
         <ValidationError prefix="Message" field="message" errors={state.errors} />
         {submit ? (
           <button disabled>SUBMITTED!</button>
         ) : (
-          // <button type="submit" disabled={state.submitting}>
-          //   SUBMIT <span id="submit-arrow">&#8594;</span>
-          // </button>
           <button type="submit" disabled={state.submitting}>
             <span id="submit-text">SUBMIT</span> <span id="submit-arrow">&#x27A9;</span>
           </button>
