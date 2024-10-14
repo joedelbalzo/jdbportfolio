@@ -40,7 +40,7 @@ const Home = () => {
         <Socials />
       </div>
 
-      <Footer />
+      {/* <Footer /> */}
     </FadeComponent>
   );
 };

@@ -554,6 +554,7 @@ h1 {
   font-size: calc(14px + 0.8vw);
   /* outline: 10px solid red; */
   line-height: calc(16px + 1vw);
+  width: 85%;
 }
 
 #main-portfolioContainer > div > #borderdiv > h2 {
@@ -813,7 +814,7 @@ h1 {
     background-size: cover;
     background-repeat: repeat;
     background-attachment: scroll;
-    filter: sepia(10%) saturate(100%);
+    filter: sepia(10%) saturate(90%);
     border-bottom-left-radius: 2%;
     border-bottom-right-radius: 2%;
     background-position: center center;
@@ -821,6 +822,7 @@ h1 {
   .recordspinning {
     background-attachment: scroll;
     background-position: center center;
+    border-radius: 0;
   }
   h1 {
     font-size: 2.5rem;
@@ -916,11 +918,12 @@ h1 {
     margin: 0 auto 2rem;
     max-width: 100%;
     font-size: calc(13px + 2vw);
-    font-weight: 300;
+    font-weight: 350;
     text-align: left;
     color: var(--main-color-whitesmoke);
     line-height: calc(14px + 2vw);
     letter-spacing: 1px;
+    text-shadow: 2px 2px 1px black;
   }
 
   #main-introParagraph > p,

@@ -10,6 +10,7 @@ import LetsChatApp from "./WebRTC/App.jsx";
 import Portfolio from "./Portfolio.jsx";
 import FourOhFour from "./FourOhFour.jsx";
 import Socials from "./Socials.jsx";
+import Footer from "./Footer.jsx";
 
 //mui
 import useScrollTrigger from "@mui/material/useScrollTrigger";
@@ -93,6 +94,9 @@ const App = (props) => {
             <ArrowUpwardOutlinedIcon />
           </Fab>
         </ScrollTop>
+      </div>
+      <div style={{ margin: "0 auto" }}>
+        <Footer />
       </div>
     </div>
   );
