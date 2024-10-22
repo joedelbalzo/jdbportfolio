@@ -76,6 +76,7 @@ const PortfolioHighlights = () => {
             id="about-me-paragraph-container"
             animate={controls11}
             transition={transition}
+            style={{ width: "100%" }}
           >
             <div id="borderdiv">
               <h2>Your Hidden Genius</h2>

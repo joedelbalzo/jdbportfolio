@@ -100,17 +100,17 @@ const AboutMe = () => {
           <motion.div ref={ref3} initial={{ opacity: 0, y: "50px" }} animate={controls3} transition={transition}>
             <p id="about-me-paragraphs">
               After over 10 years in the film and television industry as a lighting designer, network architect, and console programmer, I
-              was ready to take my love of technology and the visual arts in a different direction.
+              was ready to take my love of technology in a different direction.
             </p>
           </motion.div>
           <motion.div ref={ref4} initial={{ opacity: 0, y: "50px" }} animate={controls4} transition={transition}>
             <p id="about-me-paragraphs">
-              Today, I'm a front-end specialist at{" "}
+              Today, I'm a software engineer at{" "}
               <a href="https://thefutureofagency.com" target="_blank">
                 the future of agency
               </a>
-              , a marketing firm for books, authors, and publishers. I spend my time crafting custom code solutions that provide our clients
-              with highly responsive websites, outstanding SEO, and creative control over their digital marketing applications.
+              , a marketing firm for books, authors, and publishers. I spend my time crafting custom front-end solutions that provide our
+              clients with highly responsive websites, outstanding SEO, and creative control over their digital marketing applications.
             </p>
           </motion.div>
           <motion.div ref={ref5} initial={{ opacity: 0, y: "50px" }} animate={controls5} transition={transition}>
@@ -156,7 +156,7 @@ const AboutMe = () => {
         </motion.div>
       </div>
       <div className="about-me-container">
-        <div style={{ color: "whitesmoke", paddingTop: "0" }} id="about-me">
+        <div style={{ color: "whitesmoke", padding: "0%", margin: "0 auto", width: "90%" }} id="about-me">
           <motion.div
             ref={ref8}
             initial={{ opacity: 0, y: "100px" }}
@@ -166,7 +166,9 @@ const AboutMe = () => {
           >
             <div id="about-me-titles">Portfolio Highlights</div>
           </motion.div>
+
           <PortfolioHighlights />
+
           <motion.div
             ref={ref9}
             initial={{ opacity: 0, y: "100px" }}
