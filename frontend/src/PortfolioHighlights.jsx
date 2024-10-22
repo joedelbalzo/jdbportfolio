@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { FadeComponent } from "./FadeComponent";
-
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 
 import valiScreenshot from "../assets/site-screenshots/Vali_Screenshot.webp";
 import dawnRyanScreenshot from "../assets/site-screenshots/DawnRyan_Screenshot.webp";
@@ -12,15 +11,6 @@ import { GitHub } from "./ShareIcons/SocialIcons";
 
 const PortfolioHighlights = () => {
   const [hoveredElement, setHoveredElement] = useState(null);
-  const controls11 = useAnimation();
-  const controls12 = useAnimation();
-  const controls13 = useAnimation();
-  const controls14 = useAnimation();
-
-  const ref11 = useRef(null);
-  const ref12 = useRef(null);
-  const ref13 = useRef(null);
-  const ref14 = useRef(null);
 
   const transition = {
     type: "spring",
@@ -28,32 +18,6 @@ const PortfolioHighlights = () => {
     stiffness: 50,
   };
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            if (entry.target === ref11.current) controls11.start({ opacity: 1, y: 0 });
-            if (entry.target === ref12.current) controls12.start({ opacity: 1, y: 0 });
-            if (entry.target === ref13.current) controls13.start({ opacity: 1, y: 0 });
-            if (entry.target === ref14.current) controls14.start({ opacity: 1, y: 0 });
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: "-20px 0px -20px 0px" }
-    );
-
-    observer.observe(ref11.current);
-    observer.observe(ref12.current);
-    observer.observe(ref13.current);
-    observer.observe(ref14.current);
-
-    return () => observer.disconnect();
-  }, []);
-
-  const changeColor = (color) => {
-    setHoverColor(color);
-  };
   const handleMouseEnter = (id) => {
     setHoveredElement(id);
   };
@@ -70,12 +34,13 @@ const PortfolioHighlights = () => {
     <FadeComponent>
       <div id="main-portfolio">
         <div id="main-portfolioContainer">
+          {/* Project 1 */}
           <motion.div
-            ref={ref11}
             initial={{ opacity: 0, y: "50px" }}
+            whileInView={{ opacity: 1, y: 0 }}
             id="about-me-paragraph-container"
-            animate={controls11}
             transition={transition}
+            viewport={{ once: true, amount: 0.1 }}
             style={{ width: "100%" }}
           >
             <div id="borderdiv">
@@ -90,7 +55,12 @@ const PortfolioHighlights = () => {
 
                 <span className="devicons-open-and-github">
                   <span className="devicons-open-and-github" onMouseEnter={() => handleMouseEnter(1)} onMouseLeave={handleMouseLeave}>
-                    <a href="https://www.yourhiddengenius.com" aria-label="a link to yourhiddengenius.com" target="_blank">
+                    <a
+                      href="https://www.yourhiddengenius.com"
+                      aria-label="a link to yourhiddengenius.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <OpenWindow style={{ padding: "1rem" }} color={getColor(1)} />
                     </a>
                   </span>
@@ -99,25 +69,33 @@ const PortfolioHighlights = () => {
                       href="https://github.com/joedelbalzo/yhg-assessment"
                       aria-label="a link to this project's GitHub Repository"
                       target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <GitHub style={{ padding: "1rem" }} color={getColor(2)} />
                     </a>
                   </span>
                 </span>
               </div>
-              <a href="https://www.yourhiddengenius.com" aria-label="a link to yourhiddengenius.com" target="_blank">
+              <a
+                href="https://www.yourhiddengenius.com"
+                aria-label="a link to yourhiddengenius.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <div className="image-wrapper">
                   <img src={yhgScreenshot} alt="Screenshot of www.yourhiddengenius.com" className="portfolio-images evens"></img>
                 </div>
               </a>
             </div>
           </motion.div>
+
+          {/* Project 2 */}
           <motion.div
-            ref={ref12}
             initial={{ opacity: 0, y: "50px" }}
+            whileInView={{ opacity: 1, y: 0 }}
             id="about-me-paragraph-container"
-            animate={controls12}
             transition={transition}
+            viewport={{ once: true, amount: 0.1 }}
           >
             <div id="borderdiv">
               <h2>Vali</h2>
@@ -134,30 +112,37 @@ const PortfolioHighlights = () => {
                 </p>
                 <span className="devicons-open-and-github">
                   <span className="devicons-open-and-github" onMouseEnter={() => handleMouseEnter(3)} onMouseLeave={handleMouseLeave}>
-                    <a href="https://www.joinvali.com" aria-label="a link to this project" target="_blank">
+                    <a href="https://www.joinvali.com" aria-label="a link to this project" target="_blank" rel="noopener noreferrer">
                       <OpenWindow style={{ padding: "1rem" }} color={getColor(3)} />
                     </a>
                   </span>
                   <span className="devicons-open-and-github" onMouseEnter={() => handleMouseEnter(4)} onMouseLeave={handleMouseLeave}>
-                    <a href="https://github.com/joedelbalzo/kan-th" aria-label="a link to this project's GitHub Repository" target="_blank">
+                    <a
+                      href="https://github.com/joedelbalzo/kan-th"
+                      aria-label="a link to this project's GitHub Repository"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <GitHub style={{ padding: "1rem" }} color={getColor(4)} />
                     </a>
                   </span>
                 </span>
               </div>
-              <a href="https://www.joinvali.com" aria-label="a link to this project" target="_blank">
+              <a href="https://www.joinvali.com" aria-label="a link to this project" target="_blank" rel="noopener noreferrer">
                 <div className="image-wrapper">
                   <img src={valiScreenshot} alt="Screenshot of www.joinvali.com" className="portfolio-images odds"></img>
                 </div>
               </a>
             </div>
           </motion.div>
+
+          {/* Project 3 */}
           <motion.div
-            ref={ref13}
             initial={{ opacity: 0, y: "50px" }}
+            whileInView={{ opacity: 1, y: 0 }}
             id="about-me-paragraph-container"
-            animate={controls13}
             transition={transition}
+            viewport={{ once: true, amount: 0.1 }}
           >
             <div id="borderdiv">
               <h2>Dawn Ryan</h2>
@@ -171,62 +156,79 @@ const PortfolioHighlights = () => {
                 </p>
                 <span className="devicons-open-and-github">
                   <span className="devicons-open-and-github" onMouseEnter={() => handleMouseEnter(5)} onMouseLeave={handleMouseLeave}>
-                    <a href="https://www.dawngryan.com" aria-label="a link to this project" target="_blank">
+                    <a href="https://www.dawngryan.com" aria-label="a link to this project" target="_blank" rel="noopener noreferrer">
                       <OpenWindow style={{ padding: "1rem" }} color={getColor(5)} />
                     </a>
                   </span>
                   <span className="devicons-open-and-github" onMouseEnter={() => handleMouseEnter(6)} onMouseLeave={handleMouseLeave}>
-                    <a href="https://github.com/joedelbalzo/jdb-dr" aria-label="a link to this project's GitHub Repository" target="_blank">
+                    <a
+                      href="https://github.com/joedelbalzo/jdb-dr"
+                      aria-label="a link to this project's GitHub Repository"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <GitHub style={{ padding: "1rem" }} color={getColor(6)} />
                     </a>
                   </span>
                 </span>
               </div>
-              <a href="https://www.dawngryan.com" aria-label="a link to this project" target="_blank">
+              <a href="https://www.dawngryan.com" aria-label="a link to this project" target="_blank" rel="noopener noreferrer">
                 <div className="image-wrapper">
                   <img src={dawnRyanScreenshot} alt="Screenshot of www.dawngryan.com" className="portfolio-images evens" />
                 </div>
               </a>
             </div>
           </motion.div>
+
+          {/* Project 4 */}
           <motion.div
-            ref={ref14}
             initial={{ opacity: 0, y: "50px" }}
+            whileInView={{ opacity: 1, y: 0 }}
             id="about-me-paragraph-container"
-            animate={controls14}
             transition={transition}
+            viewport={{ once: true, amount: 0.1 }}
           >
             <div id="borderdiv">
               <h2>AlgoRhythm</h2>
               <div className="portfolio-descriptions odds">
                 <p>
-                  This application is a Multiple Choice study-guide for Algorhithms, Data Structures, and basic questions about popular
-                  languages like JavaScript and Python as well as popular frameworks like React and NodeJs. At the moment, it's only
+                  This application is a Multiple Choice study-guide for Algorithms, Data Structures, and basic questions about popular
+                  languages like JavaScript and Python as well as popular frameworks like React and Node.js. At the moment, it's only
                   Multiple Choice. I've written the JS coderunner, but I'm hoping to implement a Python coderunner as well before launching
-                  that page. The goal is to eventually incorporate Oauth so a user can share data between devices (which will eventually
+                  that page. The goal is to eventually incorporate OAuth so a user can share data between devices (which will eventually
                   also include iOS and Android devices!) and user-selected categories.
                 </p>
                 <span className="devicons-open-and-github">
                   <span className="devicons-open-and-github" onMouseEnter={() => handleMouseEnter(7)} onMouseLeave={handleMouseLeave}>
-                    <a href="https://algorhythm-joedelbalzo.vercel.app/" aria-label="a link to this project" target="_blank">
+                    <a
+                      href="https://algorhythm-joedelbalzo.vercel.app/"
+                      aria-label="a link to this project"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <OpenWindow style={{ padding: "1rem" }} color={getColor(7)} />
                     </a>
                   </span>
-
                   <span className="devicons-open-and-github" onMouseEnter={() => handleMouseEnter(8)} onMouseLeave={handleMouseLeave}>
                     <a
                       href="https://github.com/joedelbalzo/jdb-algo"
                       aria-label="a link to this project's GitHub Repository"
                       target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <GitHub style={{ padding: "1rem" }} color={getColor(8)} />
                     </a>
                   </span>
                 </span>
               </div>
-              <a href="https://algorhythm-joedelbalzo.vercel.app/" aria-label="a link to this project" target="_blank">
+              <a
+                href="https://algorhythm-joedelbalzo.vercel.app/"
+                aria-label="a link to this project"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <div className="image-wrapper">
-                  <img src={algoScreenshot} alt="Screenshot of AlgoRhythym" className="portfolio-images odds" />
+                  <img src={algoScreenshot} alt="Screenshot of AlgoRhythm" className="portfolio-images odds" />
                 </div>
               </a>
             </div>
