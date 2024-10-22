@@ -1,12 +1,7 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import Home from "./Home.jsx";
 import Nav from "./Nav.jsx";
-import Resume from "./Resume.jsx";
-import AScriptForJavaApp from "./ScriptForJava/App.jsx";
-import OpenPlacesApp from "./Open-Places/App.jsx";
-import CssApp from "./DropOfCSS/App.jsx";
-import LetsChatApp from "./WebRTC/App.jsx";
 import Portfolio from "./Portfolio.jsx";
 import FourOhFour from "./FourOhFour.jsx";
 import Socials from "./Socials.jsx";
@@ -18,6 +13,13 @@ import Fab from "@mui/material/Fab";
 import ArrowUpwardOutlinedIcon from "@mui/icons-material/ArrowUpwardOutlined";
 import Fade from "@mui/material/Fade";
 import Box from "@mui/material/Box";
+
+//Lazy
+const Resume = lazy(() => import("./Resume.jsx"));
+const AScriptForJavaApp = lazy(() => import("./ScriptForJava/App.jsx"));
+const OpenPlacesApp = lazy(() => import("./Open-Places/App.jsx"));
+const CssApp = lazy(() => import("./DropOfCSS/App.jsx"));
+const LetsChatApp = lazy(() => import("./WebRTC/App.jsx"));
 
 function ScrollTop(props) {
   const { children } = props;
@@ -59,17 +61,19 @@ const App = (props) => {
         </div>
 
         <div className="main-content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/resume" element={<Resume />} />
-            <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/dropofcss/*" element={<CssApp />} />
-            <Route path="/scriptforjava/*" element={<AScriptForJavaApp />} />
-            <Route path="/openplaces/*" element={<OpenPlacesApp />} />
-            <Route path="/letschat/*" element={<LetsChatApp />} />
-            <Route path="/*" element={<FourOhFour />} />
-          </Routes>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/resume" element={<Resume />} />
+              <Route path="/portfolio" element={<Portfolio />} />
+              <Route path="/dropofcss/*" element={<CssApp />} />
+              <Route path="/scriptforjava/*" element={<AScriptForJavaApp />} />
+              <Route path="/openplaces/*" element={<OpenPlacesApp />} />
+              <Route path="/letschat/*" element={<LetsChatApp />} />
+              <Route path="/*" element={<FourOhFour />} />
+            </Routes>
+          </Suspense>
         </div>
 
         <ScrollTop {...props}>

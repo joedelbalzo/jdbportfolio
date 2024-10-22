@@ -27,6 +27,7 @@
     "vite": "^4.5.0"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "rollup-plugin-visualizer": "^5.12.0"
   }
 }
