@@ -10,7 +10,6 @@ const Resume = () => {
           {/* <h2>Software Engineer</h2> */}
           <h3>
             jdelbalzo99@gmail.com <br />
-            240-441-7689
             <br />
             Beacon, NY
           </h3>
