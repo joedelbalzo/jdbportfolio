@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import Login from "./Open-Places/Login";
-import HomeJava from "./ScriptForJava/App";
-import Home from "./DropOfCSS/Home";
+// import { Link } from "react-router-dom";
+// import Login from "./Open-Places/Login";
+// import HomeJava from "./ScriptForJava/App";
+// import Home from "./DropOfCSS/Home";
 
 const Nav = () => {
   // const [dropdownActive, setDropdownActive] = useState(false);
@@ -30,7 +30,7 @@ const Nav = () => {
     setIsActive(activeOptions[window.location.href]);
   }, [window.location.href]);
 
-  console.log(isActive);
+  // console.log(isActive);
   return (
     <>
       <div className={"main-navbar"}>

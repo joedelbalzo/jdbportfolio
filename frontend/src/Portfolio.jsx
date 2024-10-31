@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Suspense, lazy, useState } from "react";
 import { FadeComponent } from "./FadeComponent";
 import { Link } from "react-router-dom";
 
@@ -7,9 +7,13 @@ import openScreenshot from "../assets/site-screenshots/OpenPlaces_Screenshot.web
 import scriptScreenshot from "../assets/site-screenshots/Script_Screenshot.webp";
 import { OpenWindow } from "./ShareIcons/OpenWindow";
 import { GitHub } from "./ShareIcons/SocialIcons";
-import Login from "./Open-Places/Login";
-import HomeJava from "./ScriptForJava/App";
-import Home from "./DropOfCSS/Home";
+// import Login from "./Open-Places/Login";
+// import HomeJava from "./ScriptForJava/App";
+// import Home from "./DropOfCSS/Home";
+
+const HomeJava = lazy(() => import("./ScriptForJava/App"));
+const Login = lazy(() => import("./Open-Places/Login"));
+const Home = lazy(() => import("./DropOfCSS/Home"));
 import PortfolioHighlights from "./PortfolioHighlights";
 
 const Portfolio = () => {

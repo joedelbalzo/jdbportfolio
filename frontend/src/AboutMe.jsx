@@ -129,7 +129,7 @@ const AboutMe = () => {
           </motion.div>
 
           <PortfolioHighlights />
-
+          {/* 
           <motion.div
             initial={{ opacity: 0, y: "100px" }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -153,7 +153,7 @@ const AboutMe = () => {
             viewport={{ once: true, amount: 0.1 }}
           >
             <Contact />
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
     </FadeComponent>

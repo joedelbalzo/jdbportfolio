@@ -10,7 +10,7 @@ const Resume = () => {
           {/* <h2>Software Engineer</h2> */}
           <h3>
             jdelbalzo99@gmail.com <br />
-            <br />
+            {/* <br /> */}
             Beacon, NY
           </h3>
         </div>

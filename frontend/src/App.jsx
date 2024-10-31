@@ -6,6 +6,8 @@ import Portfolio from "./Portfolio.jsx";
 import FourOhFour from "./FourOhFour.jsx";
 import Socials from "./Socials.jsx";
 import Footer from "./Footer.jsx";
+import { waveform } from "ldrs";
+import ScrollToTopOnRouteChange from "./Components/ScrollToTop.jsx";
 
 //mui
 import useScrollTrigger from "@mui/material/useScrollTrigger";
@@ -20,6 +22,8 @@ const AScriptForJavaApp = lazy(() => import("./ScriptForJava/App.jsx"));
 const OpenPlacesApp = lazy(() => import("./Open-Places/App.jsx"));
 const CssApp = lazy(() => import("./DropOfCSS/App.jsx"));
 const LetsChatApp = lazy(() => import("./WebRTC/App.jsx"));
+
+waveform.register();
 
 function ScrollTop(props) {
   const { children } = props;
@@ -51,6 +55,8 @@ function ScrollTop(props) {
   );
 }
 
+// Default values shown
+
 const App = (props) => {
   return (
     <div>
@@ -61,7 +67,14 @@ const App = (props) => {
         </div>
 
         <div className="main-content">
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense
+            fallback={
+              <div style={{ margin: "10% auto" }}>
+                <l-waveform size="45" stroke="4.5" speed="1" color="#ff5722"></l-waveform>
+              </div>
+            }
+          >
+            <ScrollToTopOnRouteChange />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/home" element={<Home />} />
