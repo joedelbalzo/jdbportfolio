@@ -30,4 +30,5 @@ const Business = conn.define("business", {
   keyMarkets: { type: STRING, allowNull: true },
   majorCompetitors: { type: STRING, allowNull: true },
 });
+
 module.exports = Business;

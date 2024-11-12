@@ -108,6 +108,7 @@ const syncAndSeedVali = async () => {
     ];
 
     await FinancialInfo.bulkCreate(financialRecords);
+    await Promise.all(financialRecords.map((record) => business.createFinancialInfo(record)));
 
     return {
       users: {

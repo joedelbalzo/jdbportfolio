@@ -14,8 +14,8 @@ Blogpost.hasMany(Image, { foreignKey: "blogpostId" });
 Business.belongsTo(User, { foreignKey: "userId" });
 User.hasOne(Business, { foreignKey: "userId" });
 
-Business.hasMany(FinancialInfo, { foreignKey: "businessId" });
-FinancialInfo.belongsTo(Business, { foreignKey: "businessId" });
+Business.hasMany(FinancialInfo, { foreignKey: "businessId", as: "financialInfos" });
+FinancialInfo.belongsTo(Business, { foreignKey: "businessId", as: "business" });
 
 module.exports = {
   User,

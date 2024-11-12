@@ -158,6 +158,7 @@ authRoutes.get("/", isValiLoggedIn, async (req, res, next) => {
           include: [
             {
               model: FinancialInfo,
+              as: "financialInfos",
             },
           ],
         },
