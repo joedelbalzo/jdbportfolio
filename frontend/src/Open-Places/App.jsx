@@ -1,54 +1,78 @@
-import React, { useEffect, useRef } from "react";
-import Settings from "./Settings";
-import Favorites from "./Favorites";
-import HomeNav from "./HomeNav";
-import Login from "./Login";
-import NearbyPlaces from "./NearbyPlaces";
-import About from "./About";
+// OpenPlacesApp.jsx
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { placesLoginWithToken } from "../store/index";
+import { placesLoginWithToken } from "../store";
 import { Routes, Route, Navigate } from "react-router-dom";
-import Register from "./Register";
-import { FadeComponent } from "../FadeComponent";
-import { Fade } from "@mui/material";
+import AuthRoute from "./Auth/AuthRoute";
+import HomeNav from "./HomeNav";
+import Login from "./Auth/Login";
+import Register from "./Auth/Register";
+import NearbyPlaces from "./Pages/NearbyPlaces";
+import Settings from "./Pages/Settings";
+import Favorites from "./Pages/Favorites";
+import About from "./Pages/About";
 import PortfolioFooters from "../PortfolioFooters";
+import { FadeComponent } from "../FadeComponent";
 
 const OpenPlacesApp = () => {
-  const { placesAuth } = useSelector((state) => state);
-  const prevAuth = useRef(placesAuth);
+  const placesAuth = useSelector((state) => state.placesAuth);
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(placesLoginWithToken());
-  }, []);
 
   useEffect(() => {
-    if (!prevAuth.current.id && placesAuth.id) {
-      // console.log("you just logged in");
-    }
-    if (!prevAuth.current.id && !placesAuth.id) {
-      // console.log("you just logged out");
-    }
-  }, [placesAuth]);
+    dispatch(placesLoginWithToken());
+  }, [dispatch]);
+
+  console.log(placesAuth?.id);
 
   return (
     <FadeComponent>
       <div className="OpenPlaces">
         <HomeNav />
         <Routes>
+          {/* Redirect root to /places */}
+          <Route path="/" element={<Navigate to="places" />} />
+
+          {/* Authenticated Routes */}
           <Route
-            path="/openplaces"
-            element={placesAuth.id ? <Navigate to="/places" /> : <Login />}
+            path="places"
+            element={
+              <AuthRoute>
+                <NearbyPlaces />
+              </AuthRoute>
+            }
+          />
+          <Route
+            path="home"
+            element={
+              <AuthRoute>
+                <NearbyPlaces />
+              </AuthRoute>
+            }
+          />
+          <Route
+            path="settings"
+            element={
+              <AuthRoute>
+                <Settings />
+              </AuthRoute>
+            }
+          />
+          <Route
+            path="favorites"
+            element={
+              <AuthRoute>
+                <Favorites />
+              </AuthRoute>
+            }
           />
 
-          <Route path="/places" element={placesAuth.id ? <NearbyPlaces /> : <Login />} />
-          <Route path="/home" element={placesAuth.id ? <NearbyPlaces /> : <Login />} />
-          <Route path="/settings" element={placesAuth.id ? <Settings /> : <Login />} />
-          <Route path="/favorites" element={placesAuth.id ? <Favorites /> : <Login />} />
-          <Route path="/about" element={<About />} />
+          {/* Public Routes */}
+          <Route path="about" element={<About />} />
+          <Route path="login" element={placesAuth?.id ? <Navigate to="places" /> : <Login />} />
+          <Route path="register" element={placesAuth?.id ? <Navigate to="places" /> : <Register />} />
 
-          <Route path="/login" element={<Login />} />
-
-          <Route path="/register" element={<Register />} />
+          {/* Catch-all Route */}
+          <Route path="*" element={<Navigate to="places" />} />
         </Routes>
         <PortfolioFooters />
       </div>

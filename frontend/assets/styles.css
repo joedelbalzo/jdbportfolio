@@ -1238,7 +1238,7 @@ open places
 #places-categoryContainer {
   font-size: 4rem;
   box-sizing: content-box;
-  width: 95%;
+  width: 75%;
   margin: 2rem auto;
   padding: 0;
   text-align: center;
@@ -1302,6 +1302,9 @@ form > * {
     margin: 0.5rem;
     padding: 0.5rem;
     color: rgb(0, 30, 17);
+  }
+  #places-categoryContainer {
+    width: 95%;
   }
 }
 #places-welcomeSmaller {

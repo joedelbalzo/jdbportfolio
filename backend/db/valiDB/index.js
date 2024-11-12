@@ -20,7 +20,7 @@ const syncAndSeedVali = async () => {
     const notAdmin = await User.create({
       username: "Moe",
       password: "123",
-      email: "jdelbalzotest@gmail.com",
+      email: "test@gmail.com",
       adminStatus: false,
       businessId: null,
       isNewUser: false,
@@ -30,51 +30,6 @@ const syncAndSeedVali = async () => {
       state: "New York",
       mailingList: true,
     });
-
-    //   Blogpost.create({
-    //     title: "Understanding Personal Finance: A Beginner's Guide",
-    //     subtitle: "Navigating the Basics of Money Management",
-    //     content: faker.lorem.paragraph(3),
-    //     published: false,
-    //     publishedAt: "Mon Jul 10 2023 11:06:12 GMT-0500 (Eastern Standard Time)",
-    //   }),
-    //   Blogpost.create({
-    //     title: "Post 2. Smart Investment Strategies for Beginners",
-    //     subtitle: "Making Your Money Work for You",
-    //     content:
-    //       "<strong>This is blog post number 2!</strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.<br/><br/>",
-    //     published: true,
-    //     publishedAt: "Mon Aug 12 2023 11:06:12 GMT-0500 (Eastern Standard Time)",
-    //   }),
-    //   Blogpost.create({
-    //     title: "Post 3. The Importance of Building an Emergency Fund",
-    //     subtitle: "Secure Your Financial Future with Smart Saving",
-    //     content: `This is blog post number 3! ${faker.lorem.paragraphs(3, "<br/></br>\n")}`,
-    //     published: true,
-    //     publishedAt: "Mon Nov 14 2023 11:06:12 GMT-0500 (Eastern Standard Time)",
-    //   }),
-    //   Blogpost.create({
-    //     title: "Post 4. The Importance of Building an Emergency Fund",
-    //     subtitle: "Secure Your Financial Future with Smart Saving",
-    //     content: `This is blog post number 4! ${faker.lorem.paragraphs(3, "<br/></br></br>\n")}`,
-    //     published: true,
-    //     publishedAt: "Mon Nov 16 2023 11:06:12 GMT-0500 (Eastern Standard Time)",
-    //   }),
-    //   Blogpost.create({
-    //     title: "Post 5. The Importance of Building an Emergency Fund",
-    //     subtitle: "Secure Your Financial Future with Smart Saving",
-    //     content: `This is blog post number 5! ${faker.lorem.paragraphs(3, "<br/></br>\n")}`,
-    //     published: true,
-    //     publishedAt: "Mon Nov 18 2023 11:06:12 GMT-0500 (Eastern Standard Time)",
-    //   }),
-    //   Blogpost.create({
-    //     title: "Post 6. The Importance of Building an Emergency Fund",
-    //     subtitle: "Secure Your Financial Future with Smart Saving",
-    //     content: `This is blog post number 6! ${faker.lorem.paragraphs(3, "<br/></br>\n")}`,
-    //     published: true,
-    //     publishedAt: "Mon Nov 20 2023 11:06:12 GMT-0500 (Eastern Standard Time)",
-    //   }),
-    // ]);
 
     const posts = await Promise.all(SeededPosts.map((post) => Blogpost.create(post)));
     const images = await Promise.all(SeededImages.map((image) => Image.create(image)));

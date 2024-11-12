@@ -21,7 +21,7 @@ import { Rating, Button, TextField, Box, Stack } from "@mui/material";
 //component imports
 
 //store imports
-import { placesFetchUserFavorites, placesAddUserFavorite, placesRemoveUserFavorite } from "../store/index";
+import { placesFetchUserFavorites, placesAddUserFavorite, placesRemoveUserFavorite } from "../../store/index";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;

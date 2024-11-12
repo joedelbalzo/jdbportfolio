@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { placesEditUserSettings } from "../store/index";
+import { placesEditUserSettings } from "../../store/index";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
@@ -136,15 +136,9 @@ const Settings = () => {
   return (
     <div id="places-categoryContainer">
       <div id="places-categoryHeader">Settings</div>
-      <Box
-        component="form"
-        sx={{ "& > :not(style)": { mx: 4, mt: 2 } }}
-        noValidate
-        autoComplete="off"
-      >
+      <Box component="form" sx={{ "& > :not(style)": { mx: 4, mt: 2 } }} noValidate autoComplete="off">
         <p style={{ fontSize: "calc(12px + 0.5vw)", textAlign: "left", width: "calc(30% + 20vw)" }}>
-          note: your device will fetch your current location every time you pick a new category.
-          this is just your default home setting
+          note: your device will fetch your current location every time you pick a new category. this is just your default home setting
         </p>
 
         <TextField
@@ -177,26 +171,14 @@ const Settings = () => {
           value={settingHomeLng}
           onChange={(ev) => setSettingHomeLng(ev.target.value)}
         />
-        <Button
-          variant="outlined"
-          size="small"
-          sx={{ fontSize: ".9rem", width: "fit-content" }}
-          onClick={() => setLocation()}
-        >
+        <Button variant="outlined" size="small" sx={{ fontSize: ".9rem", width: "fit-content" }} onClick={() => setLocation()}>
           set your current latitude and longitude
         </Button>
 
         <FormLabel>Choose up to 5 categories:</FormLabel>
         <Grid container spacing={2} alignItems="flex-start" justifyContent="flex-start">
           {googleTypes.map((category, idx) => (
-            <Grid
-              item
-              xs={8}
-              sm={6}
-              md={6}
-              sx={{ textAlign: "left", fontSize: "2rem", margin: "-1rem", padding: "-1rem" }}
-              key={category}
-            >
+            <Grid item xs={8} sm={6} md={6} sx={{ textAlign: "left", fontSize: "2rem", margin: "-1rem", padding: "-1rem" }} key={category}>
               <FormControlLabel
                 // error={}
                 control={
@@ -204,9 +186,7 @@ const Settings = () => {
                     checked={settingFavCategories.includes(category)}
                     onChange={(ev) =>
                       setSettingFavCategories(
-                        ev.target.checked
-                          ? [...settingFavCategories, category]
-                          : settingFavCategories.filter((c) => c !== category)
+                        ev.target.checked ? [...settingFavCategories, category] : settingFavCategories.filter((c) => c !== category)
                       )
                     }
                     name={category}
@@ -223,12 +203,7 @@ const Settings = () => {
             </Grid>
           ))}
         </Grid>
-        <Button
-          variant="outlined"
-          size="large"
-          sx={{ fontSize: "2rem", marginBottom: "1rem" }}
-          onClick={(ev) => onSubmit(ev, placesAuth)}
-        >
+        <Button variant="outlined" size="large" sx={{ fontSize: "2rem", marginBottom: "1rem" }} onClick={(ev) => onSubmit(ev, placesAuth)}>
           Submit
         </Button>
       </Box>

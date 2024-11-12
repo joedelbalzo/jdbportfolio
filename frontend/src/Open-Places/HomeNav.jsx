@@ -11,12 +11,11 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import { styled } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import Menu from "@mui/material/Menu";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 //store imports
@@ -40,24 +39,24 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function HomeNav() {
-  const { placesAuth } = useSelector((state) => state);
+  const placesAuth = useSelector((state) => state.placesAuth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const theme = useTheme();
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  // console.log(isMobile);
-
   let pages = [];
 
-  placesAuth.id
-    ? (pages = ["Home", "Settings", "Favorites", "About", "Logout"])
-    : (pages = ["Login", "Home", "About"]);
-
-  placesAuth.isAdmin === true ? pages.unshift("Admin") : "";
+  if (placesAuth.id) {
+    pages = ["Home", "Settings", "Favorites", "About", "Logout"];
+    if (placesAuth.isAdmin) {
+      pages.unshift("Admin");
+    }
+  } else {
+    pages = ["Login", "Home", "About"];
+  }
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -68,15 +67,18 @@ export default function HomeNav() {
   };
 
   const navigateTo = (page) => {
-    if (!page) {
-      navigate(`/`);
+    if (!page || page.toLowerCase() === "home") {
+      navigate(`home`);
+    } else if (page.toLowerCase() === "logout") {
+      _logout();
+    } else {
+      navigate(`${page.toLowerCase()}`);
     }
-    navigate(`/openplaces/${page.toLowerCase()}`);
   };
 
   const _logout = () => {
     dispatch(placesLogout());
-    navigate("/openplaces/login");
+    navigate("login");
   };
 
   return (
@@ -96,8 +98,8 @@ export default function HomeNav() {
           backgroundColor: "#003b21",
         }}
       >
-        <Toolbar sx={{}}>
-          <Box sx={{}}>
+        <Toolbar>
+          <Box>
             <Tooltip title="Open Pages">
               <IconButton
                 onClick={handleOpenUserMenu}
@@ -106,54 +108,34 @@ export default function HomeNav() {
                 color="inherit"
                 aria-label="menu"
                 sx={{ width: "50px", margin: "25px" }}
-                // aria-controls="menu-appbar"
-                // aria-haspopup="true"
-                // ref={(node) => {
-                //   setAnchorElNav(node);
-                // }}
               >
                 <MenuIcon />
               </IconButton>
             </Tooltip>
             <Menu
-              // sx={{ mt: "45px", ml: "25px"}}
+              disablePortal
+              disableScrollLock
               id="menu-appbar"
               anchorEl={anchorElUser}
-              // anchorOrigin={{
-              //   vertical: "top",
-              //   horizontal: "right",
-              // }}
               keepMounted
-              // transformOrigin={{
-              //   vertical: "top",
-              //   horizontal: "right",
-              // }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
               onClick={handleCloseUserMenu}
             >
-              {pages.map((page) =>
-                page !== "Logout" ? (
-                  <MenuItem key={page} onClick={() => navigateTo(page)}>
-                    <Typography textAlign="center" marginLeft="4px" fontSize="calc(10px + 1vw)">
-                      {page}
-                    </Typography>
-                  </MenuItem>
-                ) : (
-                  <MenuItem key={page} onClick={() => _logout()}>
-                    <Typography textAlign="center" marginLeft="4px" fontSize="calc(10px + 1vw)">
-                      {page}
-                    </Typography>
-                  </MenuItem>
-                )
-              )}
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={() => navigateTo(page)}>
+                  <Typography textAlign="center" marginLeft="4px" fontSize="calc(10px + 1vw)">
+                    {page}
+                  </Typography>
+                </MenuItem>
+              ))}
             </Menu>
           </Box>
 
           <Typography
             variant="h4"
             component="div"
-            onClick={() => navigateTo("/")}
+            onClick={() => navigateTo("home")}
             sx={{
               margin: "auto",
               flexGrow: 1,
@@ -172,7 +154,6 @@ export default function HomeNav() {
               color="inherit"
               sx={{
                 fontSize: "calc(10px + 1vw)",
-                // mr: "10px",
                 width: "100px",
                 textTransform: "capitalize",
                 justifyContent: "right",

@@ -12,7 +12,7 @@ import { GitHub } from "./ShareIcons/SocialIcons";
 // import Home from "./DropOfCSS/Home";
 
 const HomeJava = lazy(() => import("./ScriptForJava/App"));
-const Login = lazy(() => import("./Open-Places/Login"));
+const Login = lazy(() => import("./Open-Places/Auth/Login"));
 const Home = lazy(() => import("./DropOfCSS/Home"));
 import PortfolioHighlights from "./PortfolioHighlights";
 

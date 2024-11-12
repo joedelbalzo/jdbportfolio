@@ -27,7 +27,7 @@ import {
   placesAddUserFavorite,
   placesRemoveUserFavorite,
   placesEditNearbyPlaces,
-} from "../store/index";
+} from "../../store/index";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -119,9 +119,7 @@ const NearbyPlaces = () => {
   };
   const openNow = (category) => {
     // for seeded data
-    let placesWithHours = placesNearbyPlaces
-      .filter((place) => place.opening_hours)
-      .filter((place) => place.types.includes(category));
+    let placesWithHours = placesNearbyPlaces.filter((place) => place.opening_hours).filter((place) => place.types.includes(category));
     const today = googleDate();
     const time = googleTime();
     const placesOpenNow = [];
@@ -165,8 +163,7 @@ const NearbyPlaces = () => {
     const { lat, lng } = placeGeometry.location;
     const p = 0.017453292519943295;
     const c = Math.cos;
-    const a =
-      0.5 - c((lat - lat1) * p) / 2 + (c(lat1 * p) * c(lat * p) * (1 - c((lng - lon1) * p))) / 2;
+    const a = 0.5 - c((lat - lat1) * p) / 2 + (c(lat1 * p) * c(lat * p) * (1 - c((lng - lon1) * p))) / 2;
     const distance = 12742 * Math.asin(Math.sqrt(a)) * 0.621371;
     return distance;
   };
@@ -187,19 +184,13 @@ const NearbyPlaces = () => {
   }
 
   const openSoon = (timeQueried, category) => {
-    const placesWithHours = placesNearbyPlaces
-      .filter((place) => place.opening_hours)
-      .filter((place) => place.types.includes(category));
+    const placesWithHours = placesNearbyPlaces.filter((place) => place.opening_hours).filter((place) => place.types.includes(category));
     const today = googleDate();
     const time = googleTime();
     const placesOpenSoon = [];
     for (let place of placesWithHours) {
       for (let hours of place.opening_hours) {
-        if (
-          hours.open.day === today &&
-          time < hours.open.time * 1 &&
-          time > hours.open.time * 1 - timeQueried
-        ) {
+        if (hours.open.day === today && time < hours.open.time * 1 && time > hours.open.time * 1 - timeQueried) {
           placesOpenSoon.push(place);
         }
       }
@@ -208,9 +199,7 @@ const NearbyPlaces = () => {
   };
 
   const closingSoon = (timeQueried, category) => {
-    const placesWithHours = placesNearbyPlaces
-      .filter((place) => place.opening_hours)
-      .filter((place) => place.types.includes(category));
+    const placesWithHours = placesNearbyPlaces.filter((place) => place.opening_hours).filter((place) => place.types.includes(category));
     const today = googleDate();
     const time = googleTime();
     const placesClosingSoon = [];
@@ -244,12 +233,8 @@ const NearbyPlaces = () => {
           open now!
           <br />
           <div id="places-welcomeSmaller">
-            {openSoon(30, categoryName).length === 0
-              ? ""
-              : `${openSoon(30, categoryName).length} more within 30 minutes.${(<br />)}`}
-            {closingSoon(120, categoryName).length === 0
-              ? ""
-              : `${closingSoon(120, categoryName).length} will close within two hours.`}
+            {openSoon(30, categoryName).length === 0 ? "" : `${openSoon(30, categoryName).length} more within 30 minutes.${(<br />)}`}
+            {closingSoon(120, categoryName).length === 0 ? "" : `${closingSoon(120, categoryName).length} will close within two hours.`}
             <br />
           </div>
         </div>
@@ -317,31 +302,17 @@ const NearbyPlaces = () => {
                         }}
                       />
                       <CardContent>
-                        <Typography
-                          color="text.secondary"
-                          textAlign={"left"}
-                          sx={{ fontSize: "1.3rem" }}
-                        >
+                        <Typography color="text.secondary" textAlign={"left"} sx={{ fontSize: "1.3rem" }}>
                           <Link to={place.url} style={{ color: "inherit" }}>
                             Address: {place.vicinity || place.formatted_address}
                           </Link>
                           <br />
                           Distance:{" "}
-                          {placeDistance(
-                            placesAuth.settingHomeLat,
-                            placesAuth.settingHomeLng,
-                            place.geometry
-                          ) < 0.1
+                          {placeDistance(placesAuth.settingHomeLat, placesAuth.settingHomeLng, place.geometry) < 0.1
                             ? "Less than .1 miles away!"
                             : `${
                                 Math.floor(
-                                  Math.round(
-                                    placeDistance(
-                                      placesAuth.settingHomeLat,
-                                      placesAuth.settingHomeLng,
-                                      place.geometry
-                                    ) * 10
-                                  )
+                                  Math.round(placeDistance(placesAuth.settingHomeLat, placesAuth.settingHomeLng, place.geometry) * 10)
                                 ) / 10
                               } miles away`}
                           <br />
@@ -369,11 +340,7 @@ const NearbyPlaces = () => {
                         </ExpandMore>
                       </CardActions>
                       <Collapse in={expandedId === i} timeout="auto" unmountOnExit>
-                        <Box
-                          sx={{ display: "flex", gap: 2 }}
-                          justifyContent="space-around"
-                          textAlign="left"
-                        >
+                        <Box sx={{ display: "flex", gap: 2 }} justifyContent="space-around" textAlign="left">
                           <Box>
                             <Typography>Open:</Typography>
 
@@ -412,13 +379,7 @@ const NearbyPlaces = () => {
                                 variant="outlined"
                                 onChange={(ev) => setNotes(ev.target.value)}
                               />
-                              <Button
-                                onClick={(ev) =>
-                                  saveNotesAndRating(place, placesAuth, ev.target.value)
-                                }
-                              >
-                                Save
-                              </Button>
+                              <Button onClick={(ev) => saveNotesAndRating(place, placesAuth, ev.target.value)}>Save</Button>
                             </Stack>
                           </Box>
                         </Box>
