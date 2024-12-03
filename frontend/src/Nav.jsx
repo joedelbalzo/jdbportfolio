@@ -8,16 +8,6 @@ const Nav = () => {
   // const [dropdownActive, setDropdownActive] = useState(false);
   const [isActive, setIsActive] = useState(null);
 
-  // const handleMenuItemClick = (e, href) => {
-  //   e.preventDefault();
-  //   setDropdownActive(false);
-  //   window.location.href = href;
-  // };
-
-  // useEffect(() => {
-  //   setDropdownActive(false);
-  // }, []);
-
   useEffect(() => {
     const activeOptions = {
       "https://joedelbalzo.com/home": 1,
@@ -39,7 +29,7 @@ const Nav = () => {
           aria-label="Link to the home page"
           style={{
             color: isActive == 1 ? "#ff5722" : "",
-            fontWeight: isActive == 1 ? "400" : "",
+            // fontWeight: isActive == 1 ? "400" : "",
             textShadow: "2px 2px 1px black",
           }}
         >
@@ -57,72 +47,31 @@ const Nav = () => {
           GitHub
         </a>
         <a
-          href="../resume"
-          aria-label="Link to Joe Del Balzo's Resume"
+          href="../blog"
+          aria-label="Link to Joe Del Balzo's Blog"
           rel="noreferrer noopener"
-          style={{ borderBottom: isActive == 2 ? "4px solid #ff5722" : "", paddingBottom: isActive == 2 ? "10px" : "" }}
+          style={{
+            color: isActive == 2 ? "#ff5722" : "",
+            textShadow: "2px 2px 1px black",
+            // borderBottom: isActive == 2 ? "4px solid #ff5722" : "",
+            // paddingBottom: isActive == 2 ? "10px" : "",
+          }}
         >
-          Resume
+          Blog
         </a>
         <a
-          href="../Portfolio"
+          href="../portfolio"
           aria-label="Link to Joe Del Balzo's Resume"
           rel="noreferrer noopener"
-          style={{ borderBottom: isActive == 3 ? "4px solid #ff5722" : "", paddingBottom: isActive == 3 ? "10px" : "" }}
+          style={{
+            color: isActive == 3 ? "#ff5722" : "",
+            textShadow: "2px 2px 1px black",
+            // borderBottom: isActive == 3 ? "4px solid #ff5722" : "",
+            // paddingBottom: isActive == 3 ? "10px" : "",
+          }}
         >
           Portfolio
         </a>
-        {/* <div className={`main-dropdown ${dropdownActive ? "active" : ""}`} onClick={() => setDropdownActive(!dropdownActive)}>
-          <button className={`main-dropbtn ${dropdownActive ? "main-dropdown-hover" : ""}`}>Portfolio</button>
-          <div className="main-dropdown-links" style={{ zIndex: "9999" }}>
-            <a
-              href="/portfolio"
-              onClick={(e) => handleMenuItemClick(e, "/portfolio")}
-              target="_blank"
-              aria-label="Link to an About page for Joe Del Balzo's portfolio"
-              rel="noreferrer noopener"
-            >
-              About
-            </a>
-            <a
-              href="https://joinvali.com/"
-              aria-label="Link to the website Vali, engineered by Joe Del Balzo"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              Vali
-            </a>
-            <a
-              href="https://www.dawngryan.com"
-              target="_blank"
-              aria-label="Link to the website Dawn Ryan, engineered by Joe Del Balzo"
-              rel="noreferrer noopener"
-            >
-              Dawn Ryan
-            </a>
-            <a
-              href="https://algorhythm-joedelbalzo.vercel.app/"
-              target="_blank"
-              aria-label="Link to the website AlgoRhythm, engineered by Joe Del Balzo"
-              rel="noreferrer noopener"
-            >
-              AlgoRhythm
-            </a>
-            <Link to={"../dropofcss"} aria-label="Link to the website Drop of CSS, engineered by Joe Del Balzo" element={<Home />}>
-              Drop of CSS
-            </Link>
-            <Link to={"../openplaces/login"} aria-label="Link to the website Open Places, engineered by Joe Del Balzo" element={<Login />}>
-              Open Places
-            </Link>
-            <Link
-              to={"../scriptforjava"}
-              aria-label="Link to the website Script for Java, engineered by Joe Del Balzo"
-              element={<HomeJava />}
-            >
-              Script for Java
-            </Link>
-          </div>
-        </div> */}
       </div>
     </>
   );

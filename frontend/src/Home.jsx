@@ -28,6 +28,11 @@ const Home = () => {
               </a>{" "}
               Musician, cold brew drinker, sports fanatic, Certified Cicerone®
             </p>
+            <p>
+              <a href="../resume" aria-label="Link to Joe Del Balzo's Resume" rel="noreferrer noopener" target="_blank">
+                Click here to check out my resume.
+              </a>{" "}
+            </p>
           </div>
         </div>
         <div style={{ margin: "2rem auto" }} id="socials-mobile">

@@ -22,6 +22,8 @@ const AScriptForJavaApp = lazy(() => import("./ScriptForJava/App.jsx"));
 const OpenPlacesApp = lazy(() => import("./Open-Places/App.jsx"));
 const CssApp = lazy(() => import("./DropOfCSS/App.jsx"));
 const LetsChatApp = lazy(() => import("./WebRTC/App.jsx"));
+const BlogHome = lazy(() => import("./Blog/BlogHome.jsx"));
+const BlogPost = lazy(() => import("./Blog/BlogPost.jsx"));
 
 waveform.register();
 
@@ -48,7 +50,7 @@ function ScrollTop(props) {
   };
   return (
     <Fade in={trigger}>
-      <Box onClick={handleClick} role="presentation" sx={{ position: "fixed", bottom: 24, right: 24, zIndex: "1000" }}>
+      <Box onClick={handleClick} role="presentation" sx={{ position: "fixed", bottom: 24, right: 24, zIndex: 1000 }}>
         {children}
       </Box>
     </Fade>
@@ -84,6 +86,8 @@ const App = (props) => {
               <Route path="/scriptforjava/*" element={<AScriptForJavaApp />} />
               <Route path="/openplaces/*" element={<OpenPlacesApp />} />
               <Route path="/letschat/*" element={<LetsChatApp />} />
+              <Route path="/blog" element={<BlogHome />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/*" element={<FourOhFour />} />
             </Routes>
           </Suspense>
