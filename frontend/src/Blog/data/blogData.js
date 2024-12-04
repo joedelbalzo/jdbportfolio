@@ -25,7 +25,7 @@ export const blogPosts = [
   },
   {
     id: "2",
-    title: "Why I Decided To Switch To Powershell",
+    title: "Why I Finally Switched To Powershell",
     tag: "DJANGO vs. WINDOWS GITBASH",
     sub: "After lots of attempts to run pip install and countless errors, I decided it was finally time to stop emulating a Mac/Bash setup and learn to love the bomb.",
     component: WhySwitchToPowershell,

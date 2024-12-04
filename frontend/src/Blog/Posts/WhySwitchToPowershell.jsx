@@ -2,8 +2,9 @@ function WhySwitchToPowershell() {
   return (
     <article className="blogposts">
       <header>
-        <h1>Why I Decided To Switch To Powershell</h1>
+        <h1>Why I Finally To Switch To Powershell</h1>
         <p>Solving Django Path Issues on Windows and why Git Bash Struggles with Django</p>
+        <p className="date">December 4, 2024</p>
       </header>
       <section>
         <h2>Why Git Bash Struggled with Django</h2>
@@ -67,11 +68,17 @@ function WhySwitchToPowershell() {
             </pre>
           </li>
           <li>
-            <strong>A note on tab completion:</strong> I'm discovering this is way easier than it was on Git Bash. If I type{" "}
+            <strong>Way better tab completion:</strong> I'm discovering this is way easier than it was on Git Bash. If I type{" "}
             <code id="mid-paragraph-code">cd d</code> and hit tab, it'll scroll through any folder that starts with "d." Git Bash just went
             to the first alphabetically, and so you'd have to type at least two letters. This is helpful for me, as I'm one of those super
             organized guys who has folders called "portfolio 1," "portfolio 2", "portfolio latest", "portfolio final", "portfolio final
             really," and so on...
+          </li>{" "}
+          <li>
+            <strong>Little annoyances:</strong> You have to hit <code id="mid-paragraph-code">ctrl c</code> to end your dev environment
+            twice. My speedy-slash-almost-mindless muscle memory of typing <code id="mid-paragraph-code">ctrl c</code> →{" "}
+            <code id="mid-paragraph-code">git status</code> → <code id="mid-paragraph-code">git add .</code> and having constant{" "}
+            <code id="mid-paragraph-code">Terminate batch job (Y/N)?</code> alerts has been amusing.
           </li>
         </ul>
 
