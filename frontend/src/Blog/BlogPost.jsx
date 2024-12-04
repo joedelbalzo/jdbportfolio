@@ -12,7 +12,14 @@ function BlogPost() {
 
   const PostComponent = post.component;
 
-  return <div>{PostComponent ? <PostComponent /> : <div>This post is under construction. Check back soon!</div>}</div>;
+  return (
+    <div className="blogposts-container">
+      <div>
+        <div id="blog-post-tag">{post.tag}</div>
+      </div>
+      {PostComponent ? <PostComponent /> : <div>This post is under construction. Check back soon!</div>}
+    </div>
+  );
 }
 
 export default BlogPost;

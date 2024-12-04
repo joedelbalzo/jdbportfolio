@@ -1,6 +1,6 @@
 :root {
   --main-color-whitesmoke: whitesmoke;
-  --background: #272a2f;
+  --background: #202836;
   --accent-color-blue: #0066ff;
   --highlight-orange: #ff5722;
   --soft-gray: #737373;
@@ -12,7 +12,7 @@ html {
   overflow-y: auto;
   margin: 0;
   padding: 0;
-  background-color: #1f2125;
+  background-color: #202836;
   background-image: url("home-background.svg");
   background-size: cover;
   background-repeat: no-repeat;

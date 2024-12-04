@@ -16,20 +16,17 @@ function WhyNow() {
         <p>
           I became a better network architect when I became a department supervisor. Leading a team of technicians and ensuring everything
           was programmed correctly meant I had to explain things clearly. Once I could succinctly explain complex ideas to junior
-          technicians, I found it much easier to communicate with my supervisors as well.
+          technicians, I found it much easier to communicate with my supervisors as well. This skill proved invaluable when justifying the
+          resources I needed. For example, I often had to explain why four extra technicians were essential to get a system running before
+          high-profile actors arrived. A single minute of downtime can cost a television production anywhere from $500 to $3,000. My
+          supervisors knew the value of extra preparation, and me being able to explain why I needed it was vital.
         </p>
         <p>
-          This skill proved invaluable when justifying the resources I needed. For example, I often had to explain why four extra
-          technicians were essential to get a system running before high-profile actors arrived. A single minute of downtime can cost a
-          television production anywhere from $500 to $3,000. My supervisors knew the value of extra preparation, and me being able to
-          explain why I needed it was vital.
+          <strong>I’m ready to talk about what I do now.</strong>{" "}
         </p>
-      </section>
-      <section>
-        <h2>What About Today? As a Software Engineer?</h2>
         <p>
-          Now, I’m ready to talk about what I do. Not that I expect anyone to read this, but I believe the act of explaining helps me grow.
-          Writing forces me to clarify my thoughts and break down what I’ve learned.
+          Not that I expect anyone to read this, but I believe the act of explaining helps me grow. Writing forces me to clarify my thoughts
+          and break down what I’ve learned.
         </p>
         <p>
           Working from home has limited my opportunities to explain the technical nuances of my work to other engineers. I rarely discuss
@@ -40,9 +37,7 @@ function WhyNow() {
           I also have a habit of starting new projects and abandoning them when the work gets tough or a learning curve feels too steep.
           Journaling my struggles with a particular technology might help me push through and find solutions.
         </p>
-      </section>
-      <section>
-        <h2>What Do I Know? What Am I Hoping to Accomplish?</h2>
+        <h2>What Am I Hoping to Accomplish?</h2>
         <p>
           I think I know React pretty well. I know JavaScript, especially in the context of React. Recently, I prepped for a front-end job
           interview by brushing up on DOM manipulation over a weekend. That was fun.
