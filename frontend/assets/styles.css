@@ -448,7 +448,7 @@ h1 {
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   font-size: calc(14px + 0.8vw);
-  line-height: calc(16px + 1vw);
+  line-height: calc(17px + 1vw);
   width: 90%;
 }
 
@@ -538,7 +538,7 @@ h1 {
 
 #main-resume > div > h2,
 #main-portfolioContainer > div > #borderdiv > h2 {
-  font-size: calc(12px + 2vw);
+  font-size: calc(14px + 2vw);
   font-weight: 350;
   letter-spacing: 1.5px;
   text-transform: capitalize;
@@ -894,7 +894,7 @@ h1 {
     grid-template-columns: 1fr;
     gap: 2rem;
     font-size: calc(14px + 0.8vw);
-    line-height: calc(16px + 1vw);
+    line-height: calc(20px + 1vw);
   }
 
   #main-portfolioContainer > div > #borderdiv > h2 {
@@ -966,8 +966,7 @@ h1 {
 @media screen and (max-width: 600px) {
   html {
     background-image: url("home-background.png");
-
-    background-position: -450px;
+    background-position: -350px;
   }
   .home-background-image-wrapper {
     background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 60%, rgba(0, 0, 0, 0.5) 70%, rgba(0, 0, 0, 0.5) 80%),
