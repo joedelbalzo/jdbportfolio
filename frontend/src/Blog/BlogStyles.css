@@ -16,6 +16,7 @@
   grid-template-columns: 40% 60%;
   text-decoration: none;
   color: inherit;
+  grid-auto-rows: min-content;
 }
 
 .blog-image {
@@ -199,7 +200,7 @@
 @media screen and (max-width: 768px) {
   .blog-card > a {
     grid-template-columns: 1fr;
-    grid-template-rows: 40% 60%;
+    grid-template-rows: auto auto;
   }
   .blog-image {
     object-position: center;
