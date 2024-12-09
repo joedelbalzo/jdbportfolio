@@ -4,7 +4,7 @@ function WhyNow() {
       <header>
         <h1>Why Write a Blog? Why Now?</h1>
         <p>A journey into sharing what I know, learning as I go, and exploring the power of writing about my craft.</p>
-        <p className="date">December 3, 2024</p>
+        <p className="date">December 1, 2024</p>
       </header>
       <section>
         <h2>Teaching Made Me Better</h2>
@@ -44,7 +44,9 @@ function WhyNow() {
         </p>
         <p>I enjoy working with Express and Node. Writing API functions and manipulating data is a creative outlet for me.</p>
         <p>
-          Python? I thought I knew it—but turns out, I don’t. That realization is part of what inspired this blog. I want to document my
+          Python? I thought I knew it—but turns out, I don’t. I would put it on my resume because I did in fact use it quite a lot in
+          Algorithms and Data Structures, because honestly it's just better and more efficient than JavaScript. So I knew Python, but I
+          didn't really know how to <i>use</i> Python. That realization is part of what inspired this blog. I want to document my
           experiences learning Django while building my latest application, a Next.js front-end with a Django back-end. This project will
           also be my first attempt at a CI/CD pipeline and writing robust unit tests.
         </p>

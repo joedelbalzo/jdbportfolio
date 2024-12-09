@@ -11,10 +11,10 @@ const Nav = () => {
   useEffect(() => {
     const activeOptions = {
       "https://joedelbalzo.com/home": 1,
-      "https://joedelbalzo.com/resume": 2,
+      "https://joedelbalzo.com/blog": 2,
       "https://joedelbalzo.com/portfolio": 3,
       "http://localhost:3000/home": 1,
-      "http://localhost:3000/resume": 2,
+      "http://localhost:3000/blog": 2,
       "http://localhost:3000/portfolio": 3,
     };
     setIsActive(activeOptions[window.location.href]);
@@ -53,21 +53,17 @@ const Nav = () => {
           style={{
             color: isActive == 2 ? "#ff5722" : "",
             textShadow: "2px 2px 1px black",
-            // borderBottom: isActive == 2 ? "4px solid #ff5722" : "",
-            // paddingBottom: isActive == 2 ? "10px" : "",
           }}
         >
           Blog
         </a>
         <a
           href="../portfolio"
-          aria-label="Link to Joe Del Balzo's Resume"
+          aria-label="Link to Joe Del Balzo's Portfolio"
           rel="noreferrer noopener"
           style={{
             color: isActive == 3 ? "#ff5722" : "",
             textShadow: "2px 2px 1px black",
-            // borderBottom: isActive == 3 ? "4px solid #ff5722" : "",
-            // paddingBottom: isActive == 3 ? "10px" : "",
           }}
         >
           Portfolio

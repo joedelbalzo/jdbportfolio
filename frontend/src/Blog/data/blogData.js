@@ -2,6 +2,7 @@ import React from "react";
 
 const WhyNow = React.lazy(() => import("../Posts/WhyNow"));
 const WhySwitchToPowershell = React.lazy(() => import("../Posts/WhySwitchToPowershell"));
+const DjangoVsExpress = React.lazy(() => import("../Posts/DjangoVsExpress"));
 
 function slugGen(title) {
   return title
@@ -16,12 +17,12 @@ export const blogPosts = [
     id: "1",
     title: "Why a Blog, and Why Now?",
     tag: "WELCOME",
-    sub: "Teaching makes people better, and how I want to use this space to learn by teaching.",
+    sub: "Teaching makes people better, and I want to use this space to learn by teaching.",
     component: WhyNow,
     image:
       "https://plus.unsplash.com/premium_photo-1720744786849-a7412d24ffbf?q=80&w=2009&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     likes: 0,
-    date: "December 3, 2024",
+    date: "December 1, 2024",
   },
   {
     id: "2",
@@ -33,6 +34,17 @@ export const blogPosts = [
       "https://images.unsplash.com/photo-1530133532239-eda6f53fcf0f?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     likes: 0,
     date: "December 4, 2024",
+  },
+  {
+    id: "3",
+    title: "Django vs. Express and Postgres: A Totally Different Path",
+    tag: "BACKEND: Python vs. JavaScript",
+    sub: "Reflecting on some of the immediate differences I noticed between running the Node.js/Express/Postgres stack I've become used to and running my first Django app",
+    component: DjangoVsExpress,
+    image:
+      "https://images.unsplash.com/photo-1580121521203-ab94824d9382?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    likes: 0,
+    date: "December 9, 2024",
   },
 ];
 
