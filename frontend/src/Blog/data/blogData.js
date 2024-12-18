@@ -3,6 +3,7 @@ import React from "react";
 const WhyNow = React.lazy(() => import("../Posts/WhyNow"));
 const WhySwitchToPowershell = React.lazy(() => import("../Posts/WhySwitchToPowershell"));
 const DjangoVsExpress = React.lazy(() => import("../Posts/DjangoVsExpress"));
+const SoftwareDesignLessons = React.lazy(() => import("../Posts/SoftwareDesignLessons"));
 
 function slugGen(title) {
   return title
@@ -45,6 +46,17 @@ export const blogPosts = [
       "https://images.unsplash.com/photo-1580121521203-ab94824d9382?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     likes: 0,
     date: "December 9, 2024",
+  },
+  {
+    id: "4",
+    title: 'Lessons in Modularity: What a Weekend of "Change Everything" Taught Me About Software Design',
+    tag: "Software Design",
+    sub: "Reflections on Modularity, Security, and Adaptive Design",
+    component: SoftwareDesignLessons,
+    image:
+      "https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Ftid6k0t0m3mwndyfm54p.jpg",
+    likes: 0,
+    date: "December 18, 2024",
   },
 ];
 

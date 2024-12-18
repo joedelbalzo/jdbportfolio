@@ -1,4 +1,31 @@
+import { useEffect } from "react";
+
 function WhySwitchToPowershell() {
+  useEffect(() => {
+    // Backup existing metadata values
+    const originalTitle = document.title;
+    const originalDescription = document.querySelector('meta[name="description"]').content;
+    const originalKeywords = document.querySelector('meta[name="keywords"]').content;
+
+    // Update metadata dynamically for this blog post
+    document.title = "Why I Finally Switched To Powershell";
+
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription)
+      metaDescription.content =
+        "After lots of attempts to run pip install and countless errors, I decided it was finally time to stop emulating a Mac/Bash setup and learn to love the bomb.";
+
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords) metaKeywords.content = "software design, DJANGO, WINDOWS GITBASH, Unix, Mac, Bash, Powershell";
+
+    // Cleanup function to restore original metadata
+    return () => {
+      document.title = originalTitle;
+      if (metaDescription) metaDescription.content = originalDescription;
+      if (metaKeywords) metaKeywords.content = originalKeywords;
+    };
+  }, []);
+
   return (
     <article className="blogposts">
       <header>

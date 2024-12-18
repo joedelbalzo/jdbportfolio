@@ -13,10 +13,10 @@ function BlogHome() {
         {blogPosts.map((post) => (
           <div key={post.slug} className="blog-card">
             <Link to={`/blog/${post.slug}`}>
-              <div class="blog-image-overlay">
+              <div className="blog-image-overlay">
                 <img src={post.image} alt={post.title} className="blog-image" />
               </div>
-              <div class="blog-card-text">
+              <div className="blog-card-text">
                 <p id="blog-card-tag">{post.tag}</p>
                 <h2>{post.title}</h2>
                 <p id="blog-card-date">{post.date}</p>

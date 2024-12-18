@@ -1,4 +1,33 @@
+import { useEffect } from "react";
+
 function DjangoVsExpress() {
+  useEffect(() => {
+    // Backup existing metadata values
+    const originalTitle = document.title;
+    const originalDescription = document.querySelector('meta[name="description"]').content;
+    const originalKeywords = document.querySelector('meta[name="keywords"]').content;
+
+    // Update metadata dynamically for this blog post
+    document.title = "Django vs. Express and Postgres: A Totally Different Path";
+
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription)
+      metaDescription.content =
+        "Reflecting on some of the immediate differences I noticed between running the Node.js/Express/Postgres stack I've become used to and running my first Django app.";
+
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords)
+      metaKeywords.content =
+        "software design, Backend, back end, python, django, express, node, postgres, postgresql, js, javascript, typescript";
+
+    // Cleanup function to restore original metadata
+    return () => {
+      document.title = originalTitle;
+      if (metaDescription) metaDescription.content = originalDescription;
+      if (metaKeywords) metaKeywords.content = originalKeywords;
+    };
+  }, []);
+
   return (
     <article className="blogposts">
       <header>

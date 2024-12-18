@@ -1,4 +1,29 @@
+import { useEffect } from "react";
+
 function WhyNow() {
+  useEffect(() => {
+    // Backup existing metadata values
+    const originalTitle = document.title;
+    const originalDescription = document.querySelector('meta[name="description"]').content;
+    const originalKeywords = document.querySelector('meta[name="keywords"]').content;
+
+    // Update metadata dynamically for this blog post
+    document.title = "Why a Blog, and Why Now?";
+
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) metaDescription.content = "Teaching makes people better, and I want to use this space to learn by teaching.";
+
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords) metaKeywords.content = "software design, react, python, django";
+
+    // Cleanup function to restore original metadata
+    return () => {
+      document.title = originalTitle;
+      if (metaDescription) metaDescription.content = originalDescription;
+      if (metaKeywords) metaKeywords.content = originalKeywords;
+    };
+  }, []);
+
   return (
     <article className="blogposts">
       <header>
@@ -50,7 +75,10 @@ function WhyNow() {
           experiences learning Django while building my latest application, a Next.js front-end with a Django back-end. This project will
           also be my first attempt at a CI/CD pipeline and writing robust unit tests.
         </p>
-        <p>My goal is to keep this blog going for as long as I can. Let’s see where it takes me!</p>
+        <p>
+          My goal is to keep this blog going for as long as I can. It will mostly be able this Python/Django experience, but maybe also
+          about my day job. Let’s see where it takes me!
+        </p>
         <p>
           Thanks for reading! If you’ve made it this far, I’d love to hear your thoughts. Feel free to reach out to my email posted below
           with questions or comments and I'll keep on writing.
