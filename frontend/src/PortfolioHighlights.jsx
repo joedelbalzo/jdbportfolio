@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FadeComponent } from "./FadeComponent";
 import { motion } from "framer-motion";
 
+import valleyGif from "../assets/site-screenshots/valley-homepage-1-30-25.gif";
 import valiScreenshot from "../assets/site-screenshots/Vali_Screenshot.webp";
 import dawnRyanScreenshot from "../assets/site-screenshots/DawnRyan_Screenshot.webp";
 import algoScreenshot from "../assets/site-screenshots/Algo_Screenshot.webp";
@@ -78,11 +79,7 @@ const PortfolioHighlights = () => {
               </div>
               <a href="https://www.valley-arcade.com" aria-label="a link to valley-arcade.com" target="_blank" rel="noopener noreferrer">
                 <div className="image-wrapper">
-                  <img
-                    src={"./assets/site-screenshots/valley-homepage-1-30-25.gif"}
-                    alt="Screenshot of www.valley-arcade.com"
-                    className="portfolio-images odds"
-                  ></img>
+                  <img src={valleyGif} alt="GIF of www.valley-arcade.com" className="portfolio-images odds"></img>
                 </div>
               </a>
             </div>
