@@ -444,12 +444,13 @@ h1 {
 
 #main-portfolioContainer > div > #borderdiv {
   display: grid;
-  grid-template-rows: 80px 1fr;
+  grid-template-rows: 100px 1fr;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  gap: 1rem;
   font-size: calc(14px + 0.8vw);
   line-height: calc(17px + 1vw);
-  width: 90%;
+  width: 95%;
+  /* outline: 12px solid red; */
 }
 
 #main-portfolioContainer > div > #borderdiv > h2 {
@@ -476,7 +477,7 @@ h1 {
 }
 .image-wrapper > .portfolio-images {
   display: block;
-  width: 90%;
+  width: 95%;
   height: auto;
   border-radius: 0.5rem;
   position: relative;
@@ -538,9 +539,9 @@ h1 {
 
 #main-resume > div > h2,
 #main-portfolioContainer > div > #borderdiv > h2 {
-  font-size: calc(14px + 2vw);
-  font-weight: 350;
-  letter-spacing: 1.5px;
+  font-size: calc(12px + 3vw);
+  font-weight: 400;
+  letter-spacing: 0.5px;
   text-transform: capitalize;
   font-variant: small-caps;
   color: var(--main-color-whitesmoke);
@@ -581,7 +582,7 @@ h1 {
 #borderdiv {
   font-size: calc(12px + 1vw);
   font-weight: 350;
-  padding: 2rem;
+  padding: 1rem;
   margin: 1rem auto;
   line-height: 2rem;
   border-radius: 4;

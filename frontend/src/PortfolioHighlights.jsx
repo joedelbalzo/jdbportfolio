@@ -44,6 +44,58 @@ const PortfolioHighlights = () => {
             style={{ width: "100%" }}
           >
             <div id="borderdiv">
+              <h2>Valley Arcade</h2>
+              <div className="portfolio-descriptions odds">
+                <p>
+                  Valley is more than just a gaming studio – it's revolutionizing the arcade experience by combining blockchain technology
+                  with high-quality, engaging games. From seamless blockchain integration to global leaderboards and Web3 arcade cabinets,
+                  Valley is shaping the future of gaming. I was brought on to do a complete redesign of their homepage and some other UI
+                  components, and I'm proud of the result!{" "}
+                </p>
+
+                <span className="devicons-open-and-github">
+                  <span className="devicons-open-and-github" onMouseEnter={() => handleMouseEnter(1)} onMouseLeave={handleMouseLeave}>
+                    <a
+                      href="https://www.valley-arcade.com"
+                      aria-label="a link to valley-arcade.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <OpenWindow style={{ padding: "1rem" }} color={getColor(1)} />
+                    </a>
+                  </span>
+                  {/* <span className="devicons-open-and-github" onMouseEnter={() => handleMouseEnter(2)} onMouseLeave={handleMouseLeave}>
+                    <a
+                      href="https://github.com/joedelbalzo/yhg-assessment"
+                      aria-label="a link to this project's GitHub Repository"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <GitHub style={{ padding: "1rem" }} color={getColor(2)} />
+                    </a> */}
+                  {/* </span> */}
+                </span>
+              </div>
+              <a href="https://www.valley-arcade.com" aria-label="a link to valley-arcade.com" target="_blank" rel="noopener noreferrer">
+                <div className="image-wrapper">
+                  <img
+                    src={"./assets/site-screenshots/valley-homepage-1-30-25.gif"}
+                    alt="Screenshot of www.valley-arcade.com"
+                    className="portfolio-images odds"
+                  ></img>
+                </div>
+              </a>
+            </div>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: "50px" }}
+            whileInView={{ opacity: 1, y: 0 }}
+            id="about-me-paragraph-container"
+            transition={transition}
+            viewport={{ once: true, amount: 0.1 }}
+            style={{ width: "100%" }}
+          >
+            <div id="borderdiv">
               <h2>Your Hidden Genius</h2>
               <div className="portfolio-descriptions evens">
                 <p>
