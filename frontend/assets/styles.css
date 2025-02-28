@@ -833,6 +833,7 @@ h1 {
 
   #about-me-titles {
     width: 100%;
+    font-size: 3rem;
   }
   #about-me-titles:hover::after {
     display: none;
