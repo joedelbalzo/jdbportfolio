@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
-// import { Link } from "react-router-dom";
-// import Login from "./Open-Places/Login";
-// import HomeJava from "./ScriptForJava/App";
-// import Home from "./DropOfCSS/Home";
 
 const Nav = () => {
-  // const [dropdownActive, setDropdownActive] = useState(false);
   const [isActive, setIsActive] = useState(null);
 
   useEffect(() => {

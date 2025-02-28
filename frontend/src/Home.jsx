@@ -15,7 +15,7 @@ const Home = () => {
           </div>
           <div id="main-introParagraph"></div>
         </div>
-        <div style={{ margin: "2rem auto" }} id="socials-mobile">
+        <div id="socials-mobile" style={{ transform: "scale(1.2)" }}>
           <Socials />
         </div>
       </div>
