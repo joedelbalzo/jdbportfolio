@@ -29,20 +29,11 @@ const AboutMe = () => {
           <motion.div
             initial={{ opacity: 0, y: "50px" }}
             whileInView={{ opacity: 1, y: 0 }}
-            id="about-me-paragraph-container"
-            transition={transition}
-            viewport={{ once: true, amount: 0.1 }}
-          >
-            <div id="about-me-titles">About Me</div>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: "50px" }}
-            whileInView={{ opacity: 1, y: 0 }}
             transition={transition}
             viewport={{ once: true, amount: 0.1 }}
           >
             <p id="about-me-paragraphs">
-              Hello! I'm Joe. I love solving technical problems and creating unique, interesting solutions for my clients.
+              Hey, I’m Joe—a software engineer passionate about building clean, efficient, and visually compelling applications.
             </p>
           </motion.div>
           <motion.div
@@ -52,25 +43,31 @@ const AboutMe = () => {
             viewport={{ once: true, amount: 0.1 }}
           >
             <p id="about-me-paragraphs">
-              After over 10 years in the film and television industry as a lighting designer, network architect, and console programmer, I
-              was ready to take my love of technology in a different direction.
-            </p>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: "50px" }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={transition}
-            viewport={{ once: true, amount: 0.1 }}
-          >
-            <p id="about-me-paragraphs">
-              Today, I'm a software engineer at{" "}
+              After a decade in film and TV as a lighting designer and network architect, I transitioned into software engineering. Now, I
+              craft intuitive front-end solutions at{" "}
               <a href="https://thefutureofagency.com" target="_blank" rel="noopener noreferrer">
                 the future of agency
               </a>
-              , a marketing firm for books, authors, and publishers. I spend my time crafting custom front-end solutions that provide our
-              clients with highly responsive websites, outstanding SEO, and creative control over their digital marketing applications.
+              , helping authors and publishers take control of their digital presence.
             </p>
           </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: "50px" }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={transition}
+            viewport={{ once: true, amount: 0.1 }}
+          >
+            <p id="about-me-paragraphs">
+              Beyond that, I like taking on full-stack projects that push the boundaries of performance and scalability. Most recently, I
+              led a front-end architecture overhaul for{" "}
+              <a href="https://valley-arcade.com" target="_blank" rel="noopener noreferrer">
+                Valley Arcade
+              </a>
+              , an innovative Web3 gaming platform. My optimizations cut database query load by 70% and improved API response times by up to
+              80%, cutting page load times by 5-6 seconds while ensuring scalability for 3,000+ active users.
+            </p>
+          </motion.div>
+
           <motion.div
             initial={{ opacity: 0, y: "50px" }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -78,13 +75,25 @@ const AboutMe = () => {
             viewport={{ once: true, amount: 0.1 }}
           >
             <div className="about-me-paragraph-grid-section" id="about-me-paragraphs">
-              <p style={{ width: "100%" }}>
-                When I'm not coding, you'll find me in the backyard with my wife and three year old son. Chances are we're playing in the
-                sandbox or playing hockey in the driveway. I probably have a cold brew (either the upper or the downer, depending on the
-                hour!) on the chair, and nowhere in this house is too far from a guitar.
+              <p id="about-me-paragraphs">
+                Outside of coding, I’m in the backyard with my wife and son, probably playing driveway hockey or making sandcastles. There’s
+                always a guitar nearby and a cold brew (caffeinated or otherwise) within reach.
               </p>
               <img src={familyPhoto} alt="Joe Del Balzo and his family" />
             </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: "50px" }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={transition}
+            viewport={{ once: true, amount: 0.1 }}
+          >
+            <p id="about-me-paragraphs">
+              <a href="../resume" aria-label="Link to Joe Del Balzo's Resume" rel="noreferrer noopener" target="_blank">
+                Check out my resume.
+              </a>
+            </p>
           </motion.div>
         </div>
       </div>

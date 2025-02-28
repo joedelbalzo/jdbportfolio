@@ -13,7 +13,7 @@ html {
   margin: 0;
   padding: 0;
   background-color: #202836;
-  background-image: url("home-background.png");
+  background-image: url("home-background.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: -500px;
@@ -80,6 +80,18 @@ body,
   min-height: 90vh;
   background-position: center calc(20% - 0.2 * var(--scroll-position));
 }
+.home-background-image-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top right,
+    rgba(255, 150, 100, 0.25) 10%,
+    /* Stronger at the center */ rgba(255, 150, 100, 0.15) 30%,
+    /* Softer fade */ transparent 50% /* Fully fades out sooner */
+  );
+  pointer-events: none;
+}
 .recordspinning {
   background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 60%, rgba(0, 0, 0, 0.4) 70%, rgba(0, 0, 0, 0.7) 80%),
     url("recordspinning-webp.webp");
@@ -131,11 +143,14 @@ h1 {
   width: 650px;
   text-shadow: 1px 1px 1px black;
   margin: 0;
+  transition: all 0.2s ease;
 }
 
 #main-name:hover {
   color: rgba(255, 255, 255, 1);
   position: relative;
+  transform: scale(1.1);
+  cursor: default;
 }
 #main-name:hover::after {
   content: "";
@@ -177,7 +192,7 @@ h1 {
 }
 #about-me {
   width: 80%;
-  padding: 2% 0;
+  padding: 5% 0;
   margin: 0 auto 0 10%;
 }
 #about-me-paragraphs {
@@ -189,8 +204,8 @@ h1 {
 
 #about-me-titles {
   width: 60%;
-  margin: 4rem auto;
-  font-size: 3rem;
+  margin: 6rem auto;
+  font-size: 4rem;
   color: whitesmoke;
   text-align: center;
   text-shadow: 2px 2px 2px black;
@@ -254,19 +269,36 @@ h1 {
 .share-buttons > button {
   justify-content: center;
   margin: 8px auto;
-  background: none;
-  background-color: none;
-  border-radius: 0.1rem;
-  transition: outline 0s ease;
-  transition: transform 0.1s ease;
-  border-width: 1px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid transparent;
+  border-radius: 2px;
+  padding: 6px 12px;
+  color: whitesmoke;
+  box-shadow: 0 0 3px rgba(255, 255, 255, 0.2);
+  outline: 2px solid transparent;
+  appearance: none;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
+
+.share-buttons > button svg {
+  stroke: currentColor;
+  fill: currentColor;
+  transition: color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
 .share-buttons > button:hover {
-  outline: 2px solid #ff5722;
+  outline: 2px solid #ff5722 !important;
   outline-offset: -1px;
   cursor: pointer;
   transform: translateY(-3px) scale(1.025);
   box-shadow: 1px 1px 1px 2px #0066ff;
+  border-color: #ff5722 !important;
+}
+
+.share-buttons > button:focus,
+.share-buttons > button:active {
+  outline: 2px solid #ff5722 !important;
+  border: 1px solid #ff5722 !important;
 }
 
 .devicons-open-and-github > a > *:hover {
@@ -966,7 +998,7 @@ h1 {
 
 @media screen and (max-width: 600px) {
   html {
-    background-image: url("home-background.png");
+    background-image: url("home-background.webp");
     background-position: -350px;
   }
   .home-background-image-wrapper {
@@ -2387,7 +2419,7 @@ h5 {
 .main-grid {
   display: grid;
   width: 100%;
-  grid-template-columns: 100px 1fr;
+  grid-template-columns: 150px 1fr;
   min-height: 100vh;
   margin-top: 0px;
   box-sizing: border-box;

@@ -5,7 +5,6 @@ import Nav from "./Nav.jsx";
 import Portfolio from "./Portfolio.jsx";
 import FourOhFour from "./FourOhFour.jsx";
 import Socials from "./Socials.jsx";
-import Footer from "./Footer.jsx";
 import { waveform } from "ldrs";
 import ScrollToTopOnRouteChange from "./Components/ScrollToTop.jsx";
 
@@ -17,6 +16,7 @@ import Fade from "@mui/material/Fade";
 import Box from "@mui/material/Box";
 
 //Lazy
+const Footer = lazy(() => import("./Footer.jsx"));
 const Resume = lazy(() => import("./Resume.jsx"));
 const AScriptForJavaApp = lazy(() => import("./ScriptForJava/App.jsx"));
 const OpenPlacesApp = lazy(() => import("./Open-Places/App.jsx"));
@@ -46,8 +46,9 @@ function ScrollTop(props) {
   };
 
   const handleClick = () => {
-    smoothScrollToTop(200);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
   return (
     <Fade in={trigger}>
       <Box onClick={handleClick} role="presentation" sx={{ position: "fixed", bottom: 24, right: 24, zIndex: 1000 }}>
