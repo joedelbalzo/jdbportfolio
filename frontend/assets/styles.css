@@ -719,6 +719,14 @@ h1 {
     border-bottom-right-radius: 2%;
     background-position: center center;
   }
+  .home-background-image-wrapper::before {
+    background: radial-gradient(
+      circle at top right,
+      rgba(255, 150, 100, 0.2) 5%,
+      /* Smaller & more focused */ rgba(255, 150, 100, 0.1) 15%,
+      /* Softer transition */ transparent 30% /* Fades out quicker */
+    );
+  }
   .recordspinning {
     background-attachment: scroll;
     background-position: center center;
