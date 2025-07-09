@@ -32,52 +32,14 @@ const AboutMe = () => {
             transition={transition}
             viewport={{ once: true, amount: 0.1 }}
           >
-            <p id="about-me-paragraphs">
-              Hey, I’m Joe—a software engineer passionate about building clean, efficient, and visually compelling applications.
-            </p>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: "50px" }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={transition}
-            viewport={{ once: true, amount: 0.1 }}
-          >
-            <p id="about-me-paragraphs">
-              After a decade in film and TV as a lighting designer and network architect, I transitioned into software engineering. Now, I
-              craft intuitive front-end solutions at{" "}
-              <a href="https://thefutureofagency.com" target="_blank" rel="noopener noreferrer">
-                the future of agency
-              </a>
-              , helping authors and publishers take control of their digital presence.
-            </p>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: "50px" }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={transition}
-            viewport={{ once: true, amount: 0.1 }}
-          >
-            <p id="about-me-paragraphs">
-              Beyond that, I like taking on full-stack projects that push the boundaries of performance and scalability. Most recently, I
-              led a front-end architecture overhaul for{" "}
-              <a href="https://valley-arcade.com" target="_blank" rel="noopener noreferrer">
-                Valley Arcade
-              </a>
-              , an innovative Web3 gaming platform. My optimizations cut database query load by 70% and improved API response times by up to
-              80%, cutting page load times by 5-6 seconds while ensuring scalability for 3,000+ active users.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: "50px" }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={transition}
-            viewport={{ once: true, amount: 0.1 }}
-          >
             <div className="about-me-paragraph-grid-section" id="about-me-paragraphs">
               <p id="about-me-paragraphs">
-                Outside of coding, I’m in the backyard with my wife and son, probably playing driveway hockey or making sandcastles. There’s
-                always a guitar nearby and a cold brew (caffeinated or otherwise) within reach.
+                A software engineer who builds fast, thoughtful web apps across industries. From arcade games with thousands of active
+                players to digital platforms for publishers and artists, I focus on performance, clarity, and making things that actually
+                work.. <br />
+                <br />
+                Before tech, I spent a decade designing lighting and building show networks in film and TV—training that shaped how I handle
+                complexity, detail, and timing in everything I build now.{" "}
               </p>
               <img src={familyPhoto} alt="Joe Del Balzo and his family" />
             </div>
@@ -89,15 +51,27 @@ const AboutMe = () => {
             transition={transition}
             viewport={{ once: true, amount: 0.1 }}
           >
+            <p id="about-me-paragraphs" style={{ marginTop: 0 }}>
+              These days, I split my time between writing code, chasing my kid around the yard, and staying just caffeinated enough to keep
+              things running. I’m always open to the next good project—especially the kind that’s fun to build and built to last.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: "50px" }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={transition}
+            viewport={{ once: true, amount: 0.1 }}
+          >
             <p id="about-me-paragraphs">
               <a href="../resume" aria-label="Link to Joe Del Balzo's Resume" rel="noreferrer noopener" target="_blank">
-                Check out my resume.
+                Check out my resume here!
               </a>
             </p>
           </motion.div>
         </div>
       </div>
-      <div className="recordspinning">
+      {/* <div className="recordspinning">
         <div id="about-me-titles" style={{ paddingTop: "8%" }}>
           Languages and Technologies I Love
         </div>
@@ -124,7 +98,7 @@ const AboutMe = () => {
           </p>
           <br />
         </motion.div>
-      </div>
+      </div> */}
       <div className="about-me-container">
         <div style={{ color: "whitesmoke", padding: "0%", margin: "0 auto", width: "90%" }} id="about-me">
           <motion.div

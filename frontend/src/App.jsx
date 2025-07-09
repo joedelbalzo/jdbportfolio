@@ -62,7 +62,8 @@ function ScrollTop(props) {
 
 const App = (props) => {
   return (
-    <div>
+    <div style={{ position: "relative", minHeight: "100vh", zIndex: 0 }}>
+      <div className="fixed-bg" />
       <Nav />
       <div className="main-grid">
         <div className="share-buttons-container">
