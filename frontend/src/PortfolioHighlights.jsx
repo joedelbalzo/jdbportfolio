@@ -45,10 +45,10 @@ const PortfolioHighlights = () => {
           <PortfolioCard
             title="Chef Curtis Duffy"
             description="Website for Michelin-Starred, James Beard Award Winning Chef and now author Curtis Duffy to market his debut book Fireproof: Memoir of a Chef."
-            siteLink="https://www.yourhiddengenius.com"
-            repoLink="https://github.com/joedelbalzo/yhg-assessment"
+            siteLink="https://www.curtisduffy.com"
+            // repoLink="https://github.com/joedelbalzo/yhg-assessment"
             imgSrc={curtisSS}
-            imgAlt="Screenshot of www.yourhiddengenius.com"
+            imgAlt="Screenshot of www.curtisduffy.com"
             isOdd={false}
           />
           {/* <PortfolioCard
