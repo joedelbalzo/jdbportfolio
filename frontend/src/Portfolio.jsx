@@ -23,16 +23,15 @@ const Portfolio = () => {
 
       <div id="main-portfolio">
         <div id="main-portfolioContainer">
-          <div style={{ margin: "0 auto", width: "90%", padding: "1rem" }}>
-            These three applications can be accessed with **username:** "moe" **password:** "123". Feel free to dig in! All are built using
-            the **PERN stack** (PostgreSQL, Express, React, Node) with mostly vanilla CSS and some Material-UI components.
+          <div style={{ margin: "0 auto", width: "90%", padding: "1rem", gridColumn: "1/-1", fontSize: "16px" }}>
+            These three applications below can be accessed with the username "moe" and the password "123". Feel free to dig in! All are
+            built using the **PERN stack** (PostgreSQL, Express, React, Node) with mostly vanilla CSS and some Material-UI components.
           </div>
 
           <PortfolioCard
             title="Drop of CSS"
             description="Drop of CSS is a color palette and element generator for developers and freelancers. 
-              The goal was to provide a simple tool for previewing and downloading UI elements. A great design starts 
-              with cohesive colors and well-crafted components—this app simplifies that process!"
+              The goal was to provide a simple tool for previewing and downloading UI elements."
             siteLink="../dropofcss"
             repoLink="https://github.com/react-cpg-capstone/react-color-gen-capstone"
             imgSrc={cssScreenshot}

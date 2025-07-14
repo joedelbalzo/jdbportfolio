@@ -2,9 +2,11 @@
   --main-color-whitesmoke: whitesmoke;
   --background: #202836;
   --accent-color-blue: #0066ff;
+  --accent-font-blue: #4e95ff;
   --highlight-orange: #ff5722;
   --soft-gray: #737373;
   --font-roboto: "Roboto", sans-serif;
+  --font-grotesk: "Space Grotesk", sans-serif;
   --transition-fast: 0.3s ease;
 }
 
@@ -142,20 +144,25 @@ body,
   z-index: 9000;
   height: 75px;
   padding: 0.5rem 2rem;
+  font-family: var(--font-grotesk);
 }
 
 .main-navbar .name {
   color: #f5f5f5;
+  font-size: 1.8rem;
   padding-left: 2rem;
   position: relative;
   display: inline-block;
   padding-bottom: 0.25rem;
+  font-family: var(--font-grotesk);
 }
 
 .main-navbar a {
   position: relative;
   font-size: calc(12px + 0.8vw);
   font-weight: 300;
+  font-family: var(--font-grotesk);
+
   color: var(--main-color-whitesmoke);
   text-align: center;
   padding: 0.5rem;
@@ -164,10 +171,10 @@ body,
   transition: color 0.3s ease;
   box-sizing: border-box;
 }
-.main-navbar a::after {
+.main-navbar .nav-links a::after {
   content: "";
   position: absolute;
-  bottom: 10px;
+  bottom: 5px;
   left: 50%;
   transform: translateX(-50%) scaleX(0);
   width: 75%;
@@ -185,7 +192,7 @@ body,
   content: "";
   position: absolute;
   bottom: 0; /* Sit flush with the bottom of the text */
-  left: 6%; /* Start flush with the left edge */
+  left: 10%; /* Start flush with the left edge */
   width: 100%; /* Match full width of the name */
   height: 2px;
   background-color: #ff5722;
@@ -241,23 +248,26 @@ body,
 
 .main-name > h1 {
   font-weight: 400;
+  font-family: var(--font-grotesk);
 }
 
 .main-name > h2 {
   font-size: calc(8px + 1vw);
   font-weight: 400;
   text-shadow: 1px 1px 1px black;
+  font-family: var(--font-grotesk);
 }
 
 h1 {
   font-weight: 400;
   color: var(--main-color-whitesmoke);
   margin: 2.5rem 0;
+  font-family: var(--font-grotesk);
 }
 
 #main-name {
   font-size: 48px;
-  width: 450px;
+  width: 475px;
   text-shadow: 1px 1px 1px black;
   margin: 0;
   transition: all 0.5s ease;
@@ -306,12 +316,13 @@ h1 {
 
 #about-me-titles {
   width: 60%;
-  margin: 6rem auto;
+  margin: 3rem auto;
   font-size: 4rem;
   color: whitesmoke;
   text-align: center;
   text-shadow: 2px 2px 2px black;
   position: relative;
+  font-family: var(--font-grotesk);
 }
 
 #about-me-titles:hover {
@@ -357,7 +368,7 @@ h1 {
   box-shadow: 4px 4px #ff5722;
   transition: all 0.2s ease;
   outline: 1px solid gray;
-  width: 65%;
+  width: 70%;
   margin: 0 auto;
 }
 .about-me-paragraph-grid-section > img:hover {
@@ -554,90 +565,74 @@ h1 {
   color: var(--main-color-whitesmoke);
 }
 
-#main-portfolio > p {
-  text-align: left;
-  font-size: 1.5rem;
-  margin: auto;
-  line-height: 1.8rem;
-  outline: 1px solid red;
-}
-
 #main-portfolioContainer {
-  display: flex;
-  flex-wrap: wrap;
-  text-align: left;
-}
-
-#main-portfolioContainer > div > #borderdiv > #main-name {
-  font-size: 40px;
-  width: fit-content;
-  font-style: italic;
-}
-
-#main-portfolioContainer > div > #borderdiv {
+  width: 850px;
   display: grid;
-  grid-template-rows: 100px 1fr;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  font-size: calc(14px + 0.8vw);
-  line-height: calc(17px + 1vw);
-  /* width: 95%; */
-  /* outline: 12px solid red; */
+  grid-template-columns: 400px 400px;
+  gap: 2rem;
+  margin: 0 auto 2rem;
+  align-items: stretch;
 }
 
-#main-portfolioContainer > div > #borderdiv > h2 {
-  grid-column: 1/3;
-  grid-row: 1;
-}
-
-.portfolio-descriptions.odds {
-  grid-row: 2;
-  grid-column: 1;
-}
-
-.portfolio-descriptions.evens {
-  grid-row: 2;
-  grid-column: 2;
-}
-
-.image-wrapper {
+#portfolio-card {
+  height: 100%;
   position: relative;
-  width: fit-content;
-  display: inline-block;
-  margin: 2rem auto 2rem;
-  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding: 1rem;
+  background: #111;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0 0 0px rgba(0, 0, 0, 0);
+  border: 1px solid var(--highlight-orange);
+  box-shadow: 4px 4px 0px 4px var(--highlight-orange);
 }
-.image-wrapper > .portfolio-images {
-  display: block;
-  width: 95%;
-  height: auto;
-  border-radius: 0.5rem;
+
+#portfolio-card .image-wrapper {
   position: relative;
   overflow: hidden;
-  align-content: center;
+  border-radius: 10px;
+  aspect-ratio: 16 / 9;
+  padding-bottom: 1rem;
 }
 
-.image-wrapper > .odds {
-  grid-column: 2;
-  align-content: center;
+#portfolio-card .image-wrapper img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  will-change: transform;
 }
 
-.image-wrapper > .evens {
-  grid-column: 1;
-  align-content: center;
+#portfolio-card:hover .image-wrapper img {
+  transform: scale(1.02);
 }
-.image-wrapper > img {
-  justify-content: center;
-  align-items: center;
-  border-radius: 1rem;
-  box-shadow: 4px 4px #ff5722;
-  transition: all 0.2s ease;
-  outline: 1px solid gray;
+
+#portfolio-card h2 {
+  font-size: calc(12px + 2vw);
+  font-weight: 400;
+  font-family: var(--font-grotesk);
+  letter-spacing: -1px;
+  color: var(--main-color-whitesmoke);
+  width: fit-content;
+  text-align: left;
+  margin: 0;
+  padding: 0;
 }
-.image-wrapper > img:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 8px 8px #ff5722dd;
-  outline: 1px solid #ff5722;
+#portfolio-card h3 {
+  flex-grow: 1;
+  font-size: calc(12px + 0.5vw);
+  font-weight: 400;
+  /* font-family: var(--font-grotesk); */
+  letter-spacing: -1px;
+  color: var(--accent-font-blue);
+  width: fit-content;
+  text-align: left;
+  margin: 0;
+  padding: 0;
 }
 
 .resume-header > h1 {
@@ -669,8 +664,7 @@ h1 {
   border-radius: 2rem;
 }
 
-#main-resume > div > h2,
-#main-portfolioContainer > div > #borderdiv > h2 {
+#main-resume > div > h2 {
   font-size: calc(12px + 3vw);
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -681,13 +675,11 @@ h1 {
   margin: 2rem auto;
 }
 
-#main-resume > div > h2:hover,
-#main-portfolioContainer > #borderdiv > h2:hover {
+#main-resume > div > h2:hover {
   color: rgba(255, 255, 255, 1);
   position: relative;
 }
-#main-resume > div > h2:hover::after,
-#main-portfolioContainer > #borderdiv > h2:hover::after {
+#main-resume > div > h2:hover::after {
   content: "";
   position: absolute;
   left: 0;
@@ -769,13 +761,6 @@ h1 {
 
 .devicons {
   width: 100%;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  justify-items: center;
 }
 
 .devicons > img {
@@ -786,9 +771,16 @@ h1 {
   filter: drop-shadow(2px 2px 2px #272a2f);
 }
 
+.devicons-open-and-github {
+  padding-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .devicons-open-and-github > * {
   padding: 0 1rem 0 0;
   cursor: pointer;
+  /* border: 10px solid red; */
 }
 
 @media screen and (max-width: 800px) {
@@ -858,14 +850,15 @@ h1 {
   }
   .main-navbar .name {
     position: absolute;
-    left: 48%;
+    left: 50%;
     transform: translateX(-50%);
     padding: 0;
   }
-  .name {
+  .name > a {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: clip;
+    /* padding-left: 1rem; */
     font-size: clamp(1.5rem, 1.75rem, 2rem);
   }
 
@@ -892,6 +885,7 @@ h1 {
   #main-portfolioDescription {
     text-align: left;
     max-width: 90%;
+    padding: 2rem 0;
   }
 
   #main-name {
@@ -972,7 +966,7 @@ h1 {
     border-radius: 1rem;
     grid-column: 1;
     grid-row: 1;
-    width: 75%;
+    width: 95%;
   }
 
   .main-form {
@@ -1043,72 +1037,8 @@ h1 {
     background-size: calc(70px + 8vw) calc(25px + 2vh);
   }
 
-  #main-portfolioContainer > div > #borderdiv {
-    padding: 0 1rem;
-    display: grid;
-    grid-template-rows: 40px auto auto;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    font-size: calc(14px + 0.8vw);
-    line-height: calc(20px + 1vw);
-  }
-
-  #main-portfolioContainer > div > #borderdiv > h2 {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
-  .portfolio-descriptions.odds {
-    grid-row: 2;
-    grid-column: 1;
-    margin: auto;
-  }
-
-  .portfolio-descriptions.evens {
-    grid-row: 2;
-    grid-column: 1;
-    margin: auto;
-    justify-items: center;
-    align-items: center;
-  }
-
-  .image-wrapper > .odds {
-    grid-column: 1;
-    grid-row: 3;
-    margin: auto;
-  }
-
-  .image-wrapper > .evens {
-    grid-column: 1;
-    grid-row: 3;
-    margin: auto;
-  }
-
-  .image-wrapper > .portfolio-images {
-    width: 95%;
-  }
-
-  .image-wrapper > img {
-    justify-content: center;
-    align-items: center;
-    border-radius: 1rem;
-    box-shadow: 4px 4px #ff5722;
-    transition: all 0.2s ease;
-    outline: 1px solid gray;
-  }
-  .image-wrapper > img:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 8px 8px #ff5722dd;
-    outline: 1px solid #ff5722;
-  }
-
   .devicons {
     width: 90%;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
   }
 
   .devicons > img {
@@ -1117,13 +1047,58 @@ h1 {
     border-radius: 8px;
     margin: 8px;
   }
+  #main-portfolioContainer {
+    width: 650px;
+    display: grid;
+    grid-template-columns: 300px 300px;
+    gap: 2rem;
+    margin: 0 auto 2rem;
+    align-items: stretch;
+  }
 }
 
 @media screen and (max-width: 600px) {
+  #main-portfolioContainer {
+    width: 400px;
+    display: grid;
+    grid-template-columns: 400px;
+    gap: 2rem;
+    margin: 0 auto 2rem;
+    align-items: stretch;
+  }
+  .main-navbar .name::after {
+    content: "";
+    position: absolute;
+    bottom: 0; /* Sit flush with the bottom of the text */
+    left: 0%; /* Start flush with the left edge */
+    width: 100%; /* Match full width of the name */
+    height: 2px;
+    background-color: #ff5722;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.4s ease;
+  }
 }
 @media screen and (max-width: 450px) {
   #main-name {
     display: block;
+  }
+  #main-portfolioContainer {
+    width: 300px;
+    display: grid;
+    grid-template-columns: 300px;
+    gap: 2rem;
+    margin: 0 auto 2rem;
+    align-items: stretch;
+  }
+  #portfolio-card h2 {
+    font-size: calc(24px + 2vw);
+    margin: 1rem 0;
+    font-weight: 400;
+    letter-spacing: 0px;
+  }
+  #portfolio-card h3 {
+    font-size: calc(16px + 1vw);
   }
 }
 
@@ -1165,11 +1140,11 @@ script for java
   height: 100%;
   object-fit: cover;
 }
-h2 {
+/* h2 {
   padding: 1rem 2rem 0;
   text-align: center;
   color: #004c60;
-}
+} */
 #scriptforjava-login {
   text-align: center;
   margin: 1rem auto;

@@ -57,12 +57,12 @@ const Nav = () => {
           justifyContent: "space-between",
         }}
       >
-        <span className="name">Joe Del Balzo</span>
+        <span className="name">
+          {" "}
+          <a href="../home">Joe Del Balzo</a>
+        </span>
 
         <div className="nav-links">
-          <a href="../home" style={{ color: isActive === 1 ? "#ff5722" : "", textShadow: "2px 2px 1px black" }}>
-            Home
-          </a>
           <a href="https://www.linkedin.com/in/joe-delbalzo/" target="_blank" rel="noreferrer noopener">
             LinkedIn
           </a>

@@ -108,7 +108,7 @@ const AboutMe = () => {
             transition={transition}
             viewport={{ once: true, amount: 0.1 }}
           >
-            <div id="about-me-titles">Portfolio Highlights</div>
+            <div id="about-me-titles">Portfolio</div>
           </motion.div>
 
           <PortfolioHighlights />
