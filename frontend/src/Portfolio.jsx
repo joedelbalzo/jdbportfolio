@@ -21,7 +21,7 @@ const Portfolio = () => {
 
       <PortfolioHighlights />
 
-      <div id="main-portfolio">
+      {/* <div id="main-portfolio">
         <div id="main-portfolioContainer">
           <div style={{ margin: "0 auto", width: "90%", padding: "1rem", gridColumn: "1/-1", fontSize: "16px" }}>
             These three applications below can be accessed with the username "moe" and the password "123". Feel free to dig in! All are
@@ -64,7 +64,7 @@ const Portfolio = () => {
             isOdd={false}
           />
         </div>
-      </div>
+      </div> */}
       <br />
     </FadeComponent>
   );
