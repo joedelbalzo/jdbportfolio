@@ -27,10 +27,10 @@ const PortfolioHighlights = () => {
           />
           <PortfolioCard
             title="Poetry Daily"
-            description="An online Gaming Studio and Arcade designed for both the Web3 and the Physical Arcade Cabinet audience."
+            description="Poetry Daily is an anthology of contemporary poetry. I joined this team to redesign their News and Hot off the Presses APIs."
             siteLink="https://www.poems.com"
             imgSrc={poemsSS}
-            imgAlt="image of www.valley-arcade.com"
+            imgAlt="image of www.poems.com"
             isOdd={true}
           />
           <PortfolioCard
