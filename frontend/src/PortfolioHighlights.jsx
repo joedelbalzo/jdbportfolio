@@ -6,6 +6,7 @@ import valiScreenshot from "../assets/site-screenshots/Vali_Screenshot.webp";
 import dawnRyanScreenshot from "../assets/site-screenshots/DawnRyan_Screenshot.webp";
 import algoScreenshot from "../assets/site-screenshots/Algo_Screenshot.webp";
 import yhgScreenshot from "../assets/site-screenshots/YHG-ss.webp";
+import CSAScreenshot from "../assets/site-screenshots/CSA_Screenshot.webp";
 import PortfolioCard from "./PortfolioCard";
 
 import valleyScreenshot from "../assets/site-screenshots/valley-ss.png";
@@ -34,6 +35,15 @@ const PortfolioHighlights = () => {
             isOdd={true}
           />
           <PortfolioCard
+            title="Cynthia St. Aubin"
+            description="Website for USA Today Bestselling author Cynthia St. Aubin."
+            siteLink="https://www.cynthiastaubin.com"
+            // repoLink="https://github.com/joedelbalzo/yhg-assessment"
+            imgSrc={CSAScreenshot}
+            imgAlt="Screenshot of www.yourhiddengenius.com"
+            isOdd={false}
+          />
+          <PortfolioCard
             title="Your Hidden Genius"
             description="Website for authors Betsy Wills and Alex Ellison to market their debut book Your Hidden Genius."
             siteLink="https://www.yourhiddengenius.com"
@@ -44,7 +54,7 @@ const PortfolioHighlights = () => {
           />
           <PortfolioCard
             title="Chef Curtis Duffy"
-            description="Website for Michelin-Starred, James Beard Award Winning Chef and now author Curtis Duffy to market his debut book Fireproof: Memoir of a Chef."
+            description="Website for Michelin-Starred, James Beard Award Winning Chef and now USA Today Bestselling author Curtis Duffy to market his debut book Fireproof: Memoir of a Chef."
             siteLink="https://www.curtisduffy.com"
             // repoLink="https://github.com/joedelbalzo/yhg-assessment"
             imgSrc={curtisSS}
