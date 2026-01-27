@@ -18,12 +18,13 @@ import Box from "@mui/material/Box";
 //Lazy
 const Footer = lazy(() => import("./Footer.jsx"));
 const Resume = lazy(() => import("./Resume.jsx"));
-const AScriptForJavaApp = lazy(() => import("./ScriptForJava/App.jsx"));
-const OpenPlacesApp = lazy(() => import("./Open-Places/App.jsx"));
-const CssApp = lazy(() => import("./DropOfCSS/App.jsx"));
-const LetsChatApp = lazy(() => import("./WebRTC/App.jsx"));
-const BlogHome = lazy(() => import("./Blog/BlogHome.jsx"));
-const BlogPost = lazy(() => import("./Blog/BlogPost.jsx"));
+// Legacy app imports (hidden - restorable)
+// const AScriptForJavaApp = lazy(() => import("./ScriptForJava/App.jsx"));
+// const OpenPlacesApp = lazy(() => import("./Open-Places/App.jsx"));
+// const CssApp = lazy(() => import("./DropOfCSS/App.jsx"));
+// const BlogHome = lazy(() => import("./Blog/BlogHome.jsx"));
+// const BlogPost = lazy(() => import("./Blog/BlogPost.jsx"));
+// WebRTC deleted
 
 waveform.register();
 
@@ -62,7 +63,7 @@ function ScrollTop(props) {
 
 const App = (props) => {
   return (
-    <div style={{ position: "relative", minHeight: "100vh", zIndex: 0 }}>
+    <div className="app-wrapper">
       <div className="fixed-bg" />
       <Nav />
       <div className="main-grid">
@@ -84,12 +85,13 @@ const App = (props) => {
               <Route path="/home" element={<Home />} />
               <Route path="/resume" element={<Resume />} />
               <Route path="/portfolio" element={<Portfolio />} />
-              <Route path="/dropofcss/*" element={<CssApp />} />
-              <Route path="/scriptforjava/*" element={<AScriptForJavaApp />} />
-              <Route path="/openplaces/*" element={<OpenPlacesApp />} />
-              <Route path="/letschat/*" element={<LetsChatApp />} />
-              <Route path="/blog" element={<BlogHome />} />
-              <Route path="/blog/:slug" element={<BlogPost />} />
+              {/* Legacy app routes (hidden - restorable) */}
+              {/* <Route path="/dropofcss/*" element={<CssApp />} /> */}
+              {/* <Route path="/scriptforjava/*" element={<AScriptForJavaApp />} /> */}
+              {/* <Route path="/openplaces/*" element={<OpenPlacesApp />} /> */}
+              {/* <Route path="/blog" element={<BlogHome />} /> */}
+              {/* <Route path="/blog/:slug" element={<BlogPost />} /> */}
+              {/* WebRTC deleted */}
               <Route path="/*" element={<FourOhFour />} />
             </Routes>
           </Suspense>

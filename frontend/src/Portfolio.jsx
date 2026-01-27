@@ -1,16 +1,19 @@
-import React, { Suspense, lazy } from "react";
+import React from "react";
+// import { Suspense, lazy } from "react"; // unused with legacy apps hidden
 import { FadeComponent } from "./FadeComponent";
 import { Link } from "react-router-dom";
 
-import cssScreenshot from "../assets/site-screenshots/CSS_Screenshot.webp";
-import openScreenshot from "../assets/site-screenshots/OpenPlaces_Screenshot.webp";
-import scriptScreenshot from "../assets/site-screenshots/Script_Screenshot.webp";
+// Legacy app screenshots (hidden - restorable)
+// import cssScreenshot from "../assets/site-screenshots/CSS_Screenshot.webp";
+// import openScreenshot from "../assets/site-screenshots/OpenPlaces_Screenshot.webp";
+// import scriptScreenshot from "../assets/site-screenshots/Script_Screenshot.webp";
 import PortfolioHighlights from "./PortfolioHighlights";
-import PortfolioCard from "./PortfolioCard";
+// import PortfolioCard from "./PortfolioCard";
 
-const HomeJava = lazy(() => import("./ScriptForJava/App"));
-const Login = lazy(() => import("./Open-Places/Auth/Login"));
-const Home = lazy(() => import("./DropOfCSS/Home"));
+// Legacy app lazy imports (hidden - restorable)
+// const HomeJava = lazy(() => import("./ScriptForJava/App"));
+// const Login = lazy(() => import("./Open-Places/Auth/Login"));
+// const Home = lazy(() => import("./DropOfCSS/Home"));
 
 const Portfolio = () => {
   return (
