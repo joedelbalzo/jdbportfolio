@@ -1,0 +1,1 @@
+import{j as e}from"./index-8efe845d.js";const r=()=>e.jsx(e.Fragment,{children:e.jsx("div",{style:{fontSize:"calc(6px + .5vw)",color:"rgb(200,200,200)",paddingTop:"2rem",paddingBottom:"1rem"},children:e.jsx("p",{children:"© Joe Del Balzo, 2024. Email me at jdelbalzo99@gmail.com."})})});export{r as default};
