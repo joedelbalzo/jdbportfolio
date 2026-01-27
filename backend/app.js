@@ -3,6 +3,7 @@ const app = express();
 const path = require("path");
 const appAlgo = require("./api/algorhythm");
 const appVali = require("./api/vali/index.js");
+const appAgent = require("./api/agent/index.js");
 const cors = require("cors");
 const { warmSite } = require("./siteWarmer");
 const bodyParser = require("body-parser");
@@ -66,6 +67,7 @@ app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 app.use("/api/algorhythm", restrictAccess, appAlgo);
 app.use("/api/vali/", restrictValiAccess, appVali);
+app.use("/api/agent/", appAgent);
 
 // Script for Java routes (hidden - restorable)
 // app.use("/api/script/reviews", require("./api/script/reviews"));

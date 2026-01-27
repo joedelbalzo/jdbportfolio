@@ -18,6 +18,7 @@ import Box from "@mui/material/Box";
 //Lazy
 const Footer = lazy(() => import("./Footer.jsx"));
 const Resume = lazy(() => import("./Resume.jsx"));
+const Dashboard = lazy(() => import("./Dashboard/Dashboard.jsx"));
 // Legacy app imports (hidden - restorable)
 // const AScriptForJavaApp = lazy(() => import("./ScriptForJava/App.jsx"));
 // const OpenPlacesApp = lazy(() => import("./Open-Places/App.jsx"));
@@ -85,6 +86,7 @@ const App = (props) => {
               <Route path="/home" element={<Home />} />
               <Route path="/resume" element={<Resume />} />
               <Route path="/portfolio" element={<Portfolio />} />
+              <Route path="/dashboard" element={<Dashboard />} />
               {/* Legacy app routes (hidden - restorable) */}
               {/* <Route path="/dropofcss/*" element={<CssApp />} /> */}
               {/* <Route path="/scriptforjava/*" element={<AScriptForJavaApp />} /> */}

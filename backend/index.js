@@ -6,6 +6,7 @@ const conn = require("./db/conn");
 // const { syncAndSeedCss, CssUser, Component, Template, Palette } = require("./db/cssDB");
 const { syncAndSeedAlgo, Question, CodingQuestion } = require("./db/algorhythmDB");
 const { syncAndSeedVali } = require("./db/valiDB");
+const { syncAndSeedAgent } = require("./db/agentDB");
 
 const cors = require("cors");
 app.use(cors());
@@ -42,6 +43,12 @@ const init = async () => {
       await syncAndSeedVali();
     } catch (err) {
       console.log("err syncing vali");
+    }
+
+    try {
+      await syncAndSeedAgent();
+    } catch (err) {
+      console.log("err syncing agent");
     }
 
     const port = process.env.PORT || 5000;
