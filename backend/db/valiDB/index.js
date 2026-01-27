@@ -1,9 +1,8 @@
 const conn = require("../conn");
-const { User, Blogpost, Tag, Image, Business, MailingListUser, FinancialInfo } = require("./Models");
-const { encrypt, decrypt } = require("./Models/FinancialInfo");
+const {User, Blogpost, Tag, Image, Business, MailingListUser, FinancialInfo} = require("./Models");
+const {encrypt, decrypt} = require("./Models/FinancialInfo");
 const path = require("path");
-const { faker } = require("@faker-js/faker");
-require("dotenv").config({ path: path.resolve(__dirname, "../..", ".env") });
+require("dotenv").config({path: path.resolve(__dirname, "../..", ".env")});
 const SeededPosts = require("./SeedData/Blogs");
 const SeededImages = require("./SeedData/Images");
 
@@ -38,12 +37,12 @@ const syncAndSeedVali = async () => {
 
     const [growthStrategies, valuationsAndBenchmarks, equityAndDebt, financingInsights, marketAnalysis, competitiveEdge] =
       await Promise.all([
-        Tag.create({ name: "Growth Strategies" }),
-        Tag.create({ name: "Valuations and Benchmarks" }),
-        Tag.create({ name: "Equity and Debt" }),
-        Tag.create({ name: "Financing Insights" }),
-        Tag.create({ name: "Market Analysis" }),
-        Tag.create({ name: "Competitive Edge" }),
+        Tag.create({name: "Growth Strategies"}),
+        Tag.create({name: "Valuations and Benchmarks"}),
+        Tag.create({name: "Equity and Debt"}),
+        Tag.create({name: "Financing Insights"}),
+        Tag.create({name: "Market Analysis"}),
+        Tag.create({name: "Competitive Edge"}),
       ]);
 
     await Promise.all([
