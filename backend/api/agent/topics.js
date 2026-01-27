@@ -7,7 +7,7 @@ const { isAgentLoggedIn } = require("./middleware");
 router.get("/", isAgentLoggedIn, async (req, res, next) => {
   try {
     const topics = await Topic.findAll({
-      where: { agentuserI: req.user.id },
+      where: { agentuserId: req.user.id },
       order: [["keyword", "ASC"]],
     });
     res.send(topics);
@@ -30,7 +30,7 @@ router.post("/", isAgentLoggedIn, async (req, res, next) => {
     const topic = await Topic.create({
       keyword: keyword.toLowerCase().trim(),
       isActive: isActive !== undefined ? isActive : true,
-      agentuserI: req.user.id,
+      agentuserId: req.user.id,
     });
 
     res.status(201).send(topic);
@@ -43,7 +43,7 @@ router.post("/", isAgentLoggedIn, async (req, res, next) => {
 router.put("/:id", isAgentLoggedIn, async (req, res, next) => {
   try {
     const topic = await Topic.findOne({
-      where: { id: req.params.id, agentuserI: req.user.id },
+      where: { id: req.params.id, agentuserId: req.user.id },
     });
 
     if (!topic) {
@@ -68,7 +68,7 @@ router.put("/:id", isAgentLoggedIn, async (req, res, next) => {
 router.delete("/:id", isAgentLoggedIn, async (req, res, next) => {
   try {
     const topic = await Topic.findOne({
-      where: { id: req.params.id, agentuserI: req.user.id },
+      where: { id: req.params.id, agentuserId: req.user.id },
     });
 
     if (!topic) {

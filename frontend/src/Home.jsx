@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React, {useEffect, useRef} from "react";
 import Footer from "./Footer";
 import Socials from "./Socials";
 import AboutMe from "./AboutMe";
-import { FadeComponent } from "./FadeComponent";
+import {FadeComponent} from "./FadeComponent";
 
 const Home = () => {
   return (
@@ -18,8 +18,8 @@ const Home = () => {
         <div class="soft-glow glow-orange pos-glow-8"></div>
         <div class="soft-glow glow-blue pos-glow-9"></div>
         <div class="soft-glow glow-orange pos-glow-10"></div>
-        <div class="soft-glow glow-blue pos-glow-11"></div>
-        <div class="soft-glow glow-orange pos-glow-12"></div>
+        <div class="soft-glow glow-blue pos-glow-11" style={{position: "fixed", bottom: "-200px"}}></div>
+        <div class="soft-glow glow-orange pos-glow-12" style={{position: "fixed", bottom: "-200px"}}></div>
 
         <div className="home-content">
           <div className="main-name">
@@ -29,7 +29,7 @@ const Home = () => {
       </div>
 
       <AboutMe />
-      <div style={{ margin: "2rem auto" }} id="socials-mobile">
+      <div style={{margin: "2rem auto"}} id="socials-mobile">
         <Socials />
       </div>
     </FadeComponent>

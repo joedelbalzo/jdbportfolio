@@ -1,11 +1,11 @@
-import React, { Suspense, lazy } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import React, {Suspense, lazy} from "react";
+import {Routes, Route, Link} from "react-router-dom";
 import Home from "./Home.jsx";
 import Nav from "./Nav.jsx";
 import Portfolio from "./Portfolio.jsx";
 import FourOhFour from "./FourOhFour.jsx";
 import Socials from "./Socials.jsx";
-import { waveform } from "ldrs";
+import {waveform} from "ldrs";
 import ScrollToTopOnRouteChange from "./Components/ScrollToTop.jsx";
 
 //mui
@@ -30,7 +30,7 @@ const Dashboard = lazy(() => import("./Dashboard/Dashboard.jsx"));
 waveform.register();
 
 function ScrollTop(props) {
-  const { children } = props;
+  const {children} = props;
 
   const trigger = useScrollTrigger({
     target: window,
@@ -48,19 +48,17 @@ function ScrollTop(props) {
   };
 
   const handleClick = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({top: 0, behavior: "smooth"});
   };
 
   return (
     <Fade in={trigger}>
-      <Box onClick={handleClick} role="presentation" sx={{ position: "fixed", bottom: 24, right: 24, zIndex: 1000 }}>
+      <Box onClick={handleClick} role="presentation" sx={{position: "fixed", bottom: 24, right: 24, zIndex: 1000}}>
         {children}
       </Box>
     </Fade>
   );
 }
-
-// Default values shown
 
 const App = (props) => {
   return (
@@ -75,11 +73,10 @@ const App = (props) => {
         <div className="main-content">
           <Suspense
             fallback={
-              <div style={{ margin: "10% auto" }}>
+              <div style={{margin: "10% auto"}}>
                 <l-waveform size="45" stroke="4.5" speed="1" color="#ff5722"></l-waveform>
               </div>
-            }
-          >
+            }>
             <ScrollToTopOnRouteChange />
             <Routes>
               <Route path="/" element={<Home />} />
@@ -116,13 +113,12 @@ const App = (props) => {
               },
             }}
             className="scroll-button"
-            aria-label="scroll back to top"
-          >
+            aria-label="scroll back to top">
             <ArrowUpwardOutlinedIcon />
           </Fab>
         </ScrollTop>
       </div>
-      <div style={{ margin: "0 auto" }}>
+      <div style={{margin: "0 auto"}}>
         <Footer />
       </div>
     </div>

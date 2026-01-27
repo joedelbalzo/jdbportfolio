@@ -5,17 +5,16 @@ const appAlgo = require("./api/algorhythm");
 const appVali = require("./api/vali/index.js");
 const appAgent = require("./api/agent/index.js");
 const cors = require("cors");
-const { warmSite } = require("./siteWarmer");
+const {warmSite} = require("./siteWarmer");
 const bodyParser = require("body-parser");
 
 app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 
 warmSite("https://www.dawngryan.com");
 warmSite("https://www.joinvali.com");
-console.log("warming");
 
 //middleware
 const restrictAccess = (req, res, next) => {

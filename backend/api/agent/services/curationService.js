@@ -11,15 +11,14 @@ const anthropic = new Anthropic({
  * Curate articles using Claude AI
  * Filters out low-quality, irrelevant, or off-topic content
  * @param {Array} articles - Array of article objects to curate
- * @param {Array} topics - Array of topic keywords user cares about
+ * @param {string} topicKeywords - Comma-separated topic keywords
  * @returns {Promise<Array>} - Curated articles with AI scores and summaries
  */
-const curateArticles = async (articles, topics = []) => {
+const curateArticles = async (articles, topicKeywords = "") => {
   if (!articles || articles.length === 0) {
     return [];
   }
 
-  const topicKeywords = topics.map((t) => t.keyword || t).join(", ");
   const curatedArticles = [];
 
   // Process articles in batches to avoid rate limits
@@ -32,12 +31,11 @@ const curateArticles = async (articles, topics = []) => {
         try {
           return await curateArticle(article, topicKeywords);
         } catch (error) {
-          console.error(`Failed to curate article "${article.title}":`, error.message);
           // If AI curation fails, default to including the article with low score
           return {
             ...article,
             relevanceScore: 5,
-            aiSummary: "AI curation unavailable - included by default",
+            aiSummary: "AI curation unavailable",
             isRelevant: true,
           };
         }
@@ -99,7 +97,7 @@ Be strict - only approve high-signal content.`;
 
   try {
     const message = await anthropic.messages.create({
-      model: "claude-3-5-sonnet-20241022",
+      model: "claude-sonnet-4-5-20250929",
       max_tokens: 200,
       temperature: 0.3,
       messages: [
@@ -135,7 +133,6 @@ Be strict - only approve high-signal content.`;
       rejectionReason: !curation.isRelevant ? curation.reason : null,
     };
   } catch (error) {
-    console.error(`AI curation error for "${article.title}":`, error.message);
     throw error;
   }
 };
@@ -207,7 +204,7 @@ Be strict - only approve high-signal content.`;
 
   try {
     const message = await anthropic.messages.create({
-      model: "claude-3-5-sonnet-20241022",
+      model: "claude-sonnet-4-5-20250929",
       max_tokens: 1500,
       temperature: 0.3,
       messages: [
@@ -249,9 +246,14 @@ Be strict - only approve high-signal content.`;
       })
       .filter((article) => article && article.isRelevant);
   } catch (error) {
-    console.error("Batch AI curation error:", error.message);
-    // Fallback to individual curation if batch fails
-    return await curateArticles(articles, topicKeywords);
+    console.log(`AI curation unavailable, including all ${articles.length} articles with default relevance`);
+    // Fallback: include all articles with default score
+    return articles.map(article => ({
+      ...article,
+      relevanceScore: 5,
+      aiSummary: "AI curation unavailable",
+      isRelevant: true,
+    }));
   }
 };
 
