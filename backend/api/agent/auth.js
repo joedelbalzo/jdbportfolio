@@ -1,6 +1,6 @@
 const express = require("express");
 const authRoutes = express.Router();
-const {AgentUser} = require("../../db/agentDB");
+const {AgentUser, Topic} = require("../../db/agentDB");
 const {isAgentLoggedIn} = require("./middleware");
 const path = require("path");
 const bcrypt = require("bcrypt");
@@ -52,7 +52,7 @@ passport.use(
         }
 
         // Find or create user
-        const [user] = await AgentUser.findOrCreate({
+        const [user, created] = await AgentUser.findOrCreate({
           where: {googleId: profile.id},
           defaults: {
             email: email,
@@ -61,6 +61,18 @@ passport.use(
             isActive: true,
           },
         });
+
+        // Create default topics for new users
+        if (created) {
+          const defaultTopics = ["api", "nestjs", "http", "microservices", "nodejs", "rest"];
+          for (const keyword of defaultTopics) {
+            await Topic.create({
+              keyword,
+              isActive: true,
+              agentuserId: user.id,
+            });
+          }
+        }
 
         return done(null, user);
       } catch (err) {

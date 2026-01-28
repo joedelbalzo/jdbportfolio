@@ -12,12 +12,17 @@ const Feed = conn.define("feed", {
     allowNull: false,
   },
   sourceType: {
-    type: ENUM("reddit", "hackernews", "stackoverflow"),
+    type: ENUM("reddit", "hackernews", "stackoverflow", "blog"),
     allowNull: false,
   },
   subreddit: {
     type: STRING,
     allowNull: true,
+  },
+  rssUrl: {
+    type: STRING,
+    allowNull: true,
+    comment: "RSS/Atom feed URL for blog sources",
   },
   isActive: {
     type: BOOLEAN,

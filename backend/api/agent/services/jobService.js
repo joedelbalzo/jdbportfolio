@@ -85,7 +85,7 @@ const fetchHackerNews = async (feed) => {
     throw new Error("Invalid Hacker News API response");
   }
 
-  const storyIds = topStoriesResponse.data.slice(0, 30);
+  const storyIds = topStoriesResponse.data.slice(0, 100);
 
   const articles = await Promise.all(
     storyIds.map(async (id) => {
@@ -165,9 +165,86 @@ const fetchStackOverflow = async (feed, topics) => {
     .filter((article) => article.title);
 };
 
+/**
+ * Fetch blog posts from RSS/Atom feeds
+ * @param {Object} feed - Feed object with rssUrl property
+ * @returns {Promise<Array>} - Array of article objects
+ */
+const fetchBlogRSS = async (feed) => {
+  if (!feed.rssUrl) {
+    throw new Error("RSS URL is required for blog feeds");
+  }
+
+  const response = await withRetry(() =>
+    axios.get(feed.rssUrl, {
+      headers: {
+        "User-Agent": "AgentPlatform/1.0",
+      },
+      timeout: 10000,
+    })
+  );
+
+  const xml = response.data;
+  const articles = [];
+
+  // Simple RSS/Atom parser using regex
+  const items = xml.match(/<item>[\s\S]*?<\/item>|<entry>[\s\S]*?<\/entry>/g) || [];
+
+  const daysAgo = 60; // Only get articles from last 60 days
+  const cutoffDate = new Date(Date.now() - daysAgo * 24 * 60 * 60 * 1000);
+
+  for (const item of items) {
+    try {
+      const titleMatch = item.match(/<title(?:[^>]*)>(.*?)<\/title>/s);
+      const linkMatch = item.match(/<link(?:[^>]*)>(.*?)<\/link>|<link[^>]*href="([^"]+)"/);
+      const dateMatch =
+        item.match(/<pubDate>(.*?)<\/pubDate>/) ||
+        item.match(/<published>(.*?)<\/published>/) ||
+        item.match(/<updated>(.*?)<\/updated>/);
+      const descMatch =
+        item.match(/<description(?:[^>]*)>(.*?)<\/description>/s) ||
+        item.match(/<summary(?:[^>]*)>(.*?)<\/summary>/s) ||
+        item.match(/<content(?:[^>]*)>(.*?)<\/content>/s);
+
+      if (!titleMatch) continue;
+
+      const title = titleMatch[1].replace(/<!\[CDATA\[(.*?)\]\]>/, "$1").trim();
+      const url = (linkMatch[1] || linkMatch[2] || "").replace(/<!\[CDATA\[(.*?)\]\]>/, "$1").trim();
+      const publishedAt = dateMatch ? new Date(dateMatch[1]) : new Date();
+      const snippet = descMatch
+        ? descMatch[1]
+            .replace(/<!\[CDATA\[(.*?)\]\]>/, "$1")
+            .replace(/<[^>]+>/g, "")
+            .trim()
+            .substring(0, 500)
+        : null;
+
+      // Only include articles from last 60 days
+      if (publishedAt < cutoffDate) continue;
+
+      articles.push({
+        externalId: url, // Use URL as ID for blogs
+        title,
+        url,
+        contentSnippet: snippet,
+        author: feed.name,
+        score: 0,
+        commentCount: 0,
+        publishedAt,
+        sourceType: "blog",
+      });
+    } catch (err) {
+      console.error("Error parsing RSS item:", err.message);
+    }
+  }
+
+  return articles;
+};
+
 module.exports = {
   withRetry,
   fetchReddit,
   fetchHackerNews,
   fetchStackOverflow,
+  fetchBlogRSS,
 };

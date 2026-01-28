@@ -141,9 +141,10 @@ Be strict - only approve high-signal content.`;
  * Batch curate articles with a single API call (more efficient)
  * @param {Array} articles - Array of article objects
  * @param {string} topicKeywords - Comma-separated keywords
+ * @param {Object} userSettings - User AI curation settings (aiPrompt, relevanceThreshold, maxArticlesPerRun)
  * @returns {Promise<Array>} - Curated articles
  */
-const batchCurateArticles = async (articles, topicKeywords) => {
+const batchCurateArticles = async (articles, topicKeywords, userSettings = {}) => {
   if (!articles || articles.length === 0) {
     return [];
   }
@@ -159,13 +160,24 @@ const batchCurateArticles = async (articles, topicKeywords) => {
 
     const results = [];
     for (const chunk of chunks) {
-      const chunkResults = await batchCurateArticles(chunk, topicKeywords);
+      const chunkResults = await batchCurateArticles(chunk, topicKeywords, userSettings);
       results.push(...chunkResults);
       // Small delay between chunks
       await new Promise((resolve) => setTimeout(resolve, 500));
     }
     return results;
   }
+
+  // Use custom AI prompt or default
+  const basePrompt =
+    userSettings.aiPrompt ||
+    `You are curating content for a senior software engineer working on microservices.
+ONLY APPROVE articles that are production-ready engineering insights or advanced technical deep-dives.
+Topics of interest: {topics}
+REJECT: beginner tutorials, memes, generic career advice, self-promotion.
+Be VERY selective.`;
+
+  const customPrompt = basePrompt.replace("{topics}", topicKeywords);
 
   const articlesText = articles
     .map(
@@ -179,10 +191,7 @@ ${article.contentSnippet ? `Preview: ${article.contentSnippet.substring(0, 200)}
     )
     .join("\n---\n");
 
-  const prompt = `You are a technical content curator for a senior software engineer on a microservices team at JetBlue.
-
-They care about: APIs, NestJS, Microservices, HTTP, Node.js backend, production engineering.
-They want to AVOID: beginner tutorials, memes, rants, self-promotion, career advice.
+  const prompt = `${customPrompt}
 
 Evaluate these ${articles.length} articles and return a JSON array with one object per article:
 
@@ -229,7 +238,10 @@ Be strict - only approve high-signal content.`;
       }
     }
 
-    return articles
+    const threshold = userSettings.relevanceThreshold || 7;
+    const maxArticles = userSettings.maxArticlesPerRun || 15;
+
+    const curatedArticles = articles
       .map((article, idx) => {
         const curation = curations.find((c) => c.articleIndex === idx) || curations[idx];
         if (!curation) {
@@ -244,7 +256,11 @@ Be strict - only approve high-signal content.`;
           rejectionReason: !curation.isRelevant ? curation.reason : null,
         };
       })
-      .filter((article) => article && article.isRelevant);
+      .filter((article) => article && article.isRelevant && article.relevanceScore >= threshold)
+      .sort((a, b) => b.relevanceScore - a.relevanceScore)
+      .slice(0, maxArticles);
+
+    return curatedArticles;
   } catch (error) {
     console.log(`AI curation unavailable, including all ${articles.length} articles with default relevance`);
     // Fallback: include all articles with default score

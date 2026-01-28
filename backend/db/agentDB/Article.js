@@ -40,7 +40,7 @@ const Article = conn.define("article", {
     defaultValue: conn.Sequelize.NOW,
   },
   sourceType: {
-    type: ENUM("reddit", "hackernews", "stackoverflow"),
+    type: ENUM("reddit", "hackernews", "stackoverflow", "blog"),
     allowNull: false,
   },
   isRead: {

@@ -68,7 +68,35 @@ const syncAndSeedAgent = async () => {
       },
     });
 
-    console.log("Agent feeds seeded");
+    // Blog feeds
+    const [openapiBlog] = await Feed.findOrCreate({
+      where: { name: "OpenAPI Blog" },
+      defaults: {
+        sourceType: "blog",
+        rssUrl: "https://www.openapis.org/feed",
+        isActive: true,
+      },
+    });
+
+    const [postmanBlog] = await Feed.findOrCreate({
+      where: { name: "Postman Blog" },
+      defaults: {
+        sourceType: "blog",
+        rssUrl: "https://blog.postman.com/feed/",
+        isActive: true,
+      },
+    });
+
+    const [trilonBlog] = await Feed.findOrCreate({
+      where: { name: "Trilon Blog" },
+      defaults: {
+        sourceType: "blog",
+        rssUrl: "https://trilon.io/blog/rss.xml",
+        isActive: true,
+      },
+    });
+
+    console.log("Agent feeds seeded (including blogs)");
 
     // Note: Topics and AgentUsers will be created dynamically
     // Topics are user-specific, so they'll be created on first login or via API

@@ -6,10 +6,26 @@ const { isAgentLoggedIn } = require("./middleware");
 // GET all topics for current user
 router.get("/", isAgentLoggedIn, async (req, res, next) => {
   try {
-    const topics = await Topic.findAll({
+    let topics = await Topic.findAll({
       where: { agentuserId: req.user.id },
       order: [["keyword", "ASC"]],
     });
+
+    // Create default topics if user has none
+    if (topics.length === 0) {
+      const defaultTopics = ["api", "nestjs", "http", "microservices", "nodejs", "rest"];
+      const createdTopics = [];
+      for (const keyword of defaultTopics) {
+        const topic = await Topic.create({
+          keyword,
+          isActive: true,
+          agentuserId: req.user.id,
+        });
+        createdTopics.push(topic);
+      }
+      topics = createdTopics;
+    }
+
     res.send(topics);
   } catch (ex) {
     next(ex);

@@ -1,22 +1,47 @@
 const express = require("express");
 const router = express.Router();
-const { Feed, Article, JobRun, Topic } = require("../../db/agentDB");
+const { Feed, Article, JobRun, Topic, AgentUser } = require("../../db/agentDB");
 const { isAgentLoggedIn, isAgentAdmin } = require("./middleware");
-const { fetchReddit, fetchHackerNews, fetchStackOverflow } = require("./services/jobService");
+const { fetchReddit, fetchHackerNews, fetchStackOverflow, fetchBlogRSS } = require("./services/jobService");
 const { batchCurateArticles } = require("./services/curationService");
 const { Op } = require("sequelize");
 
-// Trigger all feed fetches (for Render cron to call)
-// GET /api/agent/jobs/fetch-all?secret=YOUR_JOB_SECRET
+// Trigger all feed fetches (for Render cron to call OR authenticated users)
+// GET /api/agent/jobs/fetch-all?secret=YOUR_JOB_SECRET (cron)
+// GET /api/agent/jobs/fetch-all (authenticated users)
 router.get("/fetch-all", async (req, res, next) => {
   try {
-    // Simple secret check for cron job authentication
+    // Allow either: secret query param (for cron) OR valid auth token (for users)
     const jobSecret = process.env.JOB_SECRET;
-    if (jobSecret && req.query.secret !== jobSecret) {
-      const error = new Error("Invalid job secret");
+    const hasValidSecret = jobSecret && req.query.secret === jobSecret;
+    const token = req.headers.authorization;
+    let authenticatedUser = null;
+
+    if (!hasValidSecret && token) {
+      // Try to authenticate via token
+      try {
+        const { AgentUser } = require("../../db/agentDB");
+        authenticatedUser = await AgentUser.findByToken(token);
+      } catch (err) {
+        const error = new Error("Invalid authentication");
+        error.status = 401;
+        throw error;
+      }
+    } else if (!hasValidSecret) {
+      const error = new Error("Invalid job secret or authentication required");
       error.status = 401;
       throw error;
     }
+
+    // Get user AI curation settings (use authenticated user or first admin for cron)
+    const user = authenticatedUser || (await AgentUser.findOne({ where: { isAdmin: true, isActive: true } }));
+    const userSettings = user
+      ? {
+          aiPrompt: user.aiPrompt,
+          relevanceThreshold: user.relevanceThreshold,
+          maxArticlesPerRun: user.maxArticlesPerRun,
+        }
+      : {};
 
     const feeds = await Feed.findAll({ where: { isActive: true } });
     const results = [];
@@ -39,6 +64,8 @@ router.get("/fetch-all", async (req, res, next) => {
         } else if (feed.sourceType === "stackoverflow") {
           const topics = await Topic.findAll({ where: { isActive: true } });
           articles = await fetchStackOverflow(feed, topics);
+        } else if (feed.sourceType === "blog") {
+          articles = await fetchBlogRSS(feed);
         }
 
         console.log(`Fetched ${articles.length} articles from ${feed.name}, running AI curation...`);
@@ -47,8 +74,8 @@ router.get("/fetch-all", async (req, res, next) => {
         const topics = await Topic.findAll({ where: { isActive: true } }).catch(() => []);
         const topicKeywords = Array.isArray(topics) && topics.length > 0
           ? topics.map((t) => t.keyword).join(", ")
-          : "api,nestjs,http,microservices,nodejs"; // Default topics if none exist
-        const curatedArticles = await batchCurateArticles(articles, topicKeywords);
+          : "api,nestjs,http,microservices,nodejs"; // Fallback for safety
+        const curatedArticles = await batchCurateArticles(articles, topicKeywords, userSettings);
 
         console.log(
           `AI approved ${curatedArticles.length}/${articles.length} articles from ${feed.name}`
@@ -152,16 +179,24 @@ router.post("/fetch/:feedId", isAgentLoggedIn, async (req, res, next) => {
       } else if (feed.sourceType === "stackoverflow") {
         const topics = await Topic.findAll({ where: { isActive: true } });
         articles = await fetchStackOverflow(feed, topics);
+      } else if (feed.sourceType === "blog") {
+        articles = await fetchBlogRSS(feed);
       }
 
       console.log(`Fetched ${articles.length} articles from ${feed.name}, running AI curation...`);
 
-      // AI CURATION - Only save articles that pass AI filter
+      // AI CURATION - Only save articles that pass AI filter with user settings
+      const userSettings = {
+        aiPrompt: req.user.aiPrompt,
+        relevanceThreshold: req.user.relevanceThreshold,
+        maxArticlesPerRun: req.user.maxArticlesPerRun,
+      };
+
       const topics = await Topic.findAll({ where: { isActive: true } }).catch(() => []);
       const topicKeywords = Array.isArray(topics) && topics.length > 0
         ? topics.map((t) => t.keyword).join(", ")
         : "api,nestjs,http,microservices,nodejs"; // Default topics if none exist
-      const curatedArticles = await batchCurateArticles(articles, topicKeywords);
+      const curatedArticles = await batchCurateArticles(articles, topicKeywords, userSettings);
 
       console.log(
         `AI approved ${curatedArticles.length}/${articles.length} articles from ${feed.name}`

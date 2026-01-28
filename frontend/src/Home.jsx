@@ -15,9 +15,9 @@ const Home = () => {
         <div class="soft-glow glow-blue pos-glow-5"></div>
         <div class="soft-glow glow-orange pos-glow-6"></div>
         <div class="soft-glow glow-blue pos-glow-7"></div>
-        <div class="soft-glow glow-orange pos-glow-8"></div>
-        <div class="soft-glow glow-blue pos-glow-9"></div>
-        <div class="soft-glow glow-orange pos-glow-10"></div>
+        <div class="soft-glow glow-orange pos-glow-8" style={{position: "fixed", bottom: "-200px"}}></div>
+        <div class="soft-glow glow-blue pos-glow-9" style={{position: "fixed", bottom: "-200px"}}></div>
+        <div class="soft-glow glow-orange pos-glow-10" style={{position: "fixed", bottom: "-200px"}}></div>
         <div class="soft-glow glow-blue pos-glow-11" style={{position: "fixed", bottom: "-200px"}}></div>
         <div class="soft-glow glow-orange pos-glow-12" style={{position: "fixed", bottom: "-200px"}}></div>
 
