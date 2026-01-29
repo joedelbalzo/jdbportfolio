@@ -816,6 +816,12 @@ h1 {
     display: none;
   }
 
+  /* Remove blur on mobile for performance */
+  .soft-glow {
+    filter: none;
+    opacity: 0.08;
+  }
+
   .nav-mobile {
     width: 100vw;
     height: 100vh;
