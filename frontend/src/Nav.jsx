@@ -19,11 +19,19 @@ const Nav = () => {
     };
     setIsActive(activeOptions[window.location.href]);
 
+    let rafId = null;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 200);
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 200);
+        rafId = null;
+      });
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   useLayoutEffect(() => {

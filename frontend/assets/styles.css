@@ -807,6 +807,15 @@ h1 {
     cursor: pointer;
   }
 
+  /* Hide extra glows on mobile for performance */
+  .pos-glow-8,
+  .pos-glow-9,
+  .pos-glow-10,
+  .pos-glow-11,
+  .pos-glow-12 {
+    display: none;
+  }
+
   .nav-mobile {
     width: 100vw;
     height: 100vh;
