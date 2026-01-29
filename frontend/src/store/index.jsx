@@ -18,7 +18,11 @@ import thunk from "redux-thunk";
 // import cssCpg from "./css-cpg";
 // import cssTemplates from "./css-templates";
 
+// Dummy reducer to satisfy Redux (all legacy app reducers are hidden)
+const dummyReducer = (state = {}, action) => state;
+
 const reducer = combineReducers({
+  dummy: dummyReducer,
   // Legacy app reducers (hidden - restorable)
   // placesAuth,
   // placesFavorites,

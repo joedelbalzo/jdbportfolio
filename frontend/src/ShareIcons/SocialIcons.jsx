@@ -81,7 +81,7 @@ export const LinkedIn = () => {
   );
 };
 
-export const GitHub = ({ color }) => {
+export const GitHub = ({ color = "currentColor" }) => {
   return (
     <svg
       version="1.1"
@@ -138,8 +138,4 @@ export const Twitter = () => {
       ></path>
     </svg>
   );
-};
-
-GitHub.defaultProps = {
-  color: "currentColor",
 };

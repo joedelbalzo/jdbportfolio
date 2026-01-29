@@ -4,8 +4,14 @@ const Feed = require("./Feed");
 const Topic = require("./Topic");
 const Article = require("./Article");
 const JobRun = require("./JobRun");
+const FinancialUpload = require("./FinancialUpload");
+const CategoryAverage = require("./CategoryAverage");
+const UncategorizedTransaction = require("./UncategorizedTransaction");
+const CategorizedTransaction = require("./CategorizedTransaction");
+const CombinedUpload = require("./CombinedUpload");
+const CustomCategorizationPattern = require("./CustomCategorizationPattern");
 
-// Relationships
+// Relationships - Content Curation
 Feed.hasMany(Article);
 Article.belongsTo(Feed);
 
@@ -18,6 +24,31 @@ Topic.belongsTo(AgentUser);
 // Article-Topic many-to-many (for filtering/matching)
 Article.belongsToMany(Topic, { through: "ArticleTopic" });
 Topic.belongsToMany(Article, { through: "ArticleTopic" });
+
+// Relationships - Financial Analyzer
+AgentUser.hasMany(FinancialUpload);
+FinancialUpload.belongsTo(AgentUser, { as: "user" });
+
+FinancialUpload.hasMany(CategoryAverage, { as: "categoryAverages" });
+CategoryAverage.belongsTo(FinancialUpload, { as: "upload" });
+
+FinancialUpload.hasMany(UncategorizedTransaction, { as: "uncategorizedTransactions" });
+UncategorizedTransaction.belongsTo(FinancialUpload, { as: "upload" });
+
+FinancialUpload.hasMany(CategorizedTransaction, {
+  as: "categorizedTransactions",
+  foreignKey: "uploadId"
+});
+CategorizedTransaction.belongsTo(FinancialUpload, {
+  as: "upload",
+  foreignKey: "uploadId"
+});
+
+AgentUser.hasMany(CombinedUpload);
+CombinedUpload.belongsTo(AgentUser, { as: "user" });
+
+AgentUser.hasMany(CustomCategorizationPattern);
+CustomCategorizationPattern.belongsTo(AgentUser, { as: "user" });
 
 const syncAndSeedAgent = async () => {
   try {
@@ -114,5 +145,11 @@ module.exports = {
   Topic,
   Article,
   JobRun,
+  FinancialUpload,
+  CategoryAverage,
+  UncategorizedTransaction,
+  CategorizedTransaction,
+  CombinedUpload,
+  CustomCategorizationPattern,
   syncAndSeedAgent,
 };

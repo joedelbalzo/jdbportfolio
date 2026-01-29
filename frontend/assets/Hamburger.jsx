@@ -24,9 +24,4 @@ const Hamburger = ({ width = "30px", height = "30px" }) => {
   );
 };
 
-Hamburger.defaultProps = {
-  width: "30px",
-  height: "30px",
-};
-
 export default Hamburger;

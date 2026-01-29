@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {useNavigate, useSearchParams} from "react-router-dom";
 import axios from "axios";
+import FinancialAnalyzer from "../AgentDashboard/FinancialAnalyzer";
+import Loader from "../Components/Loader";
 
 const Dashboard = () => {
   const [searchParams] = useSearchParams();
@@ -18,6 +20,7 @@ const Dashboard = () => {
   const [aiPrompt, setAiPrompt] = useState("");
   const [relevanceThreshold, setRelevanceThreshold] = useState(7);
   const [maxArticlesPerRun, setMaxArticlesPerRun] = useState(15);
+  const [activeTab, setActiveTab] = useState("content"); // "content" or "financial"
 
   useEffect(() => {
     // Check if there's a token in the URL
@@ -247,11 +250,7 @@ const Dashboard = () => {
   };
 
   if (loading) {
-    return (
-      <div style={{padding: "40px", textAlign: "center"}}>
-        <h2>Loading...</h2>
-      </div>
-    );
+    return <Loader message="Loading dashboard..." />;
   }
 
   return (
@@ -270,39 +269,84 @@ const Dashboard = () => {
           <div style={{fontSize: "16px", color: "#737373", marginTop: "8px"}}>{user?.name || user?.email}</div>
         </div>
         <div style={{display: "flex", gap: "12px", alignItems: "center"}}>
-          <button
-            onClick={handleFetchNow}
-            disabled={fetching}
-            style={{
-              padding: "10px 20px",
-              backgroundColor: fetching ? "#737373" : "#0066ff",
-              color: "whitesmoke",
-              border: "none",
-              cursor: fetching ? "not-allowed" : "pointer",
-              fontSize: "16px",
-              transition: "0.3s ease",
-            }}>
-            {fetching ? "Fetching..." : "Fetch Now"}
-          </button>
-          <button
-            onClick={() => setShowSettings(true)}
-            style={{
-              padding: "10px 20px",
-              backgroundColor: "#737373",
-              color: "whitesmoke",
-              border: "none",
-              cursor: "pointer",
-              fontSize: "16px",
-            }}>
-            Settings
-          </button>
+          {activeTab === "content" && (
+            <>
+              <button
+                onClick={handleFetchNow}
+                disabled={fetching}
+                style={{
+                  padding: "10px 20px",
+                  backgroundColor: fetching ? "#737373" : "#0066ff",
+                  color: "whitesmoke",
+                  border: "none",
+                  cursor: fetching ? "not-allowed" : "pointer",
+                  fontSize: "16px",
+                  transition: "0.3s ease",
+                }}>
+                {fetching ? "Fetching..." : "Fetch Now"}
+              </button>
+              <button
+                onClick={() => setShowSettings(true)}
+                style={{
+                  padding: "10px 20px",
+                  backgroundColor: "#737373",
+                  color: "whitesmoke",
+                  border: "none",
+                  cursor: "pointer",
+                  fontSize: "16px",
+                }}>
+                Settings
+              </button>
+            </>
+          )}
           <a href="#" onClick={handleLogout} style={{color: "#737373", fontSize: "16px", textDecoration: "none"}}>
             logout
           </a>
         </div>
       </header>
 
-      {fetchResult && (
+      {/* Tab Navigation */}
+      <div style={{marginBottom: "25px", borderBottom: "1px solid rgba(255, 255, 255, 0.1)"}}>
+        <div style={{display: "flex", gap: "20px"}}>
+          <button
+            onClick={() => setActiveTab("content")}
+            style={{
+              padding: "10px 0",
+              backgroundColor: "transparent",
+              color: activeTab === "content" ? "whitesmoke" : "#b0b0b0",
+              border: "none",
+              borderBottom: activeTab === "content" ? "2px solid #0066ff" : "2px solid transparent",
+              cursor: "pointer",
+              fontSize: "16px",
+              fontWeight: "400",
+              transition: "all 0.2s",
+            }}>
+            Content Curation
+          </button>
+          <button
+            onClick={() => setActiveTab("financial")}
+            style={{
+              padding: "10px 0",
+              backgroundColor: "transparent",
+              color: activeTab === "financial" ? "whitesmoke" : "#b0b0b0",
+              border: "none",
+              borderBottom: activeTab === "financial" ? "2px solid #ff5722" : "2px solid transparent",
+              cursor: "pointer",
+              fontSize: "16px",
+              fontWeight: "400",
+              transition: "all 0.2s",
+            }}>
+            Financial Analyzer
+          </button>
+        </div>
+      </div>
+
+      {/* Render active tab content */}
+      {activeTab === "financial" ? (
+        <FinancialAnalyzer />
+      ) : (
+        <>
+          {fetchResult && (
         <div
           style={{
             padding: "12px",
@@ -684,6 +728,8 @@ const Dashboard = () => {
           </div>
         )}
       </div>
+        </>
+      )}
     </div>
   );
 };
