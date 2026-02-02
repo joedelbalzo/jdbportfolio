@@ -6,6 +6,7 @@ const {
   CategorizedTransaction,
 } = require("../../../db/agentDB");
 const { CATEGORIZATION_RULES, CATEGORY_BUCKETS, getBucket } = require("./financialAnalyzer");
+const { batchCheckSmartCache, saveToSmartCache } = require("./smartCache");
 
 // Initialize Anthropic client
 const anthropic = new Anthropic({
@@ -49,7 +50,7 @@ Return ONLY the JSON array, no other text.`;
 }
 
 /**
- * Use Claude to recategorize uncategorized transactions
+ * Use Claude to recategorize uncategorized transactions (with smart caching)
  * @param {number} uploadId - Upload ID
  * @returns {Promise<Object>} Recategorization results
  */
@@ -68,48 +69,67 @@ async function recategorizeWithAI(uploadId) {
         success: true,
         message: "No uncategorized transactions to process",
         recategorized: 0,
+        fromCache: 0,
       };
     }
 
-    console.log(`Processing ${allUncategorized.length} uncategorized transactions in batches of 50...`);
+    const upload = await FinancialUpload.findByPk(uploadId);
+    if (!upload) {
+      throw new Error("Upload not found");
+    }
 
-    // Process in batches of 50 to avoid token limits
+    // Check smart cache
+    const txnsForCache = allUncategorized.map((txn) => ({
+      id: txn.id,
+      description: txn.description,
+      amount: parseFloat(txn.amount),
+      userId: upload.userId,
+    }));
+
+    const { cached, needsAI } = await batchCheckSmartCache(txnsForCache);
+
+    // Apply cached categorizations
+    for (const cachedTxn of cached) {
+      const txn = allUncategorized.find((t) => t.id === cachedTxn.id);
+      if (txn) {
+        await txn.update({
+          aiSuggestedCategory: cachedTxn.cachedCategory,
+          aiReasoning: cachedTxn.reasoning,
+          isRecategorized: true,
+          finalCategory: cachedTxn.cachedCategory,
+          recategorizedAt: new Date(),
+        });
+      }
+    }
+
+    // Use AI for new merchants
     const BATCH_SIZE = 50;
     const allUpdates = [];
-    let totalRecategorized = 0;
 
-    for (let i = 0; i < allUncategorized.length; i += BATCH_SIZE) {
-      const batch = allUncategorized.slice(i, i + BATCH_SIZE);
-      console.log(`Processing batch ${Math.floor(i / BATCH_SIZE) + 1} (${batch.length} transactions)...`);
+    for (let i = 0; i < needsAI.length; i += BATCH_SIZE) {
+      const batch = needsAI.slice(i, i + BATCH_SIZE);
 
-      // Generate prompt for this batch
       const prompt = generateCategorizationPrompt(
         batch.map((txn) => ({
           description: txn.description,
-          amount: parseFloat(txn.amount),
+          amount: txn.amount,
         }))
       );
 
-      // Call Claude API
       const message = await anthropic.messages.create({
         model: "claude-sonnet-4-5-20250929",
         max_tokens: 4096,
-        messages: [
-          {
-            role: "user",
-            content: prompt,
-          },
-        ],
+        messages: [{ role: "user", content: prompt }],
       });
 
-      // Parse response
-      const responseText = message.content[0].text;
-      const suggestions = JSON.parse(responseText);
+      const suggestions = JSON.parse(message.content[0].text);
 
-      // Update transactions with AI suggestions
       for (let j = 0; j < batch.length && j < suggestions.length; j++) {
-        const txn = batch[j];
+        const txnData = batch[j];
+        const txn = allUncategorized.find((t) => t.id === txnData.id);
         const suggestion = suggestions[j];
+
+        if (!txn) continue;
 
         await txn.update({
           aiSuggestedCategory: suggestion.suggestedCategory,
@@ -119,8 +139,9 @@ async function recategorizeWithAI(uploadId) {
           recategorizedAt: new Date(),
         });
 
+        // Save to smart cache for reuse
         if (suggestion.suggestedCategory !== "Uncategorized") {
-          totalRecategorized++;
+          await saveToSmartCache(txn.description, suggestion.suggestedCategory, upload.userId, 150);
         }
 
         allUpdates.push({
@@ -133,12 +154,21 @@ async function recategorizeWithAI(uploadId) {
       }
     }
 
-    // Recalculate averages if any were recategorized
+    cached.forEach((cachedTxn) => {
+      allUpdates.push({
+        id: cachedTxn.id,
+        description: cachedTxn.description,
+        originalCategory: "Uncategorized",
+        newCategory: cachedTxn.cachedCategory,
+        reasoning: cachedTxn.reasoning,
+      });
+    });
+
+    const totalRecategorized = cached.length + needsAI.length;
+
     if (totalRecategorized > 0) {
       await recalculateAverages(uploadId);
     }
-
-    console.log(`Completed AI categorization: ${totalRecategorized} recategorized, ${allUncategorized.length - totalRecategorized} still uncategorized`);
 
     return {
       success: true,

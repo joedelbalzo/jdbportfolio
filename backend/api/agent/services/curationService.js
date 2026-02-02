@@ -213,7 +213,7 @@ Be strict - only approve high-signal content.`;
 
   try {
     const message = await anthropic.messages.create({
-      model: "claude-sonnet-4-5-20250929",
+      model: "claude-haiku-4-5-20251001",
       max_tokens: 1500,
       temperature: 0.3,
       messages: [
@@ -262,7 +262,8 @@ Be strict - only approve high-signal content.`;
 
     return curatedArticles;
   } catch (error) {
-    console.log(`AI curation unavailable, including all ${articles.length} articles with default relevance`);
+    console.error(`AI curation failed:`, error.message);
+    console.log(`Including all ${articles.length} articles with default relevance`);
     // Fallback: include all articles with default score
     return articles.map(article => ({
       ...article,

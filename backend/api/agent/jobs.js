@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Feed, Article, JobRun, Topic, AgentUser } = require("../../db/agentDB");
 const { isAgentLoggedIn, isAgentAdmin } = require("./middleware");
-const { fetchReddit, fetchHackerNews, fetchStackOverflow, fetchBlogRSS } = require("./services/jobService");
+const { fetchReddit, fetchHackerNews, fetchStackOverflow, fetchBlogRSS, preFilterArticles } = require("./services/jobService");
 const { batchCurateArticles } = require("./services/curationService");
 const { Op } = require("sequelize");
 
@@ -68,17 +68,48 @@ router.get("/fetch-all", async (req, res, next) => {
           articles = await fetchBlogRSS(feed);
         }
 
-        console.log(`Fetched ${articles.length} articles from ${feed.name}, running AI curation...`);
+        console.log(`Fetched ${articles.length} articles from ${feed.name}`);
 
-        // AI CURATION - Only save articles that pass AI filter
+        // STAGE 1: Keyword pre-filter (local, no tokens)
         const topics = await Topic.findAll({ where: { isActive: true } }).catch(() => []);
+        const minScore = feed.sourceType === "hackernews" ? 50 : 20; // Aggressive filtering
+        const preFiltered = preFilterArticles(articles, topics, minScore);
+
+        console.log(
+          `Pre-filter: ${preFiltered.length}/${articles.length} articles matched keywords (score ≥${minScore})`
+        );
+
+        // STAGE 1.5: Deduplicate by title (check last 7 days)
+        const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+        const recentTitles = await Article.findAll({
+          where: {
+            publishedAt: { [Op.gte]: sevenDaysAgo },
+          },
+          attributes: ["title"],
+          raw: true,
+        });
+
+        const recentTitleSet = new Set(
+          recentTitles.map((a) => a.title.toLowerCase().substring(0, 50))
+        );
+
+        const dedupedArticles = preFiltered.filter((article) => {
+          const titlePrefix = article.title.toLowerCase().substring(0, 50);
+          return !recentTitleSet.has(titlePrefix);
+        });
+
+        console.log(
+          `Deduplication: ${dedupedArticles.length}/${preFiltered.length} are new (checked last 7 days)`
+        );
+
+        // STAGE 2: AI curation (only on deduplicated articles)
         const topicKeywords = Array.isArray(topics) && topics.length > 0
           ? topics.map((t) => t.keyword).join(", ")
           : "api,nestjs,http,microservices,nodejs"; // Fallback for safety
-        const curatedArticles = await batchCurateArticles(articles, topicKeywords, userSettings);
+        const curatedArticles = await batchCurateArticles(dedupedArticles, topicKeywords, userSettings);
 
         console.log(
-          `AI approved ${curatedArticles.length}/${articles.length} articles from ${feed.name}`
+          `AI approved ${curatedArticles.length}/${dedupedArticles.length} after dedup (${preFiltered.length} pre-filtered, ${articles.length} total fetched)`
         );
 
         // Upsert only curated articles (avoid duplicates)
@@ -125,6 +156,7 @@ router.get("/fetch-all", async (req, res, next) => {
           status: "completed",
           articlesProcessed: processed,
           totalFetched: articles.length,
+          keywordMatched: preFiltered.length,
           aiApproved: curatedArticles.length,
           aiRejected: rejected,
         });
@@ -183,23 +215,54 @@ router.post("/fetch/:feedId", isAgentLoggedIn, async (req, res, next) => {
         articles = await fetchBlogRSS(feed);
       }
 
-      console.log(`Fetched ${articles.length} articles from ${feed.name}, running AI curation...`);
+      console.log(`Fetched ${articles.length} articles from ${feed.name}`);
 
-      // AI CURATION - Only save articles that pass AI filter with user settings
+      // STAGE 1: Keyword pre-filter (local, no tokens)
+      const topics = await Topic.findAll({ where: { isActive: true } }).catch(() => []);
+      const minScore = feed.sourceType === "hackernews" ? 50 : 20; // Aggressive filtering
+      const preFiltered = preFilterArticles(articles, topics, minScore);
+
+      console.log(
+        `Pre-filter: ${preFiltered.length}/${articles.length} articles matched keywords (score ≥${minScore})`
+      );
+
+      // STAGE 1.5: Deduplicate by title (check last 7 days)
+      const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+      const recentTitles = await Article.findAll({
+        where: {
+          publishedAt: { [Op.gte]: sevenDaysAgo },
+        },
+        attributes: ["title"],
+        raw: true,
+      });
+
+      const recentTitleSet = new Set(
+        recentTitles.map((a) => a.title.toLowerCase().substring(0, 50))
+      );
+
+      const dedupedArticles = preFiltered.filter((article) => {
+        const titlePrefix = article.title.toLowerCase().substring(0, 50);
+        return !recentTitleSet.has(titlePrefix);
+      });
+
+      console.log(
+        `Deduplication: ${dedupedArticles.length}/${preFiltered.length} are new (checked last 7 days)`
+      );
+
+      // STAGE 2: AI curation (only on deduplicated articles)
       const userSettings = {
         aiPrompt: req.user.aiPrompt,
         relevanceThreshold: req.user.relevanceThreshold,
         maxArticlesPerRun: req.user.maxArticlesPerRun,
       };
 
-      const topics = await Topic.findAll({ where: { isActive: true } }).catch(() => []);
       const topicKeywords = Array.isArray(topics) && topics.length > 0
         ? topics.map((t) => t.keyword).join(", ")
         : "api,nestjs,http,microservices,nodejs"; // Default topics if none exist
-      const curatedArticles = await batchCurateArticles(articles, topicKeywords, userSettings);
+      const curatedArticles = await batchCurateArticles(dedupedArticles, topicKeywords, userSettings);
 
       console.log(
-        `AI approved ${curatedArticles.length}/${articles.length} articles from ${feed.name}`
+        `AI approved ${curatedArticles.length}/${dedupedArticles.length} after dedup (${preFiltered.length} pre-filtered, ${articles.length} total fetched)`
       );
 
       let processed = 0;
@@ -241,6 +304,7 @@ router.post("/fetch/:feedId", isAgentLoggedIn, async (req, res, next) => {
         feed: feed.name,
         articlesProcessed: processed,
         totalFetched: articles.length,
+        keywordMatched: preFiltered.length,
         aiApproved: curatedArticles.length,
         aiRejected: articles.length - curatedArticles.length,
       });

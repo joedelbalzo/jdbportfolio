@@ -241,10 +241,64 @@ const fetchBlogRSS = async (feed) => {
   return articles;
 };
 
+/**
+ * Pre-filter articles by keywords and score before AI curation
+ * Reduces token usage by only sending relevant candidates to Claude
+ * @param {Array} articles - Array of article objects
+ * @param {Array} topics - Array of topic objects with keyword property
+ * @param {number} minScore - Minimum score threshold (default: 10)
+ * @returns {Array} - Filtered articles
+ */
+const preFilterArticles = (articles, topics = [], minScore = 10) => {
+  if (!articles || articles.length === 0) {
+    return [];
+  }
+
+  // Build keyword list from topics
+  const keywords = topics && topics.length > 0
+    ? topics.map(t => t.keyword.toLowerCase())
+    : [
+        // Default keywords if no topics provided
+        "api", "apis", "rest", "graphql",
+        "nestjs", "nest.js",
+        "microservices", "microservice",
+        "node", "nodejs", "node.js",
+        "http", "https",
+        "express",
+        "backend",
+        "architecture",
+        "docker", "kubernetes", "k8s",
+        "postgresql", "postgres", "database",
+        "typescript"
+      ];
+
+  return articles.filter(article => {
+    // Filter by score threshold
+    if (article.score < minScore) {
+      return false;
+    }
+
+    // Check title and content for keyword matches (whole word only)
+    const searchText = `${article.title} ${article.contentSnippet || ""}`.toLowerCase();
+    const hasKeyword = keywords.some(keyword => {
+      // Use word boundaries to match whole words only
+      const regex = new RegExp(`\\b${keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
+      return regex.test(searchText);
+    });
+
+    if (hasKeyword) {
+      console.log(`✓ Keyword match: "${article.title}" (score: ${article.score})`);
+    }
+
+    return hasKeyword;
+  });
+};
+
 module.exports = {
   withRetry,
   fetchReddit,
   fetchHackerNews,
   fetchStackOverflow,
   fetchBlogRSS,
+  preFilterArticles,
 };
