@@ -23,7 +23,8 @@ const upload = multer({
 
 /**
  * POST /api/agent/financial/upload
- * Upload and process CSV file(s) - supports single or multiple files
+ * Upload and process CSV file(s) IN-MEMORY ONLY with AI categorization
+ * Auto-combines multiple files into one analysis
  */
 router.post("/upload", isAgentLoggedIn, upload.array("csvFiles", 10), async (req, res, next) => {
   try {
@@ -31,52 +32,141 @@ router.post("/upload", isAgentLoggedIn, upload.array("csvFiles", 10), async (req
       return res.status(400).json({ error: "No files uploaded" });
     }
 
-    const uploadResults = [];
+    const { parseCSV, csvToTransactions, getDateRange } = require("./services/csvParser");
+    const { processTransactions, calculateMonthlyAverages, getBucket } = require("./services/financialAnalyzer");
+    const { categorizeWithAI } = require("./services/inMemoryAICategorizer");
+    const { CustomCategorizationPattern } = require("../../db/agentDB");
+
+    // Load custom patterns
+    const customPatterns = await CustomCategorizationPattern.findAll({
+      where: { userId: req.user.id },
+      order: [["priority", "DESC"], ["createdAt", "ASC"]],
+    });
+
+    let allTransactions = [];
+    let allUncategorized = [];
+    let allExcluded = [];
+    const fileAnalyses = [];
 
     // Process each file
-    for (const file of req.files) {
-      try {
-        const csvContent = file.buffer.toString("utf-8");
-        const result = await processFinancialUpload(csvContent, req.user.id, file.originalname);
-        uploadResults.push(result);
-      } catch (error) {
-        console.error(`Failed to process ${file.originalname}:`, error);
-        uploadResults.push({
-          filename: file.originalname,
-          error: error.message,
-          success: false,
+    for (let i = 0; i < req.files.length; i++) {
+      const file = req.files[i];
+      const csvContent = file.buffer.toString("utf-8");
+      const { headers, rows } = parseCSV(csvContent);
+      const rawTransactions = csvToTransactions(headers, rows);
+      const { transactions, uncategorized, excluded } = processTransactions(rawTransactions, customPatterns);
+
+      // Tag with source file
+      transactions.forEach(t => t.sourceFile = file.originalname);
+      uncategorized.forEach(t => t.sourceFile = file.originalname);
+      excluded.forEach(t => t.sourceFile = file.originalname);
+
+      // Calculate individual file analysis
+      const fileDate = getDateRange([...transactions, ...uncategorized]);
+      const fileAverages = calculateMonthlyAverages(transactions, fileDate.monthCount);
+
+      const fileBuckets = {};
+      Object.entries(fileAverages.byCategory).forEach(([category, monthlyAvg]) => {
+        const bucket = getBucket(category);
+        if (!fileBuckets[bucket]) {
+          fileBuckets[bucket] = { total: 0, categories: [] };
+        }
+        const categoryTxns = transactions.filter(t => t.category === category);
+        fileBuckets[bucket].total += monthlyAvg;
+        fileBuckets[bucket].categories.push({
+          category,
+          monthlyAverage: monthlyAvg,
+          transactionCount: categoryTxns.length,
         });
-      }
+      });
+
+      fileAnalyses.push({
+        filename: file.originalname,
+        analysis: {
+          dateRange: `${fileDate.calculationLog.firstTransactionDate} to ${fileDate.calculationLog.lastTransactionDate}`,
+          monthCount: fileDate.monthCount,
+          totalTransactions: transactions.length + uncategorized.length + excluded.length,
+          categorizedCount: transactions.length,
+          uncategorizedCount: uncategorized.length,
+          excludedCount: excluded.length,
+          totalMonthlyAverage: Number(fileAverages.totalMonthly.toFixed(2)),
+          buckets: fileBuckets,
+        }
+      });
+
+      allTransactions.push(...transactions);
+      allUncategorized.push(...uncategorized);
+      allExcluded.push(...excluded);
     }
 
-    // If multiple files were uploaded successfully, auto-combine them
-    const successfulUploads = uploadResults.filter(r => r.uploadId && !r.error);
+    // Use AI to categorize remaining uncategorized transactions
+    let aiSuggestions = [];
+    if (allUncategorized.length > 0) {
+      const { categorized, suggestions } = await categorizeWithAI(allUncategorized, req.user.id);
 
-    if (successfulUploads.length > 1) {
-      try {
-        const uploadIds = successfulUploads.map(r => r.uploadId);
-        const combinedName = `Combined Upload: ${new Date().toLocaleDateString()}`;
-        const combined = await combineUploads(req.user.id, uploadIds, combinedName, true);
+      // Move AI-categorized transactions from uncategorized to categorized
+      allTransactions.push(...categorized);
+      allUncategorized = allUncategorized.filter(t => !categorized.find(c => c.description === t.description));
 
-        return res.json({
-          success: true,
-          message: `Successfully processed and combined ${successfulUploads.length} files`,
-          uploads: uploadResults,
-          combined,
-        });
-      } catch (combineError) {
-        console.error("Failed to auto-combine uploads:", combineError);
-        // Still return success for individual uploads
-      }
+      aiSuggestions = suggestions;
     }
 
-    // Single file or combination failed - return individual results
+    // Calculate combined analysis
+    const { startDate, endDate, monthCount, calculationLog } = getDateRange([...allTransactions, ...allUncategorized]);
+    const averages = calculateMonthlyAverages(allTransactions, monthCount);
+
+    // Build bucket breakdown
+    const buckets = {};
+    Object.entries(averages.byCategory).forEach(([category, monthlyAvg]) => {
+      const bucket = getBucket(category);
+      if (!buckets[bucket]) {
+        buckets[bucket] = { total: 0, categories: [] };
+      }
+      const categoryTxns = allTransactions.filter(t => t.category === category);
+      buckets[bucket].total += monthlyAvg;
+      buckets[bucket].categories.push({
+        category,
+        monthlyAverage: monthlyAvg,
+        transactionCount: categoryTxns.length,
+      });
+    });
+
     res.json({
-      success: uploadResults.some(r => !r.error),
-      message: uploadResults.length === 1
-        ? "Financial data processed successfully"
-        : `Processed ${uploadResults.length} files`,
-      uploads: uploadResults,
+      success: true,
+      combinedAnalysis: {
+        dateRange: `${calculationLog.firstTransactionDate} to ${calculationLog.lastTransactionDate}`,
+        monthCount,
+        totalTransactions: allTransactions.length + allUncategorized.length + allExcluded.length,
+        categorizedCount: allTransactions.length,
+        uncategorizedCount: allUncategorized.length,
+        excludedCount: allExcluded.length,
+        totalMonthlyAverage: Number(averages.totalMonthly.toFixed(2)),
+        buckets,
+        aiSuggestions, // For user confirmation in frontend
+        calculationLog: {
+          dateRange: calculationLog,
+          totals: averages.calculationDetails,
+          breakdown: {
+            categorizedCount: allTransactions.length,
+            uncategorizedCount: allUncategorized.length,
+            excludedCount: allExcluded.length,
+          },
+        },
+        uncategorized: allUncategorized.slice(0, 50).map(t => ({
+          description: t.description,
+          amount: t.absAmount,
+          date: t.date,
+          sourceFile: t.sourceFile,
+        })),
+        excludedSample: allExcluded.slice(0, 50).map(t => ({
+          description: t.description,
+          amount: t.absAmount,
+          date: t.date,
+          reason: t.reason,
+          sourceFile: t.sourceFile,
+        })),
+      },
+      files: fileAnalyses,
     });
   } catch (error) {
     console.error("Upload error:", error);
@@ -585,6 +675,38 @@ router.delete("/algorithm/pattern/:patternId", isAgentLoggedIn, async (req, res,
   } catch (error) {
     console.error("Delete pattern error:", error);
     res.status(500).json({ error: "Failed to delete pattern" });
+  }
+});
+
+/**
+ * POST /api/agent/financial/confirm-ai-suggestion
+ * Confirm an AI suggestion and save it as a pattern
+ */
+router.post("/confirm-ai-suggestion", isAgentLoggedIn, async (req, res, next) => {
+  try {
+    const { description, category } = req.body;
+
+    if (!description || !category) {
+      return res.status(400).json({ error: "Description and category are required" });
+    }
+
+    const { CustomCategorizationPattern } = require("../../db/agentDB");
+
+    await CustomCategorizationPattern.create({
+      userId: req.user.id,
+      category,
+      pattern: description,
+      priority: 75, // Higher than default AI patterns
+      isActive: true,
+    });
+
+    res.json({
+      success: true,
+      message: "AI suggestion confirmed and saved as pattern",
+    });
+  } catch (error) {
+    console.error("Confirm AI suggestion error:", error);
+    res.status(500).json({ error: "Failed to confirm AI suggestion" });
   }
 });
 

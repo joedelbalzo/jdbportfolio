@@ -4,31 +4,22 @@ import "./FinancialAnalyzer.css";
 
 const FinancialAnalyzer = () => {
   const token = localStorage.getItem("agentToken");
-  const [uploadHistory, setUploadHistory] = useState([]);
-  const [combinedHistory, setCombinedHistory] = useState([]);
-  const [selectedUpload, setSelectedUpload] = useState(null);
-  const [selectedType, setSelectedType] = useState(null); // 'single' or 'combined'
-  const [uploadDetails, setUploadDetails] = useState(null);
-  const [transactionBreakdown, setTransactionBreakdown] = useState(null);
+
+  // Session-based uploads (NOT saved to database)
+  const [sessionUploads, setSessionUploads] = useState([]);
+  const [selectedForAnalysis, setSelectedForAnalysis] = useState([]);
+  const [currentAnalysis, setCurrentAnalysis] = useState(null);
+
   const [uploading, setUploading] = useState(false);
-  const [recategorizing, setRecategorizing] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
-  const [showBreakdown, setShowBreakdown] = useState(false);
-  const [selectedForCombine, setSelectedForCombine] = useState([]);
-  const [combining, setCombining] = useState(false);
-  const [combineName, setCombineName] = useState("");
   const [categories, setCategories] = useState([]);
-  const [editingTransaction, setEditingTransaction] = useState(null);
   const [showAlgorithmEditor, setShowAlgorithmEditor] = useState(false);
   const [algorithmRules, setAlgorithmRules] = useState([]);
   const [newPattern, setNewPattern] = useState({ category: "", pattern: "" });
 
-  // Fetch upload history and combined history on mount
   useEffect(() => {
     if (token) {
-      fetchUploadHistory();
-      fetchCombinedHistory();
       fetchCategories();
     }
   }, [token]);
@@ -94,66 +85,6 @@ const FinancialAnalyzer = () => {
     }
   };
 
-  const fetchUploadHistory = async () => {
-    try {
-      const response = await axios.get("/api/agent/financial/history", {
-        headers: { Authorization: token },
-      });
-      setUploadHistory(response.data);
-    } catch (err) {
-      console.error("Failed to fetch upload history:", err);
-      setError("Failed to load upload history");
-    }
-  };
-
-  const fetchCombinedHistory = async () => {
-    try {
-      const response = await axios.get("/api/agent/financial/combined/history", {
-        headers: { Authorization: token },
-      });
-      setCombinedHistory(response.data);
-    } catch (err) {
-      console.error("Failed to fetch combined history:", err);
-    }
-  };
-
-  const fetchUploadDetails = async (uploadId, type = 'single') => {
-    try {
-      const endpoint = type === 'combined'
-        ? `/api/agent/financial/combined/${uploadId}`
-        : `/api/agent/financial/${uploadId}`;
-
-      const response = await axios.get(endpoint, {
-        headers: { Authorization: token },
-      });
-      setUploadDetails(response.data);
-      setSelectedUpload(uploadId);
-      setSelectedType(type);
-      setShowBreakdown(false);
-      setTransactionBreakdown(null);
-    } catch (err) {
-      console.error("Failed to fetch upload details:", err);
-      setError("Failed to load upload details");
-    }
-  };
-
-  const fetchTransactionBreakdown = async (uploadId, type = 'single') => {
-    try {
-      const endpoint = type === 'combined'
-        ? `/api/agent/financial/combined/${uploadId}/transactions`
-        : `/api/agent/financial/${uploadId}/transactions`;
-
-      const response = await axios.get(endpoint, {
-        headers: { Authorization: token },
-      });
-      setTransactionBreakdown(response.data);
-      setShowBreakdown(true);
-    } catch (err) {
-      console.error("Failed to fetch transaction breakdown:", err);
-      setError("Failed to load transaction breakdown");
-    }
-  };
-
   const handleFileUpload = async (event) => {
     const files = Array.from(event.target.files);
     if (files.length === 0) return;
@@ -175,71 +106,48 @@ const FinancialAnalyzer = () => {
         },
       });
 
-      if (files.length === 1) {
-        const upload = response.data.uploads[0];
-        let message = `Successfully processed ${upload.summary.totalTransactions} transactions from ${files[0].name}`;
+      const { combinedAnalysis, files } = response.data;
 
-        if (upload.aiCategorization && upload.aiCategorization.recategorized > 0) {
-          message += ` (AI categorized ${upload.aiCategorization.recategorized} transactions)`;
-        }
+      // Create session upload entries for each file with its individual analysis
+      const newUploads = files.map((file, idx) => ({
+        id: Date.now() + idx,
+        filename: file.filename,
+        transactionCount: file.analysis.totalTransactions,
+        categorizedCount: file.analysis.categorizedCount,
+        uncategorizedCount: file.analysis.uncategorizedCount,
+        analysis: file.analysis, // Individual file analysis
+      }));
 
-        setSuccess(message);
+      setSessionUploads(prev => [...prev, ...newUploads]);
+      setCurrentAnalysis(combinedAnalysis);
+      setSelectedForAnalysis(newUploads.map(u => u.id)); // Auto-select new files
 
-        if (upload.uploadId) {
-          setTimeout(() => fetchUploadDetails(upload.uploadId, 'single'), 500);
-        }
-      } else if (response.data.combined) {
-        setSuccess(`Successfully processed and combined ${files.length} files`);
-        setTimeout(() => fetchUploadDetails(response.data.combined.combinedId, 'combined'), 500);
-      } else {
-        setSuccess(`Processed ${files.length} files`);
-      }
-
-      fetchUploadHistory();
-      fetchCombinedHistory();
+      setSuccess(`Successfully analyzed ${files.length} file${files.length > 1 ? 's' : ''}`);
+      setTimeout(() => setSuccess(null), 3000);
     } catch (err) {
       console.error("Upload error:", err);
-      setError(err.response?.data?.error || "Failed to upload and process CSV files");
+      setError(err.response?.data?.error || "Failed to process CSV files");
     } finally {
       setUploading(false);
-      event.target.value = ""; // Reset file input
+      event.target.value = "";
     }
   };
 
-  const handleDeleteUpload = async (uploadId, filename, type = 'single') => {
-    if (!confirm(`Delete ${type === 'combined' ? 'combined ' : ''}upload: ${filename}?`)) {
-      return;
-    }
+  const handleRemoveFile = (uploadId) => {
+    if (!confirm("Remove this file from session?")) return;
 
-    try {
-      const endpoint = type === 'combined'
-        ? `/api/agent/financial/combined/${uploadId}`
-        : `/api/agent/financial/${uploadId}`;
+    setSessionUploads(prev => prev.filter(u => u.id !== uploadId));
+    setSelectedForAnalysis(prev => prev.filter(id => id !== uploadId));
 
-      await axios.delete(endpoint, {
-        headers: { Authorization: token },
-      });
-
-      setSuccess(`Deleted: ${filename}`);
-      fetchUploadHistory();
-      fetchCombinedHistory();
-
-      // Clear details if this was the selected upload
-      if (selectedUpload === uploadId && selectedType === type) {
-        setSelectedUpload(null);
-        setSelectedType(null);
-        setUploadDetails(null);
-        setTransactionBreakdown(null);
-        setShowBreakdown(false);
-      }
-    } catch (err) {
-      console.error("Delete error:", err);
-      setError(err.response?.data?.error || "Failed to delete upload");
+    // Clear analysis if we removed all files
+    const remaining = sessionUploads.filter(u => u.id !== uploadId);
+    if (remaining.length === 0) {
+      setCurrentAnalysis(null);
     }
   };
 
-  const toggleSelectForCombine = (uploadId) => {
-    setSelectedForCombine(prev => {
+  const toggleSelectForAnalysis = (uploadId) => {
+    setSelectedForAnalysis(prev => {
       if (prev.includes(uploadId)) {
         return prev.filter(id => id !== uploadId);
       } else {
@@ -248,102 +156,117 @@ const FinancialAnalyzer = () => {
     });
   };
 
-  const handleCombineSelected = async () => {
-    if (selectedForCombine.length < 2) {
-      setError("Please select at least 2 uploads to combine");
+  const handleAnalyzeSelected = () => {
+    if (selectedForAnalysis.length === 0) {
+      setError("Please select at least one file to analyze");
+      setTimeout(() => setError(null), 3000);
       return;
     }
 
-    setCombining(true);
-    setError(null);
+    // Get selected files' analyses
+    const selectedUploads = sessionUploads.filter(u => selectedForAnalysis.includes(u.id));
 
-    try {
-      const name = combineName || `Combined Upload: ${new Date().toLocaleDateString()}`;
-
-      const response = await axios.post(
-        "/api/agent/financial/combine",
-        {
-          uploadIds: selectedForCombine,
-          name,
-        },
-        {
-          headers: { Authorization: token },
-        }
-      );
-
-      setSuccess(`Successfully combined ${selectedForCombine.length} uploads`);
-      setSelectedForCombine([]);
-      setCombineName("");
-      fetchCombinedHistory();
-
-      // Auto-select the new combined upload
-      if (response.data.combinedId) {
-        setTimeout(() => fetchUploadDetails(response.data.combinedId, 'combined'), 500);
-      }
-    } catch (err) {
-      console.error("Combine error:", err);
-      setError(err.response?.data?.error || "Failed to combine uploads");
-    } finally {
-      setCombining(false);
+    if (selectedUploads.length === 1) {
+      // Single file - just show its analysis
+      setCurrentAnalysis(selectedUploads[0].analysis);
+      return;
     }
+
+    // Multiple files - merge their analyses
+    const mergedBuckets = {};
+    let totalMonthlyAverage = 0;
+    let totalTransactions = 0;
+    let categorizedCount = 0;
+    let uncategorizedCount = 0;
+    let excludedCount = 0;
+
+    selectedUploads.forEach(upload => {
+      const analysis = upload.analysis;
+      totalMonthlyAverage += analysis.totalMonthlyAverage;
+      totalTransactions += analysis.totalTransactions;
+      categorizedCount += analysis.categorizedCount;
+      uncategorizedCount += analysis.uncategorizedCount;
+      excludedCount += analysis.excludedCount;
+
+      // Merge buckets
+      Object.entries(analysis.buckets).forEach(([bucket, data]) => {
+        if (!mergedBuckets[bucket]) {
+          mergedBuckets[bucket] = { total: 0, categories: [] };
+        }
+        mergedBuckets[bucket].total += data.total;
+
+        // Merge categories within bucket
+        data.categories.forEach(cat => {
+          const existing = mergedBuckets[bucket].categories.find(c => c.category === cat.category);
+          if (existing) {
+            existing.monthlyAverage += cat.monthlyAverage;
+            existing.transactionCount += cat.transactionCount;
+          } else {
+            mergedBuckets[bucket].categories.push({ ...cat });
+          }
+        });
+      });
+    });
+
+    const mergedAnalysis = {
+      dateRange: `Combined: ${selectedUploads.length} files`,
+      monthCount: selectedUploads[0].analysis.monthCount, // Use first file's month count (simplified)
+      totalTransactions,
+      categorizedCount,
+      uncategorizedCount,
+      excludedCount,
+      totalMonthlyAverage: Number(totalMonthlyAverage.toFixed(2)),
+      buckets: mergedBuckets,
+      aiSuggestions: [], // No AI suggestions for merged analysis
+      uncategorized: [],
+      excludedSample: [],
+    };
+
+    setCurrentAnalysis(mergedAnalysis);
   };
 
-  const handleUpdateCategory = async (transactionId, newCategory) => {
+  const handleConfirmAISuggestion = async (description, category) => {
     try {
-      setEditingTransaction(transactionId);
-      await axios.put(
-        `/api/agent/financial/transactions/${transactionId}`,
-        { category: newCategory },
+      await axios.post(
+        "/api/agent/financial/confirm-ai-suggestion",
+        { description, category },
         { headers: { Authorization: token } }
       );
 
-      setSuccess(`Updated transaction category to ${newCategory}`);
+      setSuccess(`Pattern saved: "${description}" → ${category}`);
 
-      // Refresh transaction breakdown and upload details
-      if (selectedType === 'single') {
-        await fetchTransactionBreakdown(selectedUpload, 'single');
-        await fetchUploadDetails(selectedUpload, 'single');
-      } else {
-        await fetchTransactionBreakdown(selectedUpload, 'combined');
-        await fetchUploadDetails(selectedUpload, 'combined');
-      }
+      // Remove from AI suggestions list
+      setCurrentAnalysis(prev => ({
+        ...prev,
+        aiSuggestions: prev.aiSuggestions.filter(s => s.description !== description),
+      }));
 
       setTimeout(() => setSuccess(null), 3000);
     } catch (err) {
-      setError(err.response?.data?.error || "Failed to update category");
-      setTimeout(() => setError(null), 5000);
-    } finally {
-      setEditingTransaction(null);
+      console.error("Confirm AI suggestion error:", err);
+      setError("Failed to save pattern");
+      setTimeout(() => setError(null), 3000);
     }
   };
 
-  const handleRecategorize = async () => {
-    if (!selectedUpload) return;
+  const handleRejectAISuggestion = (description) => {
+    setCurrentAnalysis(prev => ({
+      ...prev,
+      aiSuggestions: prev.aiSuggestions.filter(s => s.description !== description),
+    }));
+  };
 
-    setRecategorizing(true);
-    setError(null);
+  const handleDownload = () => {
+    if (!currentAnalysis) return;
 
-    try {
-      const response = await axios.post(
-        `/api/agent/financial/${selectedUpload}/recategorize`,
-        {},
-        {
-          headers: { Authorization: token },
-        }
-      );
-
-      setSuccess(
-        `AI recategorized ${response.data.recategorized} transactions. ${response.data.stillUncategorized} remain uncategorized.`
-      );
-
-      // Refresh details
-      fetchUploadDetails(selectedUpload);
-    } catch (err) {
-      console.error("Recategorization error:", err);
-      setError(err.response?.data?.error || "Failed to recategorize transactions");
-    } finally {
-      setRecategorizing(false);
-    }
+    const dataStr = JSON.stringify(currentAnalysis, null, 2);
+    const blob = new Blob([dataStr], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `financial-analysis-${new Date().toISOString().split('T')[0]}.json`;
+    link.click();
+    URL.revokeObjectURL(url);
   };
 
   const formatCurrency = (amount) => {
@@ -468,74 +391,58 @@ const FinancialAnalyzer = () => {
         </div>
       )}
 
-      {/* Upload History */}
-      {uploadHistory.length > 0 && (
+      {/* Session Files */}
+      {sessionUploads.length > 0 && (
         <div className="upload-history">
-          <h3>Individual Uploads</h3>
+          <h3>Uploaded Files (Session Only)</h3>
 
-          {uploadHistory.length > 1 && (
+          {sessionUploads.length > 1 && (
             <div className="combine-section">
-              <div className="combine-controls">
-                <input
-                  type="text"
-                  placeholder="Name for combined upload (optional)"
-                  value={combineName}
-                  onChange={(e) => setCombineName(e.target.value)}
-                  className="combine-name-input"
-                />
-                <button
-                  className="combine-button"
-                  onClick={handleCombineSelected}
-                  disabled={selectedForCombine.length < 2 || combining}
-                >
-                  {combining
-                    ? "Combining..."
-                    : `Combine Selected (${selectedForCombine.length})`}
-                </button>
-              </div>
+              <p style={{ color: '#b0b0b0', fontSize: '14px', marginBottom: '10px' }}>
+                Select files to include in analysis • Refresh page to clear all
+              </p>
+              <button
+                className="combine-button"
+                onClick={handleAnalyzeSelected}
+                disabled={selectedForAnalysis.length === 0}
+              >
+                Analyze Selected ({selectedForAnalysis.length})
+              </button>
             </div>
           )}
 
           <div className="history-list">
-            {uploadHistory.map((upload) => (
+            {sessionUploads.map((upload) => (
               <div
                 key={upload.id}
-                className={`history-item ${selectedUpload === upload.id && selectedType === 'single' ? "selected" : ""}`}
+                className={`history-item ${selectedForAnalysis.includes(upload.id) ? "selected" : ""}`}
               >
-                {uploadHistory.length > 1 && (
+                {sessionUploads.length > 1 && (
                   <div className="history-checkbox">
                     <input
                       type="checkbox"
-                      checked={selectedForCombine.includes(upload.id)}
-                      onChange={() => toggleSelectForCombine(upload.id)}
+                      checked={selectedForAnalysis.includes(upload.id)}
+                      onChange={() => toggleSelectForAnalysis(upload.id)}
                       onClick={(e) => e.stopPropagation()}
                     />
                   </div>
                 )}
-                <div
-                  className="history-item-main"
-                  onClick={() => fetchUploadDetails(upload.id, 'single')}
-                >
+                <div className="history-item-main">
                   <div className="history-item-header">
-                    <span className="history-filename">{upload.filename || "Unnamed upload"}</span>
+                    <span className="history-filename">{upload.filename}</span>
                   </div>
                   <div className="history-item-body">
-                    <p>{upload.dateRange}</p>
-                    <p>
-                      {upload.totalTransactions} transactions ({upload.monthCount} months)
-                    </p>
-                    <p className="history-average">
-                      Avg: {formatCurrency(upload.totalMonthlyAverage)}/month
-                    </p>
+                    <p>{upload.transactionCount} transactions</p>
+                    <p>{upload.categorizedCount} categorized · {upload.uncategorizedCount} uncategorized</p>
                   </div>
                 </div>
                 <button
                   className="delete-button"
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleDeleteUpload(upload.id, upload.filename, 'single');
+                    handleRemoveFile(upload.id);
                   }}
-                  title="Delete this upload"
+                  title="Remove from session"
                 >
                   ✕
                 </button>
@@ -545,86 +452,35 @@ const FinancialAnalyzer = () => {
         </div>
       )}
 
-      {/* Combined Upload History */}
-      {combinedHistory.length > 0 && (
-        <div className="upload-history">
-          <h3>Combined Analyses</h3>
-          <div className="history-list">
-            {combinedHistory.map((combined) => (
-              <div
-                key={`combined-${combined.id}`}
-                className={`history-item combined ${selectedUpload === combined.id && selectedType === 'combined' ? "selected" : ""}`}
-              >
-                <div
-                  className="history-item-main"
-                  onClick={() => fetchUploadDetails(combined.id, 'combined')}
-                >
-                  <div className="history-item-header">
-                    <span className="history-filename">{combined.name}</span>
-                  </div>
-                  <div className="history-item-body">
-                    <p>{combined.dateRange}</p>
-                    <p>
-                      {combined.totalTransactions} transactions ({combined.monthCount} months)
-                    </p>
-                    <p className="history-average">
-                      Avg: {formatCurrency(combined.totalMonthlyAverage)}/month
-                    </p>
-                  </div>
-                </div>
-                <button
-                  className="delete-button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleDeleteUpload(combined.id, combined.name, 'combined');
-                  }}
-                  title="Delete this combined upload"
-                >
-                  ✕
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Upload Details */}
-      {uploadDetails && !showBreakdown && (
+      {/* Analysis Results */}
+      {currentAnalysis && (
         <div className="upload-details">
           <div className="details-header">
-            <h3>{uploadDetails.upload.dateRange}</h3>
+            <h3>{currentAnalysis.dateRange}</h3>
             <p>
-              {uploadDetails.upload.monthCount} months · {uploadDetails.upload.totalTransactions}{" "}
-              transactions
+              {currentAnalysis.monthCount} months · {currentAnalysis.totalTransactions} transactions
             </p>
+            <button className="action-button" onClick={handleDownload}>
+              Download Analysis
+            </button>
           </div>
 
           {/* Summary Stats */}
           <div className="stats-grid">
             <div className="stat-card">
-              <div className="stat-value">{uploadDetails.upload.totalTransactions}</div>
+              <div className="stat-value">{currentAnalysis.totalTransactions}</div>
               <div className="stat-label">Total Transactions</div>
             </div>
             <div className="stat-card">
-              <div className="stat-value">{uploadDetails.upload.categorizedCount}</div>
+              <div className="stat-value">{currentAnalysis.categorizedCount}</div>
               <div className="stat-label">Categorized</div>
             </div>
-            <div className="stat-card stat-card-uncategorized">
-              <div className="stat-value">{uploadDetails.upload.uncategorizedCount}</div>
+            <div className="stat-card">
+              <div className="stat-value">{currentAnalysis.uncategorizedCount}</div>
               <div className="stat-label">Uncategorized</div>
-              {uploadDetails.upload.uncategorizedCount > 0 && (
-                <button
-                  className="stat-card-button"
-                  onClick={handleRecategorize}
-                  disabled={recategorizing}
-                  title="Re-run AI categorization"
-                >
-                  {recategorizing ? "..." : "Re-run AI"}
-                </button>
-              )}
             </div>
             <div className="stat-card">
-              <div className="stat-value">{uploadDetails.upload.excludedCount}</div>
+              <div className="stat-value">{currentAnalysis.excludedCount}</div>
               <div className="stat-label">Excluded (Transfers)</div>
             </div>
           </div>
@@ -633,99 +489,51 @@ const FinancialAnalyzer = () => {
           <div className="total-average">
             <h4>Monthly Average</h4>
             <div className="average-amount">
-              {formatCurrency(uploadDetails.upload.totalMonthlyAverage)}
+              {formatCurrency(currentAnalysis.totalMonthlyAverage)}
             </div>
           </div>
 
-          {/* Calculation & Source Grid */}
-          <div className="calc-source-grid">
-            {/* Source Breakdown (for combined uploads) */}
-            {selectedType === 'combined' && uploadDetails.sourceBreakdown && (
-              <div className="source-breakdown">
-                <h4>Breakdown by Source File</h4>
-                {(() => {
-                  const maxAverage = Math.max(...uploadDetails.sourceBreakdown.map(s => s.monthlyAverage));
-                  return uploadDetails.sourceBreakdown.map((source, idx) => (
-                    <div
-                      key={idx}
-                      className={`source-item ${source.monthlyAverage === maxAverage ? 'heaviest' : ''}`}
-                    >
-                      <div className="source-header">
-                        <span className="source-filename">{source.filename}</span>
-                        <div className="source-details">
-                          <span>{source.transactionCount} transactions</span>
-                          <span>{source.monthCount} months</span>
-                        </div>
-                      </div>
-                      <span className="source-average">
-                        {formatCurrency(source.monthlyAverage)}/month
-                      </span>
-                    </div>
-                  ));
-                })()}
-              </div>
-            )}
+          {/* Calculation Details */}
+          {currentAnalysis.calculationLog && (
+            <div className="calculation-details">
+              <h4>Calculation Breakdown</h4>
 
-            {/* Calculation Details */}
-            {uploadDetails.calculationLog && (
-              <div className="calculation-details">
-              <h4>Calculation Breakdown (How We Got This Number)</h4>
-
-              {uploadDetails.calculationLog.dateRange && (
+              {currentAnalysis.calculationLog.dateRange && (
                 <div className="calc-section">
-                  <strong>Question 1: What date range?</strong>
-                  <p>First transaction: {uploadDetails.calculationLog.dateRange.firstTransactionDate}</p>
-                  <p>Last transaction: {uploadDetails.calculationLog.dateRange.lastTransactionDate}</p>
-                  <p>Days between: {uploadDetails.calculationLog.dateRange.daysBetween} days</p>
+                  <strong>Date Range</strong>
+                  <p>First transaction: {currentAnalysis.calculationLog.dateRange.firstTransactionDate}</p>
+                  <p>Last transaction: {currentAnalysis.calculationLog.dateRange.lastTransactionDate}</p>
+                  <p>Days between: {currentAnalysis.calculationLog.dateRange.daysBetween} days</p>
+                  <p className="highlight">{currentAnalysis.calculationLog.dateRange.monthCountFormula}</p>
                 </div>
               )}
 
-              {uploadDetails.calculationLog.dateRange && (
+              {currentAnalysis.calculationLog.totals && (
                 <div className="calc-section">
-                  <strong>Question 2: How many months?</strong>
-                  <p>{uploadDetails.calculationLog.dateRange.monthCountFormula}</p>
-                  <p className="highlight">Using {uploadDetails.calculationLog.dateRange.monthCountUsed} months for division</p>
+                  <strong>Total Sum</strong>
+                  <p>Sum of categorized expenses: {formatCurrency(currentAnalysis.calculationLog.totals.grandTotal)}</p>
+                  <p className="formula">{currentAnalysis.calculationLog.totals.formula}</p>
                 </div>
               )}
 
-              {uploadDetails.calculationLog.totals && (
+              {currentAnalysis.calculationLog.breakdown && (
                 <div className="calc-section">
-                  <strong>Question 3: What's the total sum?</strong>
-                  <p>Sum of all categorized expenses: {formatCurrency(uploadDetails.calculationLog.totals.grandTotal)}</p>
+                  <strong>What Was Excluded</strong>
+                  <p>Categorized: {currentAnalysis.calculationLog.breakdown.categorizedCount}</p>
+                  <p>Uncategorized: {currentAnalysis.calculationLog.breakdown.uncategorizedCount}</p>
+                  <p>Excluded: {currentAnalysis.calculationLog.breakdown.excludedCount}</p>
                 </div>
               )}
 
-              {uploadDetails.calculationLog.breakdown && (
-                <div className="calc-section">
-                  <strong>Question 4: What was excluded?</strong>
-                  <p>Transactions kept for analysis: {uploadDetails.calculationLog.breakdown.categorizedCount}</p>
-                  <p className="highlight">
-                    Of those, {uploadDetails.calculationLog.breakdown.uncategorizedCount} had no matching category pattern
-                  </p>
-                  <p>Excluded as transfers/payments: {uploadDetails.calculationLog.breakdown.excludedCount}</p>
-                  <p className="math-check">{uploadDetails.calculationLog.breakdown.mathCheck}</p>
-                  {uploadDetails.calculationLog.breakdown.note && (
-                    <p className="math-check">{uploadDetails.calculationLog.breakdown.note}</p>
-                  )}
-                </div>
-              )}
-
-              {uploadDetails.calculationLog.totals && (
-                <div className="calc-section final-calc">
-                  <strong>Final Calculation:</strong>
-                  <p className="formula">{uploadDetails.calculationLog.totals.formula}</p>
-                </div>
-              )}
-
-              {uploadDetails.excludedTransactions && uploadDetails.excludedTransactions.length > 0 && (
+              {currentAnalysis.excludedSample && currentAnalysis.excludedSample.length > 0 && (
                 <details className="excluded-details">
-                  <summary>View First {uploadDetails.excludedTransactions.length} Excluded Transactions</summary>
+                  <summary>View Sample Excluded Transactions</summary>
                   <div className="excluded-list">
-                    {uploadDetails.excludedTransactions.map((txn, idx) => (
+                    {currentAnalysis.excludedSample.map((txn, idx) => (
                       <div key={idx} className="excluded-item">
                         <span className="excluded-date">{txn.date}</span>
                         <span className="excluded-description">{txn.description}</span>
-                        <span className="excluded-amount">{formatCurrency(txn.absAmount)}</span>
+                        <span className="excluded-amount">{formatCurrency(txn.amount)}</span>
                         <span className="excluded-reason">{txn.reason}</span>
                       </div>
                     ))}
@@ -734,22 +542,11 @@ const FinancialAnalyzer = () => {
               )}
             </div>
           )}
-          </div>
-
-          {/* Action Buttons */}
-          <div className="action-buttons">
-            <button
-              className="action-button"
-              onClick={() => fetchTransactionBreakdown(selectedUpload, selectedType)}
-            >
-              View Detailed Breakdown
-            </button>
-          </div>
 
           {/* Bucket Breakdown */}
           <div className="bucket-breakdown">
             <h4>Spending by Category</h4>
-            {Object.entries(uploadDetails.buckets)
+            {Object.entries(currentAnalysis.buckets)
               .sort((a, b) => b[1].total - a[1].total)
               .map(([bucket, data]) => (
                 <div key={bucket} className="bucket-section">
@@ -774,30 +571,78 @@ const FinancialAnalyzer = () => {
               ))}
           </div>
 
-          {/* Uncategorized Transactions */}
-          {uploadDetails.uncategorized && uploadDetails.uncategorized.length > 0 && (
-            <div className="uncategorized-section">
-              <div className="uncategorized-header">
-                <h4>Uncategorized Transactions ({uploadDetails.uncategorized.length})</h4>
-                <button
-                  className="recategorize-button"
-                  onClick={handleRecategorize}
-                  disabled={recategorizing}
-                >
-                  {recategorizing ? "Processing..." : "Recategorize with AI"}
-                </button>
-              </div>
-              <div className="uncategorized-list">
-                {uploadDetails.uncategorized.map((txn) => (
-                  <div key={txn.id} className="uncategorized-item">
-                    <div className="txn-description">{txn.description}</div>
-                    <div className="txn-amount">{formatCurrency(txn.amount)}</div>
-                    {txn.aiSuggestedCategory && (
-                      <div className="ai-suggestion">
-                        <strong>AI Suggestion: {txn.aiSuggestedCategory}</strong>
-                        <em>{txn.aiReasoning}</em>
+          {/* AI Suggestions for Confirmation */}
+          {currentAnalysis.aiSuggestions && currentAnalysis.aiSuggestions.length > 0 && (
+            <div className="ai-suggestions-section">
+              <h4>AI Categorization Suggestions</h4>
+              <p className="ai-hint">
+                Review and confirm AI suggestions. Confirmed patterns will be saved for future uploads.
+              </p>
+              <div className="ai-suggestions-list">
+                {currentAnalysis.aiSuggestions.map((suggestion, idx) => (
+                  <div
+                    key={idx}
+                    className={`ai-suggestion-item ${suggestion.autoApplied ? "auto-applied" : ""}`}
+                  >
+                    <div className="suggestion-header">
+                      <span className="suggestion-description">{suggestion.description}</span>
+                      <span className="suggestion-amount">{formatCurrency(suggestion.amount)}</span>
+                    </div>
+                    <div className="suggestion-body">
+                      <div className="suggestion-category">
+                        <strong>Suggested Category:</strong> {suggestion.suggestedCategory}
+                      </div>
+                      <div className="suggestion-reasoning">
+                        <em>{suggestion.reasoning}</em>
+                      </div>
+                      <div className="suggestion-confidence">
+                        Confidence: <span className={`confidence-${suggestion.confidence}`}>
+                          {suggestion.confidence}
+                        </span>
+                      </div>
+                    </div>
+                    {suggestion.autoApplied ? (
+                      <div className="suggestion-status">
+                        ✓ Auto-applied (high confidence)
+                      </div>
+                    ) : (
+                      <div className="suggestion-actions">
+                        <button
+                          className="confirm-button"
+                          onClick={() =>
+                            handleConfirmAISuggestion(
+                              suggestion.description,
+                              suggestion.suggestedCategory
+                            )
+                          }
+                        >
+                          ✓ Confirm & Save Pattern
+                        </button>
+                        <button
+                          className="reject-button"
+                          onClick={() => handleRejectAISuggestion(suggestion.description)}
+                        >
+                          ✕ Reject
+                        </button>
                       </div>
                     )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Uncategorized Transactions */}
+          {currentAnalysis.uncategorized && currentAnalysis.uncategorized.length > 0 && (
+            <div className="uncategorized-section">
+              <h4>Sample Uncategorized Transactions ({currentAnalysis.uncategorizedCount} total)</h4>
+              <div className="uncategorized-list">
+                {currentAnalysis.uncategorized.map((txn, idx) => (
+                  <div key={idx} className="uncategorized-item">
+                    <div className="txn-description">{txn.description}</div>
+                    <div className="txn-amount">{formatCurrency(txn.amount)}</div>
+                    <div className="txn-date">{txn.date}</div>
+                    {txn.sourceFile && <div className="txn-source">{txn.sourceFile}</div>}
                   </div>
                 ))}
               </div>
@@ -806,76 +651,10 @@ const FinancialAnalyzer = () => {
         </div>
       )}
 
-      {/* Transaction Breakdown View */}
-      {transactionBreakdown && showBreakdown && (
-        <div className="transaction-breakdown">
-          <div className="breakdown-header">
-            <h3>Transaction Breakdown: {transactionBreakdown.upload.filename}</h3>
-            <p>{transactionBreakdown.upload.dateRange} ({transactionBreakdown.upload.monthCount} months)</p>
-            <button className="action-button" onClick={() => setShowBreakdown(false)}>
-              Back to Summary
-            </button>
-          </div>
-
-          <div className="breakdown-info">
-            <p><strong>Total Transactions:</strong> {transactionBreakdown.transactions.length}</p>
-            <p>This shows the exact categorization of every transaction for verification against your spreadsheet.</p>
-          </div>
-
-          <div className="breakdown-table">
-            <table>
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Description</th>
-                  <th>Raw Amount</th>
-                  <th>Normalized</th>
-                  <th>Abs Amount</th>
-                  <th>Source</th>
-                  {selectedType === 'combined' && <th>File</th>}
-                  <th>Category</th>
-                  <th>Bucket</th>
-                </tr>
-              </thead>
-              <tbody>
-                {transactionBreakdown.transactions.map((txn, idx) => (
-                  <tr key={idx}>
-                    <td>{txn.date}</td>
-                    <td className="description-cell">{txn.description}</td>
-                    <td className="amount-cell">{formatCurrency(txn.rawAmount)}</td>
-                    <td className="amount-cell">{formatCurrency(txn.normalizedAmount)}</td>
-                    <td className="amount-cell">{formatCurrency(txn.absAmount)}</td>
-                    <td className="source-cell">{txn.source}</td>
-                    {selectedType === 'combined' && (
-                      <td className="source-cell">{txn.sourceFile}</td>
-                    )}
-                    <td className="category-cell">
-                      <select
-                        value={txn.category}
-                        onChange={(e) => handleUpdateCategory(txn.id, e.target.value)}
-                        disabled={editingTransaction === txn.id}
-                        className="category-select"
-                      >
-                        {categories.map((cat) => (
-                          <option key={cat} value={cat}>
-                            {cat}
-                          </option>
-                        ))}
-                      </select>
-                    </td>
-                    <td>{txn.bucket}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      )}
-
       {/* Empty State */}
-      {uploadHistory.length === 0 && !uploading && (
+      {!currentAnalysis && sessionUploads.length === 0 && !uploading && (
         <div className="empty-state">
-          No uploads yet. Upload your first CSV to get started.
+          Upload CSV files to analyze your spending. Multiple files will be automatically combined.
         </div>
       )}
     </div>

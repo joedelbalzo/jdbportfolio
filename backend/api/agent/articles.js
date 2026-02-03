@@ -133,4 +133,40 @@ router.post("/mark-read", isAgentLoggedIn, async (req, res, next) => {
   }
 });
 
+// Delete article
+router.delete("/:id", isAgentLoggedIn, async (req, res, next) => {
+  try {
+    const article = await Article.findByPk(req.params.id);
+    if (!article) {
+      const error = new Error("Article not found");
+      error.status = 404;
+      throw error;
+    }
+
+    await article.destroy();
+    res.send({ success: true, message: "Article deleted" });
+  } catch (ex) {
+    next(ex);
+  }
+});
+
+// Delete multiple articles
+router.post("/delete-multiple", isAgentLoggedIn, async (req, res, next) => {
+  try {
+    const { articleIds } = req.body;
+
+    if (!Array.isArray(articleIds) || articleIds.length === 0) {
+      const error = new Error("articleIds array is required");
+      error.status = 400;
+      throw error;
+    }
+
+    const count = await Article.destroy({ where: { id: { [Op.in]: articleIds } } });
+
+    res.send({ success: true, count });
+  } catch (ex) {
+    next(ex);
+  }
+});
+
 module.exports = router;

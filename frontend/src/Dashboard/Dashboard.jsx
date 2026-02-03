@@ -21,6 +21,9 @@ const Dashboard = () => {
   const [relevanceThreshold, setRelevanceThreshold] = useState(7);
   const [maxArticlesPerRun, setMaxArticlesPerRun] = useState(15);
   const [activeTab, setActiveTab] = useState("content"); // "content" or "financial"
+  const [articleOffset, setArticleOffset] = useState(0);
+  const [hasMoreArticles, setHasMoreArticles] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
 
   useEffect(() => {
     // Check if there's a token in the URL
@@ -62,10 +65,12 @@ const Dashboard = () => {
 
         // Load recent articles (don't fail if this errors)
         try {
-          const articlesResponse = await axios.get("/api/agent/articles?limit=10", {
+          const articlesResponse = await axios.get("/api/agent/articles?limit=50&offset=0", {
             headers: {Authorization: token},
           });
           setArticles(articlesResponse.data.articles);
+          setHasMoreArticles(articlesResponse.data.articles.length === 50);
+          setArticleOffset(50);
         } catch (err) {
           console.error("Failed to load articles:", err);
         }
@@ -141,10 +146,12 @@ const Dashboard = () => {
       });
       setStats(statsResponse.data);
 
-      const articlesResponse = await axios.get("/api/agent/articles?limit=10", {
+      const articlesResponse = await axios.get("/api/agent/articles?limit=50&offset=0", {
         headers: {Authorization: token},
       });
       setArticles(articlesResponse.data.articles);
+      setHasMoreArticles(articlesResponse.data.articles.length === 50);
+      setArticleOffset(50);
     } catch (error) {
       console.error("Fetch error:", error);
       setFetchResult({
@@ -246,6 +253,35 @@ const Dashboard = () => {
       setArticles(articles.map((a) => (a.id === articleId ? {...a, isSaved: response.data.isSaved} : a)));
     } catch (error) {
       console.error("Error toggling save:", error);
+    }
+  };
+
+  const handleLoadMore = async () => {
+    const token = localStorage.getItem("agentToken");
+    setLoadingMore(true);
+    try {
+      const response = await axios.get(`/api/agent/articles?limit=50&offset=${articleOffset}`, {
+        headers: {Authorization: token},
+      });
+      setArticles([...articles, ...response.data.articles]);
+      setHasMoreArticles(response.data.articles.length === 50);
+      setArticleOffset(articleOffset + 50);
+    } catch (error) {
+      console.error("Failed to load more articles:", error);
+    } finally {
+      setLoadingMore(false);
+    }
+  };
+
+  const handleDeleteArticle = async (articleId) => {
+    const token = localStorage.getItem("agentToken");
+    try {
+      await axios.delete(`/api/agent/articles/${articleId}`, {
+        headers: {Authorization: token},
+      });
+      setArticles(articles.filter((a) => a.id !== articleId));
+    } catch (error) {
+      console.error("Error deleting article:", error);
     }
   };
 
@@ -722,9 +758,38 @@ const Dashboard = () => {
                     style={{color: "#4e95ff", textDecoration: "none"}}>
                     {article.isSaved ? "unsave" : "save"}
                   </a>
+                  {" · "}
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleDeleteArticle(article.id);
+                    }}
+                    style={{color: "#ff5722", textDecoration: "none"}}>
+                    delete
+                  </a>
                 </div>
               </div>
             ))}
+          </div>
+        )}
+
+        {hasMoreArticles && articles.length > 0 && (
+          <div style={{marginTop: "30px", textAlign: "center"}}>
+            <button
+              onClick={handleLoadMore}
+              disabled={loadingMore}
+              style={{
+                padding: "12px 30px",
+                backgroundColor: loadingMore ? "#737373" : "#0066ff",
+                color: "whitesmoke",
+                border: "none",
+                cursor: loadingMore ? "not-allowed" : "pointer",
+                fontSize: "16px",
+                transition: "0.3s ease",
+              }}>
+              {loadingMore ? "Loading..." : "Load More"}
+            </button>
           </div>
         )}
       </div>
