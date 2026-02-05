@@ -7,6 +7,7 @@ const Nav = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const navRef = useRef(null);
   const [placeholderHeight, setPlaceholderHeight] = useState(0);
+  const isDashboard = window.location.pathname === "/dashboard";
 
   useEffect(() => {
     const activeOptions = {
@@ -18,6 +19,11 @@ const Nav = () => {
       "http://localhost:3000/portfolio": 3,
     };
     setIsActive(activeOptions[window.location.href]);
+
+    // Disable scroll effect on dashboard
+    if (isDashboard) {
+      return;
+    }
 
     let rafId = null;
     const handleScroll = () => {
@@ -58,7 +64,7 @@ const Nav = () => {
           borderRadius: scrolled ? "4rem" : "0",
           backgroundColor: scrolled ? "#000813" : "transparent",
           boxShadow: scrolled ? "0px 8px 20px rgba(0,0,0,0.5)" : "none",
-          transition: "all 0.3s ease",
+          transition: isDashboard ? "none" : "all 0.3s ease",
           zIndex: "1000",
           display: "flex",
           alignItems: "center",
