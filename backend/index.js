@@ -13,7 +13,7 @@ app.use(cors());
 
 const init = async () => {
   try {
-    await conn.sync();
+    await conn.sync({ alter: true }); // Temporarily add { alter: true } to add new columns
     // Legacy app syncs (hidden - restorable)
     // try {
     //   await syncAndSeedScript();
@@ -51,7 +51,7 @@ const init = async () => {
       console.log("err syncing agent");
     }
 
-    const port = process.env.PORT || 5000;
+    const port = process.env.PORT || 5001;
     const server = app.listen(port, () => console.log(`listening on port ${port}`));
   } catch (ex) {
     console.log(ex);

@@ -10,6 +10,8 @@ const UncategorizedTransaction = require("./UncategorizedTransaction");
 const CategorizedTransaction = require("./CategorizedTransaction");
 const CombinedUpload = require("./CombinedUpload");
 const CustomCategorizationPattern = require("./CustomCategorizationPattern");
+const TaskTemplate = require("./TaskTemplate");
+const TaskCompletion = require("./TaskCompletion");
 
 // Relationships - Content Curation
 Feed.hasMany(Article);
@@ -49,6 +51,13 @@ CombinedUpload.belongsTo(AgentUser, { as: "user" });
 
 AgentUser.hasMany(CustomCategorizationPattern);
 CustomCategorizationPattern.belongsTo(AgentUser, { as: "user" });
+
+// Relationships - Household Task Tracker
+AgentUser.hasMany(TaskTemplate);
+TaskTemplate.belongsTo(AgentUser);
+
+TaskTemplate.hasMany(TaskCompletion);
+TaskCompletion.belongsTo(TaskTemplate);
 
 const syncAndSeedAgent = async () => {
   try {
@@ -151,5 +160,7 @@ module.exports = {
   CategorizedTransaction,
   CombinedUpload,
   CustomCategorizationPattern,
+  TaskTemplate,
+  TaskCompletion,
   syncAndSeedAgent,
 };

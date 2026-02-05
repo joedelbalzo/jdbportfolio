@@ -22,7 +22,7 @@ const getAllowedEmails = () => {
 
 const callbackURL =
   process.env.NODE_ENV === "development"
-    ? "http://localhost:5000/api/agent/auth/google/callback"
+    ? "http://localhost:5001/api/agent/auth/google/callback"
     : process.env.AGENT_OAUTH_CALLBACK_URL || "https://www.joedelbalzo.com/api/agent/auth/google/callback";
 
 passport.use(
@@ -95,22 +95,30 @@ passport.deserializeUser(async function (id, done) {
   }
 });
 
-authRoutes.use(
-  session({
-    secret: secret,
-    resave: false,
-    saveUninitialized: false,
-  }),
+// Session middleware setup for OAuth routes only
+const sessionMiddleware = session({
+  secret: secret,
+  resave: false,
+  saveUninitialized: false,
+});
+
+// Initiate Google OAuth (with session)
+authRoutes.get(
+  "/google",
+  sessionMiddleware,
+  passport.initialize(),
+  passport.session(),
+  passport.authenticate("agent-google", {scope: ["profile", "email"]}),
 );
 
-authRoutes.use(passport.initialize());
-authRoutes.use(passport.session());
-
-// Initiate Google OAuth
-authRoutes.get("/google", passport.authenticate("agent-google", {scope: ["profile", "email"]}));
-
-// Google OAuth callback
-authRoutes.get("/google/callback", passport.authenticate("agent-google", {failureRedirect: "/login"}), async function (req, res) {
+// Google OAuth callback (with session)
+authRoutes.get(
+  "/google/callback",
+  sessionMiddleware,
+  passport.initialize(),
+  passport.session(),
+  passport.authenticate("agent-google", {failureRedirect: "/login"}),
+  async function (req, res) {
   try {
     const tokenData = await req.user.generateToken();
     if (tokenData && tokenData.token) {
@@ -128,32 +136,13 @@ authRoutes.get("/google/callback", passport.authenticate("agent-google", {failur
   }
 });
 
-// Get current user by token
+// Get current user by JWT token
 authRoutes.get("/", isAgentLoggedIn, async (req, res, next) => {
   try {
     res.send(req.user);
   } catch (ex) {
     next(ex);
   }
-});
-
-// Check authentication status
-authRoutes.get("/me", (req, res) => {
-  if (req.isAuthenticated()) {
-    res.json(req.user);
-  } else {
-    res.status(401).json({error: "Not authenticated"});
-  }
-});
-
-// Logout
-authRoutes.get("/logout", function (req, res) {
-  req.logout(function (err) {
-    if (err) {
-      return res.status(500).send("Logout failed");
-    }
-    res.redirect("/");
-  });
 });
 
 // Debug endpoint to check allowed emails (remove in production)

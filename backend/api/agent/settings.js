@@ -10,6 +10,7 @@ router.get("/", isAgentLoggedIn, async (req, res, next) => {
       aiPrompt: req.user.aiPrompt,
       relevanceThreshold: req.user.relevanceThreshold,
       maxArticlesPerRun: req.user.maxArticlesPerRun,
+      taskPreferences: req.user.taskPreferences,
     });
   } catch (ex) {
     next(ex);
@@ -19,7 +20,7 @@ router.get("/", isAgentLoggedIn, async (req, res, next) => {
 // UPDATE user settings
 router.put("/", isAgentLoggedIn, async (req, res, next) => {
   try {
-    const { aiPrompt, relevanceThreshold, maxArticlesPerRun } = req.body;
+    const { aiPrompt, relevanceThreshold, maxArticlesPerRun, taskPreferences } = req.body;
 
     const updates = {};
     if (aiPrompt !== undefined) updates.aiPrompt = aiPrompt;
@@ -39,6 +40,7 @@ router.put("/", isAgentLoggedIn, async (req, res, next) => {
       }
       updates.maxArticlesPerRun = maxArticlesPerRun;
     }
+    if (taskPreferences !== undefined) updates.taskPreferences = taskPreferences;
 
     await req.user.update(updates);
 
@@ -46,6 +48,7 @@ router.put("/", isAgentLoggedIn, async (req, res, next) => {
       aiPrompt: req.user.aiPrompt,
       relevanceThreshold: req.user.relevanceThreshold,
       maxArticlesPerRun: req.user.maxArticlesPerRun,
+      taskPreferences: req.user.taskPreferences,
     });
   } catch (ex) {
     next(ex);

@@ -288,6 +288,8 @@ const preFilterArticles = (articles, topics = [], minScore = 10) => {
 
     if (hasKeyword) {
       console.log(`✓ Keyword match: "${article.title}" (score: ${article.score})`);
+    } else {
+      console.log(`✗ NO keyword match: "${article.title}" (score: ${article.score}) - keywords: [${keywords.join(', ')}]`);
     }
 
     return hasKeyword;

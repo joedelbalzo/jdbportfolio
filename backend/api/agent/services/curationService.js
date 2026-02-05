@@ -263,12 +263,15 @@ Be strict - only approve high-signal content.`;
     return curatedArticles;
   } catch (error) {
     console.error(`AI curation failed:`, error.message);
-    console.log(`Including all ${articles.length} articles with default relevance`);
-    // Fallback: include all articles with default score
+    console.log(`Keeping ${articles.length} articles that passed keyword filtering (AI unavailable)`);
+    // These articles already passed keyword filtering and deduplication
+    // When AI fails, we keep them with a default score rather than discarding good content
+    // Think of it like a strainer: wide mesh (keywords) → medium mesh (dedup) → fine mesh (AI)
+    // If the fine mesh breaks, we still have articles that passed the first two meshes
     return articles.map(article => ({
       ...article,
-      relevanceScore: 5,
-      aiSummary: "AI curation unavailable",
+      relevanceScore: 6,
+      aiSummary: "AI unavailable",
       isRelevant: true,
     }));
   }

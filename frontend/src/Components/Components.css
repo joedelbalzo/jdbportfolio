@@ -1,0 +1,78 @@
+/* Shared Component Styles */
+
+/* Two Column Layout */
+.two-column-layout {
+  display: flex;
+  gap: 30px;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.two-column-layout__left {
+  flex: 1 1 600px;
+  min-width: 0;
+}
+
+.two-column-layout__right {
+  flex: 0 1 400px;
+  min-width: 300px;
+}
+
+/* AI Context Box */
+.ai-context-box {
+  padding: 25px;
+  background-color: rgba(0, 102, 255, 0.1);
+  border: 2px solid #0066ff;
+  height: 100%;
+}
+
+.ai-context-box__title {
+  margin: 0 0 20px 0;
+  color: whitesmoke;
+  font-size: 24px;
+}
+
+.ai-context-box__description {
+  color: whitesmoke;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.ai-context-box__textarea {
+  width: 100%;
+  min-height: 150px;
+  max-height: 300px;
+  padding: 12px;
+  border: 1px solid #737373;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: whitesmoke;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  resize: vertical;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+
+.ai-context-box__button {
+  padding: 10px 20px;
+  color: whitesmoke;
+  border: none;
+  font-size: 16px;
+  width: 100%;
+}
+
+.ai-context-box__button:disabled {
+  background-color: #737373;
+  cursor: not-allowed;
+}
+
+.ai-context-box__button:not(:disabled) {
+  background-color: #0066ff;
+  cursor: pointer;
+}
+
+.ai-context-box__last-saved {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #737373;
+}

@@ -41,13 +41,13 @@ const restrictValiAccess = (req, res, next) => {
     "https://www.joinvali.com",
     "https://joinvali.com",
     "http://localhost:3000",
-    "http://localhost:5000",
+    "http://localhost:5001",
     "https://joedelbalzo.github.io",
     "https://joedelbalzo.github.io/",
     "joedelbalzo.github.io",
     "https://joedelbalzo.github.io/kan-th/",
     "localhost:3000",
-    "localhost:5000",
+    "localhost:5001",
   ];
   if (process.env.DEV_SITE) {
     allowedOrigins.push(process.env.DEV_SITE);

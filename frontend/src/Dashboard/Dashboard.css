@@ -1,0 +1,84 @@
+/* Dashboard Container Styles */
+
+.dashboard {
+  padding: 30px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Header */
+.dashboard__header {
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #ff5722;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard__title {
+  margin: 0;
+  font-size: 32px;
+  color: whitesmoke;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.dashboard__user-info {
+  font-size: 16px;
+  color: #737373;
+  margin-top: 8px;
+}
+
+.dashboard__logout-link {
+  color: #737373;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.dashboard__logout-link:hover {
+  color: #ff5722;
+}
+
+/* Tab Navigation */
+.dashboard__tabs {
+  margin-bottom: 25px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  gap: 20px;
+}
+
+.dashboard__tab {
+  padding: 10px 0;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 400;
+  transition: all 0.2s;
+}
+
+.dashboard__tab--inactive {
+  color: #b0b0b0;
+}
+
+.dashboard__tab--active-tasks {
+  color: whitesmoke;
+  border-bottom-color: #10b981;
+}
+
+.dashboard__tab--active-content {
+  color: whitesmoke;
+  border-bottom-color: #0066ff;
+}
+
+.dashboard__tab--active-financial {
+  color: whitesmoke;
+  border-bottom-color: #ff5722;
+}
+
+/* Feature Content */
+.dashboard__content {
+  /* Let each feature handle its own layout */
+}

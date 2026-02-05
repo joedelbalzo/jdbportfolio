@@ -33,6 +33,35 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - NEVER proactively create documentation files (*.md) or README files unless explicitly requested
 - **ALWAYS close background bash commands when finished** - Use TaskStop to stop background tasks (like `npm start`) when done testing/verifying. Don't leave servers running in the background.
 
+## User-Facing Messages
+
+Keep all user-facing text (error messages, logs, UI labels, status text) concise and natural.
+
+Examples:
+- ✅ "AI unavailable"
+- ❌ "AI curation unavailable - passed keyword filter"
+- ✅ "Token expired"
+- ❌ "Your authentication token has expired and you need to log in again"
+
+No editorial commentary, explanations, or unnecessary teaching moments. Be brief. Sound human. Don't explain yourself.
+
+## UI Styling Rules
+
+**Background:** This site has a DARK background. All UI components must account for this.
+
+**Font Sizes:**
+- Minimum body text: 16px (NEVER use 14px, 13px, or smaller)
+- Labels: 16px
+- Headings: 20px+
+
+**Colors on Dark Backgrounds:**
+- ✅ Solid backgrounds: `#1a1d2e`, `#2a2d3e`
+- ✅ Text: `whitesmoke`, `#ffffff`
+- ❌ Translucent backgrounds: `rgba(0, 0, 0, 0.1)` makes text unreadable
+- ❌ Dark text: `#333`, `#000` invisible on dark background
+
+**Always test:** Would this be readable on a dark background?
+
 ---
 
 ## Project Overview
@@ -45,10 +74,10 @@ Full-stack portfolio website (https://www.joedelbalzo.com/) hosting multiple ind
 # Development (runs both frontend and backend concurrently)
 npm start
 
-# Run frontend only (port 3000, proxies API to localhost:5000)
+# Run frontend only (port 3000, proxies API to localhost:5001)
 npm run start-frontend
 
-# Run backend only (port 5000)
+# Run backend only (port 5001)
 npm run start-backend
 
 # Production build

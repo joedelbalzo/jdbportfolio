@@ -74,6 +74,11 @@ const AgentUser = conn.define("agentuser", {
     allowNull: true,
     defaultValue: 15,
   },
+  taskPreferences: {
+    type: TEXT,
+    allowNull: true,
+    defaultValue: null,
+  },
 });
 
 AgentUser.prototype.generateToken = function () {

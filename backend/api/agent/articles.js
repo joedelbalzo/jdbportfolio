@@ -133,18 +133,13 @@ router.post("/mark-read", isAgentLoggedIn, async (req, res, next) => {
   }
 });
 
-// Delete article
-router.delete("/:id", isAgentLoggedIn, async (req, res, next) => {
+// Delete ALL articles (must come before /:id route)
+router.delete("/delete-all", isAgentLoggedIn, async (req, res, next) => {
   try {
-    const article = await Article.findByPk(req.params.id);
-    if (!article) {
-      const error = new Error("Article not found");
-      error.status = 404;
-      throw error;
-    }
+    const count = await Article.count();
+    await Article.destroy({ where: {} });
 
-    await article.destroy();
-    res.send({ success: true, message: "Article deleted" });
+    res.send({ success: true, count, message: `Deleted all ${count} articles` });
   } catch (ex) {
     next(ex);
   }
@@ -164,6 +159,23 @@ router.post("/delete-multiple", isAgentLoggedIn, async (req, res, next) => {
     const count = await Article.destroy({ where: { id: { [Op.in]: articleIds } } });
 
     res.send({ success: true, count });
+  } catch (ex) {
+    next(ex);
+  }
+});
+
+// Delete single article (must come after specific routes)
+router.delete("/:id", isAgentLoggedIn, async (req, res, next) => {
+  try {
+    const article = await Article.findByPk(req.params.id);
+    if (!article) {
+      const error = new Error("Article not found");
+      error.status = 404;
+      throw error;
+    }
+
+    await article.destroy();
+    res.send({ success: true, message: "Article deleted" });
   } catch (ex) {
     next(ex);
   }

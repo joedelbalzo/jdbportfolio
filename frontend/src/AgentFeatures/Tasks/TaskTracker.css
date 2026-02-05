@@ -1,0 +1,262 @@
+/* Task Tracker Styles */
+
+/* Buttons */
+.btn {
+  padding: 10px 20px;
+  color: whitesmoke;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn--success {
+  background-color: #10b981;
+}
+
+.btn--success:hover:not(:disabled) {
+  background-color: #059669;
+}
+
+/* Message */
+.message {
+  padding: 12px;
+  margin-bottom: 20px;
+  color: whitesmoke;
+  font-size: 16px;
+}
+
+.message--success {
+  background-color: rgba(16, 185, 129, 0.2);
+  border: 1px solid #10b981;
+}
+
+.message--error {
+  background-color: rgba(239, 68, 68, 0.2);
+  border: 1px solid #ef4444;
+}
+
+/* Task Completion Form */
+.task-completion {
+  background-color: rgba(16, 185, 129, 0.1);
+  border: 2px solid #10b981;
+  padding: 25px;
+  margin-bottom: 30px;
+}
+
+.task-completion__title {
+  margin: 0 0 20px 0;
+  color: #10b981;
+  font-size: 24px;
+}
+
+.task-completion__form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.task-completion__field {
+  display: flex;
+  flex-direction: column;
+}
+
+.task-completion__label {
+  display: block;
+  color: whitesmoke;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.task-completion__select-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.task-completion__select {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #737373;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: whitesmoke;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.task-completion__select option {
+  background-color: #1a1d2e;
+  color: whitesmoke;
+}
+
+.task-completion__new-task {
+  padding: 25px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid #737373;
+}
+
+.task-completion__new-task-title {
+  margin: 0 0 20px 0;
+  color: whitesmoke;
+  font-size: 20px;
+}
+
+.task-completion__new-task-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.task-completion__input {
+  padding: 12px;
+  border: 1px solid #737373;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: whitesmoke;
+  font-size: 16px;
+}
+
+.task-completion__input--full {
+  width: 100%;
+}
+
+.task-completion__input--date {
+  padding: 10px;
+}
+
+.task-completion__input--interval {
+  width: 150px;
+}
+
+.task-completion__radio-group {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.task-completion__radio-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: whitesmoke;
+  font-size: 16px;
+}
+
+.task-completion__radio-input {
+  cursor: pointer;
+}
+
+.task-completion__submit {
+  padding: 12px 24px;
+  color: whitesmoke;
+  border: none;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.task-completion__submit:disabled {
+  background-color: #737373;
+  cursor: not-allowed;
+}
+
+.task-completion__submit:not(:disabled) {
+  background-color: #10b981;
+  cursor: pointer;
+}
+
+/* Task List */
+.task-list__title {
+  margin: 0 0 20px 0;
+  color: whitesmoke;
+  font-size: 24px;
+}
+
+.task-list__empty {
+  color: #737373;
+  font-size: 16px;
+  padding: 20px;
+  text-align: center;
+}
+
+.task-list__items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.task-item {
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.task-item--overdue {
+  background-color: rgba(239, 68, 68, 0.1);
+  border-color: #ef4444;
+}
+
+.task-item--due-soon {
+  background-color: rgba(251, 191, 36, 0.1);
+  border-color: #fbbf24;
+}
+
+.task-item--future {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.task-item__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.task-item__main {
+  flex: 1;
+}
+
+.task-item__name {
+  margin: 0 0 10px 0;
+  color: whitesmoke;
+  font-size: 20px;
+}
+
+.task-item__info {
+  font-size: 15px;
+  color: #737373;
+  margin-bottom: 8px;
+}
+
+.task-item__due {
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.task-item__due--overdue {
+  color: #ef4444;
+}
+
+.task-item__due--due-soon {
+  color: #fbbf24;
+}
+
+.task-item__due--future {
+  color: #10b981;
+}
+
+.task-item__delete {
+  padding: 8px 16px;
+  background-color: transparent;
+  color: #ef4444;
+  border: 1px solid #ef4444;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.task-item__delete:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+}
