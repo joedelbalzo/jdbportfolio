@@ -4,6 +4,7 @@ const { TaskTemplate, TaskCompletion } = require("../../db/agentDB");
 const { isAgentLoggedIn } = require("./middleware");
 const { Op } = require("sequelize");
 const { sendDueTaskReminders } = require("./services/emailService");
+const { analyzeTaskPattern } = require("./services/taskAnalysisService");
 
 // Get all tasks for the current user
 taskRoutes.get("/", isAgentLoggedIn, async (req, res, next) => {
@@ -160,11 +161,41 @@ taskRoutes.post("/:id/complete", isAgentLoggedIn, async (req, res, next) => {
       actualInterval,
     });
 
-    // Adjust interval based on feedback (simple rule-based approach)
-    if (wishEarlier === true) {
-      task.currentInterval = Math.max(1, task.currentInterval - 1);
-    } else if (wishEarlier === false) {
-      task.currentInterval = task.currentInterval + 1;
+    // Adjust interval based on feedback — but only when roughly on time
+    // If you're late and say "wish sooner," the interval was already correct
+    const wasRoughlyOnTime = actualInterval !== null && actualInterval <= task.currentInterval + 2;
+
+    if (wasRoughlyOnTime) {
+      if (wishEarlier === true) {
+        task.currentInterval = Math.max(1, task.currentInterval - 1);
+      } else if (wishEarlier === false) {
+        task.currentInterval = task.currentInterval + 1;
+      }
+    }
+
+    // AI pattern analysis — refine interval when enough data exists
+    let aiInsight = null;
+    const totalCompletions = await TaskCompletion.count({
+      where: { tasktemplateId: task.id },
+    });
+
+    if (totalCompletions >= 5) {
+      try {
+        const allCompletions = await TaskCompletion.findAll({
+          where: { tasktemplateId: task.id },
+          order: [["completedAt", "ASC"]],
+        });
+        const result = await analyzeTaskPattern(
+          allCompletions.map((c) => c.toJSON()),
+          task,
+          req.user.taskPreferences || ""
+        );
+        task.currentInterval = result.recommendedInterval;
+        aiInsight = result.insight;
+      } catch (err) {
+        // AI failed — keep coded adjustment, no insight
+        console.error("Task AI analysis failed:", err.message);
+      }
     }
 
     // Always set lastCompletedAt/nextDueAt from the MOST RECENT completion
@@ -180,7 +211,44 @@ taskRoutes.post("/:id/complete", isAgentLoggedIn, async (req, res, next) => {
 
     await task.save();
 
-    res.json({ task, completion });
+    res.json({ task, completion, aiInsight });
+  } catch (ex) {
+    next(ex);
+  }
+});
+
+// Manual AI analysis for a task
+taskRoutes.get("/:id/analyze", isAgentLoggedIn, async (req, res, next) => {
+  try {
+    const task = await TaskTemplate.findOne({
+      where: { id: req.params.id, agentuserId: req.user.id },
+    });
+
+    if (!task) {
+      const error = new Error("Task not found");
+      error.status = 404;
+      throw error;
+    }
+
+    const completions = await TaskCompletion.findAll({
+      where: { tasktemplateId: task.id },
+      order: [["completedAt", "ASC"]],
+    });
+
+    if (completions.length < 5) {
+      return res.json({
+        recommendedInterval: task.currentInterval,
+        insight: `Need ${5 - completions.length} more completions for analysis`,
+      });
+    }
+
+    const result = await analyzeTaskPattern(
+      completions.map((c) => c.toJSON()),
+      task,
+      req.user.taskPreferences || ""
+    );
+
+    res.json(result);
   } catch (ex) {
     next(ex);
   }

@@ -13,6 +13,8 @@ const TaskTracker = () => {
   const [wishEarlier, setWishEarlier] = useState(null);
   const [showAddTask, setShowAddTask] = useState(false);
   const [taskMessage, setTaskMessage] = useState(null);
+  const [insights, setInsights] = useState({});
+  const [analyzingTaskId, setAnalyzingTaskId] = useState(null);
 
   useEffect(() => {
     loadTasks();
@@ -71,6 +73,10 @@ const TaskTracker = () => {
         setTasks([...tasks, response.data.task]);
       }
 
+      if (response.data.aiInsight) {
+        setInsights((prev) => ({...prev, [taskId]: response.data.aiInsight}));
+      }
+
       setTaskMessage({type: "success", text: `Logged: ${taskName}`});
       setTimeout(() => setTaskMessage(null), 3000);
 
@@ -87,6 +93,21 @@ const TaskTracker = () => {
     }
   };
 
+  const handleAnalyzeTask = async (taskId) => {
+    const token = localStorage.getItem("agentToken");
+    setAnalyzingTaskId(taskId);
+    try {
+      const response = await axios.get(`/api/agent/tasks/${taskId}/analyze`, {
+        headers: {Authorization: token},
+      });
+      setInsights((prev) => ({...prev, [taskId]: response.data.insight}));
+    } catch (err) {
+      console.error("Analysis failed:", err);
+    } finally {
+      setAnalyzingTaskId(null);
+    }
+  };
+
   const handleDeleteTask = async (taskId) => {
     const token = localStorage.getItem("agentToken");
     if (!window.confirm("Delete this task and all its history?")) return;
@@ -96,6 +117,11 @@ const TaskTracker = () => {
         headers: {Authorization: token},
       });
       setTasks(tasks.filter((t) => t.id !== taskId));
+      setInsights((prev) => {
+        const copy = {...prev};
+        delete copy[taskId];
+        return copy;
+      });
     } catch (error) {
       console.error("Error deleting task:", error);
       alert("Failed to delete task");
@@ -109,6 +135,10 @@ const TaskTracker = () => {
     const diffTime = due - now;
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     return diffDays;
+  };
+
+  const hasEnoughCompletions = (task) => {
+    return task.taskcompletions && task.taskcompletions.length >= 5;
   };
 
   return (
@@ -265,6 +295,17 @@ const TaskTracker = () => {
                                 <span>Due in {daysUntil} days</span>
                               )}
                             </div>
+                          )}
+
+                          {insights[task.id] && <div className="task-item__insight">AI: {insights[task.id]}</div>}
+
+                          {hasEnoughCompletions(task) && (
+                            <button
+                              onClick={() => handleAnalyzeTask(task.id)}
+                              disabled={analyzingTaskId === task.id}
+                              className="task-item__analyze">
+                              {analyzingTaskId === task.id ? "Analyzing..." : "Analyze"}
+                            </button>
                           )}
                         </div>
 

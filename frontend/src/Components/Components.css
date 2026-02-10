@@ -23,7 +23,7 @@
   padding: 25px;
   background-color: rgba(0, 102, 255, 0.1);
   border: 2px solid #0066ff;
-  height: 100%;
+  height: fit-content;
 }
 
 .ai-context-box__title {
