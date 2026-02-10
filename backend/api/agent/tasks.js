@@ -136,18 +136,18 @@ taskRoutes.post("/:id/complete", isAgentLoggedIn, async (req, res, next) => {
     const { completedAt, wishEarlier } = req.body;
     const completionDate = completedAt ? new Date(completedAt) : new Date();
 
-    // Calculate days late (if overdue)
-    let daysLate = 0;
+    // Find the completion just before this one chronologically (for accurate interval calc)
+    const previousCompletion = await TaskCompletion.findOne({
+      where: {
+        tasktemplateId: task.id,
+        completedAt: { [Op.lt]: completionDate },
+      },
+      order: [["completedAt", "DESC"]],
+    });
+
     let actualInterval = null;
-
-    if (task.nextDueAt) {
-      const diffTime = completionDate - task.nextDueAt;
-      daysLate = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      if (daysLate < 0) daysLate = 0;
-    }
-
-    if (task.lastCompletedAt) {
-      const diffTime = completionDate - task.lastCompletedAt;
+    if (previousCompletion) {
+      const diffTime = completionDate - previousCompletion.completedAt;
       actualInterval = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     }
 
@@ -156,22 +156,25 @@ taskRoutes.post("/:id/complete", isAgentLoggedIn, async (req, res, next) => {
       tasktemplateId: task.id,
       completedAt: completionDate,
       wishEarlier: wishEarlier !== undefined ? wishEarlier : null,
-      daysLate,
+      daysLate: 0,
       actualInterval,
     });
 
     // Adjust interval based on feedback (simple rule-based approach)
     if (wishEarlier === true) {
-      // User wishes they did it sooner - decrease interval by 1 day (min 1 day)
       task.currentInterval = Math.max(1, task.currentInterval - 1);
     } else if (wishEarlier === false) {
-      // User is fine with timing or wishes they did it later - increase interval by 1 day
       task.currentInterval = task.currentInterval + 1;
     }
 
-    // Update task's last completed and next due dates
-    task.lastCompletedAt = completionDate;
-    const nextDue = new Date(completionDate);
+    // Always set lastCompletedAt/nextDueAt from the MOST RECENT completion
+    const mostRecent = await TaskCompletion.findOne({
+      where: { tasktemplateId: task.id },
+      order: [["completedAt", "DESC"]],
+    });
+
+    task.lastCompletedAt = mostRecent.completedAt;
+    const nextDue = new Date(mostRecent.completedAt);
     nextDue.setDate(nextDue.getDate() + task.currentInterval);
     task.nextDueAt = nextDue;
 

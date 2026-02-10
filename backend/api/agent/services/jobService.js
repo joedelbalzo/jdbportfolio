@@ -254,25 +254,34 @@ const preFilterArticles = (articles, topics = [], minScore = 10) => {
     return [];
   }
 
-  // Build keyword list from topics
-  const keywords = topics && topics.length > 0
+  // Build keyword list: always include defaults, merge with user topics
+  const defaultKeywords = [
+    "api", "apis", "rest", "graphql",
+    "nestjs", "nest.js",
+    "microservices", "microservice",
+    "node", "nodejs", "node.js",
+    "http", "https",
+    "express",
+    "backend",
+    "architecture",
+    "docker", "kubernetes", "k8s",
+    "postgresql", "postgres", "database",
+    "typescript",
+    "system design", "distributed systems",
+    "azure", "aws", "cloud",
+    "ci/cd", "devops",
+    "testing", "jest", "integration test",
+    "security", "oauth", "jwt",
+    "performance", "scaling", "caching", "redis",
+    "sql", "orm", "sequelize",
+    "webhook", "event-driven", "message queue", "rabbitmq", "kafka"
+  ];
+  const userKeywords = topics && topics.length > 0
     ? topics.map(t => t.keyword.toLowerCase())
-    : [
-        // Default keywords if no topics provided
-        "api", "apis", "rest", "graphql",
-        "nestjs", "nest.js",
-        "microservices", "microservice",
-        "node", "nodejs", "node.js",
-        "http", "https",
-        "express",
-        "backend",
-        "architecture",
-        "docker", "kubernetes", "k8s",
-        "postgresql", "postgres", "database",
-        "typescript"
-      ];
+    : [];
+  const keywords = [...new Set([...defaultKeywords, ...userKeywords])];
 
-  return articles.filter(article => {
+  const filtered = articles.filter(article => {
     // Filter by score threshold
     if (article.score < minScore) {
       return false;
@@ -294,6 +303,16 @@ const preFilterArticles = (articles, topics = [], minScore = 10) => {
 
     return hasKeyword;
   });
+
+  // Cap candidates sent to AI — take top 12 by score to control token usage
+  const maxCandidates = 12;
+  if (filtered.length > maxCandidates) {
+    console.log(`Capping ${filtered.length} keyword matches to top ${maxCandidates} by score`);
+    filtered.sort((a, b) => b.score - a.score);
+    return filtered.slice(0, maxCandidates);
+  }
+
+  return filtered;
 };
 
 module.exports = {

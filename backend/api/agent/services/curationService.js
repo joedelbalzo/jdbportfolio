@@ -93,11 +93,11 @@ Respond in JSON format ONLY (no markdown, no other text):
   "reason": "Brief explanation of decision"
 }
 
-Be strict - only approve high-signal content.`;
+Approve genuinely useful content for a senior engineer.`;
 
   try {
     const message = await anthropic.messages.create({
-      model: "claude-sonnet-4-5-20250929",
+      model: "claude-haiku-4-5-20251001",
       max_tokens: 200,
       temperature: 0.3,
       messages: [
@@ -171,11 +171,11 @@ const batchCurateArticles = async (articles, topicKeywords, userSettings = {}) =
   // Use custom AI prompt or default
   const basePrompt =
     userSettings.aiPrompt ||
-    `You are curating content for a senior software engineer working on microservices.
-ONLY APPROVE articles that are production-ready engineering insights or advanced technical deep-dives.
+    `You are curating a daily feed for a senior software engineer on a microservices team.
+Pick the 2-5 BEST articles from this batch. Approve more if it's a strong batch, fewer if nothing stands out.
 Topics of interest: {topics}
-REJECT: beginner tutorials, memes, generic career advice, self-promotion.
-Be VERY selective.`;
+REJECT: beginner tutorials, memes, generic career advice, self-promotion, low-effort posts.
+APPROVE: production insights, architectural deep-dives, interesting technical discussions, useful tools/libraries, industry trends.`;
 
   const customPrompt = basePrompt.replace("{topics}", topicKeywords);
 
@@ -209,7 +209,7 @@ Respond with a JSON array ONLY (no markdown):
   ...
 ]
 
-Be strict - only approve high-signal content.`;
+Aim for 2-5 approvals. Score generously for genuinely useful content.`;
 
   try {
     const message = await anthropic.messages.create({
@@ -238,7 +238,7 @@ Be strict - only approve high-signal content.`;
       }
     }
 
-    const threshold = userSettings.relevanceThreshold || 7;
+    const threshold = userSettings.relevanceThreshold || 6;
     const maxArticles = userSettings.maxArticlesPerRun || 15;
 
     const curatedArticles = articles

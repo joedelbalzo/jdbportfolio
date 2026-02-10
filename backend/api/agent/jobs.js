@@ -72,7 +72,7 @@ router.get("/fetch-all", async (req, res, next) => {
 
         // STAGE 1: Keyword pre-filter (local, no tokens)
         const topics = await Topic.findAll({ where: { isActive: true } }).catch(() => []);
-        const minScore = feed.sourceType === "hackernews" ? 50 : 20; // Aggressive filtering
+        const minScore = feed.sourceType === "hackernews" ? 15 : feed.sourceType === "blog" ? 0 : 5;
         const preFiltered = preFilterArticles(articles, topics, minScore);
 
         console.log(
