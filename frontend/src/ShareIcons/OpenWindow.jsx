@@ -1,4 +1,4 @@
-export const OpenWindow = ({ color }) => {
+export const OpenWindow = ({ color = "whitesmoke" }) => {
   return (
     <svg
       fill={color}
@@ -26,7 +26,4 @@ export const OpenWindow = ({ color }) => {
       </g>
     </svg>
   );
-};
-OpenWindow.defaultProps = {
-  color: "whitesmoke",
 };

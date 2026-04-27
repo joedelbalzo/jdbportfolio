@@ -1,30 +1,23 @@
-import React, { useEffect, useLayoutEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { Link, useLocation } from "react-router-dom";
 import Hamburger from "../assets/Hamburger";
 
 const Nav = () => {
-  const [isActive, setIsActive] = useState(null);
+  const { pathname } = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const navRef = useRef(null);
-  const [placeholderHeight, setPlaceholderHeight] = useState(0);
-  const isDashboard = window.location.pathname === "/dashboard";
+  const drawerRef = useRef(null);
+  const hamburgerRef = useRef(null);
+
+  const isDashboard = pathname === "/dashboard";
+  const isHome = pathname === "/" || pathname === "/home";
+  const isPortfolio = pathname === "/portfolio";
 
   useEffect(() => {
-    const activeOptions = {
-      "https://joedelbalzo.com/home": 1,
-      "https://joedelbalzo.com/blog": 2,
-      "https://joedelbalzo.com/portfolio": 3,
-      "http://localhost:3000/home": 1,
-      "http://localhost:3000/blog": 2,
-      "http://localhost:3000/portfolio": 3,
-    };
-    setIsActive(activeOptions[window.location.href]);
-
-    // Disable scroll effect on dashboard
     if (isDashboard) {
+      setScrolled(false);
       return;
     }
-
     let rafId = null;
     const handleScroll = () => {
       if (rafId) return;
@@ -33,47 +26,43 @@ const Nav = () => {
         rafId = null;
       });
     };
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
       if (rafId) cancelAnimationFrame(rafId);
     };
-  }, []);
+  }, [isDashboard]);
 
-  useLayoutEffect(() => {
-    if (navRef.current) {
-      setPlaceholderHeight(navRef.current.offsetHeight);
-    }
-  }, []);
+  useEffect(() => {
+    if (!drawerOpen) return;
+    const onKey = (e) => {
+      if (e.key === "Escape") setDrawerOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [drawerOpen]);
 
-  const closeNav = () => setDrawerOpen(false);
+  const closeNav = () => {
+    setDrawerOpen(false);
+    if (hamburgerRef.current) hamburgerRef.current.focus();
+  };
   const openNav = () => setDrawerOpen(true);
+
+  const navClasses = ["main-navbar"];
+  if (scrolled) navClasses.push("scrolled");
+  if (isDashboard) navClasses.push("no-transition");
 
   return (
     <>
-      <div style={{ height: placeholderHeight }} />
-      <div
-        ref={navRef}
-        className="main-navbar"
-        style={{
-          position: scrolled ? "fixed" : "absolute",
-          top: scrolled ? "10px" : "0",
-          left: "50%",
-          transform: "translateX(-50%)",
-          width: scrolled ? "75%" : "90%",
-          borderRadius: scrolled ? "4rem" : "0",
-          backgroundColor: scrolled ? "#000813" : "transparent",
-          boxShadow: scrolled ? "0px 8px 20px rgba(0,0,0,0.5)" : "none",
-          transition: isDashboard ? "none" : "all 0.3s ease",
-          zIndex: "1000",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
+      <div className="nav-placeholder" aria-hidden="true" />
+      <nav className={navClasses.join(" ")} aria-label="Primary">
         <span className="name">
-          {" "}
-          <a href="../home">Joe Del Balzo</a>
+          <Link to="/home">Joe Del Balzo</Link>
         </span>
 
         <div className="nav-links">
@@ -83,40 +72,54 @@ const Nav = () => {
           <a href="https://github.com/joedelbalzo" target="_blank" rel="noreferrer noopener">
             GitHub
           </a>
-          <a href="../blog" style={{ color: isActive === 2 ? "#ff5722" : "", textShadow: "2px 2px 1px black" }}>
-            Blog
-          </a>
-          <a href="../portfolio" style={{ color: isActive === 3 ? "#ff5722" : "", textShadow: "2px 2px 1px black" }}>
+          <Link to="/portfolio" className={isPortfolio ? "is-active" : undefined}>
             Portfolio
-          </a>
+          </Link>
         </div>
 
-        <div className="menuItems" id="small">
-          <div className="hamburger-wrapper" onClick={openNav}>
+        <div className="menuItems">
+          <button
+            ref={hamburgerRef}
+            type="button"
+            className="hamburger-wrapper"
+            aria-label="Open navigation menu"
+            aria-expanded={drawerOpen}
+            aria-controls="nav-mobile-drawer"
+            onClick={openNav}
+          >
             <Hamburger />
-          </div>
+          </button>
         </div>
-      </div>
+      </nav>
 
-      <div className={`nav-mobile ${drawerOpen ? "open" : ""}`}>
-        <span className="closebtn" onClick={closeNav}>
+      <div
+        className={`nav-mobile-overlay ${drawerOpen ? "open" : ""}`}
+        onClick={closeNav}
+        aria-hidden="true"
+      />
+      <div
+        id="nav-mobile-drawer"
+        ref={drawerRef}
+        className={`nav-mobile ${drawerOpen ? "open" : ""}`}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navigation menu"
+      >
+        <button type="button" className="closebtn" onClick={closeNav} aria-label="Close navigation menu">
           ×
-        </span>
-        <a href="../home" onClick={closeNav}>
+        </button>
+        <Link to="/home" onClick={closeNav} className={isHome ? "is-active" : undefined}>
           Home
-        </a>
-        <a href="https://www.linkedin.com/in/joe-delbalzo/" target="_blank" rel="noreferrer" onClick={closeNav}>
+        </Link>
+        <a href="https://www.linkedin.com/in/joe-delbalzo/" target="_blank" rel="noreferrer noopener" onClick={closeNav}>
           LinkedIn
         </a>
-        <a href="https://github.com/joedelbalzo" target="_blank" rel="noreferrer" onClick={closeNav}>
+        <a href="https://github.com/joedelbalzo" target="_blank" rel="noreferrer noopener" onClick={closeNav}>
           GitHub
         </a>
-        <a href="../blog" onClick={closeNav}>
-          Blog
-        </a>
-        <a href="../portfolio" onClick={closeNav}>
+        <Link to="/portfolio" onClick={closeNav} className={isPortfolio ? "is-active" : undefined}>
           Portfolio
-        </a>
+        </Link>
       </div>
     </>
   );

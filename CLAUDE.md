@@ -32,6 +32,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - ALWAYS prefer editing an existing file to creating a new one
 - NEVER proactively create documentation files (*.md) or README files unless explicitly requested
 - **ALWAYS close background bash commands when finished** - Use TaskStop to stop background tasks (like `npm start`) when done testing/verifying. Don't leave servers running in the background.
+- Ask before running tests. Ask before running git commands. Never git commit. 
 
 ## User-Facing Messages
 
@@ -50,7 +51,7 @@ No editorial commentary, explanations, or unnecessary teaching moments. Be brief
 **Background:** This site has a DARK background. All UI components must account for this.
 
 **Font Sizes:**
-- Minimum body text: 16px (NEVER use 14px, 13px, or smaller)
+- Minimum body text: 14px 
 - Labels: 16px
 - Headings: 20px+
 

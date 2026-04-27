@@ -1,60 +1,35 @@
 const app = require("./app");
 const conn = require("./db/conn");
-// Legacy app imports (hidden - restorable)
-// const { syncAndSeed, User, Place } = require("./db/openplacesDB");
-// const { syncAndSeedScript, UserScript, Product, LineItem, Order, Review } = require("./db/scriptDB");
-// const { syncAndSeedCss, CssUser, Component, Template, Palette } = require("./db/cssDB");
-const {syncAndSeedAlgo, Question, CodingQuestion} = require("./db/algorhythmDB");
+const {syncAndSeedAlgo} = require("./db/algorhythmDB");
 const {syncAndSeedVali} = require("./db/valiDB");
 const {syncAndSeedAgent} = require("./db/agentDB");
 
-const cors = require("cors");
-app.use(cors());
-
 const init = async () => {
   try {
-    await conn.sync({ alter: true }); // Temporarily add { alter: true } to add new columns
-    // Legacy app syncs (hidden - restorable)
-    // try {
-    //   await syncAndSeedScript();
-    // } catch (err) {
-    //   console.log("err syncing script");
-    // }
-
-    // try {
-    //   await syncAndSeed();
-    // } catch (err) {
-    //   console.log("err syncing open places");
-    // }
-
-    // try {
-    //   await syncAndSeedCss();
-    // } catch (err) {
-    //   console.log("err syncing css");
-    // }
+    await conn.sync();
 
     try {
       await syncAndSeedAlgo();
     } catch (err) {
-      console.log("err syncing algo");
+      console.error("err syncing algo", err);
     }
 
     try {
       await syncAndSeedVali();
     } catch (err) {
-      console.log("err syncing vali");
+      console.error("err syncing vali", err);
     }
 
     try {
       await syncAndSeedAgent();
     } catch (err) {
-      console.log("err syncing agent");
+      console.error("err syncing agent", err);
     }
 
     const port = process.env.PORT || 5001;
-    const server = app.listen(port, () => console.log(`listening on port ${port}`));
+    app.listen(port, () => console.log(`listening on port ${port}`));
   } catch (ex) {
-    console.log(ex);
+    console.error(ex);
   }
 };
 

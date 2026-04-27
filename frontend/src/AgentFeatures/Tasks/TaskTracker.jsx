@@ -321,7 +321,7 @@ const TaskTracker = () => {
           </div>
         </div>
       }
-      right={<AIContextBox feature="tasks" />}
+      right={<AIContextBox />}
     />
   );
 };

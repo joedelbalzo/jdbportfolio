@@ -1,8 +1,7 @@
-import React, {useEffect, useRef} from "react";
-import Footer from "./Footer";
+import React from "react";
 import Socials from "./Socials";
 import AboutMe from "./AboutMe";
-import {FadeComponent} from "./FadeComponent";
+import { FadeComponent } from "./FadeComponent";
 
 const Home = () => {
   return (
@@ -15,11 +14,11 @@ const Home = () => {
         <div className="soft-glow glow-blue pos-glow-5"></div>
         <div className="soft-glow glow-orange pos-glow-6"></div>
         <div className="soft-glow glow-blue pos-glow-7"></div>
-        <div className="soft-glow glow-orange pos-glow-8" style={{position: "fixed", bottom: "-200px"}}></div>
-        <div className="soft-glow glow-blue pos-glow-9" style={{position: "fixed", bottom: "-200px"}}></div>
-        <div className="soft-glow glow-orange pos-glow-10" style={{position: "fixed", bottom: "-200px"}}></div>
-        <div className="soft-glow glow-blue pos-glow-11" style={{position: "fixed", bottom: "-200px"}}></div>
-        <div className="soft-glow glow-orange pos-glow-12" style={{position: "fixed", bottom: "-200px"}}></div>
+        <div className="soft-glow glow-orange pos-glow-8 fixed-glow"></div>
+        <div className="soft-glow glow-blue pos-glow-9 fixed-glow"></div>
+        <div className="soft-glow glow-orange pos-glow-10 fixed-glow"></div>
+        <div className="soft-glow glow-blue pos-glow-11 fixed-glow"></div>
+        <div className="soft-glow glow-orange pos-glow-12 fixed-glow"></div>
 
         <div className="home-content">
           <div className="main-name">
@@ -29,7 +28,7 @@ const Home = () => {
       </div>
 
       <AboutMe />
-      <div style={{margin: "2rem auto"}} id="socials-mobile">
+      <div id="socials-mobile">
         <Socials />
       </div>
     </FadeComponent>

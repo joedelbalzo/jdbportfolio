@@ -7,20 +7,21 @@
 
 ## Welcome To My Portfolio Website!
 
-I'm a passionate developer specializing in JavaScript technologies. I love to build scalable and maintainable applications, and I have experience working with React, React-Redux, Express, Node, and PostgreSQL.</br><br/>
-Artist-turned-coder. I liked creating beauty before; I like creating beauty now.
-Former Lighting Designer, Network Designer, and Console Programmer. Musician, Cold Brew Drinker, Sports Fanatic, Certified Cicerone®</br><br/>
-Once in the portfolio, any application with a login feature can be accessed with the u/pw combo of "moe" and "123" -- feel free to dig around and see what you can do!
+I'm a software engineer who builds fast, thoughtful web apps across industries — arcade games with thousands of active players, digital platforms for publishers and bestselling authors, and a few private tools along the way. I focus on performance, clarity, and making things that actually work.
+
+Before tech, I spent a decade designing lighting and building show networks in film and TV — training that shaped how I handle complexity, detail, and timing in everything I build now.
+
+Artist-turned-coder. I liked creating beauty before; I like creating beauty now. Former Lighting Designer, Network Designer, and Console Programmer. Musician, Cold Brew Drinker, Sports Fanatic, Certified Cicerone®.
 
 ## 🔥 Tech Stack
 
-This portfolio website was designed using:
+This portfolio site is built with:
 
-- **Frontend:** React | Redux | HTML | CSS | JavaScript
-- **Backend:** Node.js | Express
-- **Database:** PostgreSQL (using Sequelize)
-
-
+- **Frontend:** React 18, Vite, Material UI, Framer Motion
+- **Backend:** Node.js, Express
+- **Database:** PostgreSQL (Sequelize)
+- **Auth:** Google OAuth + JWT
+- **Storage:** AWS S3 (v3 SDK)
 
 <!--
 **joedelbalzo/joedelbalzo** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
@@ -36,6 +37,3 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
-
-
-

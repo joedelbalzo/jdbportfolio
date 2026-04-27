@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import "./Components.css";
 
-const AIContextBox = ({feature = "tasks"}) => {
+const AIContextBox = () => {
   const [notes, setNotes] = useState("");
   const [saving, setSaving] = useState(false);
   const [lastSaved, setLastSaved] = useState(null);
@@ -17,12 +17,7 @@ const AIContextBox = ({feature = "tasks"}) => {
       const response = await axios.get("/api/agent/settings", {
         headers: {Authorization: token},
       });
-
-      if (feature === "tasks") {
-        setNotes(response.data.taskPreferences || "");
-      } else if (feature === "articles") {
-        setNotes(response.data.aiPrompt || "");
-      }
+      setNotes(response.data.taskPreferences || "");
     } catch (error) {
       console.error("Failed to load AI context:", error);
     }
@@ -33,12 +28,11 @@ const AIContextBox = ({feature = "tasks"}) => {
     setSaving(true);
 
     try {
-      const payload = feature === "tasks" ? {taskPreferences: notes} : {aiPrompt: notes};
-
-      await axios.put("/api/agent/settings", payload, {
-        headers: {Authorization: token},
-      });
-
+      await axios.put(
+        "/api/agent/settings",
+        {taskPreferences: notes},
+        {headers: {Authorization: token}},
+      );
       setLastSaved(new Date());
     } catch (error) {
       console.error("Failed to save AI context:", error);
@@ -56,11 +50,7 @@ const AIContextBox = ({feature = "tasks"}) => {
       <textarea
         value={notes}
         onChange={(e) => setNotes(e.target.value)}
-        placeholder={
-          feature === "tasks"
-            ? "Tell me a little more about how you would like to handle certain tasks"
-            : "Describe what content you want to see..."
-        }
+        placeholder="Tell me a little more about how you would like to handle certain tasks"
         className="ai-context-box__textarea"
       />
 

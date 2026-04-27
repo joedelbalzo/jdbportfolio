@@ -2,7 +2,14 @@
   "permissions": {
     "allow": [
       "Bash(npm start)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "mcp__playwright__browser_take_screenshot",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_mouse_wheel",
+      "mcp__playwright__browser_wait_for"
     ]
-  }
+  },
+  "enabledMcpjsonServers": [
+    "playwright"
+  ]
 }

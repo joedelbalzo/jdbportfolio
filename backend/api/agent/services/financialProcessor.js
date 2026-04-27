@@ -29,15 +29,9 @@ function formatDate(date) {
  */
 async function processFinancialUpload(csvContent, userId, filename = null) {
   try {
-    console.log("\n=== FINANCIAL UPLOAD PROCESSING ===");
-    console.log(`Filename: ${filename || "Unknown"}`);
-
     // Step 1: Parse CSV
     const { headers, rows } = parseCSV(csvContent);
     const rawTransactions = csvToTransactions(headers, rows);
-
-    console.log(`\n[STEP 1] CSV Parsed:`);
-    console.log(`  - Total rows in CSV: ${rawTransactions.length}`);
 
     if (rawTransactions.length === 0) {
       throw new Error("No valid transactions found in CSV file");
@@ -45,13 +39,6 @@ async function processFinancialUpload(csvContent, userId, filename = null) {
 
     // Step 2: Get date range
     const { startDate, endDate, monthCount, calculationLog } = getDateRange(rawTransactions);
-
-    console.log(`\n[STEP 2] Date Range Calculation:`);
-    console.log(`  - First transaction: ${calculationLog.firstTransactionDate}`);
-    console.log(`  - Last transaction: ${calculationLog.lastTransactionDate}`);
-    console.log(`  - Days between: ${calculationLog.daysBetween}`);
-    console.log(`  - Month calculation: ${calculationLog.monthCountFormula}`);
-    console.log(`  - Months used for division: ${monthCount}`);
 
     // Step 2.5: Load custom categorization patterns for this user
     const customPatterns = await CustomCategorizationPattern.findAll({
@@ -65,29 +52,8 @@ async function processFinancialUpload(csvContent, userId, filename = null) {
       customPatterns
     );
 
-    console.log(`\n[STEP 3] Categorization Results:`);
-    console.log(`  - Successfully categorized: ${categorizedTransactions.length - uncategorized.length}`);
-    console.log(`  - Uncategorized (no matching pattern): ${uncategorized.length}`);
-    console.log(`  - Total kept for analysis: ${categorizedTransactions.length}`);
-    console.log(`  - Excluded (transfers/payments): ${excluded.length}`);
-    console.log(`  - Math check: ${categorizedTransactions.length} + ${excluded.length} = ${categorizedTransactions.length + excluded.length} (should equal ${rawTransactions.length})`);
-
-    // Show sample uncategorized descriptions for debugging
-    if (uncategorized.length > 0) {
-      console.log(`\n  Sample uncategorized descriptions (first 10):`);
-      uncategorized.slice(0, 10).forEach((txn, idx) => {
-        console.log(`    ${idx + 1}. $${txn.absAmount.toFixed(2)} - "${txn.description}"`);
-      });
-    }
-
     // Step 4: Calculate monthly averages
     const averages = calculateMonthlyAverages(categorizedTransactions, monthCount);
-
-    console.log(`\n[STEP 4] Monthly Average Calculation:`);
-    console.log(`  - Sum of all expenses: $${averages.calculationDetails.grandTotal.toFixed(2)}`);
-    console.log(`  - Formula: ${averages.calculationDetails.formula}`);
-    console.log(`  - Monthly Average: $${averages.totalMonthly.toFixed(2)}`);
-    console.log("\n=== END PROCESSING ===\n");
 
     // Step 5: Create upload record with calculation log
     const calculationLogData = {
@@ -175,14 +141,10 @@ async function processFinancialUpload(csvContent, userId, filename = null) {
     // Step 7.5: Automatically run AI categorization on uncategorized transactions
     let aiResults = null;
     if (uncategorizedData.length > 0 && process.env.ANTHROPIC_API_KEY) {
-      console.log(`\n[STEP 7.5] Running AI categorization on ${uncategorizedData.length} uncategorized transactions...`);
       try {
         aiResults = await recategorizeWithAI(upload.id);
-        console.log(`  - AI recategorized: ${aiResults.recategorized}`);
-        console.log(`  - Still uncategorized: ${aiResults.stillUncategorized}`);
       } catch (error) {
-        console.error(`  - AI categorization failed: ${error.message}`);
-        // Continue even if AI fails
+        console.error(`AI categorization failed: ${error.message}`);
       }
     }
 

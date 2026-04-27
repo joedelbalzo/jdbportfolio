@@ -1,18 +1,18 @@
 const express = require("express");
 const authRoutes = express.Router();
-const {AgentUser, Topic} = require("../../db/agentDB");
+const {AgentUser} = require("../../db/agentDB");
 const {isAgentLoggedIn} = require("./middleware");
 const path = require("path");
-const bcrypt = require("bcrypt");
 
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const session = require("express-session");
 require("dotenv").config({path: path.resolve(__dirname, "../..", ".env")});
 
-let salt1 = bcrypt.genSaltSync();
-let salt2 = bcrypt.genSaltSync();
-let secret = bcrypt.hashSync(salt1 + salt2, 10);
+const sessionSecret = process.env.AGENT_SESSION_SECRET || process.env.AGENT_JWT_SECRET || process.env.JWT;
+if (!sessionSecret) {
+  throw new Error("AGENT_SESSION_SECRET (or AGENT_JWT_SECRET / JWT) env var is required");
+}
 
 // Email whitelist from env var
 const getAllowedEmails = () => {
@@ -52,27 +52,15 @@ passport.use(
         }
 
         // Find or create user
-        const [user, created] = await AgentUser.findOrCreate({
+        const [user] = await AgentUser.findOrCreate({
           where: {googleId: profile.id},
           defaults: {
             email: email,
             name: profile.displayName || email,
-            isAdmin: true, // All whitelisted users are admins
+            isAdmin: true,
             isActive: true,
           },
         });
-
-        // Create default topics for new users
-        if (created) {
-          const defaultTopics = ["api", "nestjs", "http", "microservices", "nodejs", "rest"];
-          for (const keyword of defaultTopics) {
-            await Topic.create({
-              keyword,
-              isActive: true,
-              agentuserId: user.id,
-            });
-          }
-        }
 
         return done(null, user);
       } catch (err) {
@@ -97,7 +85,7 @@ passport.deserializeUser(async function (id, done) {
 
 // Session middleware setup for OAuth routes only
 const sessionMiddleware = session({
-  secret: secret,
+  secret: sessionSecret,
   resave: false,
   saveUninitialized: false,
 });
@@ -143,16 +131,6 @@ authRoutes.get("/", isAgentLoggedIn, async (req, res, next) => {
   } catch (ex) {
     next(ex);
   }
-});
-
-// Debug endpoint to check allowed emails (remove in production)
-authRoutes.get("/debug/allowed-emails", (req, res) => {
-  const allowedEmails = getAllowedEmails();
-  res.json({
-    raw: process.env.AGENT_ALLOWED_EMAILS,
-    parsed: allowedEmails,
-    count: allowedEmails.length,
-  });
 });
 
 module.exports = authRoutes;
