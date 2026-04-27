@@ -1,1 +1,0 @@
-import{j as e}from"./index-6dd41f5a.js";const l=()=>{const o=new Date().getFullYear();return e.jsx("footer",{className:"site-footer",children:e.jsxs("p",{children:["© Joe Del Balzo, ",o,". Email me at ",e.jsx("a",{href:"mailto:jdelbalzo99@gmail.com",children:"jdelbalzo99@gmail.com"}),"."]})})};export{l as default};

@@ -33,7 +33,6 @@ const PortfolioHighlights = () => {
             title="Cynthia St. Aubin"
             description="Website for USA Today Bestselling author Cynthia St. Aubin."
             siteLink="https://www.cynthiastaubin.com"
-            // repoLink="https://github.com/joedelbalzo/yhg-assessment"
             imgSrc={CSAScreenshot}
             imgAlt="Screenshot of www.yourhiddengenius.com"
           />
@@ -49,7 +48,6 @@ const PortfolioHighlights = () => {
             title="Chef Curtis Duffy"
             description="Website for Michelin-Starred, James Beard Award Winning Chef and now USA Today Bestselling author Curtis Duffy to market his debut book Fireproof: Memoir of a Chef."
             siteLink="https://www.curtisduffy.com"
-            // repoLink="https://github.com/joedelbalzo/yhg-assessment"
             imgSrc={curtisSS}
             imgAlt="Screenshot of www.curtisduffy.com"
           />
@@ -63,8 +61,7 @@ const PortfolioHighlights = () => {
           />
           <PortfolioCard
             title="AlgoRhythm"
-            description="This application is a multiple-choice study guide for algorithms, data structures, and basic questions about popular 
-                  languages like JavaScript and Python, as well as popular frameworks like React and Node.js."
+            description="This application is a multiple-choice study guide for algorithms, data structures, and basic questions about popular languages like JavaScript and Python, as well as popular frameworks like React and Node.js."
             siteLink="https://algorhythm-joedelbalzo.vercel.app/"
             repoLink="https://github.com/joedelbalzo/jdb-algo"
             imgSrc={algoScreenshot}

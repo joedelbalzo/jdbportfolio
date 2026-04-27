@@ -42,6 +42,7 @@ const App = () => {
   return (
     <div className="app-wrapper">
       <div className="fixed-bg" />
+      <div className="grain-overlay" aria-hidden="true" />
       <Nav />
       <div className="main-grid">
         <div className="share-buttons-container">
