@@ -5,6 +5,21 @@ const { isAgentLoggedIn } = require("./middleware");
 const { processFinancialUpload, getUploadHistory, getUploadDetails } = require("./services/financialProcessor");
 const { recategorizeWithAI, manualRecategorize } = require("./services/aiRecategorizer");
 const { combineUploads, getCombinedDetails, getCombinedTransactions } = require("./services/combineUploads");
+const { parseCSV, csvToTransactions, getDateRange } = require("./services/csvParser");
+const {
+  processTransactions,
+  calculateMonthlyAverages,
+  getBucket,
+  CATEGORIZATION_RULES,
+  CATEGORY_BUCKETS,
+} = require("./services/financialAnalyzer");
+const { categorizeWithAI } = require("./services/inMemoryAICategorizer");
+const {
+  CustomCategorizationPattern,
+  CombinedUpload,
+  FinancialUpload,
+  CategorizedTransaction,
+} = require("../../db/agentDB");
 
 // Configure multer for file uploads (memory storage)
 const upload = multer({
@@ -31,11 +46,6 @@ router.post("/upload", isAgentLoggedIn, upload.array("csvFiles", 10), async (req
     if (!req.files || req.files.length === 0) {
       return res.status(400).json({ error: "No files uploaded" });
     }
-
-    const { parseCSV, csvToTransactions, getDateRange } = require("./services/csvParser");
-    const { processTransactions, calculateMonthlyAverages, getBucket } = require("./services/financialAnalyzer");
-    const { categorizeWithAI } = require("./services/inMemoryAICategorizer");
-    const { CustomCategorizationPattern } = require("../../db/agentDB");
 
     // Load custom patterns
     const customPatterns = await CustomCategorizationPattern.findAll({
@@ -262,7 +272,6 @@ router.put("/transactions/:transactionId", isAgentLoggedIn, async (req, res, nex
  */
 router.get("/categories/list", isAgentLoggedIn, async (req, res, next) => {
   try {
-    const { CATEGORIZATION_RULES, CATEGORY_BUCKETS } = require("./services/financialAnalyzer");
 
     const categories = CATEGORIZATION_RULES.map(([category]) => category);
     const buckets = Object.keys(CATEGORY_BUCKETS);
@@ -287,8 +296,6 @@ router.get("/:uploadId/transactions", isAgentLoggedIn, async (req, res, next) =>
     if (isNaN(uploadId)) {
       return res.status(400).json({ error: "Invalid upload ID" });
     }
-
-    const { CategorizedTransaction, FinancialUpload } = require("../../db/agentDB");
 
     // Verify ownership
     const upload = await FinancialUpload.findOne({
@@ -339,8 +346,6 @@ router.delete("/:uploadId", isAgentLoggedIn, async (req, res, next) => {
     if (isNaN(uploadId)) {
       return res.status(400).json({ error: "Invalid upload ID" });
     }
-
-    const { FinancialUpload } = require("../../db/agentDB");
 
     // Verify ownership
     const upload = await FinancialUpload.findOne({
@@ -399,7 +404,6 @@ router.post("/combine", isAgentLoggedIn, async (req, res, next) => {
  */
 router.get("/combined/history", isAgentLoggedIn, async (req, res, next) => {
   try {
-    const { CombinedUpload } = require("../../db/agentDB");
 
     const combined = await CombinedUpload.findAll({
       where: { userId: req.user.id },
@@ -474,7 +478,6 @@ router.delete("/combined/:combinedId", isAgentLoggedIn, async (req, res, next) =
       return res.status(400).json({ error: "Invalid combined upload ID" });
     }
 
-    const { CombinedUpload } = require("../../db/agentDB");
 
     const combined = await CombinedUpload.findOne({
       where: { id: combinedId, userId: req.user.id },
@@ -502,8 +505,6 @@ router.delete("/combined/:combinedId", isAgentLoggedIn, async (req, res, next) =
  */
 router.get("/algorithm", isAgentLoggedIn, async (req, res, next) => {
   try {
-    const { CATEGORIZATION_RULES } = require("./services/financialAnalyzer");
-    const { CustomCategorizationPattern } = require("../../db/agentDB");
 
     // Get built-in rules
     const builtInRules = CATEGORIZATION_RULES.map(([category, patterns]) => ({
@@ -572,7 +573,6 @@ router.post("/algorithm/pattern", isAgentLoggedIn, async (req, res, next) => {
       return res.status(400).json({ error: "Invalid regex pattern" });
     }
 
-    const { CustomCategorizationPattern } = require("../../db/agentDB");
 
     const newPattern = await CustomCategorizationPattern.create({
       userId: req.user.id,
@@ -607,7 +607,6 @@ router.put("/algorithm/pattern/:patternId", isAgentLoggedIn, async (req, res, ne
     const { patternId } = req.params;
     const { pattern, isActive, priority } = req.body;
 
-    const { CustomCategorizationPattern } = require("../../db/agentDB");
 
     const customPattern = await CustomCategorizationPattern.findOne({
       where: { id: patternId, userId: req.user.id },
@@ -656,7 +655,6 @@ router.delete("/algorithm/pattern/:patternId", isAgentLoggedIn, async (req, res,
   try {
     const { patternId } = req.params;
 
-    const { CustomCategorizationPattern } = require("../../db/agentDB");
 
     const customPattern = await CustomCategorizationPattern.findOne({
       where: { id: patternId, userId: req.user.id },
@@ -690,7 +688,6 @@ router.post("/confirm-ai-suggestion", isAgentLoggedIn, async (req, res, next) =>
       return res.status(400).json({ error: "Description and category are required" });
     }
 
-    const { CustomCategorizationPattern } = require("../../db/agentDB");
 
     await CustomCategorizationPattern.create({
       userId: req.user.id,

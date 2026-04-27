@@ -3,7 +3,6 @@ import {useNavigate, useSearchParams} from "react-router-dom";
 import axios from "axios";
 import Loader from "../Components/Loader";
 import TaskTracker from "../AgentFeatures/Tasks/TaskTracker";
-import ContentCuration from "../AgentFeatures/ContentCuration/ContentCuration";
 import FinancialAnalyzer from "../AgentFeatures/Financial/FinancialAnalyzer";
 import "./Dashboard.css";
 
@@ -71,17 +70,11 @@ const Dashboard = () => {
         </a>
       </header>
 
-      {/* Tab Navigation */}
       <div className="dashboard__tabs">
         <button
           onClick={() => setActiveTab("tasks")}
           className={`dashboard__tab ${activeTab === "tasks" ? "dashboard__tab--active-tasks" : "dashboard__tab--inactive"}`}>
           Household Tasks
-        </button>
-        <button
-          onClick={() => setActiveTab("content")}
-          className={`dashboard__tab ${activeTab === "content" ? "dashboard__tab--active-content" : "dashboard__tab--inactive"}`}>
-          Content Curation
         </button>
         <button
           onClick={() => setActiveTab("financial")}
@@ -90,10 +83,8 @@ const Dashboard = () => {
         </button>
       </div>
 
-      {/* Feature Content */}
       <div className="dashboard__content">
         {activeTab === "tasks" && <TaskTracker />}
-        {activeTab === "content" && <ContentCuration />}
         {activeTab === "financial" && <FinancialAnalyzer />}
       </div>
     </div>

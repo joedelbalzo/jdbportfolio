@@ -1,8 +1,8 @@
 import React, {Suspense, lazy} from "react";
-import {Routes, Route, Link} from "react-router-dom";
+import {Routes, Route} from "react-router-dom";
 import Home from "./Home.jsx";
 import Nav from "./Nav.jsx";
-import Portfolio from "./Portfolio.jsx";
+import PortfolioHighlights from "./PortfolioHighlights.jsx";
 import FourOhFour from "./FourOhFour.jsx";
 import Socials from "./Socials.jsx";
 import {waveform} from "ldrs";
@@ -19,13 +19,6 @@ import Box from "@mui/material/Box";
 const Footer = lazy(() => import("./Footer.jsx"));
 const Resume = lazy(() => import("./Resume.jsx"));
 const Dashboard = lazy(() => import("./Dashboard/Dashboard.jsx"));
-// Legacy app imports (hidden - restorable)
-// const AScriptForJavaApp = lazy(() => import("./ScriptForJava/App.jsx"));
-// const OpenPlacesApp = lazy(() => import("./Open-Places/App.jsx"));
-// const CssApp = lazy(() => import("./DropOfCSS/App.jsx"));
-// const BlogHome = lazy(() => import("./Blog/BlogHome.jsx"));
-// const BlogPost = lazy(() => import("./Blog/BlogPost.jsx"));
-// WebRTC deleted
 
 waveform.register();
 
@@ -82,15 +75,8 @@ const App = (props) => {
               <Route path="/" element={<Home />} />
               <Route path="/home" element={<Home />} />
               <Route path="/resume" element={<Resume />} />
-              <Route path="/portfolio" element={<Portfolio />} />
+              <Route path="/portfolio" element={<PortfolioHighlights />} />
               <Route path="/dashboard" element={<Dashboard />} />
-              {/* Legacy app routes (hidden - restorable) */}
-              {/* <Route path="/dropofcss/*" element={<CssApp />} /> */}
-              {/* <Route path="/scriptforjava/*" element={<AScriptForJavaApp />} /> */}
-              {/* <Route path="/openplaces/*" element={<OpenPlacesApp />} /> */}
-              {/* <Route path="/blog" element={<BlogHome />} /> */}
-              {/* <Route path="/blog/:slug" element={<BlogPost />} /> */}
-              {/* WebRTC deleted */}
               <Route path="/*" element={<FourOhFour />} />
             </Routes>
           </Suspense>

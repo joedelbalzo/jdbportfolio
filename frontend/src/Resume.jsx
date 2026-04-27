@@ -125,48 +125,6 @@ const Resume = () => {
               </li>
               <li>Built a rich database with hundreds of quiz questions delivered to the front-end via Axios API fetches.</li>
             </ul>
-            <h3>
-              “Drop of CSS” &mdash; <a href="./dropofcss">./dropofcss</a>
-            </h3>
-            <div style={{ fontSize: "calc(8px + 1vw)", lineHeight: "1rem", fontStyle: "italic" }}>
-              Front-End Developer || React, React-Redux, Node.js, Express, PostgreSQL
-            </div>
-            <ul>
-              <li>
-                Led the building of a developer tool that allows developers to select and apply colors to pre-built design elements (forms,
-                buttons, product cards) and then download the front-end code.
-              </li>
-              <li>
-                Leveraged React-Redux’s state management to move data swiftly through front-end React components as well as calling custom
-                Color Palette generating APIs through Axios and Express.
-              </li>
-              <li>
-                Performed comprehensive audits of both front-end and back-end codebases, resulting in improved coding standards and style
-                guides for enhanced codebase consistency and maintainability.
-              </li>
-            </ul>
-            <h3 style={{ marginTop: "4rem" }}>
-              “Open Places” &mdash; <a href="./openplaces/login">./openplaces/login</a>
-            </h3>
-            <div style={{ fontSize: "calc(8px + 1vw)", lineHeight: "1rem", fontStyle: "italic" }}>Full Stack Engineer</div>
-            <ul>
-              <li>
-                Developed a location-based map search application utilizing the Google Places API, React, and Material-UI to ensure
-                consistent and responsive UI/UX designs for users across multiple device types.
-              </li>
-              <li>
-                Designed a custom testing mechanism API that queries a PostgreSQL database of similar Google Places API object responses,
-                eliminating API costs while in development.
-              </li>
-            </ul>
-            <h3 style={{ marginTop: "4rem" }}>
-              E-Commerce “A Script for Java” &mdash; <a href="./scriptforjava">./scriptforjava</a>
-            </h3>
-            <div style={{ fontSize: "calc(8px + 1vw)", lineHeight: "1rem", fontStyle: "italic" }}>Full Stack Engineer</div>
-            <ul>
-              <li>Designed and built an e-commerce template for small chains of cafes.</li>
-              <li>Built administrative tools, authorizing a cafe manager full CRUD capabilities.</li>
-            </ul>
           </div>
 
           <div id="borderdiv">

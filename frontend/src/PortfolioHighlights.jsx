@@ -1,17 +1,14 @@
 import React from "react";
 import { FadeComponent } from "./FadeComponent";
 
-import valleyGif from "../assets/site-screenshots/valley-homepage-1-30-25.gif";
-import valiScreenshot from "../assets/site-screenshots/Vali_Screenshot.webp";
 import dawnRyanScreenshot from "../assets/site-screenshots/DawnRyan_Screenshot.webp";
 import algoScreenshot from "../assets/site-screenshots/Algo_Screenshot.webp";
 import yhgScreenshot from "../assets/site-screenshots/YHG-ss.webp";
 import CSAScreenshot from "../assets/site-screenshots/CSA_Screenshot.webp";
-import PortfolioCard from "./PortfolioCard";
-
-import valleyScreenshot from "../assets/site-screenshots/valley-ss.png";
+import valleyScreenshot from "../assets/site-screenshots/valley-ss.webp";
 import curtisSS from "../assets/site-screenshots/curtis-ss.png";
 import poemsSS from "../assets/site-screenshots/pd-ss.png";
+import PortfolioCard from "./PortfolioCard";
 
 const PortfolioHighlights = () => {
   return (
@@ -61,19 +58,6 @@ const PortfolioHighlights = () => {
             imgAlt="Screenshot of www.curtisduffy.com"
             isOdd={false}
           />
-          {/* <PortfolioCard
-            title="Vali"
-            description="Vali is an MVP-level startup aimed at small and medium business owners who typically aren't aware of their business' 
-                  actual valuation. As the principal and founding engineer, I attempted to create a clean but soft, visually impressive, 
-                  and inviting website to make owners feel comfortable while getting the information their business needs to progress. 
-                  The site's password is createdbyJDB, and you can peruse a rough beta version of the admin dashboard with the username 'admin.' 
-                  I'll happily email you back the password."
-            siteLink="https://www.joinvali.com"
-            repoLink="https://github.com/joedelbalzo/kan-th"
-            imgSrc={valiScreenshot}
-            imgAlt="Screenshot of www.joinvali.com"
-            isOdd={true}
-          /> */}
           <PortfolioCard
             title="Dawn Ryan"
             description="Portfolio and services website for freelance copyeditor and proofreader Dawn Ryan, a long-time professional 

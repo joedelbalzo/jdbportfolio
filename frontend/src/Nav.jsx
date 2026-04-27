@@ -10,15 +10,10 @@ const Nav = () => {
   const isDashboard = window.location.pathname === "/dashboard";
 
   useEffect(() => {
-    const activeOptions = {
-      "https://joedelbalzo.com/home": 1,
-      "https://joedelbalzo.com/blog": 2,
-      "https://joedelbalzo.com/portfolio": 3,
-      "http://localhost:3000/home": 1,
-      "http://localhost:3000/blog": 2,
-      "http://localhost:3000/portfolio": 3,
-    };
-    setIsActive(activeOptions[window.location.href]);
+    const path = window.location.pathname;
+    if (path === "/home" || path === "/") setIsActive(1);
+    else if (path === "/portfolio") setIsActive(2);
+    else setIsActive(null);
 
     // Disable scroll effect on dashboard
     if (isDashboard) {
@@ -83,10 +78,7 @@ const Nav = () => {
           <a href="https://github.com/joedelbalzo" target="_blank" rel="noreferrer noopener">
             GitHub
           </a>
-          <a href="../blog" style={{ color: isActive === 2 ? "#ff5722" : "", textShadow: "2px 2px 1px black" }}>
-            Blog
-          </a>
-          <a href="../portfolio" style={{ color: isActive === 3 ? "#ff5722" : "", textShadow: "2px 2px 1px black" }}>
+          <a href="../portfolio" style={{ color: isActive === 2 ? "#ff5722" : "", textShadow: "2px 2px 1px black" }}>
             Portfolio
           </a>
         </div>
@@ -110,9 +102,6 @@ const Nav = () => {
         </a>
         <a href="https://github.com/joedelbalzo" target="_blank" rel="noreferrer" onClick={closeNav}>
           GitHub
-        </a>
-        <a href="../blog" onClick={closeNav}>
-          Blog
         </a>
         <a href="../portfolio" onClick={closeNav}>
           Portfolio
