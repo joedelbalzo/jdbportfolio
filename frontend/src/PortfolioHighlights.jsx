@@ -21,7 +21,6 @@ const PortfolioHighlights = () => {
             siteLink="https://www.valley-arcade.com"
             imgSrc={valleyScreenshot}
             imgAlt="image of www.valley-arcade.com"
-            isOdd={true}
           />
           <PortfolioCard
             title="Poetry Daily"
@@ -29,7 +28,6 @@ const PortfolioHighlights = () => {
             siteLink="https://www.poems.com"
             imgSrc={poemsSS}
             imgAlt="image of www.poems.com"
-            isOdd={true}
           />
           <PortfolioCard
             title="Cynthia St. Aubin"
@@ -38,7 +36,6 @@ const PortfolioHighlights = () => {
             // repoLink="https://github.com/joedelbalzo/yhg-assessment"
             imgSrc={CSAScreenshot}
             imgAlt="Screenshot of www.yourhiddengenius.com"
-            isOdd={false}
           />
           <PortfolioCard
             title="Your Hidden Genius"
@@ -47,7 +44,6 @@ const PortfolioHighlights = () => {
             repoLink="https://github.com/joedelbalzo/yhg-assessment"
             imgSrc={yhgScreenshot}
             imgAlt="Screenshot of www.yourhiddengenius.com"
-            isOdd={false}
           />
           <PortfolioCard
             title="Chef Curtis Duffy"
@@ -56,17 +52,14 @@ const PortfolioHighlights = () => {
             // repoLink="https://github.com/joedelbalzo/yhg-assessment"
             imgSrc={curtisSS}
             imgAlt="Screenshot of www.curtisduffy.com"
-            isOdd={false}
           />
           <PortfolioCard
             title="Dawn Ryan"
-            description="Portfolio and services website for freelance copyeditor and proofreader Dawn Ryan, a long-time professional 
-                  in the publishing industry who wantied to highlight not only the work she's accomplished but also the variety of services she offers."
+            description="Portfolio and services website for freelance copyeditor and proofreader Dawn Ryan, a long-time professional in the publishing industry who wanted to highlight not only the work she's accomplished but also the variety of services she offers."
             siteLink="https://www.dawngryan.com"
             repoLink="https://github.com/joedelbalzo/jdb-dr"
             imgSrc={dawnRyanScreenshot}
             imgAlt="Screenshot of www.dawngryan.com"
-            isOdd={false}
           />
           <PortfolioCard
             title="AlgoRhythm"
@@ -76,7 +69,6 @@ const PortfolioHighlights = () => {
             repoLink="https://github.com/joedelbalzo/jdb-algo"
             imgSrc={algoScreenshot}
             imgAlt="Screenshot of AlgoRhythm"
-            isOdd={true}
           />
         </div>
       </div>

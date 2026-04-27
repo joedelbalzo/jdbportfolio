@@ -5,18 +5,16 @@ import { Link } from "react-router-dom";
 const FourOhFour = () => {
   return (
     <FadeComponent>
-      <>
-        <div className="resume-header" style={{ margin: "5rem auto", width: "60%" }}>
-          <h1 style={{ fontSize: "smaller" }}>Uh oh -- you've hit a 404 error! Let's get you home.</h1>
+      <div className="four-oh-four">
+        <div className="resume-header">
+          <h1 className="four-oh-four__title">Uh oh — you've hit a 404 error. Let's get you home.</h1>
         </div>
-        <div id="main-resume">
+        <div id="main-resume" className="four-oh-four__home-link">
           <h2>
-            <Link to="/" style={{ color: "whitesmoke" }}>
-              Home
-            </Link>
+            <Link to="/">Home</Link>
           </h2>
         </div>
-      </>
+      </div>
     </FadeComponent>
   );
 };

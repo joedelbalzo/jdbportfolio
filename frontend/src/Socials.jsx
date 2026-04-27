@@ -20,24 +20,24 @@ const Socials = () => {
 
   return (
     <div className="share-buttons">
-      <div id="share-button-line"></div>
+      <div className="share-button-line" />
 
-      <button aria-label="button for Joe Del Balzo's LinkedIn" onClick={() => share("linkedin")}>
+      <button aria-label="Joe Del Balzo's LinkedIn" onClick={() => share("linkedin")}>
         <LinkedIn />
       </button>
-      <button aria-label="button for Joe Del Balzo's GitHub" onClick={() => share("GitHub")}>
+      <button aria-label="Joe Del Balzo's GitHub" onClick={() => share("GitHub")}>
         <GitHub />
       </button>
-      <button aria-label="button for Joe Del Balzo's facebook" onClick={() => share("facebook")}>
+      <button aria-label="Joe Del Balzo's Facebook" onClick={() => share("facebook")}>
         <Facebook />
       </button>
-      <button aria-label="button for Joe Del Balzo's twitter" onClick={() => share("twitter")}>
+      <button aria-label="Joe Del Balzo's Twitter" onClick={() => share("twitter")}>
         <Twitter />
       </button>
-      <button aria-label="button for Joe Del Balzo's email" onClick={() => share("email")}>
+      <button aria-label="Email Joe Del Balzo" onClick={() => share("email")}>
         <Email />
       </button>
-      <div id="share-button-line"></div>
+      <div className="share-button-line" />
     </div>
   );
 };

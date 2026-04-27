@@ -1,59 +1,44 @@
-import React, {Suspense, lazy} from "react";
-import {Routes, Route} from "react-router-dom";
+import React, { Suspense, lazy } from "react";
+import { Routes, Route } from "react-router-dom";
 import Home from "./Home.jsx";
 import Nav from "./Nav.jsx";
 import PortfolioHighlights from "./PortfolioHighlights.jsx";
 import FourOhFour from "./FourOhFour.jsx";
 import Socials from "./Socials.jsx";
-import {waveform} from "ldrs";
+import { waveform } from "ldrs";
 import ScrollToTopOnRouteChange from "./Components/ScrollToTop.jsx";
 
-//mui
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Fab from "@mui/material/Fab";
 import ArrowUpwardOutlinedIcon from "@mui/icons-material/ArrowUpwardOutlined";
 import Fade from "@mui/material/Fade";
 import Box from "@mui/material/Box";
 
-//Lazy
 const Footer = lazy(() => import("./Footer.jsx"));
 const Resume = lazy(() => import("./Resume.jsx"));
 const Dashboard = lazy(() => import("./Dashboard/Dashboard.jsx"));
 
 waveform.register();
 
-function ScrollTop(props) {
-  const {children} = props;
-
+function ScrollTop({ children }) {
   const trigger = useScrollTrigger({
     target: window,
     disableHysteresis: true,
     threshold: 100,
   });
 
-  const smoothScrollToTop = (duration) => {
-    const scrollStep = -window.scrollY / (duration / 15),
-      scrollInterval = setInterval(function () {
-        if (window.scrollY != 0) {
-          window.scrollBy(0, scrollStep);
-        } else clearInterval(scrollInterval);
-      }, 15);
-  };
-
-  const handleClick = () => {
-    window.scrollTo({top: 0, behavior: "smooth"});
-  };
+  const handleClick = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
     <Fade in={trigger}>
-      <Box onClick={handleClick} role="presentation" sx={{position: "fixed", bottom: 24, right: 24, zIndex: 1000}}>
+      <Box onClick={handleClick} role="presentation" sx={{ position: "fixed", bottom: 24, right: 24, zIndex: 1000 }}>
         {children}
       </Box>
     </Fade>
   );
 }
 
-const App = (props) => {
+const App = () => {
   return (
     <div className="app-wrapper">
       <div className="fixed-bg" />
@@ -66,10 +51,11 @@ const App = (props) => {
         <div className="main-content">
           <Suspense
             fallback={
-              <div style={{margin: "10% auto"}}>
+              <div className="suspense-fallback">
                 <l-waveform size="45" stroke="4.5" speed="1" color="#ff5722"></l-waveform>
               </div>
-            }>
+            }
+          >
             <ScrollToTopOnRouteChange />
             <Routes>
               <Route path="/" element={<Home />} />
@@ -92,7 +78,7 @@ const App = (props) => {
           </Suspense>
         </div>
 
-        <ScrollTop {...props}>
+        <ScrollTop>
           <Fab
             size="large"
             sx={{
@@ -109,14 +95,15 @@ const App = (props) => {
               },
             }}
             className="scroll-button"
-            aria-label="scroll back to top">
+            aria-label="scroll back to top"
+          >
             <ArrowUpwardOutlinedIcon />
           </Fab>
         </ScrollTop>
       </div>
-      <div style={{margin: "0 auto"}}>
+      <Suspense fallback={null}>
         <Footer />
-      </div>
+      </Suspense>
     </div>
   );
 };
