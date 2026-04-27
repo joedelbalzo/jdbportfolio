@@ -1003,9 +1003,9 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 0.75rem 1.5rem;
-  padding: 0.5rem 0;
+  padding: 1.5rem 0 0;
 }
 .site-footer__identity,
 .site-footer__links,

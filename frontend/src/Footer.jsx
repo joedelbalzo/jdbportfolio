@@ -13,18 +13,6 @@ const Footer = () => {
           <span className="site-footer__sep">·</span>
           <span>Beacon, NY</span>
         </div>
-
-        <div className="site-footer__links">
-          <Link to="/home">Home</Link>
-          <Link to="/portfolio">Portfolio</Link>
-          <Link to="/resume">Resume</Link>
-          <a href="https://www.linkedin.com/in/joe-delbalzo/" target="_blank" rel="noreferrer noopener">
-            LinkedIn
-          </a>
-          <a href="https://github.com/joedelbalzo" target="_blank" rel="noreferrer noopener">
-            GitHub
-          </a>
-        </div>
       </div>
 
       <div className="site-footer__base">
