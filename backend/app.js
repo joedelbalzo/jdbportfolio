@@ -12,7 +12,6 @@ app.use(express.urlencoded({extended: false}));
 app.use(cors());
 
 warmSite("https://www.dawngryan.com");
-warmSite("https://www.joinvali.com");
 
 //middleware
 const restrictAccess = (req, res, next) => {

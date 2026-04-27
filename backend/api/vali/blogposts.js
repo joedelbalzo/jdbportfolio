@@ -1,16 +1,7 @@
 const express = require("express");
 const blogPostRoutes = express.Router();
 const { Blogpost, Tag, Image } = require("../../db/valiDB");
-const AWS = require("aws-sdk");
 
-AWS.config.update({ region: "us-east-2" });
-
-const multer = require("multer");
-const sharp = require("sharp");
-const crypto = require("crypto");
-
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
 const { getObjectSignedUrl } = require("../../s3.js");
 
 const { isValiLoggedIn, restrictValiAccess } = require("./middleware.js");

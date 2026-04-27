@@ -75,7 +75,17 @@ const App = (props) => {
               <Route path="/" element={<Home />} />
               <Route path="/home" element={<Home />} />
               <Route path="/resume" element={<Resume />} />
-              <Route path="/portfolio" element={<PortfolioHighlights />} />
+              <Route
+                path="/portfolio"
+                element={
+                  <>
+                    <div className="resume-header">
+                      <h1>Portfolio</h1>
+                    </div>
+                    <PortfolioHighlights />
+                  </>
+                }
+              />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/*" element={<FourOhFour />} />
             </Routes>
