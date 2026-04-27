@@ -11,7 +11,7 @@ const Footer = () => {
           <span className="site-footer__sep">·</span>
           <span>Software Engineer</span>
           <span className="site-footer__sep">·</span>
-          <span>Beacon, NY</span>
+          <span>Beacon, New York</span>
         </div>
       </div>
 

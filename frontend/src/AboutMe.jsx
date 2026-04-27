@@ -51,11 +51,9 @@ const AboutMe = () => {
             transition={transition}
             viewport={{ once: true, amount: 0.1 }}
           >
-            <p className="about-me-paragraphs">
-              <Link to="/resume" aria-label="Link to Joe Del Balzo's Resume">
-                Check out my resume here!
-              </Link>
-            </p>
+            <Link to="/resume" className="resume-cta" aria-label="Link to Joe Del Balzo's Resume">
+              Check out my resume &rarr;
+            </Link>
           </motion.div>
         </div>
       </div>

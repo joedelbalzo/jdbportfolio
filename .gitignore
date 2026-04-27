@@ -1,3 +1,5 @@
 node_modules/
 favicon_package_v0.16.zip
 *.stackdump
+.mcp.json
+.playwright-mcp/

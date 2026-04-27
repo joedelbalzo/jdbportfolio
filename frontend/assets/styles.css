@@ -333,6 +333,7 @@ h1 {
   width: 475px;
   text-shadow: 1px 1px 1px black;
   margin: 0;
+  letter-spacing: -1.5px;
   transition: all 0.5s ease;
 }
 
@@ -378,10 +379,10 @@ h1 {
 }
 .about-me-paragraphs {
   text-align: left;
-  font-weight: 350;
+  font-weight: 300;
   font-size: clamp(15px, 12px + 0.6vw, 20px);
-  line-height: 1.6;
-  color: whitesmoke;
+  line-height: 1.7;
+  color: rgba(245, 245, 245, 0.85);
 }
 
 #about-me-titles {
@@ -419,6 +420,26 @@ h1 {
   background-color: #ff5722;
   animation: underline 0.3s linear;
   animation-iteration-count: 1;
+}
+
+.resume-cta {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.6rem 1.4rem;
+  font-size: clamp(14px, 12px + 0.4vw, 17px);
+  font-weight: 400;
+  font-family: var(--font-grotesk);
+  letter-spacing: 0.5px;
+  color: whitesmoke;
+  text-decoration: none;
+  border: 1px solid var(--highlight-orange);
+  border-radius: 4px;
+  transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+.resume-cta:hover {
+  background: var(--highlight-orange);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(255, 87, 34, 0.3);
 }
 
 .about-me-paragraph-grid-section {
@@ -536,9 +557,9 @@ h1 {
 
 #portfolio-card h2 {
   font-size: clamp(22px, 12px + 1.5vw, 36px);
-  font-weight: 400;
+  font-weight: 500;
   font-family: var(--font-grotesk);
-  letter-spacing: -1px;
+  letter-spacing: -1.5px;
   color: var(--main-color-whitesmoke);
   text-align: left;
   margin: 0.5rem 0 0.25rem;
@@ -548,9 +569,9 @@ h1 {
 #portfolio-card .portfolio-card-description {
   flex-grow: 1;
   font-size: clamp(14px, 12px + 0.3vw, 17px);
-  font-weight: 400;
-  letter-spacing: -0.25px;
-  line-height: 1.5;
+  font-weight: 300;
+  letter-spacing: -0.1px;
+  line-height: 1.55;
   color: var(--accent-font-blue);
   text-align: left;
   margin: 0 0 0.75rem;
@@ -574,22 +595,24 @@ h1 {
   transform: translateY(-2px) scale(1.05);
 }
 
+.resume-header {
+  width: min(1100px, 92vw);
+  margin: 0 auto;
+}
 .resume-header > h1 {
   font-size: clamp(36px, 5vw, 80px);
   color: whitesmoke;
-  font-weight: 350;
-  margin: 2.5rem auto;
-  padding-left: 1rem;
+  font-weight: 300;
+  letter-spacing: -2px;
+  margin: 2.5rem 0 1rem;
   text-shadow: 2px 2px 6px black;
   font-variant: small-caps;
 }
-.resume-header > h2,
-.resume-header > h3,
 .resume-header .resume-contact {
   font-size: clamp(14px, 1vw + 8px, 18px);
   color: whitesmoke;
   font-weight: 350;
-  margin: 1.5rem auto;
+  margin: 0 0 1rem;
   text-shadow: 2px 2px 6px black;
   font-style: normal;
 }
@@ -654,6 +677,12 @@ h1 {
 
 #borderdiv > h2 {
   padding: 0;
+}
+
+.skills-list {
+  margin-left: 7%;
+  margin-right: 7%;
+  line-height: 1.7;
 }
 
 .resume-job {
@@ -998,6 +1027,8 @@ h1 {
   font-family: var(--font-roboto);
   color: rgb(220, 220, 220);
   font-size: clamp(13px, 11px + 0.3vw, 15px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 0.5rem;
 }
 .site-footer__row {
   display: flex;
