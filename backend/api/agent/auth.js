@@ -111,9 +111,9 @@ authRoutes.get(
     const tokenData = await req.user.generateToken();
     if (tokenData && tokenData.token) {
       if (process.env.NODE_ENV === "development") {
-        res.redirect(`http://localhost:3000/dashboard?token=${tokenData.token}`);
+        res.redirect(`http://localhost:3000/dashboard#token=${tokenData.token}`);
       } else {
-        res.redirect(`https://www.joedelbalzo.com/dashboard?token=${tokenData.token}`);
+        res.redirect(`https://www.joedelbalzo.com/dashboard#token=${tokenData.token}`);
       }
     } else {
       res.status(500).send("Failed to generate token");

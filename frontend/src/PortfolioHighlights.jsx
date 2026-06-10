@@ -6,8 +6,8 @@ import algoScreenshot from "../assets/site-screenshots/Algo_Screenshot.webp";
 import yhgScreenshot from "../assets/site-screenshots/YHG-ss.webp";
 import CSAScreenshot from "../assets/site-screenshots/CSA_Screenshot.webp";
 import valleyScreenshot from "../assets/site-screenshots/valley-ss.webp";
-import curtisSS from "../assets/site-screenshots/curtis-ss.png";
-import poemsSS from "../assets/site-screenshots/pd-ss.png";
+import curtisSS from "../assets/site-screenshots/curtis-ss.webp";
+import poemsSS from "../assets/site-screenshots/pd-ss.webp";
 import PortfolioCard from "./PortfolioCard";
 
 const PortfolioHighlights = () => {

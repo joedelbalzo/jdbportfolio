@@ -55,7 +55,7 @@ const Resume = () => {
           </address>
         </div>
         <div id="main-resume">
-          <section id="borderdiv">
+          <section className="borderdiv">
             <h2>Skills, Languages, and Technologies</h2>
             <p className="skills-list">
               <strong>Languages, Frameworks, &amp; Databases:</strong>
@@ -69,7 +69,7 @@ const Resume = () => {
             </p>
           </section>
 
-          <section id="borderdiv">
+          <section className="borderdiv">
             <h2>Work Experience</h2>
 
             <Job
@@ -158,7 +158,7 @@ const Resume = () => {
             </Job>
           </section>
 
-          <section id="borderdiv">
+          <section className="borderdiv">
             <h2>Freelance and Open Source Projects</h2>
 
             <Project title="Dawn Ryan, Freelancer" link="https://www.dawngryan.com/" role="Front-End Engineer">
@@ -180,7 +180,7 @@ const Resume = () => {
             </Project>
           </section>
 
-          <section id="borderdiv">
+          <section className="borderdiv">
             <h2>Education</h2>
             <p className="resume-company-line">New York University, Tisch School of the Arts</p>
             <ul>

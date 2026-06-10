@@ -13,7 +13,8 @@
       }
       gtag("js", new Date());
 
-      gtag("config", "G-YT5RXPQQRD");
+      // Report path only — keeps tokens/query strings/fragments out of GA
+      gtag("config", "G-YT5RXPQQRD", { page_location: location.origin + location.pathname });
     </script>
     <meta
       name="description"
@@ -24,22 +25,24 @@
 
     <meta property="og:title" content="Joe Del Balzo | Full Stack & Software Engineer" />
     <meta property="og:description" content="Joe Del Balzo: Web Developer, Software Engineer, and Full Stack Engineer." />
+    <meta property="og:url" content="https://www.joedelbalzo.com/" />
+    <meta property="og:type" content="website" />
     <meta name="robots" content="index, follow" />
 
-    <link rel="canonical" href="http://www.joedelbalzo.com" />
+    <link rel="canonical" href="https://www.joedelbalzo.com/" />
 
     <link rel="icon" type="image/x-icon" href="./assets/code-svgrepo-com.png" alt="Joe Del Balzo Favicon" />
     <link rel="stylesheet" href="./assets/styles.css" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
     <script type="application/ld+json">
       {
         "@context": "https://schema.org/",
-        "@type": "LocalBusiness",
+        "@type": "Person",
         "name": "Joe Del Balzo",
         "jobTitle": "Web Developer, Software Engineer, Full Stack Engineer",
-        "url": "http://www.joedelbalzo.com",
+        "url": "https://www.joedelbalzo.com/",
         "sameAs": ["https://www.facebook.com/joedelbalzo/", "https://www.linkedin.com/in/joe-delbalzo/", "https://github.com/joedelbalzo"],
         "address": {
           "@type": "PostalAddress",
@@ -47,8 +50,7 @@
           "addressRegion": "New York",
           "addressCountry": "United States"
         },
-        "email": "jdelbalzo99@gmail.com",
-        "telephone": "240-441-7689"
+        "email": "jdelbalzo99@gmail.com"
       }
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />

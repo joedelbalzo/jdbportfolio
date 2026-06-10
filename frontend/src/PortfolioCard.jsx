@@ -1,24 +1,25 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { OpenWindow } from "./ShareIcons/OpenWindow";
 import { GitHub } from "./ShareIcons/SocialIcons";
 
 const PortfolioCard = ({ title, description, siteLink, repoLink, imgSrc, imgAlt }) => {
   const [hoveredElement, setHoveredElement] = useState(null);
+  const reduceMotion = useReducedMotion();
 
   const getColor = (id) => (hoveredElement === id ? "#ff5722" : "whitesmoke");
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: "50px" }}
+      initial={reduceMotion ? false : { opacity: 0, y: "50px" }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ type: "spring", damping: 10, stiffness: 50 }}
       viewport={{ once: true, amount: 0.1 }}
     >
-      <article id="portfolio-card">
+      <article className="portfolio-card">
         <a href={siteLink} target="_blank" rel="noopener noreferrer" aria-label={`Open ${title}`}>
           <div className="image-wrapper">
-            <img src={imgSrc} alt={imgAlt} className="portfolio-images" />
+            <img src={imgSrc} alt={imgAlt} className="portfolio-images" loading="lazy" decoding="async" />
           </div>
         </a>
         <h2>{title}</h2>

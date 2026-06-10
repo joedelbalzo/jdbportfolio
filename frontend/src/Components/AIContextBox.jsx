@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import axios from "axios";
+import agentApi from "../AgentFeatures/agentApi";
 import "./Components.css";
 
 const AIContextBox = () => {
@@ -12,11 +12,8 @@ const AIContextBox = () => {
   }, []);
 
   const loadNotes = async () => {
-    const token = localStorage.getItem("agentToken");
     try {
-      const response = await axios.get("/api/agent/settings", {
-        headers: {Authorization: token},
-      });
+      const response = await agentApi.get("/settings");
       setNotes(response.data.taskPreferences || "");
     } catch (error) {
       console.error("Failed to load AI context:", error);
@@ -24,15 +21,10 @@ const AIContextBox = () => {
   };
 
   const saveNotes = async () => {
-    const token = localStorage.getItem("agentToken");
     setSaving(true);
 
     try {
-      await axios.put(
-        "/api/agent/settings",
-        {taskPreferences: notes},
-        {headers: {Authorization: token}},
-      );
+      await agentApi.put("/settings", {taskPreferences: notes});
       setLastSaved(new Date());
     } catch (error) {
       console.error("Failed to save AI context:", error);

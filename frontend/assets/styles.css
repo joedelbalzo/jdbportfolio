@@ -16,6 +16,17 @@ html {
   background-color: #202836;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -366,7 +377,7 @@ h1 {
 
 .about-me-container {
 }
-#about-me {
+.about-me {
   width: 80%;
   padding: 1% 0;
   margin: 0 auto 0 10%;
@@ -456,6 +467,9 @@ h1 {
   transition: all 0.2s ease;
   outline: 1px solid gray;
   width: 70%;
+  /* height attribute on the img is for pre-load aspect ratio only — without
+     this, it becomes the rendered height and stretches the photo */
+  height: auto;
   margin: 0 auto;
 }
 .about-me-paragraph-grid-section > img:hover {
@@ -464,8 +478,11 @@ h1 {
   outline: 1px solid #ff5722;
 }
 
-.share-buttons > button {
+.share-buttons > a {
+  display: flex;
+  align-items: center;
   justify-content: center;
+  text-decoration: none;
   margin: 8px auto;
   background: rgba(0, 0, 0, 0.2);
   border: 1px solid transparent;
@@ -480,7 +497,7 @@ h1 {
     box-shadow 0.2s ease-in-out;
 }
 
-.share-buttons > button svg {
+.share-buttons > a svg {
   stroke: currentColor;
   fill: currentColor;
   transition:
@@ -488,7 +505,7 @@ h1 {
     box-shadow 0.2s ease-in-out;
 }
 
-.share-buttons > button:hover {
+.share-buttons > a:hover {
   outline: 2px solid #ff5722 !important;
   outline-offset: -1px;
   cursor: pointer;
@@ -497,8 +514,8 @@ h1 {
   border-color: #ff5722 !important;
 }
 
-.share-buttons > button:focus,
-.share-buttons > button:active {
+.share-buttons > a:focus,
+.share-buttons > a:active {
   outline: 2px solid #ff5722 !important;
   border: 1px solid #ff5722 !important;
 }
@@ -517,7 +534,7 @@ h1 {
   align-items: stretch;
 }
 
-#portfolio-card {
+.portfolio-card {
   height: 100%;
   position: relative;
   display: flex;
@@ -534,7 +551,7 @@ h1 {
   box-shadow: 3px 3px 0px 3px var(--highlight-orange);
 }
 
-#portfolio-card .image-wrapper {
+.portfolio-card .image-wrapper {
   position: relative;
   overflow: hidden;
   border-radius: 10px;
@@ -542,7 +559,7 @@ h1 {
   margin-bottom: 1rem;
 }
 
-#portfolio-card .image-wrapper img {
+.portfolio-card .image-wrapper img {
   display: block;
   width: 100%;
   height: 100%;
@@ -551,11 +568,11 @@ h1 {
   will-change: transform;
 }
 
-#portfolio-card:hover .image-wrapper img {
+.portfolio-card:hover .image-wrapper img {
   transform: scale(1.02);
 }
 
-#portfolio-card h2 {
+.portfolio-card h2 {
   font-size: clamp(22px, 12px + 1.5vw, 36px);
   font-weight: 500;
   font-family: var(--font-grotesk);
@@ -566,7 +583,7 @@ h1 {
   padding: 0;
 }
 
-#portfolio-card .portfolio-card-description {
+.portfolio-card .portfolio-card-description {
   flex-grow: 1;
   font-size: clamp(14px, 12px + 0.3vw, 17px);
   font-weight: 300;
@@ -657,7 +674,7 @@ h1 {
   margin-right: 7%;
 }
 
-#borderdiv {
+.borderdiv {
   font-weight: 350;
   padding: 1.5rem;
   margin: 1.5rem auto;
@@ -675,7 +692,7 @@ h1 {
   background-size: clamp(80px, 200px + 8vw, 320px) clamp(40px, 50px + 2vh, 80px);
 }
 
-#borderdiv > h2 {
+.borderdiv > h2 {
   padding: 0;
 }
 
@@ -922,7 +939,7 @@ h1 {
     max-width: 100%;
   }
 
-  #about-me {
+  .about-me {
     margin: 2rem auto 5rem !important;
   }
 
@@ -960,7 +977,7 @@ h1 {
     width: 95%;
   }
 
-  #borderdiv {
+  .borderdiv {
     background-size: clamp(70px, 70px + 8vw, 200px) clamp(35px, 25px + 2vh, 60px);
   }
 }
@@ -988,13 +1005,13 @@ h1 {
   #main-name {
     display: block;
   }
-  #portfolio-card h2 {
+  .portfolio-card h2 {
     font-size: clamp(24px, 24px + 2vw, 36px);
     margin: 1rem 0 0.5rem;
     font-weight: 400;
     letter-spacing: 0;
   }
-  #portfolio-card .portfolio-card-description {
+  .portfolio-card .portfolio-card-description {
     font-size: clamp(15px, 14px + 0.4vw, 18px);
   }
 }
@@ -1098,6 +1115,42 @@ h1 {
   justify-content: center;
 }
 
+.scroll-button {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  width: 42px;
+  border: 1px solid var(--highlight-orange);
+  border-radius: 4px;
+  background-color: transparent;
+  color: var(--main-color-whitesmoke);
+  box-shadow: 2px 2px 2px rgba(20, 30, 70, 0.5);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--transition-fast),
+    visibility var(--transition-fast),
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.scroll-button--visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.scroll-button:hover,
+.scroll-button:focus-visible {
+  background-color: var(--highlight-orange);
+  color: #fff;
+}
+
 .share-buttons {
   display: flex;
   flex-direction: column;
@@ -1107,7 +1160,7 @@ h1 {
   position: sticky;
 }
 
-.share-buttons > button {
+.share-buttons > a {
   border: none;
   outline: none;
   box-shadow: inset 1px 1px 1px gray;
@@ -1214,7 +1267,7 @@ h1 {
     color: #000 !important;
     text-decoration: underline;
   }
-  #borderdiv {
+  .borderdiv {
     background: none !important;
     border: 1px solid #999 !important;
     padding: 0.75rem !important;

@@ -1,53 +1,41 @@
 import React, {useEffect, useState} from "react";
-import {useNavigate, useSearchParams} from "react-router-dom";
-import axios from "axios";
+import agentApi from "../AgentFeatures/agentApi";
 import Loader from "../Components/Loader";
 import TaskTracker from "../AgentFeatures/Tasks/TaskTracker";
 import FinancialAnalyzer from "../AgentFeatures/Financial/FinancialAnalyzer";
 import "./Dashboard.css";
 
 const Dashboard = () => {
-  const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("tasks");
 
   useEffect(() => {
-    const tokenFromUrl = searchParams.get("token");
-
-    if (tokenFromUrl) {
-      localStorage.setItem("agentToken", tokenFromUrl);
-      navigate("/dashboard", {replace: true});
+    // Token arrives in the URL fragment so it never reaches server logs or analytics
+    if (window.location.hash.startsWith("#token=")) {
+      localStorage.setItem("agentToken", window.location.hash.slice("#token=".length));
+      window.history.replaceState(null, "", window.location.pathname);
     }
 
     const loadUser = async () => {
-      const token = localStorage.getItem("agentToken");
-
-      if (!token) {
+      if (!localStorage.getItem("agentToken")) {
         window.location.href = "/api/agent/auth/google";
         return;
       }
 
       try {
-        const response = await axios.get("/api/agent/auth", {
-          headers: {Authorization: token},
-        });
+        const response = await agentApi.get("/auth");
         setUser(response.data);
-        setLoading(false);
       } catch (error) {
+        // 401 is handled by the interceptor (clears token, re-runs OAuth)
         console.error("Auth error:", error);
-        if (error.response?.status === 401) {
-          localStorage.removeItem("agentToken");
-          window.location.href = "/api/agent/auth/google";
-        } else {
-          setLoading(false);
-        }
+      } finally {
+        setLoading(false);
       }
     };
 
     loadUser();
-  }, [searchParams, navigate]);
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("agentToken");

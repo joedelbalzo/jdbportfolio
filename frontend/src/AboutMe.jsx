@@ -1,6 +1,6 @@
 import React from "react";
 import { FadeComponent } from "./FadeComponent";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import PortfolioHighlights from "./PortfolioHighlights";
 import familyPhoto from "../assets/family_photo.webp";
@@ -8,12 +8,15 @@ import familyPhoto from "../assets/family_photo.webp";
 const transition = { type: "spring", damping: 15, stiffness: 50 };
 
 const AboutMe = () => {
+  const reduceMotion = useReducedMotion();
+  const slideUp = (y) => (reduceMotion ? false : { opacity: 0, y });
+
   return (
     <FadeComponent>
       <div className="about-me-container">
-        <div id="about-me">
+        <div className="about-me">
           <motion.div
-            initial={{ opacity: 0, y: "50px" }}
+            initial={slideUp("50px")}
             whileInView={{ opacity: 1, y: 0 }}
             transition={transition}
             viewport={{ once: true, amount: 0.1 }}
@@ -28,12 +31,12 @@ const AboutMe = () => {
                 Before tech, I spent a decade designing lighting and building show networks in film and TV—training that shaped
                 how I handle complexity, detail, and timing in everything I build now.
               </p>
-              <img src={familyPhoto} alt="Joe Del Balzo and his family" />
+              <img src={familyPhoto} alt="Joe Del Balzo and his family" width="1200" height="1350" loading="lazy" decoding="async" />
             </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: "50px" }}
+            initial={slideUp("50px")}
             whileInView={{ opacity: 1, y: 0 }}
             transition={transition}
             viewport={{ once: true, amount: 0.1 }}
@@ -46,7 +49,7 @@ const AboutMe = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: "50px" }}
+            initial={slideUp("50px")}
             whileInView={{ opacity: 1, y: 0 }}
             transition={transition}
             viewport={{ once: true, amount: 0.1 }}
@@ -59,9 +62,9 @@ const AboutMe = () => {
       </div>
 
       <div className="about-me-container">
-        <div id="about-me" className="about-me-portfolio-wrap">
+        <div className="about-me about-me-portfolio-wrap">
           <motion.div
-            initial={{ opacity: 0, y: "100px" }}
+            initial={slideUp("100px")}
             whileInView={{ opacity: 1, y: 0 }}
             id="about-me-paragraph-container"
             transition={transition}

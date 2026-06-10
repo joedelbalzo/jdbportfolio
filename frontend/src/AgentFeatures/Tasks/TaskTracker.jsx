@@ -1,40 +1,45 @@
 import React, {useState, useEffect} from "react";
-import axios from "axios";
+import agentApi from "../agentApi";
 import TwoColumnLayout from "../../Components/TwoColumnLayout";
 import AIContextBox from "../../Components/AIContextBox";
 import "./TaskTracker.css";
+
+// Local date as YYYY-MM-DD (toISOString is UTC and rolls to tomorrow in evening hours)
+const todayLocal = () => {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+};
 
 const TaskTracker = () => {
   const [tasks, setTasks] = useState([]);
   const [selectedTaskId, setSelectedTaskId] = useState("");
   const [newTaskName, setNewTaskName] = useState("");
   const [newTaskInterval, setNewTaskInterval] = useState(7);
-  const [completionDate, setCompletionDate] = useState(new Date().toISOString().split("T")[0]);
+  const [completionDate, setCompletionDate] = useState(todayLocal());
   const [wishEarlier, setWishEarlier] = useState(null);
   const [showAddTask, setShowAddTask] = useState(false);
   const [taskMessage, setTaskMessage] = useState(null);
   const [insights, setInsights] = useState({});
   const [analyzingTaskId, setAnalyzingTaskId] = useState(null);
+  const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
     loadTasks();
   }, []);
 
   const loadTasks = async () => {
-    const token = localStorage.getItem("agentToken");
     try {
-      const response = await axios.get("/api/agent/tasks", {
-        headers: {Authorization: token},
-      });
+      const response = await agentApi.get("/tasks");
       setTasks(response.data);
+      setLoadError(false);
     } catch (err) {
       console.error("Failed to load tasks:", err);
+      setLoadError(true);
     }
   };
 
   const handleCompleteTask = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem("agentToken");
 
     if (!selectedTaskId && !newTaskName.trim()) {
       return;
@@ -45,26 +50,18 @@ const TaskTracker = () => {
       let taskName = "";
 
       if (!selectedTaskId && newTaskName.trim()) {
-        const createResponse = await axios.post(
-          "/api/agent/tasks",
-          {
-            name: newTaskName.trim(),
-            defaultInterval: parseInt(newTaskInterval),
-          },
-          {headers: {Authorization: token}},
-        );
+        const createResponse = await agentApi.post("/tasks", {
+          name: newTaskName.trim(),
+          defaultInterval: parseInt(newTaskInterval),
+        });
         taskId = createResponse.data.id;
         taskName = createResponse.data.name;
       }
 
-      const response = await axios.post(
-        `/api/agent/tasks/${taskId}/complete`,
-        {
-          completedAt: completionDate,
-          wishEarlier: wishEarlier,
-        },
-        {headers: {Authorization: token}},
-      );
+      const response = await agentApi.post(`/tasks/${taskId}/complete`, {
+        completedAt: completionDate,
+        wishEarlier: wishEarlier,
+      });
 
       if (selectedTaskId) {
         setTasks(tasks.map((t) => (t.id === taskId ? response.data.task : t)));
@@ -83,7 +80,7 @@ const TaskTracker = () => {
       setSelectedTaskId("");
       setNewTaskName("");
       setNewTaskInterval(7);
-      setCompletionDate(new Date().toISOString().split("T")[0]);
+      setCompletionDate(todayLocal());
       setWishEarlier(null);
       setShowAddTask(false);
     } catch (error) {
@@ -94,12 +91,9 @@ const TaskTracker = () => {
   };
 
   const handleAnalyzeTask = async (taskId) => {
-    const token = localStorage.getItem("agentToken");
     setAnalyzingTaskId(taskId);
     try {
-      const response = await axios.get(`/api/agent/tasks/${taskId}/analyze`, {
-        headers: {Authorization: token},
-      });
+      const response = await agentApi.get(`/tasks/${taskId}/analyze`);
       setInsights((prev) => ({...prev, [taskId]: response.data.insight}));
     } catch (err) {
       console.error("Analysis failed:", err);
@@ -109,13 +103,10 @@ const TaskTracker = () => {
   };
 
   const handleDeleteTask = async (taskId) => {
-    const token = localStorage.getItem("agentToken");
     if (!window.confirm("Delete this task and all its history?")) return;
 
     try {
-      await axios.delete(`/api/agent/tasks/${taskId}`, {
-        headers: {Authorization: token},
-      });
+      await agentApi.delete(`/tasks/${taskId}`);
       setTasks(tasks.filter((t) => t.id !== taskId));
       setInsights((prev) => {
         const copy = {...prev};
@@ -205,7 +196,7 @@ const TaskTracker = () => {
                   type="date"
                   value={completionDate}
                   onChange={(e) => setCompletionDate(e.target.value)}
-                  max={new Date().toISOString().split("T")[0]}
+                  max={todayLocal()}
                   className="task-completion__input task-completion__input--date"
                 />
               </div>
@@ -256,7 +247,9 @@ const TaskTracker = () => {
           <div>
             <h2 className="task-list__title">Your Tasks</h2>
 
-            {tasks.length === 0 ? (
+            {loadError ? (
+              <div className="message message--error">Couldn't load tasks</div>
+            ) : tasks.length === 0 ? (
               <div className="task-list__empty">No tasks yet. Create one above to get started!</div>
             ) : (
               <div className="task-list__items">
@@ -289,8 +282,6 @@ const TaskTracker = () => {
                               }`}>
                               {isOverdue ? (
                                 <span>OVERDUE by {Math.abs(daysUntil)} days!</span>
-                              ) : isDueSoon ? (
-                                <span>Due in {daysUntil} days</span>
                               ) : (
                                 <span>Due in {daysUntil} days</span>
                               )}

@@ -46,6 +46,14 @@ app.get("/sitemap.xml", (req, res) => {
   res.sendFile(path.join(__dirname, "../sitemap.xml"));
 });
 
+app.get("/robots.txt", (req, res) => {
+  res.type("text/plain");
+  res.sendFile(path.join(__dirname, "../robots.txt"));
+});
+
+// Hidden launcher page (env-configured, cookie-gated): see backend/launcher.js
+require("./launcher")(app);
+
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 app.use("/api/algorhythm", restrictAccess, appAlgo);

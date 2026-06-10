@@ -3,11 +3,7 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 
 export default defineConfig({
-  plugins: [
-    react({
-      babel: { babelrc: true },
-    }),
-  ],
+  plugins: [react()],
   build: {
     sourcemap: false,
     outDir: "dist",

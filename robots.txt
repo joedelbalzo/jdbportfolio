@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /private/
 Allow: /public/
-Sitemap: http://www.joedelbalzo.com/sitemap.xml
+Sitemap: https://www.joedelbalzo.com/sitemap.xml

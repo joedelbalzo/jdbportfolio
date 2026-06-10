@@ -37,10 +37,31 @@ const Nav = () => {
   useEffect(() => {
     if (!drawerOpen) return;
     const onKey = (e) => {
-      if (e.key === "Escape") setDrawerOpen(false);
+      if (e.key === "Escape") {
+        setDrawerOpen(false);
+        return;
+      }
+      if (e.key !== "Tab" || !drawerRef.current) return;
+      // Keep Tab cycling inside the drawer while it's open
+      const focusable = drawerRef.current.querySelectorAll("a[href], button");
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      } else if (!drawerRef.current.contains(document.activeElement)) {
+        e.preventDefault();
+        first.focus();
+      }
     };
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
+    const closeButton = drawerRef.current?.querySelector("button");
+    if (closeButton) closeButton.focus();
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
