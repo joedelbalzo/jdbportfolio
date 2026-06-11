@@ -2,7 +2,6 @@ import { FadeComponent } from "./FadeComponent";
 import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import PortfolioHighlights from "./PortfolioHighlights";
-import familyPhoto from "../assets/family_photo.webp";
 
 const transition = { type: "spring", damping: 15, stiffness: 50 };
 
@@ -31,11 +30,11 @@ const AboutMe = () => {
                 shaped how I handle complexity, detail, and timing in everything I build now.
               </p>
               <img
-                src={familyPhoto}
+                src="/family_photo.webp"
                 alt="Joe Del Balzo and his family"
                 width="1200"
                 height="1350"
-                loading="lazy"
+                fetchPriority="high"
                 decoding="async"
               />
             </div>

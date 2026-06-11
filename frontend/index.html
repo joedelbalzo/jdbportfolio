@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <title>Joe Del Balzo | Full Stack & Software Engineer</title>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YT5RXPQQRD"></script>
+    <!-- Google tag (gtag.js) — script injected after window.load so analytics stays off the critical path.
+         Events queue in dataLayer until the library arrives, so nothing is lost. -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
@@ -15,6 +15,13 @@
 
       // Report path only — keeps tokens/query strings/fragments out of GA
       gtag("config", "G-YT5RXPQQRD", { page_location: location.origin + location.pathname });
+
+      window.addEventListener("load", function () {
+        var s = document.createElement("script");
+        s.async = true;
+        s.src = "https://www.googletagmanager.com/gtag/js?id=G-YT5RXPQQRD";
+        document.head.appendChild(s);
+      });
     </script>
     <meta
       name="description"
@@ -39,6 +46,9 @@
 
     <link rel="icon" type="image/x-icon" href="./assets/code-svgrepo-com.png" alt="Joe Del Balzo Favicon" />
     <link rel="stylesheet" href="./assets/styles.css" />
+
+    <!-- LCP image on the home page — preloaded so the browser doesn't wait for React to discover it -->
+    <link rel="preload" as="image" href="/family_photo.webp" fetchpriority="high" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
@@ -65,8 +75,19 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
+    <!-- Single merged request, loaded async (media="print" swap trick) so fonts never block first paint -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&family=Space+Grotesk:wght@300..700&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media = 'all'"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&family=Space+Grotesk:wght@300..700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
   </head>
   <body>
     <div id="root"></div>

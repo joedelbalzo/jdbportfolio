@@ -12,7 +12,7 @@
 // React 404, indistinguishable from any other dead route.
 
 const path = require("path");
-require("dotenv").config({ path: path.resolve(__dirname, ".env") });
+require("dotenv").config({ path: path.resolve(__dirname, ".env"), quiet: true });
 
 const COOKIE = "lk";
 const YEAR_MS = 365 * 24 * 60 * 60 * 1000;

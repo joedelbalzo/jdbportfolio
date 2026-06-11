@@ -3,7 +3,7 @@ const { STRING, UUID, UUIDV4, BOOLEAN, TEXT } = conn.Sequelize;
 const jwt = require("jsonwebtoken");
 const path = require("path");
 
-require("dotenv").config({ path: path.resolve(__dirname, "../..", ".env") });
+require("dotenv").config({ path: path.resolve(__dirname, "../..", ".env"), quiet: true });
 
 const AGENT_JWT_SECRET = process.env.AGENT_JWT_SECRET || process.env.JWT;
 if (!AGENT_JWT_SECRET) {

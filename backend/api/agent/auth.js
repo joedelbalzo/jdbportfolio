@@ -7,7 +7,7 @@ const path = require("path");
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const session = require("express-session");
-require("dotenv").config({ path: path.resolve(__dirname, "../..", ".env") });
+require("dotenv").config({ path: path.resolve(__dirname, "../..", ".env"), quiet: true });
 
 const sessionSecret = process.env.AGENT_SESSION_SECRET || process.env.AGENT_JWT_SECRET || process.env.JWT;
 if (!sessionSecret) {

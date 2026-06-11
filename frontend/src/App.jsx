@@ -72,7 +72,7 @@ const App = () => {
           <Socials />
         </div>
 
-        <div className="main-content">
+        <main className="main-content">
           <ErrorBoundary>
             <Suspense
               fallback={
@@ -102,7 +102,7 @@ const App = () => {
               </Routes>
             </Suspense>
           </ErrorBoundary>
-        </div>
+        </main>
 
         <ScrollTop />
       </div>

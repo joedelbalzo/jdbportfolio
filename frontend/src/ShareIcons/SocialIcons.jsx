@@ -6,7 +6,7 @@ export const Email = () => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       viewBox="0 -0.5 25 25"
-      role="img"
+      aria-hidden="true"
       xmlSpace="preserve"
       style={{
         display: "inline-block",
@@ -33,7 +33,7 @@ export const Facebook = () => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       viewBox="0 -0.5 25 25"
-      role="img"
+      aria-hidden="true"
       xmlSpace="preserve"
       style={{
         display: "inline-block",
@@ -60,7 +60,7 @@ export const LinkedIn = () => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       viewBox="0 -0.5 25 25"
-      role="img"
+      aria-hidden="true"
       xmlSpace="preserve"
       style={{
         display: "inline-block",
@@ -86,7 +86,7 @@ export const GitHub = ({ color = "currentColor" }) => {
       id="Capa_1"
       viewBox="0 0 25 25"
       xmlns="http://www.w3.org/2000/svg"
-      role="img"
+      aria-hidden="true"
       xmlSpace="preserve"
       style={{
         display: "inline-block",
@@ -118,7 +118,7 @@ export const Twitter = () => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       viewBox="-2 -2 30 25"
-      role="img"
+      aria-hidden="true"
       xmlSpace="preserve"
       style={{
         display: "inline-block",

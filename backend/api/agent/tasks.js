@@ -3,7 +3,6 @@ const taskRoutes = express.Router();
 const { TaskTemplate, TaskCompletion } = require("../../db/agentDB");
 const { isAgentLoggedIn } = require("./middleware");
 const { Op } = require("sequelize");
-const { sendDueTaskReminders } = require("./services/emailService");
 const { analyzeTaskPattern } = require("./services/taskAnalysisService");
 
 // Get all tasks for the current user
@@ -274,44 +273,6 @@ taskRoutes.get("/:id/history", isAgentLoggedIn, async (req, res, next) => {
     });
 
     res.json(completions);
-  } catch (ex) {
-    next(ex);
-  }
-});
-
-// Send task reminder emails (for cron or manual trigger)
-// GET /api/agent/tasks/send-reminders?secret=YOUR_JOB_SECRET (cron)
-// GET /api/agent/tasks/send-reminders (authenticated users)
-taskRoutes.get("/send-reminders", async (req, res, next) => {
-  try {
-    // Allow either: secret query param (for cron) OR valid auth token (for users)
-    const jobSecret = process.env.JOB_SECRET;
-    const hasValidSecret = jobSecret && req.query.secret === jobSecret;
-    const token = req.headers.authorization;
-
-    if (!hasValidSecret && token) {
-      // Try to authenticate via token
-      try {
-        const { AgentUser } = require("../../db/agentDB");
-        await AgentUser.findByToken(token);
-      } catch (err) {
-        const error = new Error("Invalid authentication");
-        error.status = 401;
-        throw error;
-      }
-    } else if (!hasValidSecret) {
-      const error = new Error("Invalid job secret or authentication required");
-      error.status = 401;
-      throw error;
-    }
-
-    const results = await sendDueTaskReminders();
-
-    res.json({
-      success: true,
-      message: "Task reminders processed",
-      results,
-    });
   } catch (ex) {
     next(ex);
   }
