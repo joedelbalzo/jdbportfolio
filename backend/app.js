@@ -60,7 +60,7 @@ app.use("/api/algorhythm", restrictAccess, appAlgo);
 app.use("/api/vali/", restrictValiAccess, appVali);
 app.use("/api/agent/", appAgent);
 
-app.get("/*", (req, res) => {
+app.get("/*splat", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });
 
