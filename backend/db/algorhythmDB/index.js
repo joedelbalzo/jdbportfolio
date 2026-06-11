@@ -20,7 +20,7 @@ const syncAndSeedAlgo = async () => {
         timesCorrect: q.timesCorrect,
         timesIncorrect: q.timesIncorrect,
       });
-    })
+    }),
   );
   const [codingQuestions] = await Promise.all(
     codingQuestionData.map(async (q) => {
@@ -34,7 +34,7 @@ const syncAndSeedAlgo = async () => {
         timesCorrect: q.timesCorrect,
         timesIncorrect: q.timesIncorrect,
       });
-    })
+    }),
   );
   return [questions, codingQuestions];
 };

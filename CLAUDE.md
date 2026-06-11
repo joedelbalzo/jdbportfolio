@@ -30,15 +30,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Do what has been asked; nothing more, nothing less
 - NEVER create files unless they're absolutely necessary for achieving your goal
 - ALWAYS prefer editing an existing file to creating a new one
-- NEVER proactively create documentation files (*.md) or README files unless explicitly requested
+- NEVER proactively create documentation files (\*.md) or README files unless explicitly requested
 - **ALWAYS close background bash commands when finished** - Use TaskStop to stop background tasks (like `npm start`) when done testing/verifying. Don't leave servers running in the background.
-- Ask before running tests. Ask before running git commands. Never git commit. 
+- Ask before running tests. Ask before running git commands. Never git commit.
 
 ## User-Facing Messages
 
 Keep all user-facing text (error messages, logs, UI labels, status text) concise and natural.
 
 Examples:
+
 - ✅ "AI unavailable"
 - ❌ "AI curation unavailable - passed keyword filter"
 - ✅ "Token expired"
@@ -51,11 +52,13 @@ No editorial commentary, explanations, or unnecessary teaching moments. Be brief
 **Background:** This site has a DARK background. All UI components must account for this.
 
 **Font Sizes:**
-- Minimum body text: 14px 
+
+- Minimum body text: 14px
 - Labels: 16px
 - Headings: 20px+
 
 **Colors on Dark Backgrounds:**
+
 - ✅ Solid backgrounds: `#1a1d2e`, `#2a2d3e`
 - ✅ Text: `whitesmoke`, `#ffffff`
 - ❌ Translucent backgrounds: `rgba(0, 0, 0, 0.1)` makes text unreadable
@@ -94,11 +97,14 @@ cd frontend && npm run analyze
 ## Architecture
 
 ### Directory Structure
+
 - `frontend/` - React 18 SPA built with Vite
 - `backend/` - Express API server with Sequelize ORM
 
 ### Multi-App Structure
+
 The site hosts multiple independent applications under one domain:
+
 - `/dropofcss/*` - CSS design tool
 - `/scriptforjava/*` - Java learning platform
 - `/openplaces/*` - Location/places discovery app
@@ -107,19 +113,24 @@ The site hosts multiple independent applications under one domain:
 - `/portfolio` - Portfolio showcase
 
 Each sub-app has corresponding:
+
 - Frontend: Redux slices in `frontend/src/store/`, components in `frontend/src/{AppName}/`
 - Backend: API routes in `backend/api/{appname}/`, database models in `backend/db/{appname}DB/`
 
 ### State Management
+
 Redux with Redux Thunk for async operations. Store slices are organized by feature/app in `frontend/src/store/`.
 
 ### Database
+
 PostgreSQL with Sequelize. Each sub-app has its own models. Database syncs and seeds on backend startup via `backend/index.js`.
 
 ### Authentication
+
 JWT-based authentication with bcrypt password hashing. Google OAuth available via Passport. Test credentials for demo access: username "moe" / password "123".
 
 ### File Storage
+
 AWS S3 for file uploads with pre-signed URLs (`backend/s3.js`).
 
 ## Development Workflow
@@ -132,6 +143,7 @@ AWS S3 for file uploads with pre-signed URLs (`backend/s3.js`).
 ## Environment Variables
 
 Backend (`backend/.env`):
+
 - `DATABASE_URL` - PostgreSQL connection string
 - `AWS_ACCESS_KEY`, `AWS_SECRET_KEY`, `AWS_REGION`, `AWS_BUCKET_NAME`
 - `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`
@@ -139,6 +151,7 @@ Backend (`backend/.env`):
 - `ENCRYPTION_KEY`
 
 Frontend (`frontend/.env`):
+
 - `VITE_SITEPASSWORD` - Password for protected site access
 
 ---
@@ -148,6 +161,7 @@ Frontend (`frontend/.env`):
 ## Overview
 
 Three focused steps to transform the portfolio:
+
 1. Comment out legacy apps
 2. Code cleanup and tech debt reduction
 3. Doom scroll scraper (Google OAuth + content aggregation for APIs/NestJS/HTTP topics)
@@ -157,18 +171,22 @@ Three focused steps to transform the portfolio:
 ## Step 1: Hide Legacy Apps + Delete WebRTC
 
 ### Apps to HIDE (comment out, keep restorable):
+
 - Script for Java
 - Drop of CSS
 - OpenPlaces
 - Blog
 
 ### App to DELETE (remove entirely):
+
 - WebRTC (Let's Chat)
 
 ---
 
 ### Backend - `backend/app.js`
+
 Comment out:
+
 ```javascript
 // Script for Java routes
 // app.use("/api/script/reviews", require("./api/script/reviews"));
@@ -189,21 +207,27 @@ Comment out:
 ```
 
 ### Backend - `backend/index.js`
+
 Comment out sync calls for script, css, openplaces databases
 
 ### Frontend - `frontend/src/App.jsx`
+
 Comment out:
+
 - Lazy imports for AScriptForJavaApp, OpenPlacesApp, CssApp, Blog (lines 21-24)
 - Routes for `/dropofcss/*`, `/scriptforjava/*`, `/openplaces/*`, `/blog/*` (lines 87-90)
 
 ### Frontend - `frontend/src/store/index.jsx`
+
 Comment out:
+
 - All `places-*` imports and reducers
 - All `script-*` imports and reducers
 - All `css-*` imports and reducers
 - Related exports
 
 ### DELETE WebRTC entirely:
+
 - Delete folder: `frontend/src/WebRTC/`
 - Remove lazy import and route for `/letschat/*` from `App.jsx`
 
@@ -212,9 +236,11 @@ Comment out:
 ## Step 2: Code Cleanup
 
 ### CSS Archive
+
 **File:** `frontend/assets/styles.css` (2,584 lines)
 
 Move to new `frontend/assets/styles-archived.css`:
+
 - Lines 1105-1287: Script for Java (~174 lines)
 - Lines 1289-1440: OpenPlaces (~144 lines)
 - Lines 1442-2503: Drop of CSS (~1,054 lines)
@@ -224,6 +250,7 @@ Move to new `frontend/assets/styles-archived.css`:
 **Note:** Blog has its own `frontend/src/Blog/BlogStyles.css` - leave it in place (hidden but restorable)
 
 ### Code Review Checklist
+
 - Remove unused imports in modified files
 - Check for dead code references to disabled apps
 - Delete any WebRTC-related remnants
@@ -238,28 +265,31 @@ Move to new `frontend/assets/styles-archived.css`:
 
 **Create `backend/db/agentDB/`:**
 
-| File | Purpose |
-|------|---------|
-| `AgentUser.js` | Google OAuth users (email, googleId, name, isAdmin) |
-| `Feed.js` | Content sources (name, sourceType, subreddit, isActive, lastFetchedAt) |
-| `Topic.js` | Keywords to track (keyword, isActive) |
-| `Article.js` | Fetched content (externalId, title, url, author, score, sourceType, isRead, isSaved) |
-| `JobRun.js` | Job execution tracking (status, errorMessage, retryCount, articlesProcessed) |
-| `index.js` | Associations + syncAndSeedAgent() |
+| File           | Purpose                                                                              |
+| -------------- | ------------------------------------------------------------------------------------ |
+| `AgentUser.js` | Google OAuth users (email, googleId, name, isAdmin)                                  |
+| `Feed.js`      | Content sources (name, sourceType, subreddit, isActive, lastFetchedAt)               |
+| `Topic.js`     | Keywords to track (keyword, isActive)                                                |
+| `Article.js`   | Fetched content (externalId, title, url, author, score, sourceType, isRead, isSaved) |
+| `JobRun.js`    | Job execution tracking (status, errorMessage, retryCount, articlesProcessed)         |
+| `index.js`     | Associations + syncAndSeedAgent()                                                    |
 
 ### 3B: Google OAuth
 
 **Create `backend/api/agent/auth.js`:**
+
 - `GET /api/agent/auth/google` - Initiate OAuth
 - `GET /api/agent/auth/google/callback` - Handle callback, check email whitelist, return JWT
 - `GET /api/agent/auth/` - Get current user by token
 
 **Email whitelist via env var:**
+
 ```
 AGENT_ALLOWED_EMAILS=you@gmail.com,wife@gmail.com
 ```
 
 **Create `backend/api/agent/middleware.js`:**
+
 - `isAgentLoggedIn` - Verify JWT, attach user to req
 
 ### 3C: Content Fetchers
@@ -284,17 +314,18 @@ const fetchStackOverflow = async (tags) => {...}
 
 **Create `backend/api/agent/`:**
 
-| File | Endpoints |
-|------|-----------|
-| `index.js` | Mount all routes under `/api/agent` |
-| `feeds.js` | CRUD for feeds |
-| `topics.js` | CRUD for topics |
+| File          | Endpoints                                        |
+| ------------- | ------------------------------------------------ |
+| `index.js`    | Mount all routes under `/api/agent`              |
+| `feeds.js`    | CRUD for feeds                                   |
+| `topics.js`   | CRUD for topics                                  |
 | `articles.js` | GET (with filters), PUT /:id/read, PUT /:id/save |
-| `jobs.js` | GET /fetch-all?secret=XXX (cron), GET /history |
+| `jobs.js`     | GET /fetch-all?secret=XXX (cron), GET /history   |
 
 ### 3E: Default Configuration
 
 **Seed data for interests (microservices team focus):**
+
 ```javascript
 // Default feeds
 { name: "Reddit - node", sourceType: "reddit", subreddit: "node" }
@@ -327,19 +358,23 @@ JOB_SECRET=cron-job-secret-for-render
 ## Files Summary
 
 ### Step 1 - Modify (4 files):
+
 - `backend/app.js` - comment out legacy routes
 - `backend/index.js` - comment out legacy sync calls
 - `frontend/src/App.jsx` - comment out legacy imports/routes, remove WebRTC
 - `frontend/src/store/index.jsx` - comment out legacy reducers
 
 ### Step 1 - Delete (1 folder):
+
 - `frontend/src/WebRTC/` - delete entirely
 
 ### Step 2 - Modify/Create (2 files):
+
 - `frontend/assets/styles.css` (trim)
 - `frontend/assets/styles-archived.css` (new, archived styles)
 
 ### Step 3 - Create (13 files):
+
 ```
 backend/db/agentDB/
   index.js, AgentUser.js, Feed.js, Topic.js, Article.js, JobRun.js
@@ -350,6 +385,7 @@ backend/api/agent/
 ```
 
 ### Step 3 - Modify (2 files):
+
 - `backend/app.js` (add agent routes)
 - `backend/index.js` (add agent sync)
 
@@ -358,17 +394,20 @@ backend/api/agent/
 ## Verification
 
 **After Step 1:**
+
 - `npm start` works
 - Portfolio loads at localhost:3000
 - `/scriptforjava`, `/openplaces`, `/dropofcss`, `/blog`, `/letschat` all return 404
 - WebRTC folder is gone
 
 **After Step 2:**
+
 - Build still works
 - No console errors
 - Styles look correct on portfolio pages
 
 **After Step 3:**
+
 - `GET /api/agent/auth/google` redirects to Google
 - Login with allowed email → returns JWT
 - Login with other email → returns 403

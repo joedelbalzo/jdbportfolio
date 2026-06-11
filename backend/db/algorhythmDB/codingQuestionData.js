@@ -29,11 +29,7 @@ const codingQuestionData = [
   {
     category: "array",
     question: "Create a function named 'findMax' that finds the maximum number in an array",
-    inputs: [
-      { input: [2, 4, 5, 1, 3] },
-      { input: [50, 550, 45, 60] },
-      { input: [-40, -28, -100, -1500] },
-    ],
+    inputs: [{ input: [2, 4, 5, 1, 3] }, { input: [50, 550, 45, 60] }, { input: [-40, -28, -100, -1500] }],
     answer: ["5", "550", "-28"],
     timesCorrect: 0,
     timesIncorrect: 0,
@@ -115,8 +111,7 @@ const codingQuestionData = [
   },
   {
     category: "array",
-    question:
-      "Create a function named 'flattenArray' that takes a nested array and returns a flattened array",
+    question: "Create a function named 'flattenArray' that takes a nested array and returns a flattened array",
     inputs: [{ input: [[1, [2, [3, [4]], 5]]] }, { input: [[["a"], "b", ["c", "d"]]] }],
     answer: ["1,2,3,4,5", "a,b,c,d"],
     timesCorrect: 0,
@@ -167,8 +162,7 @@ const codingQuestionData = [
   },
   {
     category: "hash map",
-    question:
-      "Create a function named 'findDuplicates' that finds the duplicate numbers in an array using a hash map",
+    question: "Create a function named 'findDuplicates' that finds the duplicate numbers in an array using a hash map",
     inputs: [{ input: [[1, 2, 3, 2, 1]] }, { input: [[5, 5, 5, 5]] }, { input: [[7, 8, 9, 7]] }],
     answer: ["[1, 2]", "[5]", "[7]"],
     timesCorrect: 0,
@@ -191,8 +185,7 @@ const codingQuestionData = [
   },
   {
     category: "set",
-    question:
-      "Create a function named 'uniqueValues' that finds unique values in an array using a set",
+    question: "Create a function named 'uniqueValues' that finds unique values in an array using a set",
     inputs: [{ input: [[1, 2, 2, 3, 3, 3]] }, { input: [[5, 5, 5, 5]] }, { input: [[7, 8, 9, 7]] }],
     answer: ["[1, 2, 3]", "[5]", "[7, 8, 9]"],
     timesCorrect: 0,
@@ -241,8 +234,7 @@ const codingQuestionData = [
   },
   {
     category: "set",
-    question:
-      "Create a function named 'setIntersection' that finds the intersection of two arrays using a set",
+    question: "Create a function named 'setIntersection' that finds the intersection of two arrays using a set",
     inputs: [
       {
         input: [

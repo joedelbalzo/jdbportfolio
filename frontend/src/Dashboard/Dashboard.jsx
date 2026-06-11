@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import agentApi from "../AgentFeatures/agentApi";
 import Loader from "../Components/Loader";
 import TaskTracker from "../AgentFeatures/Tasks/TaskTracker";
@@ -61,12 +61,14 @@ const Dashboard = () => {
       <div className="dashboard__tabs">
         <button
           onClick={() => setActiveTab("tasks")}
-          className={`dashboard__tab ${activeTab === "tasks" ? "dashboard__tab--active-tasks" : "dashboard__tab--inactive"}`}>
+          className={`dashboard__tab ${activeTab === "tasks" ? "dashboard__tab--active-tasks" : "dashboard__tab--inactive"}`}
+        >
           Household Tasks
         </button>
         <button
           onClick={() => setActiveTab("financial")}
-          className={`dashboard__tab ${activeTab === "financial" ? "dashboard__tab--active-financial" : "dashboard__tab--inactive"}`}>
+          className={`dashboard__tab ${activeTab === "financial" ? "dashboard__tab--active-financial" : "dashboard__tab--inactive"}`}
+        >
           Financial Analyzer
         </button>
       </div>

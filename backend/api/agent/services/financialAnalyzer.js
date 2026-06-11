@@ -327,8 +327,14 @@ const CATEGORIZATION_RULES = [
   ["Health - Wellness", ["ALCHEMY WELLNESS"]],
 
   // ENTERTAINMENT
-  ["Entertainment - Sports Events", ["RENEGADES", "HUDSONVALLEYRENEGADES", "FEVO", "HUDSON VALLEY RENEGA", "UBS ARENA"]],
-  ["Entertainment - Movies/Shows", ["FANDANGO", "HOYT GALLERIA", "MOVIE", "THEATRE", "THEATER", "REG GALLERIA", "REGAL"]],
+  [
+    "Entertainment - Sports Events",
+    ["RENEGADES", "HUDSONVALLEYRENEGADES", "FEVO", "HUDSON VALLEY RENEGA", "UBS ARENA"],
+  ],
+  [
+    "Entertainment - Movies/Shows",
+    ["FANDANGO", "HOYT GALLERIA", "MOVIE", "THEATRE", "THEATER", "REG GALLERIA", "REGAL"],
+  ],
   ["Entertainment - Spa", ["MIRBEAU SPA"]],
   ["Entertainment - Amusement", ["AMUSEMENT", "CIRCUS", "CARNIVAL", "REFAIR", "RENFAIR", "RENAISSANCE"]],
   ["Entertainment - Concerts", ["TED LEO", "EVENTBRITE", "EB *"]],
@@ -359,10 +365,7 @@ const CATEGORIZATION_RULES = [
   // TRAVEL
   ["Travel - Lodging", ["AIRBNB"]],
   ["Travel - Hotels", ["TWA HOTEL", "HILTON", "POUGHKEEPSIE GRAND"]],
-  [
-    "Travel - Flights",
-    ["JETBLUE", "UNITED AIRLINES", "SPIRIT AIR", "FRONTIER", "DELTA", "AMERICAN AIR", "SOUTHWEST"],
-  ],
+  ["Travel - Flights", ["JETBLUE", "UNITED AIRLINES", "SPIRIT AIR", "FRONTIER", "DELTA", "AMERICAN AIR", "SOUTHWEST"]],
   ["Travel - Train", ["AMTRAK"]],
   ["Travel - Vacation", ["DEWEY BEACH"]],
   ["Travel - Parking", ["TOWN OF BETHANY"]],

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import agentApi from "../agentApi";
 
 const AlgorithmEditor = ({ categories, showError, showSuccess }) => {
@@ -60,8 +60,7 @@ const AlgorithmEditor = ({ categories, showError, showSuccess }) => {
         <div className="algorithm-editor">
           <h3>Categorization Algorithm</h3>
           <p className="algorithm-hint">
-            Add custom patterns to categorize transactions. Custom patterns are checked before
-            built-in rules.
+            Add custom patterns to categorize transactions. Custom patterns are checked before built-in rules.
           </p>
 
           {/* Add New Pattern */}

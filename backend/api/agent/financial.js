@@ -50,7 +50,10 @@ router.post("/upload", isAgentLoggedIn, upload.array("csvFiles", 10), async (req
     // Load custom patterns
     const customPatterns = await CustomCategorizationPattern.findAll({
       where: { userId: req.user.id },
-      order: [["priority", "DESC"], ["createdAt", "ASC"]],
+      order: [
+        ["priority", "DESC"],
+        ["createdAt", "ASC"],
+      ],
     });
 
     let allTransactions = [];
@@ -67,9 +70,9 @@ router.post("/upload", isAgentLoggedIn, upload.array("csvFiles", 10), async (req
       const { transactions, uncategorized, excluded } = processTransactions(rawTransactions, customPatterns);
 
       // Tag with source file
-      transactions.forEach(t => t.sourceFile = file.originalname);
-      uncategorized.forEach(t => t.sourceFile = file.originalname);
-      excluded.forEach(t => t.sourceFile = file.originalname);
+      transactions.forEach((t) => (t.sourceFile = file.originalname));
+      uncategorized.forEach((t) => (t.sourceFile = file.originalname));
+      excluded.forEach((t) => (t.sourceFile = file.originalname));
 
       // Calculate individual file analysis
       const fileDate = getDateRange([...transactions, ...uncategorized]);
@@ -81,7 +84,7 @@ router.post("/upload", isAgentLoggedIn, upload.array("csvFiles", 10), async (req
         if (!fileBuckets[bucket]) {
           fileBuckets[bucket] = { total: 0, categories: [] };
         }
-        const categoryTxns = transactions.filter(t => t.category === category);
+        const categoryTxns = transactions.filter((t) => t.category === category);
         fileBuckets[bucket].total += monthlyAvg;
         fileBuckets[bucket].categories.push({
           category,
@@ -101,7 +104,7 @@ router.post("/upload", isAgentLoggedIn, upload.array("csvFiles", 10), async (req
           excludedCount: excluded.length,
           totalMonthlyAverage: Number(fileAverages.totalMonthly.toFixed(2)),
           buckets: fileBuckets,
-        }
+        },
       });
 
       allTransactions.push(...transactions);
@@ -116,7 +119,7 @@ router.post("/upload", isAgentLoggedIn, upload.array("csvFiles", 10), async (req
 
       // Move AI-categorized transactions from uncategorized to categorized
       allTransactions.push(...categorized);
-      allUncategorized = allUncategorized.filter(t => !categorized.find(c => c.description === t.description));
+      allUncategorized = allUncategorized.filter((t) => !categorized.find((c) => c.description === t.description));
 
       aiSuggestions = suggestions;
     }
@@ -132,7 +135,7 @@ router.post("/upload", isAgentLoggedIn, upload.array("csvFiles", 10), async (req
       if (!buckets[bucket]) {
         buckets[bucket] = { total: 0, categories: [] };
       }
-      const categoryTxns = allTransactions.filter(t => t.category === category);
+      const categoryTxns = allTransactions.filter((t) => t.category === category);
       buckets[bucket].total += monthlyAvg;
       buckets[bucket].categories.push({
         category,
@@ -162,13 +165,13 @@ router.post("/upload", isAgentLoggedIn, upload.array("csvFiles", 10), async (req
             excludedCount: allExcluded.length,
           },
         },
-        uncategorized: allUncategorized.slice(0, 50).map(t => ({
+        uncategorized: allUncategorized.slice(0, 50).map((t) => ({
           description: t.description,
           amount: t.absAmount,
           date: t.date,
           sourceFile: t.sourceFile,
         })),
-        excludedSample: allExcluded.slice(0, 50).map(t => ({
+        excludedSample: allExcluded.slice(0, 50).map((t) => ({
           description: t.description,
           amount: t.absAmount,
           date: t.date,
@@ -272,7 +275,6 @@ router.put("/transactions/:transactionId", isAgentLoggedIn, async (req, res, nex
  */
 router.get("/categories/list", isAgentLoggedIn, async (req, res, next) => {
   try {
-
     const categories = CATEGORIZATION_RULES.map(([category]) => category);
     const buckets = Object.keys(CATEGORY_BUCKETS);
 
@@ -309,7 +311,10 @@ router.get("/:uploadId/transactions", isAgentLoggedIn, async (req, res, next) =>
     // Get all categorized transactions
     const transactions = await CategorizedTransaction.findAll({
       where: { uploadId },
-      order: [["date", "ASC"], ["description", "ASC"]],
+      order: [
+        ["date", "ASC"],
+        ["description", "ASC"],
+      ],
     });
 
     res.json({
@@ -404,7 +409,6 @@ router.post("/combine", isAgentLoggedIn, async (req, res, next) => {
  */
 router.get("/combined/history", isAgentLoggedIn, async (req, res, next) => {
   try {
-
     const combined = await CombinedUpload.findAll({
       where: { userId: req.user.id },
       order: [["createdAt", "DESC"]],
@@ -415,13 +419,13 @@ router.get("/combined/history", isAgentLoggedIn, async (req, res, next) => {
         id: c.id,
         name: c.name,
         createdAt: c.createdAt,
-        dateRange: `${new Date(c.startDate).toISOString().split('T')[0]} to ${new Date(c.endDate).toISOString().split('T')[0]}`,
+        dateRange: `${new Date(c.startDate).toISOString().split("T")[0]} to ${new Date(c.endDate).toISOString().split("T")[0]}`,
         monthCount: c.monthCount,
         totalTransactions: c.totalTransactions,
         totalMonthlyAverage: parseFloat(c.totalMonthlyAverage),
         sourceCount: c.uploadIds.length,
         isAutoGenerated: c.isAutoGenerated,
-      }))
+      })),
     );
   } catch (error) {
     console.error("Combined history error:", error);
@@ -478,7 +482,6 @@ router.delete("/combined/:combinedId", isAgentLoggedIn, async (req, res, next) =
       return res.status(400).json({ error: "Invalid combined upload ID" });
     }
 
-
     const combined = await CombinedUpload.findOne({
       where: { id: combinedId, userId: req.user.id },
     });
@@ -505,7 +508,6 @@ router.delete("/combined/:combinedId", isAgentLoggedIn, async (req, res, next) =
  */
 router.get("/algorithm", isAgentLoggedIn, async (req, res, next) => {
   try {
-
     // Get built-in rules
     const builtInRules = CATEGORIZATION_RULES.map(([category, patterns]) => ({
       category,
@@ -519,7 +521,10 @@ router.get("/algorithm", isAgentLoggedIn, async (req, res, next) => {
     // Get custom patterns for this user
     const customPatterns = await CustomCategorizationPattern.findAll({
       where: { userId: req.user.id },
-      order: [["priority", "DESC"], ["createdAt", "ASC"]],
+      order: [
+        ["priority", "DESC"],
+        ["createdAt", "ASC"],
+      ],
     });
 
     // Merge custom patterns into rules
@@ -573,7 +578,6 @@ router.post("/algorithm/pattern", isAgentLoggedIn, async (req, res, next) => {
       return res.status(400).json({ error: "Invalid regex pattern" });
     }
 
-
     const newPattern = await CustomCategorizationPattern.create({
       userId: req.user.id,
       category,
@@ -606,7 +610,6 @@ router.put("/algorithm/pattern/:patternId", isAgentLoggedIn, async (req, res, ne
   try {
     const { patternId } = req.params;
     const { pattern, isActive, priority } = req.body;
-
 
     const customPattern = await CustomCategorizationPattern.findOne({
       where: { id: patternId, userId: req.user.id },
@@ -655,7 +658,6 @@ router.delete("/algorithm/pattern/:patternId", isAgentLoggedIn, async (req, res,
   try {
     const { patternId } = req.params;
 
-
     const customPattern = await CustomCategorizationPattern.findOne({
       where: { id: patternId, userId: req.user.id },
     });
@@ -687,7 +689,6 @@ router.post("/confirm-ai-suggestion", isAgentLoggedIn, async (req, res, next) =>
     if (!description || !category) {
       return res.status(400).json({ error: "Description and category are required" });
     }
-
 
     await CustomCategorizationPattern.create({
       userId: req.user.id,

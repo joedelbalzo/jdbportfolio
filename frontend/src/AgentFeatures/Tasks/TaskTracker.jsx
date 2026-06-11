@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import agentApi from "../agentApi";
 import TwoColumnLayout from "../../Components/TwoColumnLayout";
 import AIContextBox from "../../Components/AIContextBox";
@@ -71,10 +71,10 @@ const TaskTracker = () => {
       }
 
       if (response.data.aiInsight) {
-        setInsights((prev) => ({...prev, [taskId]: response.data.aiInsight}));
+        setInsights((prev) => ({ ...prev, [taskId]: response.data.aiInsight }));
       }
 
-      setTaskMessage({type: "success", text: `Logged: ${taskName}`});
+      setTaskMessage({ type: "success", text: `Logged: ${taskName}` });
       setTimeout(() => setTaskMessage(null), 3000);
 
       setSelectedTaskId("");
@@ -85,7 +85,7 @@ const TaskTracker = () => {
       setShowAddTask(false);
     } catch (error) {
       console.error("Error completing task:", error);
-      setTaskMessage({type: "error", text: "Failed to log task"});
+      setTaskMessage({ type: "error", text: "Failed to log task" });
       setTimeout(() => setTaskMessage(null), 3000);
     }
   };
@@ -94,7 +94,7 @@ const TaskTracker = () => {
     setAnalyzingTaskId(taskId);
     try {
       const response = await agentApi.get(`/tasks/${taskId}/analyze`);
-      setInsights((prev) => ({...prev, [taskId]: response.data.insight}));
+      setInsights((prev) => ({ ...prev, [taskId]: response.data.insight }));
     } catch (err) {
       console.error("Analysis failed:", err);
     } finally {
@@ -109,7 +109,7 @@ const TaskTracker = () => {
       await agentApi.delete(`/tasks/${taskId}`);
       setTasks(tasks.filter((t) => t.id !== taskId));
       setInsights((prev) => {
-        const copy = {...prev};
+        const copy = { ...prev };
         delete copy[taskId];
         return copy;
       });
@@ -141,14 +141,20 @@ const TaskTracker = () => {
             <h2 className="task-completion__title">Log a Task</h2>
 
             {taskMessage && (
-              <div className={`message ${taskMessage.type === "success" ? "message--success" : "message--error"}`}>{taskMessage.text}</div>
+              <div className={`message ${taskMessage.type === "success" ? "message--success" : "message--error"}`}>
+                {taskMessage.text}
+              </div>
             )}
 
             <form onSubmit={handleCompleteTask} className="task-completion__form">
               <div className="task-completion__field">
                 <label className="task-completion__label">What task did you do?</label>
                 <div className="task-completion__select-row">
-                  <select value={selectedTaskId} onChange={(e) => setSelectedTaskId(e.target.value)} className="task-completion__select">
+                  <select
+                    value={selectedTaskId}
+                    onChange={(e) => setSelectedTaskId(e.target.value)}
+                    className="task-completion__select"
+                  >
                     <option value="">Select a task...</option>
                     {tasks.map((task) => (
                       <option key={task.id} value={task.id}>
@@ -237,7 +243,11 @@ const TaskTracker = () => {
                 </div>
               </div>
 
-              <button type="submit" disabled={!selectedTaskId && !newTaskName.trim()} className="task-completion__submit">
+              <button
+                type="submit"
+                disabled={!selectedTaskId && !newTaskName.trim()}
+                className="task-completion__submit"
+              >
                 Log Task Completion
               </button>
             </form>
@@ -261,25 +271,35 @@ const TaskTracker = () => {
                   return (
                     <div
                       key={task.id}
-                      className={`task-item ${isOverdue ? "task-item--overdue" : isDueSoon ? "task-item--due-soon" : "task-item--future"}`}>
+                      className={`task-item ${isOverdue ? "task-item--overdue" : isDueSoon ? "task-item--due-soon" : "task-item--future"}`}
+                    >
                       <div className="task-item__content">
                         <div className="task-item__main">
                           <h3 className="task-item__name">{task.name}</h3>
 
                           <div className="task-item__info">
                             Current interval: <strong>{task.currentInterval} days</strong>
-                            {task.defaultInterval !== task.currentInterval && <span> (started at {task.defaultInterval} days)</span>}
+                            {task.defaultInterval !== task.currentInterval && (
+                              <span> (started at {task.defaultInterval} days)</span>
+                            )}
                           </div>
 
                           {task.lastCompletedAt && (
-                            <div className="task-item__info">Last completed: {new Date(task.lastCompletedAt).toLocaleDateString()}</div>
+                            <div className="task-item__info">
+                              Last completed: {new Date(task.lastCompletedAt).toLocaleDateString()}
+                            </div>
                           )}
 
                           {task.nextDueAt && (
                             <div
                               className={`task-item__due ${
-                                isOverdue ? "task-item__due--overdue" : isDueSoon ? "task-item__due--due-soon" : "task-item__due--future"
-                              }`}>
+                                isOverdue
+                                  ? "task-item__due--overdue"
+                                  : isDueSoon
+                                    ? "task-item__due--due-soon"
+                                    : "task-item__due--future"
+                              }`}
+                            >
                               {isOverdue ? (
                                 <span>OVERDUE by {Math.abs(daysUntil)} days!</span>
                               ) : (
@@ -294,7 +314,8 @@ const TaskTracker = () => {
                             <button
                               onClick={() => handleAnalyzeTask(task.id)}
                               disabled={analyzingTaskId === task.id}
-                              className="task-item__analyze">
+                              className="task-item__analyze"
+                            >
                               {analyzingTaskId === task.id ? "Analyzing..." : "Analyze"}
                             </button>
                           )}

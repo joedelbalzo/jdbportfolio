@@ -445,7 +445,10 @@ h1 {
   text-decoration: none;
   border: 1px solid var(--highlight-orange);
   border-radius: 4px;
-  transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 .resume-cta:hover {
   background: var(--highlight-orange);
@@ -996,7 +999,7 @@ h1 {
     transition: transform 0.4s ease;
   }
 
-  #main-portfolioContainer{
+  #main-portfolioContainer {
     width: min(500px, 85vw);
     padding-left: -10px;
   }
@@ -1278,4 +1281,3 @@ h1 {
     page-break-inside: avoid;
   }
 }
-

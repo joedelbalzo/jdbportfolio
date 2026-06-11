@@ -188,7 +188,7 @@ taskRoutes.post("/:id/complete", isAgentLoggedIn, async (req, res, next) => {
         const result = await analyzeTaskPattern(
           allCompletions.map((c) => c.toJSON()),
           task,
-          req.user.taskPreferences || ""
+          req.user.taskPreferences || "",
         );
         task.currentInterval = result.recommendedInterval;
         aiInsight = result.insight;
@@ -245,7 +245,7 @@ taskRoutes.get("/:id/analyze", isAgentLoggedIn, async (req, res, next) => {
     const result = await analyzeTaskPattern(
       completions.map((c) => c.toJSON()),
       task,
-      req.user.taskPreferences || ""
+      req.user.taskPreferences || "",
     );
 
     res.json(result);

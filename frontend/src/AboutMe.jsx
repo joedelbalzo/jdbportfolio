@@ -1,4 +1,3 @@
-import React from "react";
 import { FadeComponent } from "./FadeComponent";
 import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -23,15 +22,22 @@ const AboutMe = () => {
           >
             <div className="about-me-paragraph-grid-section">
               <p className="about-me-paragraphs">
-                A software engineer who builds fast, thoughtful web apps across industries. From arcade games with thousands of
-                active players to digital platforms for publishers and artists, I focus on performance, clarity, and making
-                things that actually work.
+                A software engineer who builds fast, thoughtful web apps across industries. From arcade games with
+                thousands of active players to digital platforms for publishers and artists, I focus on performance,
+                clarity, and making things that actually work.
                 <br />
                 <br />
-                Before tech, I spent a decade designing lighting and building show networks in film and TV—training that shaped
-                how I handle complexity, detail, and timing in everything I build now.
+                Before tech, I spent a decade designing lighting and building show networks in film and TV—training that
+                shaped how I handle complexity, detail, and timing in everything I build now.
               </p>
-              <img src={familyPhoto} alt="Joe Del Balzo and his family" width="1200" height="1350" loading="lazy" decoding="async" />
+              <img
+                src={familyPhoto}
+                alt="Joe Del Balzo and his family"
+                width="1200"
+                height="1350"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </motion.div>
 
@@ -42,9 +48,9 @@ const AboutMe = () => {
             viewport={{ once: true, amount: 0.1 }}
           >
             <p className="about-me-paragraphs" style={{ marginTop: 0 }}>
-              These days, I split my time between writing code, chasing my kid around the yard, and staying just caffeinated
-              enough to keep things running. I’m always open to the next good project—especially the kind that’s fun to build
-              and built to last.
+              These days, I split my time between writing code, chasing my kid around the yard, and staying just
+              caffeinated enough to keep things running. I’m always open to the next good project—especially the kind
+              that’s fun to build and built to last.
             </p>
           </motion.div>
 

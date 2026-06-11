@@ -113,7 +113,7 @@ async function recategorizeWithAI(uploadId) {
         batch.map((txn) => ({
           description: txn.description,
           amount: txn.amount,
-        }))
+        })),
       );
 
       const message = await anthropic.messages.create({
@@ -244,10 +244,7 @@ async function recalculateAverages(uploadId) {
 
   // Recalculate upload totals
   const allAverages = await CategoryAverage.findAll({ where: { uploadId } });
-  const totalMonthlyAverage = allAverages.reduce(
-    (sum, avg) => sum + parseFloat(avg.monthlyAverage),
-    0
-  );
+  const totalMonthlyAverage = allAverages.reduce((sum, avg) => sum + parseFloat(avg.monthlyAverage), 0);
 
   const stillUncategorized = await UncategorizedTransaction.count({
     where: { uploadId, isRecategorized: false },
@@ -373,10 +370,7 @@ async function recalculateCategorizedAverages(uploadId) {
 
   // Recalculate upload total
   const allAverages = await CategoryAverage.findAll({ where: { uploadId } });
-  const totalMonthlyAverage = allAverages.reduce(
-    (sum, avg) => sum + parseFloat(avg.monthlyAverage),
-    0
-  );
+  const totalMonthlyAverage = allAverages.reduce((sum, avg) => sum + parseFloat(avg.monthlyAverage), 0);
 
   await upload.update({ totalMonthlyAverage });
 }

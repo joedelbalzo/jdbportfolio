@@ -4859,7 +4859,8 @@ const questionData = [
     question: "What is the virtual DOM?",
     correctAnswerArray: [false, true, false, false, false],
     answerOne: "An actual representation of the DOM",
-    answerTwo: "A programming concept where a virtual representation of a UI is kept in memory and synced with the real DOM",
+    answerTwo:
+      "A programming concept where a virtual representation of a UI is kept in memory and synced with the real DOM",
     answerThree: "An API for accessing the DOM",
     answerFour: "None of the above",
     timesCorrect: 0,
@@ -5697,7 +5698,8 @@ const questionData = [
   {
     questionNumber: 88,
     category: "HTML5",
-    question: "Which attribute is used to specify a fallback content for browsers that do not support the <canvas> element?",
+    question:
+      "Which attribute is used to specify a fallback content for browsers that do not support the <canvas> element?",
     correctAnswerArray: [true, false, false, false, false],
     answerOne: "Content placed between the <canvas> and </canvas> tags",
     answerTwo: "alt",
@@ -5901,7 +5903,8 @@ const questionData = [
   {
     questionNumber: 105,
     category: "CSS3",
-    question: "How do you create a media query that applies styles only when the device width is less than or equal to 600px?",
+    question:
+      "How do you create a media query that applies styles only when the device width is less than or equal to 600px?",
     correctAnswerArray: [true, false, false, false, false],
     answerOne: "@media (max-width: 600px) { /* styles */ }",
     answerTwo: "@media screen and (width <= 600px) { /* styles */ }",
@@ -7082,7 +7085,8 @@ const questionData = [
     answerOne: "Functions that return promises",
     answerTwo: "Functions that produce random numbers",
     answerThree: "Functions that run immediately upon creation",
-    answerFour: "Functions that can be exited and re-entered, maintaining their context, defined using function* syntax",
+    answerFour:
+      "Functions that can be exited and re-entered, maintaining their context, defined using function* syntax",
     timesCorrect: 0,
     timesIncorrect: 0,
   },
@@ -7104,7 +7108,8 @@ const questionData = [
     question: "Explain event capturing and bubbling in JavaScript.",
     correctAnswerArray: [false, true, false, false, false],
     answerOne: "Event capturing is when events are handled by the innermost element first, bubbling is the opposite",
-    answerTwo: "Event capturing is the event flow from the window to the target element, bubbling is from the target to the window",
+    answerTwo:
+      "Event capturing is the event flow from the window to the target element, bubbling is from the target to the window",
     answerThree: "Both are mechanisms to stop event propagation",
     answerFour: "They are methods to attach event handlers to elements",
     timesCorrect: 0,
@@ -7249,7 +7254,8 @@ const questionData = [
     correctAnswerArray: [false, false, true, false, false],
     answerOne: "Both position elements relative to their normal position",
     answerTwo: "'Absolute' positions relative to the viewport; 'relative' ignores the normal flow",
-    answerThree: "'Relative' positions relative to its normal position; 'absolute' positions relative to the nearest positioned ancestor",
+    answerThree:
+      "'Relative' positions relative to its normal position; 'absolute' positions relative to the nearest positioned ancestor",
     answerFour: "'Relative' and 'absolute' positioning are identical",
     timesCorrect: 0,
     timesIncorrect: 0,
@@ -7286,7 +7292,8 @@ const questionData = [
     answerOne: "Pseudo-elements and pseudo-classes are the same",
     answerTwo: "Pseudo-elements target existing elements; pseudo-classes create new elements",
     answerThree: "Pseudo-elements use single colon ':'; pseudo-classes use double colon '::'",
-    answerFour: "Pseudo-elements style specific parts of an element; pseudo-classes style elements based on their state",
+    answerFour:
+      "Pseudo-elements style specific parts of an element; pseudo-classes style elements based on their state",
     timesCorrect: 0,
     timesIncorrect: 0,
   },
@@ -7322,7 +7329,8 @@ const questionData = [
     answerOne: "Patterns for object creation",
     answerTwo: "Methods for array manipulation",
     answerThree: "APIs for network requests",
-    answerFour: "Iterators are objects that enable traversal, Generators simplify iterator-authoring using function* syntax",
+    answerFour:
+      "Iterators are objects that enable traversal, Generators simplify iterator-authoring using function* syntax",
     timesCorrect: 0,
     timesIncorrect: 0,
   },
@@ -7381,7 +7389,8 @@ const questionData = [
     correctAnswerArray: [false, false, true, false, false],
     answerOne: "'localStorage' stores data temporarily, 'sessionStorage' stores data permanently",
     answerTwo: "No difference between them",
-    answerThree: "'localStorage' persists data with no expiration, 'sessionStorage' persists data until the session ends",
+    answerThree:
+      "'localStorage' persists data with no expiration, 'sessionStorage' persists data until the session ends",
     answerFour: "'sessionStorage' is accessible across tabs, 'localStorage' is not",
     timesCorrect: 0,
     timesIncorrect: 0,
@@ -7477,7 +7486,8 @@ const questionData = [
     correctAnswerArray: [false, false, true, false, false],
     answerOne: "When events are not captured by any elements",
     answerTwo: "When events are handled by the outermost element first",
-    answerThree: "When an event propagates from the innermost element to outer elements; it can be stopped using 'event.stopPropagation()'",
+    answerThree:
+      "When an event propagates from the innermost element to outer elements; it can be stopped using 'event.stopPropagation()'",
     answerFour: "A technique to improve event handling performance",
     timesCorrect: 0,
     timesIncorrect: 0,
@@ -7513,7 +7523,8 @@ const questionData = [
     correctAnswerArray: [false, false, true, false, false],
     answerOne: "'undefined' is a value assigned by the programmer; 'null' is assigned by JavaScript",
     answerTwo: "Both are the same",
-    answerThree: "'undefined' means a variable has been declared but not assigned; 'null' is an assignment value representing no value",
+    answerThree:
+      "'undefined' means a variable has been declared but not assigned; 'null' is an assignment value representing no value",
     answerFour: "'null' is a type of 'undefined'",
     timesCorrect: 0,
     timesIncorrect: 0,

@@ -1,8 +1,7 @@
 const app = require("./app");
 const conn = require("./db/conn");
-const {syncAndSeedAlgo} = require("./db/algorhythmDB");
-const {syncAndSeedVali} = require("./db/valiDB");
-const {syncAndSeedAgent} = require("./db/agentDB");
+const { syncAndSeedAlgo } = require("./db/algorhythmDB");
+const { syncAndSeedAgent } = require("./db/agentDB");
 
 const init = async () => {
   try {
@@ -12,12 +11,6 @@ const init = async () => {
       await syncAndSeedAlgo();
     } catch (err) {
       console.error("err syncing algo", err);
-    }
-
-    try {
-      await syncAndSeedVali();
-    } catch (err) {
-      console.error("err syncing vali", err);
     }
 
     try {

@@ -18,7 +18,7 @@ agentApi.interceptors.response.use(
       window.location.href = "/api/agent/auth/google";
     }
     return Promise.reject(error);
-  }
+  },
 );
 
 export default agentApi;

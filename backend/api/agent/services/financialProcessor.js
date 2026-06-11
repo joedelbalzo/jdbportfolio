@@ -15,9 +15,9 @@ const {
  * @returns {string} Formatted date string
  */
 function formatDate(date) {
-  if (!date) return '';
+  if (!date) return "";
   const d = new Date(date);
-  return d.toISOString().split('T')[0];
+  return d.toISOString().split("T")[0];
 }
 
 /**
@@ -43,14 +43,18 @@ async function processFinancialUpload(csvContent, userId, filename = null) {
     // Step 2.5: Load custom categorization patterns for this user
     const customPatterns = await CustomCategorizationPattern.findAll({
       where: { userId },
-      order: [["priority", "DESC"], ["createdAt", "ASC"]],
+      order: [
+        ["priority", "DESC"],
+        ["createdAt", "ASC"],
+      ],
     });
 
     // Step 3: Process transactions with categorization algorithm
-    const { transactions: categorizedTransactions, uncategorized, excluded } = processTransactions(
-      rawTransactions,
-      customPatterns
-    );
+    const {
+      transactions: categorizedTransactions,
+      uncategorized,
+      excluded,
+    } = processTransactions(rawTransactions, customPatterns);
 
     // Step 4: Calculate monthly averages
     const averages = calculateMonthlyAverages(categorizedTransactions, monthCount);
@@ -162,10 +166,10 @@ async function processFinancialUpload(csvContent, userId, filename = null) {
       },
       averages: {
         byCategory: Object.fromEntries(
-          Object.entries(averages.byCategory).map(([cat, avg]) => [cat, parseFloat(avg.toFixed(2))])
+          Object.entries(averages.byCategory).map(([cat, avg]) => [cat, parseFloat(avg.toFixed(2))]),
         ),
         byBucket: Object.fromEntries(
-          Object.entries(averages.byBucket).map(([bucket, avg]) => [bucket, parseFloat(avg.toFixed(2))])
+          Object.entries(averages.byBucket).map(([bucket, avg]) => [bucket, parseFloat(avg.toFixed(2))]),
         ),
       },
       calculationLog: {
@@ -184,11 +188,13 @@ async function processFinancialUpload(csvContent, userId, filename = null) {
       },
       excludedTransactions: excluded.slice(0, 50), // Return first 50 excluded for review
       uncategorizedTransactions: uncategorized.slice(0, 20), // Return first 20 for preview
-      aiCategorization: aiResults ? {
-        recategorized: aiResults.recategorized,
-        stillUncategorized: aiResults.stillUncategorized,
-        topSuggestions: aiResults.updates.slice(0, 10), // Show first 10 AI suggestions
-      } : null,
+      aiCategorization: aiResults
+        ? {
+            recategorized: aiResults.recategorized,
+            stillUncategorized: aiResults.stillUncategorized,
+            topSuggestions: aiResults.updates.slice(0, 10), // Show first 10 AI suggestions
+          }
+        : null,
     };
   } catch (error) {
     // Create error record if we can

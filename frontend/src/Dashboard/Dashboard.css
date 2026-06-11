@@ -4,7 +4,7 @@
   padding: 30px 20px;
   max-width: 1200px;
   margin: 0 auto;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 /* Header */
@@ -21,7 +21,7 @@
   margin: 0;
   font-size: 32px;
   color: whitesmoke;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
 }
 
 .dashboard__user-info {

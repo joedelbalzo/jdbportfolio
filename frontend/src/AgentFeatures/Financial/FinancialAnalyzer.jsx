@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import agentApi from "../agentApi";
 import AlgorithmEditor from "./AlgorithmEditor";
 import SessionFileList from "./SessionFileList";
@@ -97,7 +97,7 @@ const FinancialAnalyzer = () => {
 
   const toggleSelectForAnalysis = (uploadId) => {
     setSelectedForAnalysis((prev) =>
-      prev.includes(uploadId) ? prev.filter((id) => id !== uploadId) : [...prev, uploadId]
+      prev.includes(uploadId) ? prev.filter((id) => id !== uploadId) : [...prev, uploadId],
     );
   };
 

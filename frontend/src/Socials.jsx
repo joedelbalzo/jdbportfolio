@@ -1,9 +1,7 @@
-import React from "react";
-
 import { Facebook, Email, LinkedIn, Twitter, GitHub } from "./ShareIcons/SocialIcons.jsx";
 
 const mailto = `mailto:jdelbalzo99@gmail.com?subject=${encodeURIComponent("Hey, Joe!")}&body=${encodeURIComponent(
-  "Hey, Joe! I'd love to work with you."
+  "Hey, Joe! I'd love to work with you.",
 )}`;
 
 const links = [

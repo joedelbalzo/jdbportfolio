@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Hamburger from "../assets/Hamburger";
 
@@ -113,11 +113,7 @@ const Nav = () => {
         </div>
       </nav>
 
-      <div
-        className={`nav-mobile-overlay ${drawerOpen ? "open" : ""}`}
-        onClick={closeNav}
-        aria-hidden="true"
-      />
+      <div className={`nav-mobile-overlay ${drawerOpen ? "open" : ""}`} onClick={closeNav} aria-hidden="true" />
       <div
         id="nav-mobile-drawer"
         ref={drawerRef}
@@ -132,7 +128,12 @@ const Nav = () => {
         <Link to="/home" onClick={closeNav} className={isHome ? "is-active" : undefined}>
           Home
         </Link>
-        <a href="https://www.linkedin.com/in/joe-delbalzo/" target="_blank" rel="noreferrer noopener" onClick={closeNav}>
+        <a
+          href="https://www.linkedin.com/in/joe-delbalzo/"
+          target="_blank"
+          rel="noreferrer noopener"
+          onClick={closeNav}
+        >
           LinkedIn
         </a>
         <a href="https://github.com/joedelbalzo" target="_blank" rel="noreferrer noopener" onClick={closeNav}>

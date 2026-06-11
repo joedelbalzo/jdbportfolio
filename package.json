@@ -18,7 +18,20 @@
     "start": "concurrently \"npm run start-backend\" \"npm run start-frontend\"",
     "start:prod": "cd backend && npm start",
     "build:prod": "npm run install-root && npm run install-frontend && npm run install-backend && npm run build-frontend",
-    "mobile": "concurrently \"npm run start-backend\" \"cd frontend && npx cross-env VITE_HOST=0.0.0.0 VITE_PORT=3000 vite dev --host\""
+    "mobile": "concurrently \"npm run start-backend\" \"cd frontend && npx cross-env VITE_HOST=0.0.0.0 VITE_PORT=3000 vite dev --host\"",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky || exit 0"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint --fix --no-warn-ignored",
+      "prettier --write"
+    ],
+    "*.{json,css,html,md}": [
+      "prettier --write"
+    ]
   },
   "keywords": [],
   "author": "",
@@ -31,7 +44,15 @@
     "cross-env": "^10.1.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.20.0",
     "concurrently": "^10.0.3",
+    "eslint": "^9.20.0",
+    "eslint-plugin-react": "^7.37.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "globals": "^16.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.0.0",
+    "prettier": "^3.6.0",
     "rollup-plugin-visualizer": "^7.0.1"
   }
 }

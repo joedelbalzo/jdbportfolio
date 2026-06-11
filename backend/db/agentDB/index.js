@@ -21,11 +21,11 @@ UncategorizedTransaction.belongsTo(FinancialUpload, { as: "upload" });
 
 FinancialUpload.hasMany(CategorizedTransaction, {
   as: "categorizedTransactions",
-  foreignKey: "uploadId"
+  foreignKey: "uploadId",
 });
 CategorizedTransaction.belongsTo(FinancialUpload, {
   as: "upload",
-  foreignKey: "uploadId"
+  foreignKey: "uploadId",
 });
 
 AgentUser.hasMany(CombinedUpload);

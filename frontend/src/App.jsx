@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./Home.jsx";
 import Nav from "./Nav.jsx";
@@ -40,13 +40,22 @@ function ScrollTop() {
       type="button"
       className={`scroll-button ${visible ? "scroll-button--visible" : ""}`}
       onClick={() =>
-        window.scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" })
+        window.scrollTo({
+          top: 0,
+          behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+        })
       }
       aria-label="Scroll back to top"
       tabIndex={visible ? 0 : -1}
     >
       <svg viewBox="0 0 24 24" width="22" height="22" fill="none" aria-hidden="true">
-        <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path
+          d="M12 19V5M5 12l7-7 7 7"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     </button>
   );

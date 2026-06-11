@@ -10,7 +10,5 @@
       "PowerShell(npm outdated *)"
     ]
   },
-  "enabledMcpjsonServers": [
-    "playwright"
-  ]
+  "enabledMcpjsonServers": ["playwright"]
 }

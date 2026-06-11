@@ -72,7 +72,7 @@ function csvToTransactions(headers, rows) {
   const sourceType = detectSourceType(headers);
   if (sourceType === "unknown") {
     throw new Error(
-      "Unable to detect CSV source type. Please ensure you're uploading a valid CSV from Chase, AFCU, or Amex."
+      "Unable to detect CSV source type. Please ensure you're uploading a valid CSV from Chase, AFCU, or Amex.",
     );
   }
 
@@ -88,7 +88,7 @@ function csvToTransactions(headers, rows) {
 
   if (dateIndex === -1 || descIndex === -1 || amountIndex === -1) {
     throw new Error(
-      `Missing required columns for ${sourceType}. Expected: ${dateColumn}, ${descriptionColumn}, ${amountColumn}`
+      `Missing required columns for ${sourceType}. Expected: ${dateColumn}, ${descriptionColumn}, ${amountColumn}`,
     );
   }
 

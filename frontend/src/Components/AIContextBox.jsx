@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import agentApi from "../AgentFeatures/agentApi";
 import "./Components.css";
 
@@ -24,7 +24,7 @@ const AIContextBox = () => {
     setSaving(true);
 
     try {
-      await agentApi.put("/settings", {taskPreferences: notes});
+      await agentApi.put("/settings", { taskPreferences: notes });
       setLastSaved(new Date());
     } catch (error) {
       console.error("Failed to save AI context:", error);

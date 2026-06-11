@@ -1,5 +1,3 @@
-import React from "react";
-
 const Hamburger = ({ width = "30px", height = "30px" }) => {
   return (
     <svg
@@ -19,7 +17,13 @@ const Hamburger = ({ width = "30px", height = "30px" }) => {
         height: height,
       }}
     >
-      <path d="M4 6H20M4 12H20M4 18H20" stroke="#f5f5f5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+      <path
+        d="M4 6H20M4 12H20M4 18H20"
+        stroke="#f5f5f5"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      ></path>
     </svg>
   );
 };

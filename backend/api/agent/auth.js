@@ -1,13 +1,13 @@
 const express = require("express");
 const authRoutes = express.Router();
-const {AgentUser} = require("../../db/agentDB");
-const {isAgentLoggedIn} = require("./middleware");
+const { AgentUser } = require("../../db/agentDB");
+const { isAgentLoggedIn } = require("./middleware");
 const path = require("path");
 
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const session = require("express-session");
-require("dotenv").config({path: path.resolve(__dirname, "../..", ".env")});
+require("dotenv").config({ path: path.resolve(__dirname, "../..", ".env") });
 
 const sessionSecret = process.env.AGENT_SESSION_SECRET || process.env.AGENT_JWT_SECRET || process.env.JWT;
 if (!sessionSecret) {
@@ -53,7 +53,7 @@ passport.use(
 
         // Find or create user
         const [user] = await AgentUser.findOrCreate({
-          where: {googleId: profile.id},
+          where: { googleId: profile.id },
           defaults: {
             email: email,
             name: profile.displayName || email,
@@ -96,7 +96,7 @@ authRoutes.get(
   sessionMiddleware,
   passport.initialize(),
   passport.session(),
-  passport.authenticate("agent-google", {scope: ["profile", "email"]}),
+  passport.authenticate("agent-google", { scope: ["profile", "email"] }),
 );
 
 // Google OAuth callback (with session)
@@ -105,24 +105,25 @@ authRoutes.get(
   sessionMiddleware,
   passport.initialize(),
   passport.session(),
-  passport.authenticate("agent-google", {failureRedirect: "/login"}),
+  passport.authenticate("agent-google", { failureRedirect: "/login" }),
   async function (req, res) {
-  try {
-    const tokenData = await req.user.generateToken();
-    if (tokenData && tokenData.token) {
-      if (process.env.NODE_ENV === "development") {
-        res.redirect(`http://localhost:3000/dashboard#token=${tokenData.token}`);
+    try {
+      const tokenData = await req.user.generateToken();
+      if (tokenData && tokenData.token) {
+        if (process.env.NODE_ENV === "development") {
+          res.redirect(`http://localhost:3000/dashboard#token=${tokenData.token}`);
+        } else {
+          res.redirect(`https://www.joedelbalzo.com/dashboard#token=${tokenData.token}`);
+        }
       } else {
-        res.redirect(`https://www.joedelbalzo.com/dashboard#token=${tokenData.token}`);
+        res.status(500).send("Failed to generate token");
       }
-    } else {
-      res.status(500).send("Failed to generate token");
+    } catch (err) {
+      console.error("OAuth callback error:", err);
+      res.status(500).send("Authentication failed");
     }
-  } catch (err) {
-    console.error("OAuth callback error:", err);
-    res.status(500).send("Authentication failed");
-  }
-});
+  },
+);
 
 // Get current user by JWT token
 authRoutes.get("/", isAgentLoggedIn, async (req, res, next) => {
