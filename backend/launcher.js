@@ -19,11 +19,12 @@ const YEAR_MS = 365 * 24 * 60 * 60 * 1000;
 
 const buildHtml = (host, plexUrl) => {
   const services = [
+    { label: "Search", url: `https://${host}:8445` },
     { label: "Photos", url: `https://${host}:8443` },
     { label: "Movies", url: `https://${host}/radarr` },
     { label: "TV", url: `https://${host}/sonarr` },
     { label: "Music", url: `https://${host}/lidarr` },
-    { label: "Search", url: `https://${host}/prowlarr` },
+    { label: "Indexers", url: `https://${host}/prowlarr` },
     { label: "Downloads", url: `https://${host}:8444` },
   ];
   if (plexUrl) services.push({ label: "Plex", url: plexUrl });
