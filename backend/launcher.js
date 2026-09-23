@@ -12,10 +12,21 @@
 // React 404, indistinguishable from any other dead route.
 
 const path = require("path");
+const crypto = require("crypto");
 require("dotenv").config({ path: path.resolve(__dirname, ".env"), quiet: true });
 
 const COOKIE = "lk";
 const YEAR_MS = 365 * 24 * 60 * 60 * 1000;
+const MIN_KEY_LENGTH = 24;
+
+const PAGE_HEADERS = {
+  "X-Robots-Tag": "noindex, nofollow",
+  "Cache-Control": "no-store",
+  "Content-Security-Policy":
+    "default-src 'none'; style-src 'unsafe-inline'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'",
+  "Referrer-Policy": "no-referrer",
+  "X-Content-Type-Options": "nosniff",
+};
 
 const buildHtml = (host, plexUrl) => {
   const services = [
@@ -26,6 +37,7 @@ const buildHtml = (host, plexUrl) => {
     { label: "Music", url: `https://${host}/lidarr` },
     { label: "Indexers", url: `https://${host}/prowlarr` },
     { label: "Downloads", url: `https://${host}:8444` },
+    { label: "Server", url: `https://${host}/ops` },
   ];
   if (plexUrl) services.push({ label: "Plex", url: plexUrl });
 
@@ -97,33 +109,48 @@ const buildHtml = (host, plexUrl) => {
 `;
 };
 
-const hasValidCookie = (req, key) => (req.headers.cookie || "").split(";").some((c) => c.trim() === `${COOKIE}=${key}`);
+const digest = (value) => crypto.createHash("sha256").update(String(value)).digest();
+
+const safeEqual = (a, b) => crypto.timingSafeEqual(digest(a), digest(b));
+
+const readCookie = (req) => {
+  for (const part of (req.headers.cookie || "").split(";")) {
+    const [name, ...rest] = part.trim().split("=");
+    if (name === COOKIE) return rest.join("=");
+  }
+  return null;
+};
 
 module.exports = (app) => {
   const route = process.env.LAUNCHER_PATH;
   const key = process.env.LAUNCHER_KEY;
   const host = process.env.LAUNCHER_HOST;
   if (!route || !key || !host) return;
+  if (key.length < MIN_KEY_LENGTH) {
+    console.error(`launcher disabled: LAUNCHER_KEY is shorter than ${MIN_KEY_LENGTH} characters`);
+    return;
+  }
 
   const html = buildHtml(host, process.env.LAUNCHER_PLEX_URL);
+  const token = crypto.createHmac("sha256", key).update("launcher-cookie").digest("base64url");
+  const setCookie = (res) =>
+    res.cookie(COOKIE, token, { httpOnly: true, secure: true, sameSite: "lax", maxAge: YEAR_MS, path: route });
 
   app.get(route, (req, res, next) => {
-    res.set("X-Robots-Tag", "noindex, nofollow");
-    res.set("Cache-Control", "no-store");
-
-    if (req.query.k === key) {
-      res.cookie(COOKIE, key, {
-        httpOnly: true,
-        secure: true,
-        sameSite: "lax",
-        maxAge: YEAR_MS,
-        path: route,
-      });
-      return res.redirect(route);
+    const offered = req.query.k;
+    if (typeof offered === "string" && safeEqual(offered, key)) {
+      setCookie(res);
+      return res.set(PAGE_HEADERS).redirect(route);
     }
 
-    if (!hasValidCookie(req, key)) return next();
+    const cookie = readCookie(req);
+    if (cookie === null) return next();
+    if (!safeEqual(cookie, token)) {
+      // Cookies set before the token existed held the raw key; upgrade them in place.
+      if (!safeEqual(cookie, key)) return next();
+      setCookie(res);
+    }
 
-    res.type("html").send(html);
+    res.set(PAGE_HEADERS).type("html").send(html);
   });
 };
