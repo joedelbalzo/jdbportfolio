@@ -6,15 +6,15 @@
 // devices joined to the tailnet. From any other device they fail — that is
 // intentional. Do not proxy them, health-check them, or mark them broken.
 //
-// Flow: visit LAUNCHER_PATH?k=LAUNCHER_KEY once per device — sets the cookie
-// and redirects to the clean path. With the cookie the page is served;
-// without it the request falls through to the SPA catchall and renders the
-// React 404, indistinguishable from any other dead route.
+// Flow: visit LAUNCHER_PATH?k=LAUNCHER_KEY — sets the cookie and serves the
+// page, leaving the key in the address bar so it can be copied to another
+// device. The clean path serves with the cookie alone; without it the request
+// falls through to the SPA catchall and renders the React 404,
+// indistinguishable from any other dead route.
 //
 // The cookie rotates monthly: its value is a token for the current month, and
 // the server accepts this month's and last month's, renewing a last-month
-// cookie on sight. A device used at least every other month never needs the
-// bookmark again; a stolen cookie dies within two months. Key and path never change.
+// cookie on sight. A stolen cookie dies within two months. Key and path never change.
 
 const path = require("path");
 const crypto = require("crypto");
@@ -161,7 +161,7 @@ module.exports = (app, now = () => new Date()) => {
     const offered = req.query.k;
     if (typeof offered === "string" && safeEqual(offered, key)) {
       setCookie(res, current);
-      return res.set(PAGE_HEADERS).redirect(route);
+      return res.set(PAGE_HEADERS).type("html").send(html);
     }
 
     const cookie = readCookie(req);
