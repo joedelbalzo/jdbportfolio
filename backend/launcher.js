@@ -6,18 +6,24 @@
 // devices joined to the tailnet. From any other device they fail — that is
 // intentional. Do not proxy them, health-check them, or mark them broken.
 //
-// Flow: visit LAUNCHER_PATH?k=LAUNCHER_KEY once per device — sets a 1-year
-// cookie and redirects to the clean path. With the cookie the page is served;
+// Flow: visit LAUNCHER_PATH?k=LAUNCHER_KEY once per device — sets the cookie
+// and redirects to the clean path. With the cookie the page is served;
 // without it the request falls through to the SPA catchall and renders the
 // React 404, indistinguishable from any other dead route.
+//
+// The cookie rotates monthly: its value is a token for the current month, and
+// the server accepts this month's and last month's, renewing a last-month
+// cookie on sight. A device used at least every other month never needs the
+// bookmark again; a stolen cookie dies within two months. Key and path never change.
 
 const path = require("path");
 const crypto = require("crypto");
 require("dotenv").config({ path: path.resolve(__dirname, ".env"), quiet: true });
 
 const COOKIE = "lk";
-const YEAR_MS = 365 * 24 * 60 * 60 * 1000;
+const COOKIE_MS = 62 * 24 * 60 * 60 * 1000;
 const MIN_KEY_LENGTH = 24;
+const LEGACY_UNTIL = "2026-12";
 
 const PAGE_HEADERS = {
   "X-Robots-Tag": "noindex, nofollow",
@@ -121,7 +127,13 @@ const readCookie = (req) => {
   return null;
 };
 
-module.exports = (app) => {
+// "YYYY-MM" in UTC, optionally some months back; Date.UTC carries month -1 into the previous year.
+const period = (date, monthsAgo = 0) => {
+  const d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth() - monthsAgo, 1));
+  return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}`;
+};
+
+module.exports = (app, now = () => new Date()) => {
   const route = process.env.LAUNCHER_PATH;
   const key = process.env.LAUNCHER_KEY;
   const host = process.env.LAUNCHER_HOST;
@@ -132,23 +144,34 @@ module.exports = (app) => {
   }
 
   const html = buildHtml(host, process.env.LAUNCHER_PLEX_URL);
-  const token = crypto.createHmac("sha256", key).update("launcher-cookie").digest("base64url");
-  const setCookie = (res) =>
-    res.cookie(COOKIE, token, { httpOnly: true, secure: true, sameSite: "lax", maxAge: YEAR_MS, path: route });
+  const tokenFor = (month) => crypto.createHmac("sha256", key).update(`launcher-cookie:${month}`).digest("base64url");
+  const legacyToken = crypto.createHmac("sha256", key).update("launcher-cookie").digest("base64url");
+  const setCookie = (res, month) =>
+    res.cookie(COOKIE, tokenFor(month), {
+      httpOnly: true,
+      secure: true,
+      sameSite: "lax",
+      maxAge: COOKIE_MS,
+      path: route,
+    });
 
   app.get(route, (req, res, next) => {
+    const today = now();
+    const current = period(today);
     const offered = req.query.k;
     if (typeof offered === "string" && safeEqual(offered, key)) {
-      setCookie(res);
+      setCookie(res, current);
       return res.set(PAGE_HEADERS).redirect(route);
     }
 
     const cookie = readCookie(req);
     if (cookie === null) return next();
-    if (!safeEqual(cookie, token)) {
-      // Cookies set before the token existed held the raw key; upgrade them in place.
-      if (!safeEqual(cookie, key)) return next();
-      setCookie(res);
+    if (!safeEqual(cookie, tokenFor(current))) {
+      const lastMonth = safeEqual(cookie, tokenFor(period(today, 1)));
+      // Cookies from before the rotation held one fixed token, or the raw key before that; they upgrade through LEGACY_UNTIL.
+      const legacy = current <= LEGACY_UNTIL && (safeEqual(cookie, legacyToken) || safeEqual(cookie, key));
+      if (!lastMonth && !legacy) return next();
+      setCookie(res, current);
     }
 
     res.set(PAGE_HEADERS).type("html").send(html);
