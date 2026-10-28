@@ -6,3 +6,7 @@ favicon_package_v0.16.zip
 .playwright-mcp/
 building-an-effective-dev-portfolio.pdf
 effective-dev-portfolio.txt
+/claude
+.claude
+.claude/
+.claude/settings.local.json

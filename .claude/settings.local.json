@@ -7,8 +7,12 @@
       "mcp__playwright__browser_navigate",
       "mcp__playwright__browser_mouse_wheel",
       "mcp__playwright__browser_wait_for",
-      "PowerShell(npm outdated *)"
+      "PowerShell(npm outdated *)",
+      "WebSearch",
+      "PowerShell(npm *)"
     ]
   },
-  "enabledMcpjsonServers": ["playwright"]
+  "enabledMcpjsonServers": [
+    "playwright"
+  ]
 }
